@@ -8,6 +8,7 @@ public class IManager : IBase
     protected InfoMgr m_infoMgr = null;
     protected ObjectMgr m_objectMgr = null;
     protected UIMgr m_uiMgr = null;
+    protected ClientMgr m_clientMgr = null;
     protected bool isBegin = false;
 
     // public IManager(SceneMgr sceneManager){
