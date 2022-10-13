@@ -8,7 +8,7 @@ public class SceneMgr : IManager
     private SceneInfo m_sceneInfo;
 
     public SceneMgr(){
-        this.Name = "SceneMgr";
+        Name = "SceneMgr";
     }
     
     public void SetScene(SceneInfo sceneInfo, string sceneName){

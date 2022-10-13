@@ -5,6 +5,7 @@ using UnityEngine;
 public class IInfo : IBase
 {
     public IInfo(){
-        this.Name = "IInfo";
+        Name = "IInfo";
     }
+
 }

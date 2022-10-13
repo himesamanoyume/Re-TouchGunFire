@@ -5,7 +5,7 @@ using UnityEngine;
 public class InitScene : SceneInfo
 {
     public InitScene(SceneMgr sceneMgr) : base(sceneMgr){
-        this.Name = "InitScene";
+        Name = "InitScene";
     }
 
     public float coldDown = 2f;

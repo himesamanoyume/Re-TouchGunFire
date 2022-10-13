@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainScene : SceneInfo
 {
     public MainScene(SceneMgr sceneMgr):base(sceneMgr){
-        this.Name = "MainScene";
+        Name = "MainScene";
     }
 
     public override void OnBegin()

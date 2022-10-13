@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class UIMgr : IManager
 {
-    
+    public UIMgr(){
+        Name = "UIMgr";
+    }
 }

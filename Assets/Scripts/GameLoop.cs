@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class GameLoop : UnitySingleton<GameLoop>
 {
-    GameManager m_gameMgr = new GameManager();
+    private GameManager m_gameMgr = new GameManager();
+
+    public GameManager GameManager{
+        get{ return m_gameMgr;}
+    }
 
     void Start()
     {
-        m_gameMgr.m_sceneMgr.SetScene(new InitScene(m_gameMgr.m_sceneMgr), "");
+        m_gameMgr.SceneMgr.SetScene(new InitScene(m_gameMgr.SceneMgr), "");
         
     }
 
     void Update()
     {
-        m_gameMgr.m_sceneMgr.SceneUpdate();
+        m_gameMgr.SceneMgr.SceneUpdate();
     }
 }

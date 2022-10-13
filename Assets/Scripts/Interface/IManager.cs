@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class IManager : IBase
 {
-    protected SceneMgr m_sceneMgr = null;
-    protected InfoMgr m_infoMgr = null;
-    protected ObjectMgr m_objectMgr = null;
-    protected UIMgr m_uiMgr = null;
-    protected ClientMgr m_clientMgr = null;
+    // protected SceneMgr m_sceneMgr = null;
+    // protected InfoMgr m_infoMgr = null;
+    // protected ObjectMgr m_objectMgr = null;
+    // protected UIMgr m_uiMgr = null;
+    // protected ClientMgr m_clientMgr = null;
+    // protected RequestMgr m_requestMgr = null;
     protected bool isBegin = false;
 
     // public IManager(SceneMgr sceneManager){
@@ -27,8 +28,8 @@ public class IManager : IBase
     //     m_uiMgr = uIManager;
     // }
 
-    // public IManager(){
-
-    // }
+    public IManager(){
+        Name = "IManager";
+    }
 
 }

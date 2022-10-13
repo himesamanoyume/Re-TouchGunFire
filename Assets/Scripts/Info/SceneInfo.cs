@@ -8,4 +8,14 @@ public class SceneInfo : IInfo
     public SceneInfo(SceneMgr sceneMgr){
         m_sceneMgr = sceneMgr;
     }
+
+    public virtual void OnBegin(){
+
+    }
+    public virtual void OnUpdate(){
+
+    }
+    public virtual void OnEnd(){
+
+    }
 }

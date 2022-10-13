@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InfoMgr : IManager
 {
-
-    private IManager m_manager;
+    public InfoMgr(){
+        Name = "InfoMgr";
+    }
     
 }

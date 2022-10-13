@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class IObject : IBase
 {
-    
+    public IObject(){
+        Name = "IObject";
+    }
 }

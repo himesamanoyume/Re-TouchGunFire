@@ -9,9 +9,9 @@ public class ClientMgr : IManager
 {
     private Socket m_socket;
     private Message m_message;
-    private IManager m_manager;
 
     public ClientMgr(){
+        Name = "ClientMgr";
         m_message = new Message();
         InitSocket();
     }
@@ -20,6 +20,7 @@ public class ClientMgr : IManager
         m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         try{
             m_socket.Connect("127.0.0.1", 4567);
+            if(m_socket.Connected) Debug.Log("Master Server Connected.");
             StartReceive();
         }catch(Exception e){
             Debug.LogWarning(e);
@@ -58,7 +59,7 @@ public class ClientMgr : IManager
     }
 
     private void HandleResponse(MainPack mainPack){
-        
+        //处理
     }
 
     public void Send(MainPack mainPack){
