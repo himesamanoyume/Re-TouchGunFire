@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class GameLoop : UnitySingleton<GameLoop>
 {
-    private GameManager m_gameMgr = new GameManager();
-
-    public GameManager GameManager{
-        get{ return m_gameMgr;}
-    }
+    private MediationMgr m_mediationMgr = null;
+    private SceneMediation m_sceneMediation = null;
 
     void Start()
     {
-        m_gameMgr.SceneMgr.SetScene(new InitScene(m_gameMgr.SceneMgr), "");
-        
+        m_mediationMgr = GameManager.Instance.MediationMgr;
+        m_sceneMediation = new SceneMediation();
+        m_sceneMediation.SetScene(new InitScene(m_sceneMediation), "");
+
     }
 
     void Update()
     {
-        m_gameMgr.SceneMgr.SceneUpdate();
+        m_sceneMediation.SceneUpdate();
     }
 }

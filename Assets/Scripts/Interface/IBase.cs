@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IBase
+public abstract class IBase
 {
     private string m_name = "IBase";
     public string Name{

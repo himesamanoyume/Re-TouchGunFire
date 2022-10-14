@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IInfo : IBase
+public abstract class IInfo : IBase
 {
-    public IInfo(){
-        Name = "IInfo";
-    }
+    protected InfoMgr m_infoMgr;
 
+    public virtual void Awake(){
+        m_infoMgr = GameManager.Instance.InfoMgr;
+    }
 }

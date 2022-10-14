@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 
-public class GameManager
+public class GameManager : Singleton<GameManager>
 {
     private InfoMgr m_infoMgr = new InfoMgr();
     private ObjectMgr m_objectMgr = new ObjectMgr();
@@ -11,6 +11,7 @@ public class GameManager
     private UIMgr m_uiMgr = new UIMgr();
     private ClientMgr m_clientMgr = new ClientMgr();
     private RequestMgr m_requestMgr = new RequestMgr();
+    private MediationMgr m_mediationMgr = new MediationMgr();
 
     public InfoMgr InfoMgr{
         get{return m_infoMgr;}
@@ -36,12 +37,7 @@ public class GameManager
         get{return m_requestMgr;}
     }
 
-
-    // public void Send(MainPack mainPack){
-    //     m_clientMgr.Send(mainPack);
-    // }
-
-    // public void HandleResponse(MainPack mainPack){
-        
-    // }
+    public MediationMgr MediationMgr{
+        get{return m_mediationMgr;}
+    }
 }

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IObject : IBase
+public abstract class IObject : IBase
 {
-    public IObject(){
-        Name = "IObject";
+    protected ObjectMgr m_objectMgr;
+    public virtual void Awake(){
+        m_objectMgr = GameManager.Instance.ObjectMgr;
     }
+    
 }

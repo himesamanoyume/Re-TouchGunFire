@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 
-public class RequestMgr : IManager
+public sealed class RequestMgr : IManager
 {
     public RequestMgr(){
         Name = "RequestMgr";

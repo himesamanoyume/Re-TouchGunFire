@@ -6,6 +6,7 @@ using SocketProtocol;
 public class RegisterRequest : IRequest
 {
     public override void Awake() {
+        Name = "RegisterRequest";
         m_requestCode = RequestCode.User;
         m_actionCode = ActionCode.Register;
         base.Awake();

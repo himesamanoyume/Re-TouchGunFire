@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Net.Sockets;
 using SocketProtocol;
 
-public class ClientMgr : IManager
+public sealed class ClientMgr : IManager
 {
     private Socket m_socket;
     private Message m_message;

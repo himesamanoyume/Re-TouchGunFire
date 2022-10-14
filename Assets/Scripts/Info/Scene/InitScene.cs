@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitScene : SceneInfo
+public sealed class InitScene : SceneInfo
 {
-    public InitScene(SceneMgr sceneMgr) : base(sceneMgr){
+    public InitScene(SceneMediation sceneMediation) : base(sceneMediation){
         Name = "InitScene";
     }
 
@@ -21,8 +21,8 @@ public class InitScene : SceneInfo
     {
         m_coldDown -= Time.deltaTime;
         if(m_coldDown<=0){
-            MainScene mainScene = new MainScene(m_sceneMgr);
-            m_sceneMgr.SetScene(mainScene,mainScene.Name);
+            MainScene mainScene = new MainScene(m_sceneMediation);
+            m_sceneMediation.SetScene(mainScene,mainScene.Name);
         }
         
     }

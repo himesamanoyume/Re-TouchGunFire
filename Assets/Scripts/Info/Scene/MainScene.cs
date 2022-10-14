@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainScene : SceneInfo
+public sealed class MainScene : SceneInfo
 {
-    public MainScene(SceneMgr sceneMgr):base(sceneMgr){
+    public MainScene(SceneMediation sceneMediation) : base(sceneMediation){
         Name = "MainScene";
     }
 

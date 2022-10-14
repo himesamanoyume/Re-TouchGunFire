@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneMgr : IManager
+public sealed class SceneMgr : IManager
 {
     private SceneInfo m_sceneInfo;
+    private bool isBegin = false;
 
     public SceneMgr(){
         Name = "SceneMgr";

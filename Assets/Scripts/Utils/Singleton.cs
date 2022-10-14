@@ -5,11 +5,11 @@ using UnityEngine;
 public abstract class Singleton<T> where T : new()
 {
     private static T m_instance;
-    private static object mutex = new object();
+    private static object m_mutex = new object();
     public static T Instance{
         get{
             if(m_instance == null){
-                lock(mutex){
+                lock(m_mutex){
                     if(m_instance == null){
                         m_instance = new T();
                     }

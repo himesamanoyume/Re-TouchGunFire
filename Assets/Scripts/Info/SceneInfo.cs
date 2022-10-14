@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneInfo : IInfo
+public abstract class SceneInfo : IInfo
 {
-    protected SceneMgr m_sceneMgr = null;
-    public SceneInfo(SceneMgr sceneMgr){
-        m_sceneMgr = sceneMgr;
+    protected SceneMediation m_sceneMediation = null;
+    public SceneInfo(SceneMediation sceneMediation){
+        m_sceneMediation = sceneMediation;
     }
 
-    public virtual void OnBegin(){
-
-    }
-    public virtual void OnUpdate(){
-
-    }
-    public virtual void OnEnd(){
-
-    }
+    public abstract void OnBegin();
+    public abstract void OnUpdate();
+    public abstract void OnEnd();
 }
