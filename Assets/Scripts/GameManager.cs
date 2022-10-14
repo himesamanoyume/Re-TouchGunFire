@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private ClientMgr m_clientMgr = new ClientMgr();
     private RequestMgr m_requestMgr = new RequestMgr();
     private MediationMgr m_mediationMgr = new MediationMgr();
+    private LuaMgr m_luaMgr = new LuaMgr();
 
     public InfoMgr InfoMgr{
         get{return m_infoMgr;}
@@ -39,5 +40,8 @@ public class GameManager : Singleton<GameManager>
 
     public MediationMgr MediationMgr{
         get{return m_mediationMgr;}
+    }
+    public LuaMgr LuaMgr{
+        get{return m_luaMgr;}
     }
 }

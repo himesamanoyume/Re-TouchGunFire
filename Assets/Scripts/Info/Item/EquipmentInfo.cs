@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EquipmentInfo
 {
-   private EquipmentSuitEnum m_equipmentSuit;
-   private EquipmentQualityEnum m_equipmentQuality;
+   private EEquipmentSuit m_equipmentSuit;
+   private EEquipmentQuality m_equipmentQuality;
 
-   public EquipmentSuitEnum EquipmentSuit{
+   public EEquipmentSuit EquipmentSuit{
       get{ return m_equipmentSuit;}
       set{ m_equipmentSuit = value;}
    }
 
-   public EquipmentQualityEnum EquipmentQuality{
+   public EEquipmentQuality EquipmentQuality{
       get{ return m_equipmentQuality;}
       set{ m_equipmentQuality = value;}
    }

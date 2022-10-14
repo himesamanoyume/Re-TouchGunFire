@@ -72,6 +72,13 @@
       "source": "builtin",
       "dependencies": {}
     },
+    "com.unity.assetbundlebrowser.plus": {
+      "version": "https://github.com/michael811125/AssetBundles-Browser-Plus.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8ed7c48861e1ed7d8ae9b39f2e80f843307f18a7"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.15",
       "depth": 0,
