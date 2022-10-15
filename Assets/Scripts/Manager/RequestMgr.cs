@@ -9,6 +9,10 @@ public sealed class RequestMgr : IManager
         Name = "RequestMgr";
     }
 
+    public override void Init(){
+        
+    }
+
     private Dictionary<ActionCode, IRequest> m_requestDict = new Dictionary<ActionCode, IRequest>();
 
     public void AddRequest(IRequest request){

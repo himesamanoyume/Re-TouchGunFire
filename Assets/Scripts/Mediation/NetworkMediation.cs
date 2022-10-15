@@ -5,12 +5,12 @@ using SocketProtocol;
 
 public sealed class NetworkMediation : IMediation
 {
-    private ClientMgr m_clientMgr = null;
-    private RequestMgr m_requestMgr = null;
-    public NetworkMediation(MediationMgr mediationMgr) : base(mediationMgr){
+    public ClientMgr m_clientMgr = null;
+    public RequestMgr m_requestMgr = null;
+    public NetworkMediation(){
         Name = "NetworkMediation";
-        m_clientMgr = GameManager.Instance.ClientMgr;
-        m_requestMgr = GameManager.Instance.RequestMgr;
+        m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;
+        m_requestMgr = GameLoop.Instance.gameManager.RequestMgr;
     }
 
     public void Send(MainPack mainPack){

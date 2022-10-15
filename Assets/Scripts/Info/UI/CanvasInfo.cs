@@ -9,17 +9,18 @@ public class CanvasInfo : UIInfo
     private Transform m_level3;
     private Transform m_level4;
     private Transform m_levelLoading;
-    public CanvasInfo(){
-        
-        InitCanvasChild();
-    }
 
-    private void InitCanvasChild(){
-        m_level1 = gameObject.transform.GetChild(0);
-        m_level2 = gameObject.transform.GetChild(1);
-        m_level3 = gameObject.transform.GetChild(2);
-        m_level4 = gameObject.transform.GetChild(3);
-        m_levelLoading = gameObject.transform.GetChild(4);
+    public void InitCanvasChild(){
+        m_level1 = transform.GetChild(0);
+        Debug.Log(m_level1.name);
+        m_level2 = transform.GetChild(1);
+        Debug.Log(m_level2.name);
+        m_level3 = transform.GetChild(2);
+        Debug.Log(m_level3.name);
+        m_level4 = transform.GetChild(3);
+        Debug.Log(m_level4.name);
+        m_levelLoading = transform.GetChild(4);
+        Debug.Log(m_levelLoading.name);
     }
 
     public Transform Canvas{

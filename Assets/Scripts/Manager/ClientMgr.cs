@@ -16,6 +16,11 @@ public sealed class ClientMgr : IManager
         InitSocket();
     }
 
+    public override void Init()
+    {
+        
+    }
+
     private void InitSocket(){
         m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         try{

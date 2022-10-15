@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class LuaMediation : IMediation
 {
-    private LuaMgr m_luaMgr = null;
-    private MediationMgr m_mediationMgr = null;
+    public LuaMgr m_luaMgr = null;
     
-    public LuaMediation(MediationMgr mediationMgr) : base (mediationMgr){
+    public LuaMediation(){
         Name = "LuaMediation";
-        m_luaMgr = GameManager.Instance.LuaMgr;
+        m_luaMgr = GameLoop.Instance.gameManager.LuaMgr;
     }
 
 }

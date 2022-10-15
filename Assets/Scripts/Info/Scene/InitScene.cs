@@ -8,41 +8,26 @@ public sealed class InitScene : SceneInfo
         Name = "InitScene";
     }
 
-    // public float coldDown = 2f;
-    // private float m_coldDown = 2f;
+    public HotUpdateMediation m_hotUpdateMediation = null;
 
     public override void OnBegin()
     {
-        Debug.Log("Init Begin");
-        m_sceneMediation.RunEnumerator(StartInit());
-        // m_coldDown = coldDown;
+        Debug.Log("InitScene Begin");
+        if(GameLoop.Instance.TryGetComponent<HotUpdateMediation>(out HotUpdateMediation hotUpdateMediation)){
+            m_hotUpdateMediation = hotUpdateMediation;
+        }else{
+            Debug.LogWarning("未拿到对应组件");
+        }
+        m_hotUpdateMediation.StartCheck(m_sceneMediation);
     }
 
     public override void OnUpdate()
     {
-
-        // m_coldDown -= Time.deltaTime;
-        // if(m_coldDown<=0){
-        //     MainScene mainScene = new MainScene(m_sceneMediation);
-        //     m_sceneMediation.SetScene(mainScene,mainScene.Name);
-        // }
-        
+        Debug.Log("InitScene Update");
     }
 
     public override void OnEnd()
     {
-        Debug.Log("Init End");
-
-        // m_coldDown = coldDown;
-    }
-
-    private IEnumerator StartInit(){
-        yield return m_sceneMediation.RunEnumerator(CheckHotUpdate());
-
-        //
-    }
-
-    private IEnumerator CheckHotUpdate(){
-        yield return 0;
+        Debug.Log("InitScene End");
     }
 }

@@ -10,6 +10,9 @@ public class LuaMgr : IManager
     private static string _LuaScriptFolder = "LuaScripts";
     public LuaMgr(){
         Name = "LuaMgr";
+    }
+
+    public override void Init(){
         InitLuaEnv();
     }
 
@@ -30,6 +33,6 @@ public class LuaMgr : IManager
         return null;
     #endif
 
-        return null;
+        // return null;
     }
 }

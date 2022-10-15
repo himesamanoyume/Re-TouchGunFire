@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class IManager : IBase
 {
-
+    public abstract void Init();
 }

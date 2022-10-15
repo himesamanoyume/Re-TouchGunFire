@@ -7,4 +7,8 @@ public sealed class ObjectMgr : IManager
     public ObjectMgr(){
         Name = "ObjectMgr";
     }
+
+    public override void Init(){
+        
+    }
 }

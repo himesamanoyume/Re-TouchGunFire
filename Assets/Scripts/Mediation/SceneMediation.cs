@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SceneMediation : IMediation
 {
-    private SceneMgr m_sceneMgr = null;
+    public SceneMgr m_sceneMgr = null;
     
-    public SceneMediation(MediationMgr mediationMgr) : base(mediationMgr){
+    public SceneMediation(){
         Name = "SceneMediation";
-        m_sceneMgr = GameManager.Instance.SceneMgr;
+        m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
     }
 
     public void SetScene(SceneInfo sceneInfo, string sceneName){
@@ -20,7 +20,12 @@ public class SceneMediation : IMediation
     }
 
     public IEnumerator RunEnumerator(IEnumerator enumerator){
+        Debug.Log("SceneMediation RunEnumerator");
         yield return StartCoroutine(enumerator);
+    }
+
+    public void SceneLog(){
+        m_sceneMgr.SceneLog();
     }
 
 }

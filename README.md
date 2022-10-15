@@ -4,26 +4,29 @@ Rebuild project.
 
 ## TODO
 
-- 使用加载ab方式加载UI
-- InitScene与MainScene等其他场景的区别(其他场景需要改用ab)
+完善UI框架
 
 ## CHANGELOG
 
+> `22.10.15 23:41`
+rewrite something. 
+add HotUpdateMediation. 
+
 > `22.10.15 7:10`
-add CanvasMediation, LuaMediation, NetworkMediation etc
-rewrite some enum, GameManager etc
-add CanvasInfo, RegisterPanelInfo etc
-add plugin "AssetBundleBrowserPlus"
+add CanvasMediation, LuaMediation, NetworkMediation etc. 
+rewrite some enum, GameManager etc. 
+add CanvasInfo, RegisterPanelInfo etc. 
+add plugin "AssetBundleBrowserPlus". 
 
 > `22.10.14 17:28`
-add Mediation Mode , IMediation
-rewrite Interface
+add Mediation Mode , IMediation. 
+rewrite Interface. 
 
 > `22.10.13 23:41`
-add RequestMgr, IRequest
+add RequestMgr, IRequest. 
 
 > `22.10.11 22:41`
-add XLua, SocketClient etc
+add XLua, SocketClient etc. 
 
 > `Init / 22.9.24`
 null

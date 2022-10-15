@@ -7,5 +7,9 @@ public sealed class InfoMgr : IManager
     public InfoMgr(){
         Name = "InfoMgr";
     }
+
+    public override void Init(){
+        
+    }
     
 }

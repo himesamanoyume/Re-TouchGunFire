@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CanvasMediation : IMediation
 {
-    private UIMgr m_uiMgr = null;
+    public UIMgr m_uiMgr = null;
     
-    public CanvasMediation(MediationMgr mediationMgr) : base(mediationMgr){
+    public CanvasMediation(){
         Name = "CanvasMediation";
-        m_uiMgr = GameManager.Instance.UIMgr;
+        m_uiMgr = GameLoop.Instance.gameManager.UIMgr;
     }
 }

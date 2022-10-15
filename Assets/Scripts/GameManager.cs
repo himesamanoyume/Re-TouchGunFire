@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager
 {
+    private MediationMgr m_mediationMgr = new MediationMgr();
     private InfoMgr m_infoMgr = new InfoMgr();
     private ObjectMgr m_objectMgr = new ObjectMgr();
     private SceneMgr m_sceneMgr = new SceneMgr();
     private UIMgr m_uiMgr = new UIMgr();
     private ClientMgr m_clientMgr = new ClientMgr();
     private RequestMgr m_requestMgr = new RequestMgr();
-    private MediationMgr m_mediationMgr = new MediationMgr();
     private LuaMgr m_luaMgr = new LuaMgr();
+
+    public void Init(){
+        Debug.Log("GameManager Init Start");
+        m_mediationMgr.Init();
+        m_infoMgr.Init();
+        m_objectMgr.Init();
+        m_sceneMgr.Init();
+        m_uiMgr.Init();
+        m_clientMgr.Init();
+        m_requestMgr.Init();
+        m_requestMgr.Init();
+        m_luaMgr.Init();
+    }
 
     public InfoMgr InfoMgr{
         get{return m_infoMgr;}

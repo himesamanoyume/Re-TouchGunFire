@@ -9,10 +9,12 @@ public sealed class UIMgr : IManager
     public GameObject m_canvasPrefab = null;
     public UIMgr(){
         Name = "UIMgr";
-        //ab加载CanvasPrefab
+        
+    }
 
-        //end
-        m_canvasPrefab.AddComponent<CanvasInfo>();
+    public override void Init(){
+        //替换为ab Canvas
+        // m_canvasPrefab.AddComponent<CanvasInfo>();
     }
 
     private void PushPanel(EUIPanelType uIPanelType, EUILevel uILevel){
