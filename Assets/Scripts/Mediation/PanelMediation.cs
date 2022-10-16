@@ -21,9 +21,8 @@ public class PanelMediation : IMediation
         }  
     }
 
-    public void SpawnInitPanel(){
-        GameObject initPanel = m_abMediation.SyncLoadABRes("prefabs","InitPanel",m_uiMgr.m_canvasMediation.GetCanvasLevel(EUILevel.Level2));
-        initPanel.name = "InitPanel";
-        m_uiMgr.PushPanel(EUILevel.Level2,initPanel);
+    public void SpawnPanel(EUIPanelType eUIPanelType, EUILevel eUILevel){
+        StartCoroutine(m_abMediation.AsyncLoadABUIRes("prefabs",eUIPanelType.ToString(),m_uiMgr.m_canvasMediation.GetCanvasLevel(EUILevel.Level2),eUILevel));
     }
+
 }

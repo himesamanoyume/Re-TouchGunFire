@@ -5,6 +5,7 @@ using UnityEngine;
 public class SceneMediation : IMediation
 {
     public SceneMgr m_sceneMgr = null;
+    public AbMediation m_abMediation = null;
     
     public SceneMediation(){
         Name = "SceneMediation";
@@ -13,6 +14,9 @@ public class SceneMediation : IMediation
     public override void Init()
     {
         m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
+        if(GameLoop.Instance.TryGetComponent<AbMediation>(out AbMediation abMediation)){
+            m_abMediation = abMediation;
+        }
     }
 
     public void SetScene(SceneInfo sceneInfo, string sceneName){
@@ -23,9 +27,9 @@ public class SceneMediation : IMediation
         m_sceneMgr.SceneUpdate();
     }
 
-    public IEnumerator RunEnumerator(IEnumerator enumerator){
-        Debug.Log("SceneMediation RunEnumerator");
-        yield return StartCoroutine(enumerator);
+    public void LoadScene(string sceneName){
+        // m_abMediation.SyncLoadABScene("scenes",sceneName);//同步加载场景测试
+        StartCoroutine(m_abMediation.AsyncLoadAbScene("scenes",sceneName));
     }
 
     public void SceneLog(){

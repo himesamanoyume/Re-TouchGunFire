@@ -11,9 +11,11 @@ public class AbMediation : IMediation
         Name = "AbMediation";
     }
 
+    public UIMgr m_uiMgr = null;
+
     public override void Init()
     {
-        
+        m_uiMgr = GameLoop.Instance.gameManager.UIMgr;
     }
 
     private const string abMapPathStr = "/AbMap/AssetBundle/";
@@ -23,16 +25,48 @@ public class AbMediation : IMediation
     /// </summary>
     /// <param name="abName"></param>
     /// <param name="resName"></param>
+    /// <returns></returns>
     public GameObject SyncLoadABRes(string abName, string resName, Transform transform){
         //"StreamingAssets/AbMap/AssetBundle/`abName`"
         AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
-        GameObject obj = ab.LoadAsset<GameObject>(resName);
-        obj.name = resName;
+        GameObject tobj = ab.LoadAsset<GameObject>(resName);
+
         //卸载全部ab包 true:卸载场景中已经加载的ab包资源 false:只卸载ab包
         //AssetBundle.UnloadAllAssetBundles(false);
-        //卸载单个
+        GameObject obj = Instantiate(tobj,transform);
+        obj.name = name;
+        ab.Unload(false);//卸载单个
+        
+        return obj;
+    }
+
+    /// <summary>
+    /// 同步加载UI面板
+    /// </summary>
+    /// <param name="abName"></param>
+    /// <param name="resName"></param>
+    /// <param name="transform"></param>
+    /// <param name="eUILevel"></param>
+    public void SyncLoadABUIRes(string abName, string resName, Transform transform, EUILevel eUILevel){
+        
+        AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
+        GameObject obj = Instantiate(ab.LoadAsset<GameObject>(resName),transform);
+        obj.name = resName;
+        m_uiMgr.PushPanel(eUILevel, obj);
+        
         ab.Unload(false);
-        return Instantiate(obj,transform);
+    }
+
+    /// <summary>
+    /// 同步加载场景
+    /// </summary>
+    /// <param name="abName"></param>
+    /// <param name="resName"></param>
+    public void SyncLoadABScene(string abName, string sceneName){
+        
+        AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
+        SceneManager.LoadScene(sceneName);
+        ab.Unload(false);
     }
 
     /// <summary>
@@ -40,57 +74,52 @@ public class AbMediation : IMediation
     /// </summary>
     /// <param name="abName"></param>
     /// <param name="resName"></param>
-    public void StartSyncLoadAbScene(string abName, string sceneName){
-        StartCoroutine(SyncLoadAbScene(abName, sceneName));
-    }
-
-    private IEnumerator SyncLoadAbScene(string abName, string sceneName){
+    public IEnumerator AsyncLoadAbScene(string abName, string sceneName){
         UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
         yield return assetBundle.SendWebRequest();
         AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
+        yield return ab;
         SceneManager.LoadScene(sceneName);
+        ab.Unload(false);
     }
 
     /// <summary>
-    /// 异步加载ab,不能用于场景
+    /// 异步加载ab物体,不能用于场景
     /// </summary>
     /// <param name="abName"></param>
     /// <param name="resName"></param>
-    /// <param name="action">拿取资源的委托</param>
-    /// <returns></returns>
-    public GameObject StartAsyncLoadABRes(string abName, string resName, Transform transform){
-        StartCoroutine(AsyncLoadABRes(abName, resName, transform));
-        if(tempGameObject != null)
-            return tempGameObject;
-        else
-            return null;
-    }
-    
-    private GameObject tempGameObject = null;
-    private IEnumerator AsyncLoadABRes(string abName, string resName, Transform transform){
-        AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + abMapPathStr + abName);
-        yield return abcr;
-        AssetBundleRequest abr = abcr.assetBundle.LoadAssetAsync<GameObject>(resName);
-        yield return abr;
-        tempGameObject = Instantiate(abr.asset as GameObject, transform);
-        // return Instantiate(abr.asset as GameObject);
+    /// <param name="transform"></param>
+    public IEnumerator AsyncLoadABRes(string abName, string resName, Transform transform){
+
+        UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
+        yield return assetBundle.SendWebRequest();
+        AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
+        yield return ab;
+        GameObject tobj = ab.LoadAsset<GameObject>(resName);
+        ab.Unload(false);
+        GameObject obj = Instantiate(tobj, transform);
+        obj.name = resName;
     }
 
     /// <summary>
-    /// 异步加载ab,用于加载场景
+    /// 异步加载UI面板
     /// </summary>
     /// <param name="abName"></param>
-    /// <param name="sceneName"></param>
-    public void StartAsyncLoadABScene(string abName, string sceneName){
-        StartCoroutine(AsyncLoadABScene(abName, sceneName));
-    }
+    /// <param name="resName"></param>
+    /// <param name="transform"></param>
+    /// <param name="eUILevel"></param>
+    public IEnumerator AsyncLoadABUIRes(string abName, string resName, Transform transform, EUILevel eUILevel){
 
-    private IEnumerator AsyncLoadABScene(string abName, string sceneName){
-        AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + abMapPathStr + abName);
-        yield return abcr;
-        AssetBundleRequest abr = abcr.assetBundle.LoadAssetAsync(sceneName);
-        yield return abr;
-        SceneManager.LoadScene(sceneName);
+        UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
+        yield return assetBundle.SendWebRequest();
+        AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
+        yield return ab;
+        GameObject tobj = ab.LoadAsset<GameObject>(resName);
+        ab.Unload(false);
+        GameObject obj = Instantiate(tobj, transform);
+        obj.name = resName;
+        m_uiMgr.PushPanel(eUILevel, obj);
+        
     }
 
     /// <summary>

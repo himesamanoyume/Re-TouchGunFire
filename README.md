@@ -4,11 +4,16 @@ Rebuild project.
 
 ## TODO
 
-AB包加载区分
+AB包加载区分(编辑器模式,发布模式)
+
+添加Notify事件
 
 完善UI框架
 
 ## CHANGELOG
+
+> `22.10.17 4:13`
+improved AbMediation, SceneMediation, GameLoop etc. 
 
 > `22.10.16 23:49`
 add PanelMediation. 

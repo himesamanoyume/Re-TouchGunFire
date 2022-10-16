@@ -14,8 +14,8 @@ public class GameLoop : UnitySingleton<GameLoop>
         gameManager = new GameManager();
         //游戏初始化
         m_mediationMgr = gameManager.MediationMgr;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitSceneMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitAbMediation;
+        m_mediationMgr.m_initDel += m_mediationMgr.InitSceneMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitHotUpdateMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitCanvasMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitLuaMediation;

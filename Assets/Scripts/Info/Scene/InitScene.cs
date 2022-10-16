@@ -22,8 +22,10 @@ public sealed class InitScene : SceneInfo
         }
 
         m_canvasMediation.InitCanvas();
-        GameLoop.Instance.GetComponent<PanelMediation>().SpawnInitPanel();
 
+        
+        GameLoop.Instance.GetComponent<PanelMediation>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2);
+        
 
         if(GameLoop.Instance.TryGetComponent<HotUpdateMediation>(out HotUpdateMediation hotUpdateMediation)){
             m_hotUpdateMediation = hotUpdateMediation;

@@ -12,7 +12,7 @@ public sealed class MainScene : SceneInfo
     public override void OnBegin()
     {
         Debug.Log("MainScene Begin");
-        
+        GameLoop.Instance.GetComponent<PanelMediation>().SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2);
     }
 
     public override void OnUpdate()

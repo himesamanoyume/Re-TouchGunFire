@@ -5,6 +5,7 @@ using UnityEngine;
 public enum EUIPanelType
 {
     InitPanel,
+    TestPanel,
     LoadingPanel,
     HotUpdatePanel,
     LoginPanel,

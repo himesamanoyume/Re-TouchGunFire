@@ -4,11 +4,7 @@ using UnityEngine;
 
 public sealed class UIMgr : IManager
 {
-    // private Dictionary<EUIPanelType, UIInfo> m_uiPanelDict = new Dictionary<EUIPanelType, UIInfo>();
-    // private Dictionary<EUIPanelType, string> m_uiPanelPathDict = new Dictionary<EUIPanelType, string>();
-    // private Dictionary<EUIPanelType, GameObject> m_uiPanels = new Dictionary<EUIPanelType, GameObject>();
     public CanvasMediation m_canvasMediation = null;
-    // public GameObject m_canvas = null;
     private List<GameObject> m_PanelList = new List<GameObject>();
     public UIMgr(){
         Name = "UIMgr";
@@ -28,13 +24,15 @@ public sealed class UIMgr : IManager
         uIPanel.transform.SetParent(m_canvasMediation.GetCanvasLevel(uILevel));
     }
 
-    // public void SpawnPanel(EUIPanelType uIPanelType, EUILevel uILevel){
-
-    // }
+    public void SpawnPanel(EUIPanelType uIPanelType, EUILevel uILevel){
+        
+    }
 
     public void PopPanel(){
         GameObject.Destroy(m_PanelList[0]);
         m_PanelList.Remove(m_PanelList[0]);
     }
+
+
 
 }

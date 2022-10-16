@@ -58,4 +58,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/Prefabs/InitPanel/InitPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/Prefabs/TestPanel/TestPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/Prefabs/TestPanel/TestPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0
