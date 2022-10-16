@@ -6,7 +6,6 @@ public abstract class IObject : IBase
 {
     protected ObjectMgr m_objectMgr;
     public virtual void Awake(){
-        // m_objectMgr = GameManager.Instance.ObjectMgr;
         m_objectMgr = GameLoop.Instance.gameManager.ObjectMgr;
     }
     

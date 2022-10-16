@@ -11,6 +11,11 @@ public class AbMediation : IMediation
         Name = "AbMediation";
     }
 
+    public override void Init()
+    {
+        
+    }
+
     private const string abMapPathStr = "/AbMap/AssetBundle/";
 
     /// <summary>
@@ -18,16 +23,16 @@ public class AbMediation : IMediation
     /// </summary>
     /// <param name="abName"></param>
     /// <param name="resName"></param>
-    public GameObject SyncLoadABRes(string abName, string resName){
+    public GameObject SyncLoadABRes(string abName, string resName, Transform transform){
         //"StreamingAssets/AbMap/AssetBundle/`abName`"
         AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
         GameObject obj = ab.LoadAsset<GameObject>(resName);
-
+        obj.name = resName;
         //卸载全部ab包 true:卸载场景中已经加载的ab包资源 false:只卸载ab包
         //AssetBundle.UnloadAllAssetBundles(false);
         //卸载单个
         ab.Unload(false);
-        return Instantiate(obj);
+        return Instantiate(obj,transform);
     }
 
     /// <summary>
@@ -53,8 +58,8 @@ public class AbMediation : IMediation
     /// <param name="resName"></param>
     /// <param name="action">拿取资源的委托</param>
     /// <returns></returns>
-    public GameObject StartAsyncLoadABRes(string abName, string resName){
-        StartCoroutine(AsyncLoadABRes(abName, resName));
+    public GameObject StartAsyncLoadABRes(string abName, string resName, Transform transform){
+        StartCoroutine(AsyncLoadABRes(abName, resName, transform));
         if(tempGameObject != null)
             return tempGameObject;
         else
@@ -62,12 +67,12 @@ public class AbMediation : IMediation
     }
     
     private GameObject tempGameObject = null;
-    private IEnumerator AsyncLoadABRes(string abName, string resName){
+    private IEnumerator AsyncLoadABRes(string abName, string resName, Transform transform){
         AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(Application.streamingAssetsPath + abMapPathStr + abName);
         yield return abcr;
         AssetBundleRequest abr = abcr.assetBundle.LoadAssetAsync<GameObject>(resName);
         yield return abr;
-        tempGameObject = Instantiate(abr.asset as GameObject);
+        tempGameObject = Instantiate(abr.asset as GameObject, transform);
         // return Instantiate(abr.asset as GameObject);
     }
 

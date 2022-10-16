@@ -8,6 +8,10 @@ public class SceneMediation : IMediation
     
     public SceneMediation(){
         Name = "SceneMediation";
+    }
+
+    public override void Init()
+    {
         m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
     }
 

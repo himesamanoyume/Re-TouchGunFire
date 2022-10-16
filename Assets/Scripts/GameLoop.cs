@@ -17,6 +17,10 @@ public class GameLoop : UnitySingleton<GameLoop>
         m_mediationMgr.m_initDel += m_mediationMgr.InitSceneMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitAbMediation;
         m_mediationMgr.m_initDel += m_mediationMgr.InitHotUpdateMediation;
+        m_mediationMgr.m_initDel += m_mediationMgr.InitCanvasMediation;
+        m_mediationMgr.m_initDel += m_mediationMgr.InitLuaMediation;
+        m_mediationMgr.m_initDel += m_mediationMgr.InitPanelMediation;
+        m_mediationMgr.m_initDel += m_mediationMgr.InitNetworkMediation;
 
         m_mediationMgr.InitDelMediation();
         gameManager.Init();
@@ -26,10 +30,6 @@ public class GameLoop : UnitySingleton<GameLoop>
     void Start()
     {
         
-        // m_sceneMediation = (SceneMediation)m_mediationMgr.GetMediation("SceneMediation");
-        // m_sceneMediation.SetScene(new InitScene(m_sceneMediation), "");
-
-
         m_sceneMediation = gameObject.GetComponent<SceneMediation>();
         Debug.Log("GameLoop Start.");
         m_sceneMediation.SetScene(new InitScene(m_sceneMediation), "");

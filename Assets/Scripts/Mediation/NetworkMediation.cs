@@ -9,6 +9,10 @@ public sealed class NetworkMediation : IMediation
     public RequestMgr m_requestMgr = null;
     public NetworkMediation(){
         Name = "NetworkMediation";
+    }
+
+    public override void Init()
+    {
         m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;
         m_requestMgr = GameLoop.Instance.gameManager.RequestMgr;
     }

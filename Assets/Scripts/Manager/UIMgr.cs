@@ -4,28 +4,37 @@ using UnityEngine;
 
 public sealed class UIMgr : IManager
 {
-    private Dictionary<EUIPanelType, UIInfo> m_uiPanelDict = new Dictionary<EUIPanelType, UIInfo>();
-    private Dictionary<EUIPanelType, string> m_uiPanelPathDict = new Dictionary<EUIPanelType, string>();
-    public GameObject m_canvasPrefab = null;
+    // private Dictionary<EUIPanelType, UIInfo> m_uiPanelDict = new Dictionary<EUIPanelType, UIInfo>();
+    // private Dictionary<EUIPanelType, string> m_uiPanelPathDict = new Dictionary<EUIPanelType, string>();
+    // private Dictionary<EUIPanelType, GameObject> m_uiPanels = new Dictionary<EUIPanelType, GameObject>();
+    public CanvasMediation m_canvasMediation = null;
+    // public GameObject m_canvas = null;
+    private List<GameObject> m_PanelList = new List<GameObject>();
     public UIMgr(){
         Name = "UIMgr";
-        
     }
 
     public override void Init(){
-        //替换为ab Canvas
-        // m_canvasPrefab.AddComponent<CanvasInfo>();
+        if(GameLoop.Instance.TryGetComponent<CanvasMediation>(out CanvasMediation canvasMediation)){
+            m_canvasMediation = canvasMediation;
+        }else{
+            Debug.LogWarning("未拿到对应组件");
+        }  
+        // m_canvas = m_canvasMediation.m_canvas;
     }
 
-    private void PushPanel(EUIPanelType uIPanelType, EUILevel uILevel){
-
+    public void PushPanel(EUILevel uILevel, GameObject uIPanel){
+        m_PanelList.Add(uIPanel);
+        uIPanel.transform.SetParent(m_canvasMediation.GetCanvasLevel(uILevel));
     }
 
-    private void SpawnPanel(EUIPanelType uIPanelType, EUILevel uILevel){
+    // public void SpawnPanel(EUIPanelType uIPanelType, EUILevel uILevel){
 
+    // }
+
+    public void PopPanel(){
+        GameObject.Destroy(m_PanelList[0]);
+        m_PanelList.Remove(m_PanelList[0]);
     }
 
-    private void SetPanel(){
-
-    }
 }

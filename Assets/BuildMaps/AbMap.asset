@@ -53,4 +53,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/Scenes/TestScene.unity
         assetBundleName: scenes
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/Prefabs/InitPanel/InitPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/Prefabs/InitPanel/InitPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

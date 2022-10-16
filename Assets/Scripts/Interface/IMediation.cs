@@ -9,4 +9,6 @@ public abstract class IMediation : MonoBehaviour
         get{ return m_name;}
         set{ m_name = value;}
     }
+
+    public abstract void Init();
 }

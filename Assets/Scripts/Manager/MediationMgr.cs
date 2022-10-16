@@ -16,53 +16,35 @@ public class MediationMgr : IManager
     public delegate void initDel();
     public initDel m_initDel = null;
 
-    // private Dictionary<string,IMediation> mediationList = new Dictionary<string,IMediation>();
-
-    // public void AddMediation(IMediation mediation){
-    //     mediationList.Add(mediation.Name,mediation);
-    // }
-
-    // public void RemoveMediation(IMediation mediation){
-    //     mediationList.Remove(mediation.Name);
-    // }
-
-    // public IMediation GetMediation(string mediationName){
-    //     if(mediationList.TryGetValue(mediationName, out IMediation mediationValue)){
-    //         return mediationValue;
-    //     }
-    //     return null;
-    // }
-
     public void InitDelMediation(){
         m_initDel();
     }
 
     public void InitLuaMediation(){
-        GameLoop.Instance.gameObject.AddComponent<LuaMediation>();
-        // AddMediation(GameLoop.Instance.GetComponent<LuaMediation>());
+        GameLoop.Instance.gameObject.AddComponent<LuaMediation>().Init();
     }
  
     public void InitCanvasMediation(){
-        GameLoop.Instance.gameObject.AddComponent<CanvasMediation>();
-        // AddMediation(GameLoop.Instance.GetComponent<CanvasMediation>());
+        GameLoop.Instance.gameObject.AddComponent<CanvasMediation>().Init();
     }
 
     public void InitAbMediation(){
-        GameLoop.Instance.gameObject.AddComponent<AbMediation>();
-        // AddMediation(GameLoop.Instance.GetComponent<AbMediation>());
+        GameLoop.Instance.gameObject.AddComponent<AbMediation>().Init();
     }
 
     public void InitNetworkMediation(){
-        GameLoop.Instance.gameObject.AddComponent<NetworkMediation>();
-        // AddMediation(GameLoop.Instance.GetComponent<NetworkMediation>());
+        GameLoop.Instance.gameObject.AddComponent<NetworkMediation>().Init();
     }
 
     public void InitSceneMediation(){
-        GameLoop.Instance.gameObject.AddComponent<SceneMediation>();
-        // AddMediation(GameLoop.Instance.GetComponent<SceneMediation>());
+        GameLoop.Instance.gameObject.AddComponent<SceneMediation>().Init();
     }
 
     public void InitHotUpdateMediation(){
-        GameLoop.Instance.gameObject.AddComponent<HotUpdateMediation>();
+        GameLoop.Instance.gameObject.AddComponent<HotUpdateMediation>().Init();
+    }
+
+    public void InitPanelMediation(){
+        GameLoop.Instance.gameObject.AddComponent<PanelMediation>().Init();
     }
 }

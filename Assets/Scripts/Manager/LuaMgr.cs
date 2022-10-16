@@ -13,7 +13,7 @@ public class LuaMgr : IManager
     }
 
     public override void Init(){
-        InitLuaEnv();
+        //InitLuaEnv();
     }
 
     private void InitLuaEnv(){
@@ -33,6 +33,6 @@ public class LuaMgr : IManager
         return null;
     #endif
 
-        // return null;
+        return null;
     }
 }

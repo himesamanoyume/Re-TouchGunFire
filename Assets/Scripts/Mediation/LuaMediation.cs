@@ -8,6 +8,10 @@ public class LuaMediation : IMediation
     
     public LuaMediation(){
         Name = "LuaMediation";
+    }
+
+    public override void Init()
+    {
         m_luaMgr = GameLoop.Instance.gameManager.LuaMgr;
     }
 

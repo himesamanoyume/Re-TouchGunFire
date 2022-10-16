@@ -21,6 +21,7 @@ public class CanvasInfo : UIInfo
         Debug.Log(m_level4.name);
         m_levelLoading = transform.GetChild(4);
         Debug.Log(m_levelLoading.name);
+        DontDestroyOnLoad(this);
     }
 
     public Transform Canvas{

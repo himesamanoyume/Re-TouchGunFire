@@ -4,9 +4,15 @@ Rebuild project.
 
 ## TODO
 
+AB包加载区分
+
 完善UI框架
 
 ## CHANGELOG
+
+> `22.10.16 23:49`
+add PanelMediation. 
+work in progress for InitScene. 
 
 > `22.10.15 23:41`
 rewrite something. 

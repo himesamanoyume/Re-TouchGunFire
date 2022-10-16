@@ -10,6 +10,11 @@ public class HotUpdateMediation : IMediation
         Name = "HotUpdateMediation";
     }
 
+    public override void Init()
+    {
+        
+    }
+
     public void StartCheck(SceneMediation sceneMediation){
         Debug.Log("HotUpdateMediation StartCheck");
         m_sceneMediation = sceneMediation;

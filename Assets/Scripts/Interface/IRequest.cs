@@ -20,8 +20,6 @@ public abstract class IRequest : MonoBehaviour
     }
 
     public virtual void Awake() {
-        // m_requestMgr = GameManager.Instance.RequestMgr;
-        // m_clientMgr = GameManager.Instance.ClientMgr;
         m_requestMgr = GameLoop.Instance.gameManager.RequestMgr;
         m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;
         m_requestMgr.AddRequest(this);
