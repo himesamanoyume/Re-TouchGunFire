@@ -12,6 +12,10 @@ AB包加载区分(编辑器模式,发布模式)
 
 ## CHANGELOG
 
+> `22.10.17 22:02`
+Google.Protobuf problem fixed. 
+**First Time For Build Successful.**
+
 > `22.10.17 4:13`
 improved AbMediation, SceneMediation, GameLoop etc. 
 
