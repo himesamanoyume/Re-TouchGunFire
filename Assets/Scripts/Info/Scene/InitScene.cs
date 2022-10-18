@@ -1,39 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ReTouchGunFire.Mediators;
 
 public sealed class InitScene : SceneInfo
 {
-    public InitScene(SceneMediation sceneMediation) : base(sceneMediation){
+    public InitScene(SceneMediator sceneMediator) : base(sceneMediator){
         Name = "InitScene";
     }
 
-    public HotUpdateMediation m_hotUpdateMediation = null;
-    public CanvasMediation m_canvasMediation = null;
+    public HotUpdateMediator m_hotUpdateMediator = null;
+    public CanvasMediator m_canvasMediator = null;
+    
 
     public override void OnBegin()
     {
         Debug.Log("InitScene Begin");
 
-        if(GameLoop.Instance.TryGetComponent<CanvasMediation>(out CanvasMediation canvasMediation)){
-            m_canvasMediation = canvasMediation;
+        if(GameLoop.Instance.TryGetComponent<CanvasMediator>(out CanvasMediator canvasMediator)){
+            m_canvasMediator = canvasMediator;
         }else{
             Debug.LogWarning("未拿到对应组件");
         }
 
-        m_canvasMediation.InitCanvas();
+        m_canvasMediator.InitCanvas();
 
         
-        GameLoop.Instance.GetComponent<PanelMediation>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2);
+        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2);
         
 
-        if(GameLoop.Instance.TryGetComponent<HotUpdateMediation>(out HotUpdateMediation hotUpdateMediation)){
-            m_hotUpdateMediation = hotUpdateMediation;
+        if(GameLoop.Instance.TryGetComponent<HotUpdateMediator>(out HotUpdateMediator hotUpdateMediator)){
+            m_hotUpdateMediator = hotUpdateMediator;
         }else{
             Debug.LogWarning("未拿到对应组件");
         }
 
-        m_hotUpdateMediation.StartCheck(m_sceneMediation);
+        m_hotUpdateMediator.StartCheck(m_sceneMediator);
         
     }
 
@@ -45,6 +47,6 @@ public sealed class InitScene : SceneInfo
     public override void OnEnd()
     {
         Debug.Log("InitScene End");
-        m_canvasMediation.m_uiMgr.PopPanel();
+        m_canvasMediator.m_uiMgr.PopPanel();
     }
 }

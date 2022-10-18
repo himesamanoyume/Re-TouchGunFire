@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
+using ReTouchGunFire.Mgrs;
 
 public class GameManager
 {
-    private MediationMgr m_mediationMgr = new MediationMgr();
+    private MediatorMgr m_mediatorMgr = new MediatorMgr();
     private InfoMgr m_infoMgr = new InfoMgr();
     private ObjectMgr m_objectMgr = new ObjectMgr();
     private SceneMgr m_sceneMgr = new SceneMgr();
@@ -16,7 +17,7 @@ public class GameManager
 
     public void Init(){
         Debug.Log("GameManager Init Start");
-        m_mediationMgr.Init();
+        m_mediatorMgr.Init();
         m_infoMgr.Init();
         m_objectMgr.Init();
         m_sceneMgr.Init();
@@ -51,8 +52,8 @@ public class GameManager
         get{return m_requestMgr;}
     }
 
-    public MediationMgr MediationMgr{
-        get{return m_mediationMgr;}
+    public MediatorMgr MediatorMgr{
+        get{return m_mediatorMgr;}
     }
     public LuaMgr LuaMgr{
         get{return m_luaMgr;}

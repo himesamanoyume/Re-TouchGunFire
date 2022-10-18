@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
+using ReTouchGunFire.Mgrs;
 
 public abstract class IRequest : MonoBehaviour
 {

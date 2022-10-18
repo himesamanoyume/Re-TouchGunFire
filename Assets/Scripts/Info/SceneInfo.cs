@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ReTouchGunFire.Mediators;
 
 public abstract class SceneInfo : IInfo
 {
-    protected SceneMediation m_sceneMediation = null;
-    public SceneInfo(SceneMediation sceneMediation){
-        m_sceneMediation = sceneMediation;
+    protected SceneMediator m_sceneMediator = null;
+    public SceneInfo(SceneMediator sceneMediator){
+        m_sceneMediator = sceneMediator;
     }
 
     public abstract void OnBegin();

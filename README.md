@@ -6,35 +6,40 @@ Rebuild project.
 
 AB包加载区分(编辑器模式,发布模式)
 
-添加Notify事件
+## 已知问题
 
-完善UI框架
+
 
 ## CHANGELOG
+
+> `22.10.18 12:34`
+Renamed Mediation to Mediator. 
+add EventMgr System. 
+UIMgr - PushPanel function fixed. 
 
 > `22.10.17 22:02`
 Google.Protobuf problem fixed. 
 **First Time For Build Successful.**
 
 > `22.10.17 4:13`
-improved AbMediation, SceneMediation, GameLoop etc. 
+improved AbMediator, SceneMediator, GameLoop etc. 
 
 > `22.10.16 23:49`
-add PanelMediation. 
+add PanelMediator. 
 work in progress for InitScene. 
 
 > `22.10.15 23:41`
 rewrite something. 
-add HotUpdateMediation. 
+add HotUpdateMediator. 
 
 > `22.10.15 7:10`
-add CanvasMediation, LuaMediation, NetworkMediation etc. 
+add CanvasMediator, LuaMediator, NetworkMediator etc. 
 rewrite some enum, GameManager etc. 
 add CanvasInfo, RegisterPanelInfo etc. 
 add plugin "AssetBundleBrowserPlus". 
 
 > `22.10.14 17:28`
-add Mediation Mode , IMediation. 
+add Mediator Mode , IMediator. 
 rewrite Interface. 
 
 > `22.10.13 23:41`
@@ -92,13 +97,24 @@ om-->e:io
 si:ii-->psi:si
 si:ii-->esi:si
 ```
-## 运行流程(指导意义)
+## 临时运行流程指导示意图
 ```mermaid
 graph TB
 
-a(核心代码)
-b(动态加载热更新)
-c(装载最新代码)
+a(Health.cs中UnityAction OnDie)
+b(血量为0时OnDie?.Invoke)
+c(Player.cs中m_Health.OnDie += OnDie)
+d(Player.cs中OnDie函数 Broadcast Events.PlayerDeathEvent)
+e(GameFlowManager.cs中Awake中AddListener PlayerDeathEvent OnPlayerDeath)
+f(Events.cs中PlayerDeathEvent)
+g(OnPlayerDeath PlayerDeathEvent evt => EndGame false)
+
+f-->d
+d-->c
+a-->c
+g-->f
 a-->b
-b-->c
+b-->g
+e-->f
+c-->g
 ```

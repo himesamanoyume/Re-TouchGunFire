@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ReTouchGunFire.Mediators;
+using ReTouchGunFire.Mgrs;
 
 public class GameLoop : UnitySingleton<GameLoop>
 {
-    private MediationMgr m_mediationMgr = null;
-    private SceneMediation m_sceneMediation = null;
+    private MediatorMgr m_MediatorMgr = null;
+    private SceneMediator m_sceneMediator = null;
     public GameManager gameManager = null;
 
     public override void Awake()
@@ -13,16 +15,16 @@ public class GameLoop : UnitySingleton<GameLoop>
         base.Awake();
         gameManager = new GameManager();
         //游戏初始化
-        m_mediationMgr = gameManager.MediationMgr;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitAbMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitSceneMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitHotUpdateMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitCanvasMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitLuaMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitPanelMediation;
-        m_mediationMgr.m_initDel += m_mediationMgr.InitNetworkMediation;
+        m_MediatorMgr = gameManager.MediatorMgr;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitAbMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitSceneMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitHotUpdateMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitCanvasMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitLuaMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitPanelMediator;
+        m_MediatorMgr.m_initDel += m_MediatorMgr.InitNetworkMediator;
 
-        m_mediationMgr.InitDelMediation();
+        m_MediatorMgr.InitDelMediator();
         gameManager.Init();
         //end
     }
@@ -30,14 +32,14 @@ public class GameLoop : UnitySingleton<GameLoop>
     void Start()
     {
         
-        m_sceneMediation = gameObject.GetComponent<SceneMediation>();
+        m_sceneMediator = gameObject.GetComponent<SceneMediator>();
         Debug.Log("GameLoop Start.");
-        m_sceneMediation.SetScene(new InitScene(m_sceneMediation), "");
+        m_sceneMediator.SetScene(new InitScene(m_sceneMediator), "");
 
     }
 
     void Update()
     {
-        m_sceneMediation.SceneUpdate();
+        m_sceneMediator.SceneUpdate();
     }
 }

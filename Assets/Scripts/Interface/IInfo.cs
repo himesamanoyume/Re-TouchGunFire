@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class IInfo : IBase
 {
-    protected InfoMgr m_infoMgr;
-
     public virtual void Awake(){
-        m_infoMgr = GameLoop.Instance.gameManager.InfoMgr;
+        // m_infoMgr = GameLoop.Instance.gameManager.InfoMgr;
     }
 }

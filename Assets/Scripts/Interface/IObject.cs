@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class IObject : IBase
 {
-    protected ObjectMgr m_objectMgr;
     public virtual void Awake(){
-        m_objectMgr = GameLoop.Instance.gameManager.ObjectMgr;
+        // m_objectMgr = GameLoop.Instance.gameManager.ObjectMgr;
     }
     
 }
