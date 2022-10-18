@@ -4,13 +4,23 @@ Rebuild project.
 
 ## TODO
 
-AB包加载区分(编辑器模式,发布模式)
+登陆UI、主界面UI搭建
 
 ## 已知问题
 
+似乎多个资源异步加载时会触发如果AB包没及时卸载就再次尝试加载的Error
+- The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
 
+- Error while getting Asset Bundle: The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
+
+- NullReferenceException: Object reference not set to an instance of an object
+ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/Scripts/Mediators/AbMediator.cs:150)
 
 ## CHANGELOG
+
+> `22.10.19 5:32`
+因为异步加载问题 全部加载资源方式换成同步加载. 
+add MainInfoPanel etc. 
 
 > `22.10.18 12:34`
 Renamed Mediation to Mediator. 

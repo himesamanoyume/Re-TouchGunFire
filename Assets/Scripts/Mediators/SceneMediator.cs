@@ -7,8 +7,8 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public class SceneMediator : IMediator
     {
-        public SceneMgr m_sceneMgr = null;
-        public AbMediator m_abMediator = null;
+        public SceneMgr m_sceneMgr;
+        public AbMediator m_abMediator;
         
         public SceneMediator(){
             Name = "SceneMediator";

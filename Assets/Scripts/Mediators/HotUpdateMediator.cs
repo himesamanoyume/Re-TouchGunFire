@@ -6,7 +6,7 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public class HotUpdateMediator : IMediator
     {
-        public SceneMediator m_sceneMediator = null;
+        public SceneMediator m_sceneMediator;
         public HotUpdateMediator(){
             Name = "HotUpdateMediator";
         }

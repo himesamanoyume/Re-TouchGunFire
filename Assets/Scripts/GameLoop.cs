@@ -6,9 +6,9 @@ using ReTouchGunFire.Mgrs;
 
 public class GameLoop : UnitySingleton<GameLoop>
 {
-    private MediatorMgr m_MediatorMgr = null;
-    private SceneMediator m_sceneMediator = null;
-    public GameManager gameManager = null;
+    private MediatorMgr m_MediatorMgr;
+    private SceneMediator m_sceneMediator;
+    public GameManager gameManager;
 
     public override void Awake()
     {
@@ -25,6 +25,7 @@ public class GameLoop : UnitySingleton<GameLoop>
         m_MediatorMgr.m_initDel += m_MediatorMgr.InitNetworkMediator;
 
         m_MediatorMgr.InitDelMediator();
+
         gameManager.Init();
         //end
     }

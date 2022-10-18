@@ -11,8 +11,8 @@ namespace ReTouchGunFire.Mediators{
             Name = "PanelMediator";
         }
 
-        public UIMgr m_uiMgr = null;
-        public AbMediator m_abMediator = null;
+        public UIMgr m_uiMgr;
+        public AbMediator m_abMediator;
 
         public override void Init()
         {
@@ -21,11 +21,12 @@ namespace ReTouchGunFire.Mediators{
                 m_abMediator = abMediator;
             }else{
                 Debug.LogWarning("未拿到对应组件");
-            }  
+            }
         }
 
         public void SpawnPanel(EUIPanelType eUIPanelType, EUILevel eUILevel){
-            StartCoroutine(m_abMediator.AsyncLoadABUIRes("prefabs",eUIPanelType.ToString(),m_uiMgr.m_canvasMediator.GetCanvasLevel(EUILevel.Level2),eUILevel));
+            // StartCoroutine(m_abMediator.AsyncLoadABRes("prefabs",eUIPanelType.ToString(),m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel),eUILevel));
+            m_abMediator.SyncLoadABRes("prefabs",eUIPanelType.ToString(),m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel),eUILevel);
         }
 
     }

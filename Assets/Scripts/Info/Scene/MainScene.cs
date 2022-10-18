@@ -10,10 +10,14 @@ public sealed class MainScene : SceneInfo
         Name = "MainScene";
     }
 
+    public PanelMediator m_panelMediator;
+
     public override void OnBegin()
     {
         Debug.Log("MainScene Begin");
-        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2);
+        m_panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
+        m_panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2);
+        m_panelMediator.SpawnPanel(EUIPanelType.MainInfoPanel, EUILevel.Level4);
     }
 
     public override void OnUpdate()

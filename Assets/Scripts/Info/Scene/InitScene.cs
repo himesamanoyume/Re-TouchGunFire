@@ -9,8 +9,8 @@ public sealed class InitScene : SceneInfo
         Name = "InitScene";
     }
 
-    public HotUpdateMediator m_hotUpdateMediator = null;
-    public CanvasMediator m_canvasMediator = null;
+    public HotUpdateMediator m_hotUpdateMediator;
+    public CanvasMediator m_canvasMediator;
     
 
     public override void OnBegin()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using ReTouchGunFire.Mgrs;
@@ -13,7 +14,7 @@ namespace ReTouchGunFire.Mediators{
             Name = "AbMediator";
         }
 
-        public UIMgr m_uiMgr = null;
+        public UIMgr m_uiMgr;
 
         public override void Init()
         {
@@ -29,7 +30,18 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="resName"></param>
         /// <returns></returns>
         public GameObject SyncLoadABRes(string abName, string resName, Transform transform){
-            //"StreamingAssets/AbMap/AssetBundle/`abName`"
+            
+        // #if UNITY_EDITOR
+        //     if(IsLocalLoadType){
+        //         // Assets/AssetBundleLocal/prefabs/
+        //         GameObject request = AssetDatabase.LoadAssetAtPath<GameObject>(abLocalPathStr + abName + "/" + resName + "/" + resName + ".prefab");
+        //         GameObject obj2 = Instantiate(request, transform);
+        //         obj2.name = name;
+        //         return obj2;
+        //     }
+        // #endif
+
+            //StreamingAssets/AbMap/AssetBundle/abName
             AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
             GameObject tobj = ab.LoadAsset<GameObject>(resName);
 
@@ -38,22 +50,32 @@ namespace ReTouchGunFire.Mediators{
             GameObject obj = Instantiate(tobj,transform);
             obj.name = name;
             ab.Unload(false);//卸载单个
-            
             return obj;
         }
+
+        
 
         /// <summary>
         /// 同步加载UI面板
         /// </summary>
         /// <param name="abName"></param>
-        /// <param name="resName"></param>
+        /// <param name="panelName"></param>
         /// <param name="transform"></param>
         /// <param name="eUILevel"></param>
-        public void SyncLoadABUIRes(string abName, string resName, Transform transform, EUILevel eUILevel){
+        public void SyncLoadABRes(string abName, string panelName, Transform transform, EUILevel eUILevel){
+        // #if UNITY_EDITOR
+        //     if(IsLocalLoadType){
+        //         GameObject request = AssetDatabase.LoadAssetAtPath<GameObject>(abLocalPathStr + abName + "/" + resName + "/" + resName + ".prefab");
+        //         GameObject obj2 = Instantiate(request, transform);
+        //         obj2.name = name;
+        //         m_uiMgr.PushPanel(eUILevel, obj2);
+        //         return;
+        //     }
+        // #endif
             
             AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
-            GameObject obj = Instantiate(ab.LoadAsset<GameObject>(resName),transform);
-            obj.name = resName;
+            GameObject obj = Instantiate(ab.LoadAsset<GameObject>(panelName),transform);
+            obj.name = panelName;
             m_uiMgr.PushPanel(eUILevel, obj);
             
             ab.Unload(false);
@@ -65,7 +87,14 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="abName"></param>
         /// <param name="resName"></param>
         public void SyncLoadABScene(string abName, string sceneName){
-            
+        // #if UNITY_EDITOR
+        //     if (IsLocalLoadType)
+        //     {
+        //         AssetDatabase.LoadAssetAtPath<SceneAsset>(abLocalPathStr + abName + "/" + sceneName + "/" + sceneName + ".unity");
+        //         SceneManager.LoadScene(sceneName);
+        //         return;
+        //     }
+        // #endif
             AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);
             SceneManager.LoadScene(sceneName);
             ab.Unload(false);
@@ -83,6 +112,7 @@ namespace ReTouchGunFire.Mediators{
             yield return ab;
             SceneManager.LoadScene(sceneName);
             ab.Unload(false);
+            
         }
 
         /// <summary>
@@ -107,19 +137,20 @@ namespace ReTouchGunFire.Mediators{
         /// 异步加载UI面板
         /// </summary>
         /// <param name="abName"></param>
-        /// <param name="resName"></param>
+        /// <param name="panelName"></param>
         /// <param name="transform"></param>
         /// <param name="eUILevel"></param>
-        public IEnumerator AsyncLoadABUIRes(string abName, string resName, Transform transform, EUILevel eUILevel){
+        public IEnumerator AsyncLoadABRes(string abName, string panelName, Transform transform, EUILevel eUILevel){
 
+            
             UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
             yield return assetBundle.SendWebRequest();
             AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
             yield return ab;
-            GameObject tobj = ab.LoadAsset<GameObject>(resName);
+            GameObject tobj = ab.LoadAsset<GameObject>(panelName);
             ab.Unload(false);
             GameObject obj = Instantiate(tobj, transform);
-            obj.name = resName;
+            obj.name = panelName;
             m_uiMgr.PushPanel(eUILevel, obj);
             
         }

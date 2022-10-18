@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ReTouchGunFire.Mgrs;
+using ReTouchGunFire.PanelInfo;
 
 namespace ReTouchGunFire.Mediators{
     public class CanvasMediator : IMediator
     {
-        public UIMgr m_uiMgr = null;
-        public AbMediator m_abMediator = null;
-        public GameObject m_canvas = null;
+        public UIMgr m_uiMgr;
+        public AbMediator m_abMediator;
+        public GameObject m_canvas;
         
         public CanvasMediator(){
             Name = "CanvasMediator";  
@@ -29,7 +30,7 @@ namespace ReTouchGunFire.Mediators{
             m_canvas = m_abMediator.SyncLoadABRes("prefabs", "Canvas", null);
             m_canvas.name = "Canvas";
             // Debug.Log(canvas.name);
-            m_canvas.AddComponent<CanvasInfo>().InitCanvasChild();
+            m_canvas.AddComponent<CanvasInfo>().Init();
         }
 
         public Transform GetCanvasLevel(EUILevel eUILevel){

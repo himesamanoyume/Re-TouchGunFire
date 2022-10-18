@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoginPanelInfo : UIInfo
-{
-    
+namespace ReTouchGunFire.PanelInfo{
+    public class LoginPanelInfo : UIInfo
+    {
+        public override void Init()
+        {
+            
+        }
+    }
 }
+
+

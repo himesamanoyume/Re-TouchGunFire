@@ -6,7 +6,7 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.Mgrs{
     public sealed class UIMgr : IManager
     {
-        public CanvasMediator m_canvasMediator = null;
+        public CanvasMediator m_canvasMediator;
         private List<GameObject> m_PanelList = new List<GameObject>();
         public UIMgr(){
             Name = "UIMgr";
@@ -26,9 +26,7 @@ namespace ReTouchGunFire.Mgrs{
             uIPanel.transform.SetParent(m_canvasMediator.GetCanvasLevel(uILevel));
         }
 
-        public void SpawnPanel(EUIPanelType uIPanelType, EUILevel uILevel){
-            
-        }
+        
 
         public void PopPanel(){
             GameObject.Destroy(m_PanelList[0]);

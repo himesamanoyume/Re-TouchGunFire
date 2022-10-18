@@ -23,44 +23,59 @@ MonoBehaviour:
   bundleSyncMaps: []
   _dictBuildBundleInfo:
     list:
-    - Key: Assets/AssetBundleLocal/Scenes
+    - Key: Assets/AssetBundleLocal/prefabs/Canvas
       Value:
-        assetPath: Assets/AssetBundleLocal/Scenes
-        assetBundleName: scenes
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Prefabs
-      Value:
-        assetPath: Assets/AssetBundleLocal/Prefabs
+        assetPath: Assets/AssetBundleLocal/prefabs/Canvas
         assetBundleName: prefabs
         assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Prefabs/Canvas/Canvas.prefab
+    - Key: Assets/AssetBundleLocal/prefabs/InitPanel
       Value:
-        assetPath: Assets/AssetBundleLocal/Prefabs/Canvas/Canvas.prefab
+        assetPath: Assets/AssetBundleLocal/prefabs/InitPanel
         assetBundleName: prefabs
         assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Scenes/InitScene.unity
+    - Key: Assets/AssetBundleLocal/prefabs/TestPanel
       Value:
-        assetPath: Assets/AssetBundleLocal/Scenes/InitScene.unity
-        assetBundleName: scenes
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Scenes/MainScene.unity
-      Value:
-        assetPath: Assets/AssetBundleLocal/Scenes/MainScene.unity
-        assetBundleName: scenes
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Scenes/TestScene.unity
-      Value:
-        assetPath: Assets/AssetBundleLocal/Scenes/TestScene.unity
-        assetBundleName: scenes
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Prefabs/InitPanel/InitPanel.prefab
-      Value:
-        assetPath: Assets/AssetBundleLocal/Prefabs/InitPanel/InitPanel.prefab
+        assetPath: Assets/AssetBundleLocal/prefabs/TestPanel
         assetBundleName: prefabs
         assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/Prefabs/TestPanel/TestPanel.prefab
+    - Key: Assets/AssetBundleLocal/scenes/InitScene.unity
       Value:
-        assetPath: Assets/AssetBundleLocal/Prefabs/TestPanel/TestPanel.prefab
+        assetPath: Assets/AssetBundleLocal/scenes/InitScene.unity
+        assetBundleName: scenes
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/scenes/MainScene.unity
+      Value:
+        assetPath: Assets/AssetBundleLocal/scenes/MainScene.unity
+        assetBundleName: scenes
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/Canvas/Canvas.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/Canvas/Canvas.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/InitPanel/InitPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/InitPanel/InitPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/TestPanel/TestPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/TestPanel/TestPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/scenes/TestScene.unity
+      Value:
+        assetPath: Assets/AssetBundleLocal/scenes/TestScene.unity
+        assetBundleName: scenes
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/BackButtonPanel/BackButtonPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/BackButtonPanel/BackButtonPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/MainInfoPanel/MainInfoPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/MainInfoPanel/MainInfoPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
     keyCollision: 0

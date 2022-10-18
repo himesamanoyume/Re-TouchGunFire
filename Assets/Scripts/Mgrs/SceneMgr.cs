@@ -9,7 +9,7 @@ namespace ReTouchGunFire.Mgrs{
     {
         private SceneInfo m_sceneInfo;
         private bool isBegin = false;
-        public SceneMediator m_sceneMediator = null;
+        public SceneMediator m_sceneMediator;
 
         public SceneMgr(){
             Name = "SceneMgr";

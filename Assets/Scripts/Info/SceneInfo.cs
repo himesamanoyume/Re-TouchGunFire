@@ -5,7 +5,7 @@ using ReTouchGunFire.Mediators;
 
 public abstract class SceneInfo : IInfo
 {
-    protected SceneMediator m_sceneMediator = null;
+    protected SceneMediator m_sceneMediator;
     public SceneInfo(SceneMediator sceneMediator){
         m_sceneMediator = sceneMediator;
     }

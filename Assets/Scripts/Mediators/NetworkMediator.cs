@@ -8,8 +8,8 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public sealed class NetworkMediator : IMediator
     {
-        public ClientMgr m_clientMgr = null;
-        public RequestMgr m_requestMgr = null;
+        public ClientMgr m_clientMgr;
+        public RequestMgr m_requestMgr;
         public NetworkMediator(){
             Name = "NetworkMediator";
         }

@@ -16,7 +16,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public delegate void initDel();
-        public initDel m_initDel = null;
+        public initDel m_initDel;
 
         public void InitDelMediator(){
             m_initDel();
