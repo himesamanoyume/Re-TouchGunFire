@@ -12,6 +12,10 @@ namespace ReTouchGunFire.Mediators{
             Name = "LuaMediator";
         }
 
+        private void Start() {
+            Init();
+        }
+
         public override void Init()
         {
             m_luaMgr = GameLoop.Instance.gameManager.LuaMgr;

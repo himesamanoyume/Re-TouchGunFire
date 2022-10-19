@@ -5,6 +5,11 @@ using UnityEngine;
 namespace ReTouchGunFire.PanelInfo{
     public class InitPanelInfo : UIInfo
     {
+
+        private void Start() {
+            Init();
+        }
+        
         public override void Init()
         {
             

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ReTouchGunFire.Mediators;
+using ReTouchGunFire.PanelInfo;
 
 public sealed class InitScene : SceneInfo
 {
@@ -22,11 +23,13 @@ public sealed class InitScene : SceneInfo
         }else{
             Debug.LogWarning("未拿到对应组件");
         }
+        // m_canvasMediator.m_canvasInitedEvent += StartInitInitPanel;
+        // m_canvasMediator.InitCanvas();
 
-        m_canvasMediator.InitCanvas();
 
-        
-        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2);
+        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
+            obj.AddComponent<InitPanelInfo>();
+        });
         
 
         if(GameLoop.Instance.TryGetComponent<HotUpdateMediator>(out HotUpdateMediator hotUpdateMediator)){
@@ -36,7 +39,23 @@ public sealed class InitScene : SceneInfo
         }
 
         m_hotUpdateMediator.StartCheck(m_sceneMediator);
+
+
+    }
+
+    void StartInitInitPanel(){
+        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
+            obj.AddComponent<InitPanelInfo>();
+        });
         
+
+        if(GameLoop.Instance.TryGetComponent<HotUpdateMediator>(out HotUpdateMediator hotUpdateMediator)){
+            m_hotUpdateMediator = hotUpdateMediator;
+        }else{
+            Debug.LogWarning("未拿到对应组件");
+        }
+
+        m_hotUpdateMediator.StartCheck(m_sceneMediator);
     }
 
     public override void OnUpdate()

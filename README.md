@@ -18,6 +18,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 
 ## CHANGELOG
 
+> `22.10.19 22:11`
+add BackButtonPanel. 
+
 > `22.10.19 5:32`
 因为异步加载问题 全部加载资源方式换成同步加载. 
 add MainInfoPanel etc. 

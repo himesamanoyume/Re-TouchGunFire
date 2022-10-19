@@ -14,6 +14,10 @@ namespace ReTouchGunFire.Mediators{
             Name = "NetworkMediator";
         }
 
+        private void Start() {
+            Init();
+        }
+
         public override void Init()
         {
             m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;

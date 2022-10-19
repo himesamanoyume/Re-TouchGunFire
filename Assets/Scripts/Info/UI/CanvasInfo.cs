@@ -5,11 +5,15 @@ using UnityEngine;
 namespace ReTouchGunFire.PanelInfo{
         public class CanvasInfo : UIInfo
     {
-        private Transform m_level1;
-        private Transform m_level2;
-        private Transform m_level3;
-        private Transform m_level4;
-        private Transform m_levelLoading;
+        public Transform m_level1;
+        public Transform m_level2;
+        public Transform m_level3;
+        public Transform m_level4;
+        public Transform m_levelLoading;
+
+        private void Start() {
+            Init();
+        }
 
         public override void Init(){
             m_level1 = transform.GetChild(0);

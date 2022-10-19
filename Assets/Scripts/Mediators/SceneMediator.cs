@@ -14,6 +14,10 @@ namespace ReTouchGunFire.Mediators{
             Name = "SceneMediator";
         }
 
+        private void Awake() {
+            Init();
+        }
+
         public override void Init()
         {
             m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;

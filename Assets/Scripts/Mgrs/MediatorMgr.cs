@@ -23,31 +23,31 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void InitLuaMediator(){
-            GameLoop.Instance.gameObject.AddComponent<LuaMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<LuaMediator>();
         }
     
         public void InitCanvasMediator(){
-            GameLoop.Instance.gameObject.AddComponent<CanvasMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<CanvasMediator>();
         }
 
         public void InitAbMediator(){
-            GameLoop.Instance.gameObject.AddComponent<AbMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<AbMediator>();
         }
 
         public void InitNetworkMediator(){
-            GameLoop.Instance.gameObject.AddComponent<NetworkMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<NetworkMediator>();
         }
 
         public void InitSceneMediator(){
-            GameLoop.Instance.gameObject.AddComponent<SceneMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<SceneMediator>();
         }
 
         public void InitHotUpdateMediator(){
-            GameLoop.Instance.gameObject.AddComponent<HotUpdateMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<HotUpdateMediator>();
         }
 
         public void InitPanelMediator(){
-            GameLoop.Instance.gameObject.AddComponent<PanelMediator>().Init();
+            GameLoop.Instance.gameObject.AddComponent<PanelMediator>();
         }
     }
 

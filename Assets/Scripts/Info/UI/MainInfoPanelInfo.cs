@@ -11,6 +11,10 @@ namespace ReTouchGunFire.PanelInfo{
         public Text m_coinText;
         public Button m_coinButton;
 
+        private void Start() {
+            Init();
+        }
+
         public override void Init(){
             m_diamondButton = transform.Find("Point/InfoContainer/InfoButton_Diamond").GetComponent<Button>();
             m_diamondText = transform.Find("Point/InfoContainer/InfoButton_Diamond/obj/obj2/InfoText_Diamond").GetComponent<Text>();

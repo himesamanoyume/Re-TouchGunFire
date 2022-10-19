@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using ReTouchGunFire.Mediators;
+using ReTouchGunFire.PanelInfo;
 
 public sealed class MainScene : SceneInfo
 {
@@ -16,8 +17,11 @@ public sealed class MainScene : SceneInfo
     {
         Debug.Log("MainScene Begin");
         m_panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
-        m_panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2);
-        m_panelMediator.SpawnPanel(EUIPanelType.MainInfoPanel, EUILevel.Level4);
+        m_panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2, (GameObject obj)=>{});
+        m_panelMediator.SpawnPanel(EUIPanelType.MainInfoPanel, EUILevel.Level4, (GameObject obj)=>{
+            obj.AddComponent<MainInfoPanelInfo>();
+        });
+        m_panelMediator.SpawnBackButtonPanel();
     }
 
     public override void OnUpdate()

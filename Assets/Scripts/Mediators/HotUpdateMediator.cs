@@ -11,6 +11,10 @@ namespace ReTouchGunFire.Mediators{
             Name = "HotUpdateMediator";
         }
 
+        private void Start() {
+            Init();
+        }
+
         public override void Init()
         {
             
