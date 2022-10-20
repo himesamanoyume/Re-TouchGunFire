@@ -13,12 +13,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public override void Init(){
-            if(GameLoop.Instance.TryGetComponent<CanvasMediator>(out CanvasMediator canvasMediator)){
-                m_canvasMediator = canvasMediator;
-            }else{
-                Debug.LogWarning("未拿到对应组件");
-            }  
-            // m_canvas = m_canvasMediator.m_canvas;
+            m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
         }
 
         public void PushPanel(EUILevel uILevel, GameObject uIPanel){

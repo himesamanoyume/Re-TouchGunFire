@@ -78,4 +78,14 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/MainInfoPanel/MainInfoPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/MainMenuPanel/MainMenuPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/MainMenuPanel/MainMenuPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/sprites/usericon.png
+      Value:
+        assetPath: Assets/AssetBundleLocal/sprites/usericon.png
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

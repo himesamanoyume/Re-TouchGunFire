@@ -6,6 +6,8 @@ Rebuild project.
 
 登陆UI、主界面UI搭建
 
+战斗场景为伪3d悬浮平台
+
 ## 已知问题
 
 似乎多个资源异步加载时会触发如果AB包没及时卸载就再次尝试加载的Error
@@ -17,6 +19,9 @@ Rebuild project.
 ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/Scripts/Mediators/AbMediator.cs:150)
 
 ## CHANGELOG
+
+> `22.10.21 0:12`
+add MainMenuPanel. 
 
 > `22.10.19 22:11`
 add BackButtonPanel. 

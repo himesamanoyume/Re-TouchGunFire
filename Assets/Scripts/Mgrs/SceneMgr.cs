@@ -16,10 +16,8 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public override void Init(){
-            Debug.Log("SceneMgr Init start");
-            if(GameLoop.Instance.TryGetComponent<SceneMediator>(out SceneMediator sceneMediator)){
-                m_sceneMediator = sceneMediator;
-            }
+            // Debug.Log("SceneMgr Init start");
+            m_sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
         }
         
         public void SetScene(SceneInfo sceneInfo, string sceneName){

@@ -21,16 +21,16 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void StartCheck(SceneMediator sceneMediator){
-            Debug.Log("HotUpdateMediator StartCheck");
+            // Debug.Log("HotUpdateMediator StartCheck");
             m_sceneMediator = sceneMediator;
             StartCoroutine(CheckHotUpdate());
         }
 
         public IEnumerator CheckHotUpdate(){
-            Debug.Log("HotUpdateMediator CheckHotUpdate");
+            // Debug.Log("HotUpdateMediator CheckHotUpdate");
             yield return new WaitForSeconds(2);
             
-            EventMgr.Broadcast(Events.CheckHotUpdateEndEvent);
+            EventMgr.Broadcast(Events.CheckHotUpdateEndNotify);
             // m_sceneMediator.SetScene(mainScene,mainScene.Name);
         }
 

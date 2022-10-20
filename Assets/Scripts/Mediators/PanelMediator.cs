@@ -13,7 +13,7 @@ namespace ReTouchGunFire.Mediators{
             Name = "PanelMediator";
         }
 
-        public UIMgr m_uiMgr;
+        private UIMgr m_uiMgr;
         public AbMediator m_abMediator;
 
         private void Start() {
@@ -23,11 +23,7 @@ namespace ReTouchGunFire.Mediators{
         public override void Init()
         {
             m_uiMgr = GameLoop.Instance.gameManager.UIMgr;
-            if(GameLoop.Instance.TryGetComponent<AbMediator>(out AbMediator abMediator)){
-                m_abMediator = abMediator;
-            }else{
-                Debug.LogWarning("未拿到对应组件");
-            }
+            m_abMediator = GameLoop.Instance.GetMediator<AbMediator>();
         }
 
         public delegate void AddInfoScriptDel(GameObject panel);
@@ -44,6 +40,10 @@ namespace ReTouchGunFire.Mediators{
         public void SpawnBackButtonPanel(){
             GameObject backButtonPanel = m_abMediator.SyncLoadABRes("prefabs", EUIPanelType.BackButtonPanel.ToString(), m_uiMgr.m_canvasMediator.GetCanvasLevel(EUILevel.Level4));
             backButtonPanel.AddComponent<BackButtonPanelInfo>();
+        }
+
+        public void PopPanel(){
+            m_uiMgr.PopPanel();
         }
 
     }

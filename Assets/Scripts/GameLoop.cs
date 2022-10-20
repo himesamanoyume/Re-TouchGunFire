@@ -34,7 +34,7 @@ public class GameLoop : UnitySingleton<GameLoop>
     {
         
         m_sceneMediator = gameObject.GetComponent<SceneMediator>();
-        Debug.Log("GameLoop Start.");
+        // Debug.Log("GameLoop Start.");
         m_sceneMediator.SetScene(new InitScene(m_sceneMediator), "");
 
     }
@@ -42,5 +42,14 @@ public class GameLoop : UnitySingleton<GameLoop>
     void Update()
     {
         m_sceneMediator.SceneUpdate();
+    }
+
+    public T GetMediator<T>() where T : IMediator{
+        if(this.TryGetComponent<T>(out T t)){
+            return t;
+        }else{
+            Debug.LogWarning("未拿到对应组件:" + t.ToString());
+            return null;
+        }
     }
 }

@@ -5,8 +5,6 @@ namespace ReTouchGunFire.Mgrs{
 
     public static class EventMgr
     {
-        
-
         static readonly Dictionary<Type, Action<GameEvent>> s_Events = new Dictionary<Type, Action<GameEvent>>();
 
         static readonly Dictionary<Delegate, Action<GameEvent>> s_EventLookups =
@@ -56,17 +54,4 @@ namespace ReTouchGunFire.Mgrs{
         }
     }
 
-    public class GameEvent
-    {
-
-    }
-
-    public static class Events{
-        public static CheckHotUpdateEndEvent CheckHotUpdateEndEvent = new CheckHotUpdateEndEvent();
-        
-    }
-
-    public class CheckHotUpdateEndEvent : GameEvent {
-            
-    }
 }

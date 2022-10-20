@@ -16,7 +16,7 @@ public class GameManager
     private LuaMgr m_luaMgr = new LuaMgr();
 
     public void Init(){
-        Debug.Log("GameManager Init Start");
+        // Debug.Log("GameManager Init Start");
         m_mediatorMgr.Init();
         m_infoMgr.Init();
         m_objectMgr.Init();

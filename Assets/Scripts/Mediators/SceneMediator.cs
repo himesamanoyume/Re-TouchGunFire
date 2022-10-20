@@ -21,10 +21,8 @@ namespace ReTouchGunFire.Mediators{
         public override void Init()
         {
             m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
-            if(GameLoop.Instance.TryGetComponent<AbMediator>(out AbMediator abMediator)){
-                m_abMediator = abMediator;
-            }
-            EventMgr.AddListener<CheckHotUpdateEndEvent>(OnCheckHotUpdateEnd);
+            m_abMediator = GameLoop.Instance.GetMediator<AbMediator>();
+            EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
         }
 
         public void SetScene(SceneInfo sceneInfo, string sceneName){
@@ -48,9 +46,9 @@ namespace ReTouchGunFire.Mediators{
         void SetMainScene(){
             MainScene mainScene = new MainScene(this);
             m_sceneMgr.SetScene(mainScene,mainScene.Name);
-            EventMgr.RemoveListener<CheckHotUpdateEndEvent>(OnCheckHotUpdateEnd);
+            EventMgr.RemoveListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
         }
-        void OnCheckHotUpdateEnd(CheckHotUpdateEndEvent evt) => SetMainScene();
+        void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => SetMainScene();
 
     }
 }

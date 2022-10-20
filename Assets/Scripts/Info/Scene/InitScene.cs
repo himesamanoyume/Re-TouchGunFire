@@ -12,60 +12,33 @@ public sealed class InitScene : SceneInfo
 
     public HotUpdateMediator m_hotUpdateMediator;
     public CanvasMediator m_canvasMediator;
+    public PanelMediator m_panelMediator;
     
 
     public override void OnBegin()
     {
-        Debug.Log("InitScene Begin");
+        // Debug.Log("InitScene Begin");
 
-        if(GameLoop.Instance.TryGetComponent<CanvasMediator>(out CanvasMediator canvasMediator)){
-            m_canvasMediator = canvasMediator;
-        }else{
-            Debug.LogWarning("未拿到对应组件");
-        }
-        // m_canvasMediator.m_canvasInitedEvent += StartInitInitPanel;
-        // m_canvasMediator.InitCanvas();
+        m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
 
-
-        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
+        m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+        m_panelMediator.SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
-        
 
-        if(GameLoop.Instance.TryGetComponent<HotUpdateMediator>(out HotUpdateMediator hotUpdateMediator)){
-            m_hotUpdateMediator = hotUpdateMediator;
-        }else{
-            Debug.LogWarning("未拿到对应组件");
-        }
-
+        m_hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
         m_hotUpdateMediator.StartCheck(m_sceneMediator);
 
-
-    }
-
-    void StartInitInitPanel(){
-        GameLoop.Instance.GetComponent<PanelMediator>().SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
-            obj.AddComponent<InitPanelInfo>();
-        });
-        
-
-        if(GameLoop.Instance.TryGetComponent<HotUpdateMediator>(out HotUpdateMediator hotUpdateMediator)){
-            m_hotUpdateMediator = hotUpdateMediator;
-        }else{
-            Debug.LogWarning("未拿到对应组件");
-        }
-
-        m_hotUpdateMediator.StartCheck(m_sceneMediator);
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("InitScene Update");
+        // Debug.Log("InitScene Update");
     }
 
     public override void OnEnd()
     {
-        Debug.Log("InitScene End");
-        m_canvasMediator.m_uiMgr.PopPanel();
+        // Debug.Log("InitScene End");
+        m_panelMediator.PopPanel();
     }
 }

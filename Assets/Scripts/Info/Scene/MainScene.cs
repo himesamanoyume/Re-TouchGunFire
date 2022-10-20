@@ -15,22 +15,25 @@ public sealed class MainScene : SceneInfo
 
     public override void OnBegin()
     {
-        Debug.Log("MainScene Begin");
+        // Debug.Log("MainScene Begin");
         m_panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
         m_panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2, (GameObject obj)=>{});
         m_panelMediator.SpawnPanel(EUIPanelType.MainInfoPanel, EUILevel.Level4, (GameObject obj)=>{
             obj.AddComponent<MainInfoPanelInfo>();
         });
         m_panelMediator.SpawnBackButtonPanel();
+        m_panelMediator.SpawnPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, (GameObject obj)=>{
+            obj.AddComponent<MainMenuPanelInfo>();
+        });
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("MainScene Update");
+        // Debug.Log("MainScene Update");
     }
 
     public override void OnEnd()
     {
-        Debug.Log("MainScene End");
+        // Debug.Log("MainScene End");
     }
 }
