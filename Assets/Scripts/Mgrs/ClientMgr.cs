@@ -14,15 +14,10 @@ namespace ReTouchGunFire.Mgrs{
         public ClientMgr(){
             Name = "ClientMgr";
             m_message = new Message();
-            InitSocket();
         }
 
         public override void Init()
         {
-            
-        }
-
-        private void InitSocket(){
             m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try{
                 m_socket.Connect("127.0.0.1", 4567);

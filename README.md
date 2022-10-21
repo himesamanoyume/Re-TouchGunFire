@@ -20,6 +20,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 
 ## CHANGELOG
 
+> `22.10.22 1:35`
+new UI: PlayerInfoPanel, PlayerPropsPanel. 
+
 > `22.10.21 0:12`
 add MainMenuPanel. 
 

@@ -22,7 +22,7 @@ public class GameManager
         m_objectMgr.Init();
         m_sceneMgr.Init();
         m_uiMgr.Init();
-        m_clientMgr.Init();
+        // m_clientMgr.Init();
         m_requestMgr.Init();
         m_requestMgr.Init();
         m_luaMgr.Init();

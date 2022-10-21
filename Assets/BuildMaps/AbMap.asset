@@ -88,4 +88,14 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/sprites/usericon.png
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/PlayerPropsPanel/PlayerPropsPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/PlayerPropsPanel/PlayerPropsPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/PlayerInfoPanel/PlayerInfoPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/PlayerInfoPanel/PlayerInfoPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0
