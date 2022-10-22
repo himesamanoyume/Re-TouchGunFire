@@ -28,13 +28,25 @@ namespace ReTouchGunFire.Mediators{
 
         public delegate void AddInfoScriptDel(GameObject panel);
 
-        public void SpawnPanel(EUIPanelType eUIPanelType, EUILevel eUILevel, AddInfoScriptDel addInfoScriptDel){
+        public void SpawnPanelAndPush(EUIPanelType eUIPanelType, EUILevel eUILevel, AddInfoScriptDel addInfoScriptDel){
             
             string eUIPanelTypeStr = eUIPanelType.ToString();
             // StartCoroutine(m_abMediator.AsyncLoadABRes("prefabs",eUIPanelType.ToString(),m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel),eUILevel));
-            GameObject panel = m_abMediator.SyncLoadABRes("prefabs", eUIPanelTypeStr, m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel), eUILevel);
+            GameObject panel = m_abMediator.SyncLoadABRes("prefabs", eUIPanelTypeStr, m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel));
+            PushPanel(eUILevel, panel);
             addInfoScriptDel(panel);
             addInfoScriptDel = null;
+        }
+
+        public void SpawnPanelWithoutPush(EUIPanelType eUIPanelType, EUILevel eUILevel, AddInfoScriptDel addInfoScriptDel){
+            string eUIPanelTypeStr = eUIPanelType.ToString();
+            GameObject panel = m_abMediator.SyncLoadABRes("prefabs", eUIPanelTypeStr, m_uiMgr.m_canvasMediator.GetCanvasLevel(eUILevel));
+            addInfoScriptDel(panel);
+            addInfoScriptDel = null;
+        }
+
+        public void PushPanel(EUILevel eUILevel, GameObject uIPanel){
+            m_uiMgr.PushPanel(eUILevel, uIPanel);
         }
 
         public void SpawnBackButtonPanel(){

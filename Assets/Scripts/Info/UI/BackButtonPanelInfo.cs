@@ -13,11 +13,13 @@ namespace ReTouchGunFire.PanelInfo{
         public PanelMediator m_panelMediator;
 
         private void Start() {
+            Name = "BackButtonPanelInfo";
             Init();
         }
 
         public override void Init()
         {
+            base.Init();
             m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             // if(GameLoop.Instance.TryGetComponent<PanelMediator>(out PanelMediator panelMediator)){
             //     m_panelMediator = panelMediator;

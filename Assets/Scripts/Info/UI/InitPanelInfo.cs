@@ -7,12 +7,13 @@ namespace ReTouchGunFire.PanelInfo{
     {
 
         private void Start() {
+            Name = "InitPanelInfo";
             Init();
         }
         
         public override void Init()
         {
-            
+            base.Init();
         }
     }
 

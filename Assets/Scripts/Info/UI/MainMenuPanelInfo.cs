@@ -8,12 +8,13 @@ namespace ReTouchGunFire.PanelInfo{
         
         void Start()
         {
+            Name = "MainMenuPanelInfo";
             Init();
         }
 
         public override void Init()
         {
-            
+            base.Init();
         }
     }
 }

@@ -22,7 +22,7 @@ public sealed class InitScene : SceneInfo
         m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
 
         m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-        m_panelMediator.SpawnPanel(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
+        m_panelMediator.SpawnPanelAndPush(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
 

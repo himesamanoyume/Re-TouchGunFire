@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public enum EUIPanelType
@@ -21,6 +20,11 @@ public enum EUIPanelType
     [Tooltip("顶部信息面板")]
     MainInfoPanel,
     [Tooltip("返回按钮面板")]
-    BackButtonPanel
+    BackButtonPanel,
+    [Tooltip("玩家属性面板")]
+    PlayerPropsPanel,
+    [Tooltip("玩家信息面板")]
+    PlayerInfoPanel,
+
 
 }

@@ -14,10 +14,12 @@ namespace ReTouchGunFire.PanelInfo{
         public Camera m_mainCamera;
 
         private void Start() {
+            Name = "CanvasInfo";
             Init();
         }
 
         public override void Init(){
+            base.Init();
             m_level1 = transform.GetChild(0);
             // Debug.Log(m_level1.name);
             m_level2 = transform.GetChild(1);

@@ -4,7 +4,9 @@ Rebuild project.
 
 ## TODO
 
-登陆UI、主界面UI搭建
+Pop/Push改为对Panel下的Point进行操作
+
+登陆UI搭建
 
 战斗场景为伪3d悬浮平台
 
@@ -19,6 +21,9 @@ Rebuild project.
 ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/Scripts/Mediators/AbMediator.cs:150)
 
 ## CHANGELOG
+
+> `22.10.23 2:43`
+add PlayerInfoPanelInfo, PlayerPropsPanelInfo. 
 
 > `22.10.22 11.21`
 modify for old UI panel. 
