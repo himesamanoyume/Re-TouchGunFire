@@ -22,7 +22,7 @@ public sealed class InitScene : SceneInfo
         m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
 
         m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-        m_panelMediator.SpawnPanelAndPush(EUIPanelType.InitPanel, EUILevel.Level2, (GameObject obj)=>{ 
+        m_panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, (GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
 
@@ -39,6 +39,6 @@ public sealed class InitScene : SceneInfo
     public override void OnEnd()
     {
         // Debug.Log("InitScene End");
-        m_panelMediator.PopPanel();
+        m_panelMediator.PopPanel(true);
     }
 }

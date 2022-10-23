@@ -17,18 +17,22 @@ public sealed class MainScene : SceneInfo
     {
         // Debug.Log("MainScene Begin");
         m_panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
-        m_panelMediator.SpawnPanelAndPush(EUIPanelType.TestPanel, EUILevel.Level2, (GameObject obj)=>{});
-        m_panelMediator.SpawnPanelWithoutPush(EUIPanelType.MainInfoPanel, EUILevel.Level1, (GameObject obj)=>{
+        // m_panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2, true, (GameObject obj)=>{});
+        m_panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<MainInfoPanelInfo>();
         });
-        m_panelMediator.SpawnBackButtonPanel();
-        m_panelMediator.SpawnPanelWithoutPush(EUIPanelType.MainMenuPanel, EUILevel.Level1, (GameObject obj)=>{
+        // m_panelMediator.SpawnBackButtonPanel();
+        m_panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.Level4, false, (GameObject obj)=>{
+            obj.AddComponent<BackButtonPanelInfo>();
+        });
+
+        m_panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<MainMenuPanelInfo>();
         });
-        m_panelMediator.SpawnPanelWithoutPush(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, (GameObject obj)=>{
+        m_panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, (GameObject obj)=>{
             obj.AddComponent<PlayerPropsPanelInfo>();
         });
-        m_panelMediator.SpawnPanelWithoutPush(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, (GameObject obj)=>{
+        m_panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>();
         });
 

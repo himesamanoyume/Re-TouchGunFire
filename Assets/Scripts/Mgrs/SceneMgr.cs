@@ -31,6 +31,8 @@ namespace ReTouchGunFire.Mgrs{
 
         public void SceneUpdate(){
             if(m_sceneInfo != null && isBegin == false){
+                // Debug.Log("SceneUpdate");
+                
                 m_sceneInfo.OnBegin();
                 isBegin = true;
             }

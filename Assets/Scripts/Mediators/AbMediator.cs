@@ -114,20 +114,20 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="panelName"></param>
         /// <param name="transform"></param>
         /// <param name="eUILevel"></param>
-        public IEnumerator AsyncLoadABRes(string abName, string panelName, Transform transform, EUILevel eUILevel){
+        // public IEnumerator AsyncLoadABRes(string abName, string panelName, Transform transform, EUILevel eUILevel){
 
             
-            UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
-            yield return assetBundle.SendWebRequest();
-            AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
-            yield return ab;
-            GameObject tobj = ab.LoadAsset<GameObject>(panelName);
-            ab.Unload(false);
-            GameObject obj = Instantiate(tobj, transform);
-            obj.name = panelName;
-            m_panelMediator.PushPanel(eUILevel, obj);
+        //     UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
+        //     yield return assetBundle.SendWebRequest();
+        //     AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
+        //     yield return ab;
+        //     GameObject tobj = ab.LoadAsset<GameObject>(panelName);
+        //     ab.Unload(false);
+        //     GameObject obj = Instantiate(tobj, transform);
+        //     obj.name = panelName;
+        //     // m_panelMediator.PushPanel(eUILevel, obj);
             
-        }
+        // }
 
         /// <summary>
         /// 获取ab依赖

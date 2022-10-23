@@ -4,7 +4,7 @@ Rebuild project.
 
 ## TODO
 
-Pop/Push改为对Panel下的Point进行操作
+加载时启用加载进度条面板遮挡全部画面
 
 登陆UI搭建
 
@@ -12,7 +12,9 @@ Pop/Push改为对Panel下的Point进行操作
 
 ## 已知问题
 
-似乎多个资源异步加载时会触发如果AB包没及时卸载就再次尝试加载的Error
+
+- 似乎多个资源异步加载时会触发如果AB包没及时卸载就再次尝试加载的Error
+```
 - The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
 
 - Error while getting Asset Bundle: The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
@@ -20,7 +22,12 @@ Pop/Push改为对Panel下的Point进行操作
 - NullReferenceException: Object reference not set to an instance of an object
 ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/Scripts/Mediators/AbMediator.cs:150)
 
+```
+
 ## CHANGELOG
+
+> `22.10.23 19:03`
+add TestPanel, TestPanelInfo, fix bug and rewrite panelMediator, UIMgr. 
 
 > `22.10.23 2:43`
 add PlayerInfoPanelInfo, PlayerPropsPanelInfo. 
@@ -126,24 +133,14 @@ om-->e:io
 si:ii-->psi:si
 si:ii-->esi:si
 ```
-## 临时运行流程指导示意图
-```mermaid
-graph TB
+## 临时流程指导笔记
 
-a(Health.cs中UnityAction OnDie)
-b(血量为0时OnDie?.Invoke)
-c(Player.cs中m_Health.OnDie += OnDie)
-d(Player.cs中OnDie函数 Broadcast Events.PlayerDeathEvent)
-e(GameFlowManager.cs中Awake中AddListener PlayerDeathEvent OnPlayerDeath)
-f(Events.cs中PlayerDeathEvent)
-g(OnPlayerDeath PlayerDeathEvent evt => EndGame false)
+先检查字典中是否有该面板 有则 无则首次生成
 
-f-->d
-d-->c
-a-->c
-g-->f
-a-->b
-b-->g
-e-->f
-c-->g
+1.面板生成 加入字典 插入列表
+2.面板生成 加入字典 不插入列表
+3.面板弹出 设为不活动 移出列表
+4.面板弹出 直接销毁 移出列表 移出字典
+5.面板展现 字典已有 插入列表
+
 ```

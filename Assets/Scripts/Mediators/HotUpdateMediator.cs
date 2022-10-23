@@ -30,7 +30,7 @@ namespace ReTouchGunFire.Mediators{
             // Debug.Log("HotUpdateMediator CheckHotUpdate");
             yield return new WaitForSeconds(2);
             
-            EventMgr.Broadcast(Events.CheckHotUpdateEndNotify);
+            EventMgr.Broadcast(GameEvents.CheckHotUpdateEndNotify);
             // m_sceneMediator.SetScene(mainScene,mainScene.Name);
         }
 
