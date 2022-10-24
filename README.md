@@ -4,6 +4,8 @@ Rebuild project.
 
 ## TODO
 
+先添加主界面按钮的对应面板用于测试UI框架
+
 加载时启用加载进度条面板遮挡全部画面
 
 登陆UI搭建
@@ -25,6 +27,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.25 4:08`
+add Equipment, Gun props. 
 
 > `22.10.24 12:23`
 改了变量名
