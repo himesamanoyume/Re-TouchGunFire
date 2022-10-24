@@ -7,9 +7,9 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.Mgrs{
     public sealed class SceneMgr : IManager
     {
-        private SceneInfo m_sceneInfo;
+        private SceneInfo sceneInfo;
         private bool isBegin = false;
-        public SceneMediator m_sceneMediator;
+        public SceneMediator sceneMediator;
 
         public SceneMgr(){
             Name = "SceneMgr";
@@ -17,28 +17,28 @@ namespace ReTouchGunFire.Mgrs{
 
         public override void Init(){
             // Debug.Log("SceneMgr Init start");
-            m_sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
+            sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
         }
         
         public void SetScene(SceneInfo sceneInfo, string sceneName){
             isBegin = false;
             LoadScene(sceneName);
-            if(m_sceneInfo!=null){
-                m_sceneInfo.OnEnd();
+            if(this.sceneInfo!=null){
+                this.sceneInfo.OnEnd();
             }
-            m_sceneInfo = sceneInfo;
+            this.sceneInfo = sceneInfo;
         }
 
         public void SceneUpdate(){
-            if(m_sceneInfo != null && isBegin == false){
+            if(sceneInfo != null && isBegin == false){
                 // Debug.Log("SceneUpdate");
                 
-                m_sceneInfo.OnBegin();
+                sceneInfo.OnBegin();
                 isBegin = true;
             }
             
-            if(m_sceneInfo != null){
-                m_sceneInfo.OnUpdate();
+            if(sceneInfo != null){
+                sceneInfo.OnUpdate();
             }
         }
             
@@ -47,7 +47,7 @@ namespace ReTouchGunFire.Mgrs{
             if(sceneName == null || sceneName.Length == 0){
                 return;
             }
-            m_sceneMediator.LoadScene(sceneName);
+            sceneMediator.LoadScene(sceneName);
             // AssetBundle.UnloadAllAssetBundles(false);
         }
 

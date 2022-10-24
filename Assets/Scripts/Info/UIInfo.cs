@@ -5,10 +5,10 @@ using UnityEngine;
 // [CreateAssetMenu(menuName = "UIInfo/New UIInfo")]
 public abstract class UIInfo : MonoBehaviour//: ScriptableObject
 {
-    private string m_name = "UIInfo";
+    private string _name = "UIInfo";
     public string Name{
-        get{ return m_name;}
-        set{ m_name = value;}
+        get{ return _name;}
+        set{ _name = value;}
     }
 
     public virtual void Init(){

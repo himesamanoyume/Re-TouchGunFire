@@ -7,11 +7,11 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class PlayerInfoPanelInfo : UIInfo
     {
-        public Slider m_expBar;
-        public Text m_playerNameText;
-        public Text m_playerLevelText;
+        public Slider expBar;
+        public Text playerNameText;
+        public Text playerLevelText;
 
-        private Transform m_content;
+        private Transform content;
 
         void Start()
         {
@@ -21,10 +21,10 @@ namespace ReTouchGunFire.PanelInfo{
 
         public override void Init(){
             base.Init();
-            m_content = transform.Find("Point/LeftBottom/Container/Player/Content");
-            m_expBar = m_content.Find("ExpItem/ExpBar").GetComponent<Slider>();
-            m_playerNameText = m_content.Find("PlayerInfo/PlayerNameText").GetComponent<Text>();
-            m_playerLevelText = m_content.Find("PlayerInfo/PlayerLevelText").GetComponent<Text>();
+            content = transform.Find("Point/LeftBottom/Container/Player/Content");
+            expBar = content.Find("ExpItem/ExpBar").GetComponent<Slider>();
+            playerNameText = content.Find("PlayerInfo/PlayerNameText").GetComponent<Text>();
+            playerLevelText = content.Find("PlayerInfo/PlayerLevelText").GetComponent<Text>();
         }
         
     }

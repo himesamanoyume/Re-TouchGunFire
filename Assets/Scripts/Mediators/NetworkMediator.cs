@@ -8,8 +8,8 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public sealed class NetworkMediator : IMediator
     {
-        public ClientMgr m_clientMgr;
-        public RequestMgr m_requestMgr;
+        public ClientMgr clientMgr;
+        public RequestMgr requestMgr;
         public NetworkMediator(){
             Name = "NetworkMediator";
         }
@@ -20,26 +20,26 @@ namespace ReTouchGunFire.Mediators{
 
         public override void Init()
         {
-            m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;
-            m_requestMgr = GameLoop.Instance.gameManager.RequestMgr;
+            clientMgr = GameLoop.Instance.gameManager.ClientMgr;
+            requestMgr = GameLoop.Instance.gameManager.RequestMgr;
         }
 
         public void Send(MainPack mainPack){
-            m_clientMgr.Send(mainPack);
+            clientMgr.Send(mainPack);
         }
 
         public void AddRequest(IRequest request)
         {
-            m_requestMgr.AddRequest(request);
+            requestMgr.AddRequest(request);
         }
 
         public void RemoveRequest(IRequest request)
         {
-            m_requestMgr.RemoveRequest(request);
+            requestMgr.RemoveRequest(request);
         }
 
         public void HandleResponse(MainPack mainPack){
-            m_requestMgr.HandleResponse(mainPack);
+            requestMgr.HandleResponse(mainPack);
         }
     }
 }

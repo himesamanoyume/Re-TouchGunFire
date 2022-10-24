@@ -14,7 +14,7 @@ namespace ReTouchGunFire.Mediators{
             Name = "AbMediator";
         }
 
-        public PanelMediator m_panelMediator;
+        public PanelMediator panelMediator;
 
         private void Start() {
             Init();
@@ -22,7 +22,7 @@ namespace ReTouchGunFire.Mediators{
 
         public override void Init()
         {
-            m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
         }
 
         private const string abMapPathStr = "/AbMap/AssetBundle/";
@@ -125,7 +125,7 @@ namespace ReTouchGunFire.Mediators{
         //     ab.Unload(false);
         //     GameObject obj = Instantiate(tobj, transform);
         //     obj.name = panelName;
-        //     // m_panelMediator.PushPanel(eUILevel, obj);
+        //     // panelMediator.PushPanel(eUILevel, obj);
             
         // }
 

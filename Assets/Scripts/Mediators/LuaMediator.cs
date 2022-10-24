@@ -6,7 +6,7 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public class LuaMediator : IMediator
     {
-        public LuaMgr m_luaMgr;
+        public LuaMgr luaMgr;
         
         public LuaMediator(){
             Name = "LuaMediator";
@@ -18,7 +18,7 @@ namespace ReTouchGunFire.Mediators{
 
         public override void Init()
         {
-            m_luaMgr = GameLoop.Instance.gameManager.LuaMgr;
+            luaMgr = GameLoop.Instance.gameManager.LuaMgr;
         }
 
     }

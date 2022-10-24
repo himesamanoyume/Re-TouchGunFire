@@ -1,7 +1,7 @@
 
 public enum EEquipmentSuit
 {
-   test1,
-   test2,
-   test3 
+   test1Suit,
+   test2Suit,
+   test3Suit 
 }

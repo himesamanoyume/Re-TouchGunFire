@@ -7,8 +7,8 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public class SceneMediator : IMediator
     {
-        public SceneMgr m_sceneMgr;
-        public AbMediator m_abMediator;
+        public SceneMgr sceneMgr;
+        public AbMediator abMediator;
         
         public SceneMediator(){
             Name = "SceneMediator";
@@ -20,32 +20,32 @@ namespace ReTouchGunFire.Mediators{
 
         public override void Init()
         {
-            m_sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
-            m_abMediator = GameLoop.Instance.GetMediator<AbMediator>();
+            sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
+            abMediator = GameLoop.Instance.GetMediator<AbMediator>();
             EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
         }
 
         public void SetScene(SceneInfo sceneInfo, string sceneName){
-            m_sceneMgr.SetScene(sceneInfo, sceneName);
+            sceneMgr.SetScene(sceneInfo, sceneName);
         }
 
         public void SceneUpdate(){
-            m_sceneMgr.SceneUpdate();
+            sceneMgr.SceneUpdate();
         }
 
         public void LoadScene(string sceneName){
-            // m_abMediator.SyncLoadABScene("scenes",sceneName);//同步加载场景测试
-            StartCoroutine(m_abMediator.AsyncLoadAbScene("scenes",sceneName));
+            // abMediator.SyncLoadABScene("scenes",sceneName);//同步加载场景测试
+            StartCoroutine(abMediator.AsyncLoadAbScene("scenes",sceneName));
         }
 
         public void SceneLog(){
-            m_sceneMgr.SceneLog();
+            sceneMgr.SceneLog();
         }
 
 
         void SetMainScene(){
             MainScene mainScene = new MainScene(this);
-            m_sceneMgr.SetScene(mainScene,mainScene.Name);
+            sceneMgr.SetScene(mainScene,mainScene.Name);
             EventMgr.RemoveListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
         }
         void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => SetMainScene();

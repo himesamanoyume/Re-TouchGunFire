@@ -7,7 +7,7 @@ using XLua;
 namespace ReTouchGunFire.Mgrs{
     public class LuaMgr : IManager
     {
-        private LuaEnv m_env;
+        private LuaEnv env;
         private static string _LuaScriptFolder = "LuaScripts";
         public LuaMgr(){
             Name = "LuaMgr";
@@ -18,8 +18,8 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         private void InitLuaEnv(){
-            m_env = new LuaEnv();
-            m_env.AddLoader(LuaScriptLoader);
+            env = new LuaEnv();
+            env.AddLoader(LuaScriptLoader);
         }
 
         public byte[] LuaScriptLoader(ref string filePath){

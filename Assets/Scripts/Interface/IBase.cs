@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class IBase
 {
-    private string m_name = "IBase";
+    private string name = "IBase";
     public string Name{
-        get{ return m_name;}
-        set{ m_name = value;}
+        get{ return name;}
+        set{ name = value;}
     }
 }

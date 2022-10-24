@@ -6,23 +6,23 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.Mgrs{
     public sealed class UIMgr : IManager
     {
-        public CanvasMediator m_canvasMediator;
-        private List<GameObject> m_panelList = new List<GameObject>();
-        public Dictionary<EUIPanelType, GameObject> m_panelDict = new Dictionary<EUIPanelType, GameObject>();
+        public CanvasMediator canvasMediator;
+        private List<GameObject> panelList = new List<GameObject>();
+        public Dictionary<EUIPanelType, GameObject> panelDict = new Dictionary<EUIPanelType, GameObject>();
         public UIMgr(){
             Name = "UIMgr";
         }
 
         public override void Init(){
-            m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
+            canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
         }
 
         public void InsertPanel(GameObject panel){
-            m_panelList.Insert(0, panel);
+            panelList.Insert(0, panel);
         }
 
         public void CheckPanelList(){
-            if(m_panelList.Count > 0){
+            if(panelList.Count > 0){
 
             }
         }
@@ -34,30 +34,30 @@ namespace ReTouchGunFire.Mgrs{
         /// <param name="isInsertToList"></param>
         // public void PushPanel(EUILevel uILevel, GameObject uIPanel, EUIPanelType eUIPanelType, bool isInsertToList){
 
-        //     if(m_panelDict.TryGetValue(eUIPanelType, out GameObject dictPanel)){
+        //     if(panelDict.TryGetValue(eUIPanelType, out GameObject dictPanel)){
         //         dictPanel.transform.GetChild(0).gameObject.SetActive(true);
         //         if(isInsertToList)
-        //             m_panelList.Insert(0, dictPanel);
+        //             panelList.Insert(0, dictPanel);
         //     }else{
-        //         m_panelDict.Add(eUIPanelType, uIPanel);
-        //         uIPanel.transform.SetParent(m_canvasMediator.GetCanvasLevel(uILevel));
+        //         panelDict.Add(eUIPanelType, uIPanel);
+        //         uIPanel.transform.SetParent(canvasMediator.GetCanvasLevel(uILevel));
         //         if(isInsertToList)
-        //             m_panelList.Insert(0, dictPanel);
+        //             panelList.Insert(0, dictPanel);
         //     }
         // }
 
         public void PeekPanel(){
-            // m_panelList[0].gameObject.SetActive(false);
+            // panelList[0].gameObject.SetActive(false);
         }
 
         public void PopPanel(bool isDestroy){
             if(isDestroy){
-                GameObject.Destroy(m_panelList[0]);
+                GameObject.Destroy(panelList[0]);
             }else{
-                m_panelList[0].transform.GetChild(0).gameObject.SetActive(false);
+                panelList[0].transform.GetChild(0).gameObject.SetActive(false);
             }
             
-            m_panelList.Remove(m_panelList[0]);
+            panelList.Remove(panelList[0]);
         }
 
     }

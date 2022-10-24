@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class IMediator : MonoBehaviour
 {
-    private string m_name = "IMediator";
+    private string _name = "IMediator";
     public string Name{
-        get{ return m_name;}
-        set{ m_name = value;}
+        get{ return _name;}
+        set{ _name = value;}
     }
 
     public abstract void Init();

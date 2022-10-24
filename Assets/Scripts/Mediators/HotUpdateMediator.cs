@@ -6,7 +6,7 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.Mediators{
     public class HotUpdateMediator : IMediator
     {
-        public SceneMediator m_sceneMediator;
+        public SceneMediator sceneMediator;
         public HotUpdateMediator(){
             Name = "HotUpdateMediator";
         }
@@ -22,7 +22,7 @@ namespace ReTouchGunFire.Mediators{
 
         public void StartCheck(SceneMediator sceneMediator){
             // Debug.Log("HotUpdateMediator StartCheck");
-            m_sceneMediator = sceneMediator;
+            this.sceneMediator = sceneMediator;
             StartCoroutine(CheckHotUpdate());
         }
 
@@ -31,7 +31,7 @@ namespace ReTouchGunFire.Mediators{
             yield return new WaitForSeconds(2);
             
             EventMgr.Broadcast(GameEvents.CheckHotUpdateEndNotify);
-            // m_sceneMediator.SetScene(mainScene,mainScene.Name);
+            // sceneMediator.SetScene(mainScene,mainScene.Name);
         }
 
         

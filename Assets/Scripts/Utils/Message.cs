@@ -8,37 +8,37 @@ using System.Linq;
 
 public class Message
 {
-    private byte[] m_buffer = new byte[1024];
-    private int m_startIndex;
+    private byte[] buffer = new byte[1024];
+    private int startIndex;
 
     public byte[] Buffer
     {
-        get { return m_buffer; }
+        get { return buffer; }
     }
 
     public int StartIndex
     {
-        get { return m_startIndex; }
+        get { return startIndex; }
     }
 
     public int Remsize
     {
-        get { return m_buffer.Length - m_startIndex; }
+        get { return buffer.Length - startIndex; }
     }
 
     public void ReadBuffer(int length, Action<MainPack> handleResponse)
     {
-        m_startIndex += length;
-        if (m_startIndex <= 4) return;
-        int count = BitConverter.ToInt32(m_buffer, 0);
+        startIndex += length;
+        if (startIndex <= 4) return;
+        int count = BitConverter.ToInt32(buffer, 0);
         while (true)
         {
-            if (m_startIndex >= count + 4)
+            if (startIndex >= count + 4)
             {
-                MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(m_buffer, 4, count);
+                MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(buffer, 4, count);
                 handleResponse(mainPack);
-                Array.Copy(m_buffer, count + 4, m_buffer, 0, m_startIndex - count - 4);
-                m_startIndex -= (count + 4);
+                Array.Copy(buffer, count + 4, buffer, 0, startIndex - count - 4);
+                startIndex -= (count + 4);
             }
             else
             {

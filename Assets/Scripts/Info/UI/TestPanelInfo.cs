@@ -9,8 +9,8 @@ using ReTouchGunFire.Mgrs;
 namespace ReTouchGunFire.PanelInfo{
     public class TestPanelInfo : UIInfo
     {
-        public Button m_point;
-        public PanelMediator m_panelMediator;
+        public Button point;
+        public PanelMediator panelMediator;
         void Start()
         {
             Name = "TestPanelInfo";
@@ -20,10 +20,10 @@ namespace ReTouchGunFire.PanelInfo{
         public override void Init()
         {
             base.Init();
-            m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            m_point = transform.GetChild(0).GetComponent<Button>();
-            m_point.onClick.AddListener(()=>{
-                m_panelMediator.PopPanel(false);
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            point = transform.GetChild(0).GetComponent<Button>();
+            point.onClick.AddListener(()=>{
+                panelMediator.PopPanel(false);
                 EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
             });
         }

@@ -7,14 +7,14 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public class MainMenuPanelInfo : UIInfo
     {
-        public PanelMediator m_panelMediator;
+        public PanelMediator panelMediator;
 
-        public Button m_attackCube;
-        public Button m_bagCube;
-        public Button m_warehouseCube;
-        public Button m_friendsCube;
-        public Button m_buildingCube;
-        public Button m_settingCube;
+        public Button attackCube;
+        public Button backpackCube;
+        public Button warehouseCube;
+        public Button friendsCube;
+        public Button buildingCube;
+        public Button settingCube;
         void Start()
         {
             Name = "MainMenuPanelInfo";
@@ -26,22 +26,22 @@ namespace ReTouchGunFire.PanelInfo{
         public override void Init()
         {
             base.Init();
-            m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             mainTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/MainTemplate");
 
             InitMainTemplate();
         }
 
         void InitMainTemplate(){
-            m_attackCube = mainTemplate.Find("line1/AttackCube").GetComponent<Button>();
-            m_bagCube = mainTemplate.Find("line2/BagCube").GetComponent<Button>();
-            m_warehouseCube = mainTemplate.Find("line2/WarehouseCube").GetComponent<Button>();
-            m_friendsCube = mainTemplate.Find("line3/FriendsCube").GetComponent<Button>();
-            m_buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
-            m_settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
+            attackCube = mainTemplate.Find("line1/AttackCube").GetComponent<Button>();
+            backpackCube = mainTemplate.Find("line2/BackpackCube").GetComponent<Button>();
+            warehouseCube = mainTemplate.Find("line2/WarehouseCube").GetComponent<Button>();
+            friendsCube = mainTemplate.Find("line3/FriendsCube").GetComponent<Button>();
+            buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
+            settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
 
-            m_settingCube.onClick.AddListener(()=>{
-                m_panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true,(GameObject obj)=>{
+            settingCube.onClick.AddListener(()=>{
+                panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true,(GameObject obj)=>{
                     obj.AddComponent<TestPanelInfo>();
                 });
             });

@@ -15,11 +15,11 @@ namespace ReTouchGunFire.Mgrs{
             
         }
 
-        public delegate void initDel();
-        public initDel m_initDel;
+        public delegate void InitDel();
+        public InitDel initDel;
 
         public void InitDelMediator(){
-            m_initDel();
+            initDel();
         }
 
         public void InitLuaMediator(){

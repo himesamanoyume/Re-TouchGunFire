@@ -8,20 +8,20 @@ using SocketProtocol;
 namespace ReTouchGunFire.Mgrs{
     public sealed class ClientMgr : IManager
     {
-        private Socket m_socket;
-        private Message m_message;
+        private Socket socket;
+        private Message message;
 
         public ClientMgr(){
             Name = "ClientMgr";
-            m_message = new Message();
+            message = new Message();
         }
 
         public override void Init()
         {
-            m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try{
-                m_socket.Connect("127.0.0.1", 4567);
-                if(m_socket.Connected) Debug.Log("Master Server Connected.");
+                socket.Connect("127.0.0.1", 4567);
+                if(socket.Connected) Debug.Log("Master Server Connected.");
                 StartReceive();
             }catch(Exception e){
                 Debug.LogWarning(e);
@@ -29,30 +29,30 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         private void OnDestroy() {
-            m_message = null;
+            message = null;
             CloseSocket();
         }
 
         private void CloseSocket(){
-            if(m_socket.Connected && m_socket != null){
-                m_socket.Close();
+            if(socket.Connected && socket != null){
+                socket.Close();
             }
         }
 
         private void StartReceive(){
-            m_socket.BeginReceive(m_message.Buffer, m_message.StartIndex, m_message.Remsize, SocketFlags.None, ReceiveCallback, null);
+            socket.BeginReceive(message.Buffer, message.StartIndex, message.Remsize, SocketFlags.None, ReceiveCallback, null);
         }
 
         private void ReceiveCallback(IAsyncResult iar){
             try{
-                if(m_socket == null || m_socket.Connected == false) return;
-                int length = m_socket.EndReceive(iar);
+                if(socket == null || socket.Connected == false) return;
+                int length = socket.EndReceive(iar);
                 if(length == 0){
                     CloseSocket();
                     return;
                 }
 
-                m_message.ReadBuffer(length, HandleResponse);
+                message.ReadBuffer(length, HandleResponse);
                 StartReceive();
             }catch{
 
@@ -64,7 +64,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void Send(MainPack mainPack){
-            m_socket.Send(Message.PackData(mainPack));
+            socket.Send(Message.PackData(mainPack));
         }
     }
 

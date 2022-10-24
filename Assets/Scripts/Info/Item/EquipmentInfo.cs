@@ -2,55 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentInfo
+public class EquipmentInfo : ItemInfo
 {
-   private EEquipmentSuit m_equipmentSuit;
-   private EEquipmentQuality m_equipmentQuality;
+   private EEquipmentSuit equipmentSuit;
+   private EEquipmentQuality equipmentQuality;
 
    public EEquipmentSuit EquipmentSuit{
-      get{ return m_equipmentSuit;}
-      set{ m_equipmentSuit = value;}
+      get{ return equipmentSuit;}
+      set{ equipmentSuit = value;}
    }
 
    public EEquipmentQuality EquipmentQuality{
-      get{ return m_equipmentQuality;}
-      set{ m_equipmentQuality = value;}
+      get{ return equipmentQuality;}
+      set{ equipmentQuality = value;}
    }
 
    public string EquipmentName{
       get;set;
    }
 
-   private float m_maxDefense = 0;
+   private float maxDefense = 0;
    public float MaxDefense{
-      get{ return m_maxDefense;}
+      get{ return maxDefense;}
       set{ 
          if(value<=0){
-            m_maxDefense=0;
+            maxDefense=0;
          }else{
-            m_maxDefense = value;
+            maxDefense = value;
          }
       }
    }
 
-   private float m_minDefense = 0;
+   private float minDefense = 0;
    public float MinDefense{
-      get{ return m_minDefense;}
+      get{ return minDefense;}
       set{ 
          if(value<=0){
-            m_minDefense=0;
+            minDefense=0;
          }else{
-            m_minDefense = value;
+            minDefense = value;
          }
       }
    }
 
-   private float m_defense;
+   private float defense;
    public float Defense{
-      get{ return m_defense;}
+      get{ return defense;}
       set{ 
          if(MaxDefense <= value && MinDefense >= value){
-            m_defense = value;
+            defense = value;
          }else{
             Debug.LogError("Defense value error:"+value);
          }

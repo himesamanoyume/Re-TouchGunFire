@@ -6,8 +6,8 @@ using ReTouchGunFire.Mgrs;
 
 public class GameLoop : UnitySingleton<GameLoop>
 {
-    private MediatorMgr m_MediatorMgr;
-    private SceneMediator m_sceneMediator;
+    private MediatorMgr mediatorMgr;
+    private SceneMediator sceneMediator;
     public GameManager gameManager;
 
     public override void Awake()
@@ -15,16 +15,16 @@ public class GameLoop : UnitySingleton<GameLoop>
         base.Awake();
         gameManager = new GameManager();
         //游戏初始化
-        m_MediatorMgr = gameManager.MediatorMgr;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitAbMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitSceneMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitHotUpdateMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitCanvasMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitLuaMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitPanelMediator;
-        m_MediatorMgr.m_initDel += m_MediatorMgr.InitNetworkMediator;
+        mediatorMgr = gameManager.MediatorMgr;
+        mediatorMgr.initDel += mediatorMgr.InitAbMediator;
+        mediatorMgr.initDel += mediatorMgr.InitSceneMediator;
+        mediatorMgr.initDel += mediatorMgr.InitHotUpdateMediator;
+        mediatorMgr.initDel += mediatorMgr.InitCanvasMediator;
+        mediatorMgr.initDel += mediatorMgr.InitLuaMediator;
+        mediatorMgr.initDel += mediatorMgr.InitPanelMediator;
+        mediatorMgr.initDel += mediatorMgr.InitNetworkMediator;
 
-        m_MediatorMgr.InitDelMediator();
+        mediatorMgr.InitDelMediator();
 
         gameManager.Init();
         //end
@@ -33,15 +33,15 @@ public class GameLoop : UnitySingleton<GameLoop>
     void Start()
     {
         
-        m_sceneMediator = gameObject.GetComponent<SceneMediator>();
+        sceneMediator = GetMediator<SceneMediator>();
         // Debug.Log("GameLoop Start.");
-        m_sceneMediator.SetScene(new InitScene(m_sceneMediator), "");
+        sceneMediator.SetScene(new InitScene(this.sceneMediator), "");
 
     }
 
     void Update()
     {
-        m_sceneMediator.SceneUpdate();
+        sceneMediator.SceneUpdate();
     }
 
     public T GetMediator<T>() where T : IMediator{

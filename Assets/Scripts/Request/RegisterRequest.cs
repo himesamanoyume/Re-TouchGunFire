@@ -7,8 +7,8 @@ public class RegisterRequest : IRequest
 {
     public override void Awake() {
         Name = "RegisterRequest";
-        m_requestCode = RequestCode.User;
-        m_actionCode = ActionCode.Register;
+        requestCode = RequestCode.User;
+        actionCode = ActionCode.Register;
         base.Awake();
     }
 
@@ -32,8 +32,8 @@ public class RegisterRequest : IRequest
     public void SendRequest(string userName, string password)
     {
         MainPack mainPack = new MainPack();
-        mainPack.RequestCode = m_requestCode;
-        mainPack.ActionCode = m_actionCode;
+        mainPack.RequestCode = requestCode;
+        mainPack.ActionCode = actionCode;
         RegisterPack registerPack = new RegisterPack();
         registerPack.UserName = userName;
         registerPack.Password = password;

@@ -6,33 +6,33 @@ using ReTouchGunFire.Mgrs;
 
 public abstract class IRequest : MonoBehaviour
 {
-    private string m_name = "IRequest";
+    private string _name = "IRequest";
     public string Name{
-        get{ return m_name;}
-        set{ m_name = value;}
+        get{ return _name;}
+        set{ _name = value;}
     }
-    protected RequestCode m_requestCode;
-    protected ActionCode m_actionCode;
-    protected RequestMgr m_requestMgr;
-    protected ClientMgr m_clientMgr;
+    protected RequestCode requestCode;
+    protected ActionCode actionCode;
+    protected RequestMgr requestMgr;
+    protected ClientMgr clientMgr;
 
     public ActionCode ActionCode{
-        get{ return m_actionCode;}
+        get{ return actionCode;}
     }
 
     public virtual void Awake() {
-        m_requestMgr = GameLoop.Instance.gameManager.RequestMgr;
-        m_clientMgr = GameLoop.Instance.gameManager.ClientMgr;
-        m_requestMgr.AddRequest(this);
+        requestMgr = GameLoop.Instance.gameManager.RequestMgr;
+        clientMgr = GameLoop.Instance.gameManager.ClientMgr;
+        requestMgr.AddRequest(this);
     }
 
     public virtual void OnDestroy() {
-        m_requestMgr.RemoveRequest(this);
+        requestMgr.RemoveRequest(this);
     }
 
     public abstract void OnResponse(MainPack mainPack);
 
     public virtual void SendRequest(MainPack mainPack){
-        m_clientMgr.Send(mainPack);
+        clientMgr.Send(mainPack);
     }
 }

@@ -26,6 +26,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 
 ## CHANGELOG
 
+> `22.10.24 12:23`
+改了变量名
+
 > `22.10.23 19:03`
 add TestPanel, TestPanelInfo, fix bug and rewrite panelMediator, UIMgr. 
 

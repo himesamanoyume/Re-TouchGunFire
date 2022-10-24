@@ -10,24 +10,23 @@ public sealed class InitScene : SceneInfo
         Name = "InitScene";
     }
 
-    public HotUpdateMediator m_hotUpdateMediator;
-    public CanvasMediator m_canvasMediator;
-    public PanelMediator m_panelMediator;
+    public HotUpdateMediator hotUpdateMediator;
+    public CanvasMediator canvasMediator;
+    public PanelMediator panelMediator;
     
 
     public override void OnBegin()
     {
         // Debug.Log("InitScene Begin");
+        canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
 
-        m_canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
-
-        m_panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-        m_panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, (GameObject obj)=>{ 
+        panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+        panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, (GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
 
-        m_hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
-        m_hotUpdateMediator.StartCheck(m_sceneMediator);
+        hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
+        hotUpdateMediator.StartCheck(sceneMediator);
 
     }
 
@@ -39,6 +38,6 @@ public sealed class InitScene : SceneInfo
     public override void OnEnd()
     {
         // Debug.Log("InitScene End");
-        m_panelMediator.PopPanel(true);
+        panelMediator.PopPanel(true);
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 namespace ReTouchGunFire.PanelInfo{
         public class CanvasInfo : UIInfo
     {
-        public Transform m_level1;
-        public Transform m_level2;
-        public Transform m_level3;
-        public Transform m_level4;
-        public Transform m_levelLoading;
-        public Camera m_mainCamera;
+        public Transform level1;
+        public Transform level2;
+        public Transform level3;
+        public Transform level4;
+        public Transform levelLoading;
+        public Camera mainCamera;
 
         private void Start() {
             Name = "CanvasInfo";
@@ -20,39 +20,39 @@ namespace ReTouchGunFire.PanelInfo{
 
         public override void Init(){
             base.Init();
-            m_level1 = transform.GetChild(0);
-            // Debug.Log(m_level1.name);
-            m_level2 = transform.GetChild(1);
-            // Debug.Log(m_level2.name);
-            m_level3 = transform.GetChild(2);
-            // Debug.Log(m_level3.name);
-            m_level4 = transform.GetChild(3);
-            // Debug.Log(m_level4.name);
-            m_levelLoading = transform.GetChild(4);
-            // Debug.Log(m_levelLoading.name);
-            m_mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            level1 = transform.GetChild(0);
+            // Debug.Log(level1.name);
+            level2 = transform.GetChild(1);
+            // Debug.Log(level2.name);
+            level3 = transform.GetChild(2);
+            // Debug.Log(level3.name);
+            level4 = transform.GetChild(3);
+            // Debug.Log(level4.name);
+            levelLoading = transform.GetChild(4);
+            // Debug.Log(levelLoading.name);
+            mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             DontDestroyOnLoad(this);
-            DontDestroyOnLoad(m_mainCamera);
-            transform.GetComponent<Canvas>().worldCamera = m_mainCamera;
+            DontDestroyOnLoad(mainCamera);
+            transform.GetComponent<Canvas>().worldCamera = mainCamera;
         }
 
         public Transform Canvas{
             get{ return this.transform;}
         }
         public Transform Level1{
-            get{ return m_level1;}
+            get{ return level1;}
         }
         public Transform Level2{
-            get{ return m_level2;}
+            get{ return level2;}
         }
         public Transform Level3{
-            get{ return m_level3;}
+            get{ return level3;}
         }
         public Transform Level4{
-            get{ return m_level4;}
+            get{ return level4;}
         }
         public Transform LevelLoading{
-            get{ return m_levelLoading;}
+            get{ return levelLoading;}
         }
     }
 }
