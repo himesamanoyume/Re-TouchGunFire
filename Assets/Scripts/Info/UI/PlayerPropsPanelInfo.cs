@@ -38,38 +38,22 @@ namespace ReTouchGunFire.PanelInfo{
         public Text mgDmgBonus;
         [Tooltip("手枪伤害加成")]
         public Text hgDmgBonus;
-        [Tooltip("主武器1名字")]
-        public Text m1wGunName;
-        [Tooltip("主武器1类型")]
-        public Text m1wGunType;
-        [Tooltip("主武器1基础伤害")]
-        public Text m1wBaseDmg;
-        [Tooltip("主武器1总暴击率")]
-        public Text m1wTotalCDmgRate;
-        [Tooltip("主武器1总暴击伤害")]
-        public Text m1wTotalCDmg;
-        [Tooltip("主武器1总爆头伤害")]
-        public Text m1wTotalHeadshotDmg;
-        [Tooltip("主武器1总穿透率")]
-        public Text m1wTotalPRate;
-        [Tooltip("主武器1总破甲效率")]
-        public Text m1wTotalAbe;
-        [Tooltip("主武器2名字")]
-        public Text m2wGunName;
-        [Tooltip("主武器2类型")]
-        public Text m2wGunType;
-        [Tooltip("主武器2基础伤害")]
-        public Text m2wBaseDmg;
-        [Tooltip("主武器2总暴击率")]
-        public Text m2wTotalCDmgRate;
-        [Tooltip("主武器2总暴击伤害")]
-        public Text m2wTotalCDmg;
-        [Tooltip("主武器2总爆头伤害")]
-        public Text m2wTotalHeadshotDmg;
-        [Tooltip("主武器2总穿透率")]
-        public Text m2wTotalPRate;
-        [Tooltip("主武器2总破甲效率")]
-        public Text m2wTotalAbe;
+        [Tooltip("主武器名字")]
+        public Text mainGunName;
+        [Tooltip("主武器类型")]
+        public Text mainGunType;
+        [Tooltip("主武器基础伤害")]
+        public Text mainBaseDmg;
+        [Tooltip("主武器总暴击率")]
+        public Text mainTotalCDmgRate;
+        [Tooltip("主武器总暴击伤害")]
+        public Text mainTotalCDmg;
+        [Tooltip("主武器总爆头伤害")]
+        public Text mainTotalHeadshotDmg;
+        [Tooltip("主武器总穿透率")]
+        public Text mainTotalPRate;
+        [Tooltip("主武器总破甲效率")]
+        public Text mainTotalAbe;
         [Tooltip("副武器名字")]
         public Text handgunGunName;
         [Tooltip("副武器类型")]
@@ -89,8 +73,7 @@ namespace ReTouchGunFire.PanelInfo{
         
         private Transform content;
         private Transform propsBar;
-        private Transform m1wBar;
-        private Transform m2wBar;
+        private Transform mainGunBar;
         private Transform handgunBar;
 
         void Start()
@@ -104,12 +87,10 @@ namespace ReTouchGunFire.PanelInfo{
             base.Init();
             content = transform.Find("Point/LeftBottom/Container/Scroll View/Viewport/Content");
             propsBar = content.Find("PropsBar");
-            m1wBar = content.Find("Main1WeaponBar");
-            m2wBar = content.Find("Main2WeaponBar");
+            mainGunBar = content.Find("MainGunBar");
             handgunBar = content.Find("HandGunBar");
             InitPropsBar();
-            InitM1wBar();
-            InitM2wBar();
+            InitMainGunBar();
             InitHandGunBar();
         }
 
@@ -131,26 +112,15 @@ namespace ReTouchGunFire.PanelInfo{
             hgDmgBonus = propsBar.Find("HG_DMGBonus/Value").GetComponent<Text>();
         }
 
-        void InitM1wBar(){
-            m1wGunName = m1wBar.Find("GunName/Value").GetComponent<Text>();
-            m1wGunType = m1wBar.Find("GunType/Value").GetComponent<Text>();
-            m1wBaseDmg = m1wBar.Find("BaseDMG/Value").GetComponent<Text>();
-            m1wTotalCDmgRate = m1wBar.Find("TotalCRITDMGRate/Value").GetComponent<Text>();
-            m1wTotalCDmg = m1wBar.Find("TotalCRITDMG/Value").GetComponent<Text>();
-            m1wTotalHeadshotDmg = m1wBar.Find("TotalHeadshotDMG/Value").GetComponent<Text>();
-            m1wTotalPRate = m1wBar.Find("TotalPRate/Value").GetComponent<Text>();
-            m1wTotalAbe = m1wBar.Find("TotalABE/Value").GetComponent<Text>();
-        }
-
-        void InitM2wBar(){
-            m2wGunName = m2wBar.Find("GunName/Value").GetComponent<Text>();
-            m2wGunType = m2wBar.Find("GunType/Value").GetComponent<Text>();
-            m2wBaseDmg = m2wBar.Find("BaseDMG/Value").GetComponent<Text>();
-            m2wTotalCDmgRate = m2wBar.Find("TotalCRITDMGRate/Value").GetComponent<Text>();
-            m2wTotalCDmg = m2wBar.Find("TotalCRITDMG/Value").GetComponent<Text>();
-            m2wTotalHeadshotDmg = m2wBar.Find("TotalHeadshotDMG/Value").GetComponent<Text>();
-            m2wTotalPRate = m2wBar.Find("TotalPRate/Value").GetComponent<Text>();
-            m2wTotalAbe = m2wBar.Find("TotalABE/Value").GetComponent<Text>();
+        void InitMainGunBar(){
+            mainGunName = mainGunBar.Find("GunName/Value").GetComponent<Text>();
+            mainGunType = mainGunBar.Find("GunType/Value").GetComponent<Text>();
+            mainBaseDmg = mainGunBar.Find("BaseDMG/Value").GetComponent<Text>();
+            mainTotalCDmgRate = mainGunBar.Find("TotalCRITDMGRate/Value").GetComponent<Text>();
+            mainTotalCDmg = mainGunBar.Find("TotalCRITDMG/Value").GetComponent<Text>();
+            mainTotalHeadshotDmg = mainGunBar.Find("TotalHeadshotDMG/Value").GetComponent<Text>();
+            mainTotalPRate = mainGunBar.Find("TotalPRate/Value").GetComponent<Text>();
+            mainTotalAbe = mainGunBar.Find("TotalABE/Value").GetComponent<Text>();
         }
 
         void InitHandGunBar(){

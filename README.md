@@ -28,6 +28,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 
 ## CHANGELOG
 
+> `22.10.25 11:59`
+add BackpackPanelInfo. 
+
 > `22.10.25 4:08`
 add Equipment, Gun props. 
 

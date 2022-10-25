@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public enum EEuqipmentTalent
+public enum EEquipmentTalent
 {
     Null,
     Test1EquipmentTalent1,

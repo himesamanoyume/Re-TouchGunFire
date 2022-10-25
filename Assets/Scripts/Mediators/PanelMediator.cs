@@ -67,6 +67,13 @@ namespace ReTouchGunFire.Mediators{
             uiMgr.PopPanel(isDestroy);
         }
 
+        /// <summary>
+        /// 如果PanelList内没有面板了则返回true
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckPanelList(){
+            return uiMgr.CheckPanelList();
+        }
     }
 }
 

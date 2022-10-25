@@ -40,6 +40,11 @@ namespace ReTouchGunFire.PanelInfo{
             buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
             settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
 
+            backpackCube.onClick.AddListener(()=>{
+                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true,(GameObject obj)=>{
+                    obj.AddComponent<BackpackPanelInfo>();
+                });
+            });
             settingCube.onClick.AddListener(()=>{
                 panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true,(GameObject obj)=>{
                     obj.AddComponent<TestPanelInfo>();

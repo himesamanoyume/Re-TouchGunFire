@@ -21,9 +21,15 @@ namespace ReTouchGunFire.Mgrs{
             panelList.Insert(0, panel);
         }
 
-        public void CheckPanelList(){
+        /// <summary>
+        /// 如果PanelList内没有面板了则返回true
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckPanelList(){
             if(panelList.Count > 0){
-
+                return false;
+            }else{
+                return true;
             }
         }
 
@@ -45,10 +51,6 @@ namespace ReTouchGunFire.Mgrs{
         //             panelList.Insert(0, dictPanel);
         //     }
         // }
-
-        public void PeekPanel(){
-            // panelList[0].gameObject.SetActive(false);
-        }
 
         public void PopPanel(bool isDestroy){
             if(isDestroy){

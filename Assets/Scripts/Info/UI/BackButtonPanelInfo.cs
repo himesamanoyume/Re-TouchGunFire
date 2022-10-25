@@ -29,7 +29,8 @@ namespace ReTouchGunFire.PanelInfo{
             backButton = transform.Find("Point/BackContainer/BackButton").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
                 panelMediator.PopPanel(false);
-                EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
+                if(panelMediator.CheckPanelList())
+                    EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
             });
             point = transform.GetChild(0).gameObject;
             EventMgr.AddListener<ShowBackButtonPanelNotify>(OnShowBackButtonPanel);

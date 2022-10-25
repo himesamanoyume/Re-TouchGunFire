@@ -25,6 +25,7 @@ public enum EUIPanelType
     PlayerPropsPanel,
     [Tooltip("玩家信息面板")]
     PlayerInfoPanel,
-
+    [Tooltip("背包面板")]
+    BackpackPanel,
 
 }

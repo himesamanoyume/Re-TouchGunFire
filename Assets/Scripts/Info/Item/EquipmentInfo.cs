@@ -13,7 +13,7 @@ public abstract class EquipmentInfo : ItemInfo
    public float subProp2Value;
    public ESubProp subProp3;
    public float subProp3Value;
-   public EEuqipmentTalent armorTalent1;
-   public EEuqipmentTalent armorTalent2;
+   public EEquipmentTalent talent1;
+   public EEquipmentTalent talent2;
     
 }

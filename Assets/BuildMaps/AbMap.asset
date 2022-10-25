@@ -98,4 +98,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/PlayerInfoPanel/PlayerInfoPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/BackpackPanel/BackpackPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/BackpackPanel/BackpackPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0
