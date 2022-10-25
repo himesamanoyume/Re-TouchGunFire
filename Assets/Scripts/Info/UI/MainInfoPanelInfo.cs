@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace ReTouchGunFire.PanelInfo{
-    public class MainInfoPanelInfo : UIInfo
+    public sealed class MainInfoPanelInfo : UIInfo
     {
         public Text diamondText;
         public Button diamondButton;
@@ -16,7 +16,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init(){
+        protected sealed override void Init(){
             base.Init();
             diamondButton = transform.Find("Point/InfoContainer/InfoButton_Diamond").GetComponent<Button>();
             diamondText = transform.Find("Point/InfoContainer/InfoButton_Diamond/obj/obj2/InfoText_Diamond").GetComponent<Text>();

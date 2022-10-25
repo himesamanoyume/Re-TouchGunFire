@@ -74,6 +74,10 @@ namespace ReTouchGunFire.Mediators{
         public bool CheckPanelList(){
             return uiMgr.CheckPanelList();
         }
+
+        public void MovePanelLevel(EUIPanelType eUIPanelType, EUILevel eUILevel){
+            
+        }
     }
 }
 

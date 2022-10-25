@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ReTouchGunFire.PanelInfo{
 
-    public class PlayerInfoPanelInfo : UIInfo
+    public sealed class PlayerInfoPanelInfo : UIInfo
     {
         public Slider expBar;
         public Text playerNameText;
@@ -19,7 +19,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init(){
+        protected sealed override void Init(){
             base.Init();
             content = transform.Find("Point/LeftBottom/Container/Player/Content");
             expBar = content.Find("ExpItem/ExpBar").GetComponent<Slider>();

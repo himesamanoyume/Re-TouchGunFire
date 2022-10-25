@@ -11,7 +11,7 @@ public abstract class UIInfo : MonoBehaviour//: ScriptableObject
         set{ _name = value;}
     }
 
-    public virtual void Init(){
+    protected virtual void Init(){
         if(Name.Contains("UIInfo")) 
             Debug.LogWarning(this.gameObject.name + " Info name not set.");
     }

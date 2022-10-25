@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ReTouchGunFire.Mgrs;
 
 namespace ReTouchGunFire.Mediators{
     public class HotUpdateMediator : IMediator

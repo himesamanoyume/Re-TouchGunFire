@@ -24,6 +24,9 @@ public sealed class InitScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, (GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
+        panelMediator.PushPanel(EUIPanelType.LoadingPanel, EUILevel.LevelLoading, false , (GameObject obj)=>{
+            obj.AddComponent<LoadingPanelInfo>();
+        });
 
         hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
         hotUpdateMediator.StartCheck(sceneMediator);
@@ -38,6 +41,8 @@ public sealed class InitScene : SceneInfo
     public override void OnEnd()
     {
         // Debug.Log("InitScene End");
+        EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
         panelMediator.PopPanel(true);
+        
     }
 }

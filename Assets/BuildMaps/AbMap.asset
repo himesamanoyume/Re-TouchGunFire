@@ -103,4 +103,14 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/BackpackPanel/BackpackPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/LoadingPanel/LoadingPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/LoadingPanel/LoadingPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/AttackArea1Panel/AttackArea1Panel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/AttackArea1Panel/AttackArea1Panel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

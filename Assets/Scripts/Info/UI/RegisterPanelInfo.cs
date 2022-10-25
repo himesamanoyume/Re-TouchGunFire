@@ -4,14 +4,14 @@ using UnityEngine;
 
 
 namespace ReTouchGunFire.PanelInfo{
-    public class RegisterPanelInfo : UIInfo
+    public sealed class RegisterPanelInfo : UIInfo
     {
 
         private void Start() {
             Name = "RegisterPanelInfo";
             Init();
         }
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
         }

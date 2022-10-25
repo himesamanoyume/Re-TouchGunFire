@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
 
 namespace ReTouchGunFire.PanelInfo{
-    public class MainMenuPanelInfo : UIInfo
+    public sealed class MainMenuPanelInfo : UIInfo
     {
         public PanelMediator panelMediator;
 
@@ -15,6 +15,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Button friendsCube;
         public Button buildingCube;
         public Button settingCube;
+
+        public Button attackBackCube;
+        public Button area1Cube;
         void Start()
         {
             Name = "MainMenuPanelInfo";
@@ -22,14 +25,16 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         private Transform mainTemplate;
+        private Transform attackTemplate;
 
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             mainTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/MainTemplate");
-
+            attackTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/AttackTemplate");
             InitMainTemplate();
+            InitAttackTemplate();
         }
 
         void InitMainTemplate(){
@@ -39,7 +44,12 @@ namespace ReTouchGunFire.PanelInfo{
             friendsCube = mainTemplate.Find("line3/FriendsCube").GetComponent<Button>();
             buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
             settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
-
+            
+            attackCube.onClick.AddListener(()=>{
+                mainTemplate.localScale = Vector3.zero;
+                attackTemplate.localScale = Vector3.one;
+            });
+            
             backpackCube.onClick.AddListener(()=>{
                 panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true,(GameObject obj)=>{
                     obj.AddComponent<BackpackPanelInfo>();
@@ -49,6 +59,16 @@ namespace ReTouchGunFire.PanelInfo{
                 panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true,(GameObject obj)=>{
                     obj.AddComponent<TestPanelInfo>();
                 });
+            });
+        }
+
+        void InitAttackTemplate(){
+            attackBackCube = attackTemplate.Find("line1/BackCube").GetComponent<Button>();
+            area1Cube = attackTemplate.Find("line2/Area1Cube").GetComponent<Button>();
+
+            attackBackCube.onClick.AddListener(()=>{
+                mainTemplate.localScale = Vector3.one;
+                attackTemplate.localScale = Vector3.zero;
             });
         }
     }

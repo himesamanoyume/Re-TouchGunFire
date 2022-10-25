@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ReTouchGunFire.Mgrs;
 using ReTouchGunFire.Mediators;
 
 namespace ReTouchGunFire.PanelInfo{
-    public class BackButtonPanelInfo : UIInfo
+    public sealed class BackButtonPanelInfo : UIInfo
     {
         public Button backButton;
         private GameObject point;
@@ -17,7 +16,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();

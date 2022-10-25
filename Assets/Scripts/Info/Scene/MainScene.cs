@@ -35,7 +35,7 @@ public sealed class MainScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>();
         });
-
+        EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
     }
 
     public override void OnUpdate()

@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ReTouchGunFire.PanelInfo{
-    public sealed class InitPanelInfo : UIInfo
+    public sealed class AttackArea1PanelInfo : BaseAttackAreaPanelInfo
     {
-
+        
         private void Start() {
-            Name = "InitPanelInfo";
+            Name = "AttackArea1PanelInfo";
             Init();
         }
-        
+
         protected sealed override void Init()
         {
             base.Init();
+
+        }
+
+        protected sealed override void Update()
+        {
+            base.Update();
+            
         }
     }
-
 }
-

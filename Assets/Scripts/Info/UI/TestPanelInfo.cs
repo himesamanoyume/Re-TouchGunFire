@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
-using ReTouchGunFire.Mgrs;
-
 
 namespace ReTouchGunFire.PanelInfo{
     public class TestPanelInfo : UIInfo
@@ -20,7 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ReTouchGunFire.PanelInfo{
 
-    public class PlayerPropsPanelInfo : UIInfo
+    public sealed class PlayerPropsPanelInfo : UIInfo
     {
         [Tooltip("生命值")]
         public Text health;
@@ -82,7 +82,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
             content = transform.Find("Point/LeftBottom/Container/Scroll View/Viewport/Content");

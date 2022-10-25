@@ -4,13 +4,16 @@ Rebuild project.
 
 ## TODO
 
-先添加主界面按钮的对应面板用于测试UI框架
+战斗场景为伪3d悬浮平台
 
-加载时启用加载进度条面板遮挡全部画面
+- 实现平台3d旋转 上下动x 左右动z
+
+---
 
 登陆UI搭建
 
-战斗场景为伪3d悬浮平台
+BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装备详细信息显示，排序, 分解
+
 
 ## 已知问题
 
@@ -27,6 +30,11 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.26 3:27`
+add AttackArea1PanelInfo, BaseAttackAreaPanelInfo, LoadingPanelInfo. 
+add AttackArea1Panel, LoadingPanel. 
+something modify. 
 
 > `22.10.25 11:59`
 add BackpackPanelInfo. 

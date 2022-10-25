@@ -28,18 +28,28 @@ namespace ReTouchGunFire.Mediators{
             canvas = abMediator.SyncLoadABRes("prefabs", "Canvas", null);
             canvas.name = "Canvas";
             canvas.AddComponent<CanvasInfo>();
+            canvasInfo = canvas.GetComponent<CanvasInfo>();
         }
+
+        CanvasInfo canvasInfo;
+        public Transform level1;
+        public Transform level2;
+        public Transform level3;
+        public Transform level4;
+        public Transform levelLoading;
 
         public Transform GetCanvasLevel(EUILevel eUILevel){
             switch(eUILevel){
                 case EUILevel.Level1:
-                    return canvas.GetComponent<CanvasInfo>().Level1;
+                    return canvasInfo.level1;
                 case EUILevel.Level2:
-                    return canvas.GetComponent<CanvasInfo>().Level2;
+                    return canvasInfo.level2;
                 case EUILevel.Level3:
-                    return canvas.GetComponent<CanvasInfo>().Level3;
+                    return canvasInfo.level3;
                 case EUILevel.Level4:
-                    return canvas.GetComponent<CanvasInfo>().Level4;
+                    return canvasInfo.level4;
+                case EUILevel.LevelLoading:
+                    return canvasInfo.levelLoading;
             }
             return null;
         }

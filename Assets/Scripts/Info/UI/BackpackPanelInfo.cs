@@ -4,11 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using ReTouchGunFire.Mediators;
-using ReTouchGunFire.Mgrs;
-
 
 namespace ReTouchGunFire.PanelInfo{
-    public class BackpackPanelInfo : UIInfo
+    public sealed class BackpackPanelInfo : UIInfo
     {
         public Button point;
         private Transform equippedPart;
@@ -32,7 +30,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();

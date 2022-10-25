@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ReTouchGunFire.PanelInfo{
-    public class LoginPanelInfo : UIInfo
+    public sealed class LoginPanelInfo : UIInfo
     {
 
         private void Start() {
@@ -11,7 +11,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
         
-        public override void Init()
+        protected sealed override void Init()
         {
             base.Init();
         }

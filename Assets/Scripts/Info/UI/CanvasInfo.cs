@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace ReTouchGunFire.PanelInfo{
-        public class CanvasInfo : UIInfo
+    public sealed class CanvasInfo : UIInfo
     {
         public Transform level1;
         public Transform level2;
@@ -18,7 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public override void Init(){
+        protected sealed override void Init(){
             base.Init();
             level1 = transform.GetChild(0);
             // Debug.Log(level1.name);
@@ -39,21 +39,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform Canvas{
             get{ return this.transform;}
         }
-        public Transform Level1{
-            get{ return level1;}
-        }
-        public Transform Level2{
-            get{ return level2;}
-        }
-        public Transform Level3{
-            get{ return level3;}
-        }
-        public Transform Level4{
-            get{ return level4;}
-        }
-        public Transform LevelLoading{
-            get{ return levelLoading;}
-        }
+        
     }
 }
 
