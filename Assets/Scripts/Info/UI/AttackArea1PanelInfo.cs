@@ -14,7 +14,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-
+            EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
         }
 
         protected sealed override void Update()

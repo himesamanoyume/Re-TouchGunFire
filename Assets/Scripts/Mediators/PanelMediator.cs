@@ -76,7 +76,7 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void MovePanelLevel(EUIPanelType eUIPanelType, EUILevel eUILevel){
-            
+            uiMgr.MovePanelLevel(eUIPanelType, eUILevel);
         }
     }
 }

@@ -113,4 +113,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/AttackArea1Panel/AttackArea1Panel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/BattleGunInfoPanel/BattleGunInfoPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/BattleGunInfoPanel/BattleGunInfoPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

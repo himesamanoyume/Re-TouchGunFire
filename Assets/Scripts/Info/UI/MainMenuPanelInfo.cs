@@ -51,7 +51,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
             
             backpackCube.onClick.AddListener(()=>{
-                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true,(GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true, (GameObject obj)=>{
                     obj.AddComponent<BackpackPanelInfo>();
                 });
             });
@@ -69,6 +69,20 @@ namespace ReTouchGunFire.PanelInfo{
             attackBackCube.onClick.AddListener(()=>{
                 mainTemplate.localScale = Vector3.one;
                 attackTemplate.localScale = Vector3.zero;
+            });
+
+            area1Cube.onClick.AddListener(()=>{
+                EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+                
+                panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, (GameObject obj)=>{
+                    obj.AddComponent<AttackArea1PanelInfo>();
+                });
+                panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level2, false, (GameObject obj)=>{
+                    obj.AddComponent<BattleGunInfoPanelInfo>();
+                });
+                panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level2);
+                panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel, EUILevel.Level2);
+                panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);
             });
         }
     }

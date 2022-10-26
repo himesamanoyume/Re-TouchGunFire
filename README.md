@@ -4,9 +4,7 @@ Rebuild project.
 
 ## TODO
 
-战斗场景为伪3d悬浮平台
-
-- 实现平台3d旋转 上下动x 左右动z
+战斗场景的专用选项
 
 ---
 
@@ -30,6 +28,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.27 2:53`
+add BattleGunInfoPanelInfo, BattleGunInfoPanel. 
 
 > `22.10.26 3:27`
 add AttackArea1PanelInfo, BaseAttackAreaPanelInfo, LoadingPanelInfo. 
@@ -154,12 +155,11 @@ si:ii-->esi:si
 ```
 ## 临时流程指导笔记
 
-先检查字典中是否有该面板 有则 无则首次生成
 
-1.面板生成 加入字典 插入列表
-2.面板生成 加入字典 不插入列表
-3.面板弹出 设为不活动 移出列表
-4.面板弹出 直接销毁 移出列表 移出字典
-5.面板展现 字典已有 插入列表
+0 ~ 90 one 
+90 ~ 180 two
+-90 ~ 0 four 270 ~ 360
+-90 ~ -180 three 180 ~ 270
+
 
 ```

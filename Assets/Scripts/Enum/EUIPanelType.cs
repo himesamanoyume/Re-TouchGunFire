@@ -27,5 +27,9 @@ public enum EUIPanelType
     PlayerInfoPanel,
     [Tooltip("背包面板")]
     BackpackPanel,
+    [Tooltip("出击地区1面板")]
+    AttackArea1Panel,
+    [Tooltip("出击状态武器信息面板")]
+    BattleGunInfoPanel,
 
 }
