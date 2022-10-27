@@ -31,5 +31,6 @@ public enum EUIPanelType
     AttackArea1Panel,
     [Tooltip("出击状态武器信息面板")]
     BattleGunInfoPanel,
-
+    [Tooltip("出击状态小菜单面板")]
+    BattleLittleMenuPanel,
 }

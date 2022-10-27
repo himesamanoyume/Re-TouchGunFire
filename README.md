@@ -4,6 +4,10 @@ Rebuild project.
 
 ## TODO
 
+修复BattleGunInfoPanelInfo
+
+默认选中主武器
+
 战斗场景的专用选项
 
 ---
@@ -28,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.27 9:28`
+add BattleLittleMenuPanelInfo, BattleLittleMenuPanel. 
 
 > `22.10.27 2:53`
 add BattleGunInfoPanelInfo, BattleGunInfoPanel. 

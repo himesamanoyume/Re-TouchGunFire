@@ -80,6 +80,9 @@ namespace ReTouchGunFire.PanelInfo{
                 panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level2, false, (GameObject obj)=>{
                     obj.AddComponent<BattleGunInfoPanelInfo>();
                 });
+                panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel, EUILevel.Level2, false, (GameObject obj)=>{
+                    obj.AddComponent<BattleLittleMenuPanelInfo>();
+                });
                 panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level2);
                 panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel, EUILevel.Level2);
                 panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);

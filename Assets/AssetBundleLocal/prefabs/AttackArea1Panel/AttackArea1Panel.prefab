@@ -31,10 +31,10 @@ RectTransform:
   m_Father: {fileID: 8854023161648348921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.37600002, y: 0}
-  m_AnchorMax: {x: 0.57900006, y: 0.96944344}
-  m_AnchoredPosition: {x: 0.00024414062, y: 21.5}
-  m_SizeDelta: {x: -0.00024414, y: 43}
+  m_AnchorMin: {x: 0.38775837, y: 0}
+  m_AnchorMax: {x: 0.57900006, y: 0.989}
+  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 0.00024414, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8854023161303258385
 GameObject:
@@ -286,7 +286,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854023161904129403}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 500}
+  m_LocalPosition: {x: 0, y: 0, z: 487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8854023161939741610}
@@ -295,10 +295,10 @@ RectTransform:
   m_Father: {fileID: 8854023162413494243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
-  m_AnchorMin: {x: 0.117349304, y: 0}
+  m_AnchorMin: {x: 0.1152628, y: 0}
   m_AnchorMax: {x: 0.86726326, y: 1}
-  m_AnchoredPosition: {x: 128.00317, y: -413}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6, y: -86}
+  m_SizeDelta: {x: -7, y: 139.393}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8854023161939741611
 GameObject:
@@ -406,10 +406,10 @@ RectTransform:
   m_Father: {fileID: 8854023161239527620}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.63916, y: 389}
-  m_SizeDelta: {x: 0, y: -685.761}
+  m_AnchorMin: {x: 0, y: 0.19728401}
+  m_AnchorMax: {x: 1, y: 0.8382841}
+  m_AnchoredPosition: {x: 2.81958, y: -0.000061035156}
+  m_SizeDelta: {x: -5.639, y: -0.00012207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8854023163114637661
 GameObject:
@@ -420,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8854023163114637660}
-  - component: {fileID: 8012131520090757445}
+  - component: {fileID: 4901889283668643890}
   m_Layer: 5
   m_Name: AttackArea1Panel
   m_TagString: Untagged
@@ -448,7 +448,7 @@ RectTransform:
   m_AnchoredPosition: {x: -0.02478, y: 0}
   m_SizeDelta: {x: 0.049805, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &8012131520090757445
+--- !u!61 &4901889283668643890
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,7 +461,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.850342, y: 64.63248}
+  m_Offset: {x: 2.239502, y: -32.943573}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -472,5 +472,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3558.9111, y: 1414.1157}
+  m_Size: {x: 3021.998, y: 1457.2231}
   m_EdgeRadius: 0

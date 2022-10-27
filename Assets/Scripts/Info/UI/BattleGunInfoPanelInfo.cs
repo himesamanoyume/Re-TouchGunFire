@@ -15,6 +15,8 @@ namespace ReTouchGunFire.PanelInfo{
 
         public Transform mainGun;
         public Transform handGun;
+        public Button mainGunCube;
+        public Button handGunCube;
         public Slider mainGunReloadingBar;
         public Slider handGunReloadingBar;
         public Image mainGunBG;
@@ -26,11 +28,16 @@ namespace ReTouchGunFire.PanelInfo{
         public Image mainGunQuality;
         public Image handGunQuality;
 
+        private Color uncheckedColor = new Color(0,0,0,0.4f);
+        private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);
+
         protected sealed override void Init()
         {
             base.Init();
-            mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGun");
-            handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGun");
+            mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGunCube");
+            handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGunCube");
+            mainGunCube = mainGun.GetComponent<Button>();
+            handGunCube = handGun.GetComponent<Button>();
 
             mainGunReloadingBar = mainGun.Find("ReloadingBar").GetComponent<Slider>();
             mainGunBG = mainGun.GetComponent<Image>();
@@ -44,6 +51,16 @@ namespace ReTouchGunFire.PanelInfo{
             handGunNameText = handGun.Find("GunName/GunNameText").GetComponent<Text>();
             handGunQuality = handGun.Find("GunName/GunQuality").GetComponent<Image>();
             handGunAmmoText = handGun.Find("AmmoText").GetComponent<Text>();
+
+            mainGunCube.onClick.AddListener(()=>{
+                mainGunBG.color = checkedColor;
+                handGunBG.color = uncheckedColor;
+            });
+
+            handGunCube.onClick.AddListener(()=>{
+                mainGunBG.color = uncheckedColor;
+                handGunBG.color = checkedColor;
+            });
         }
     }
 }
