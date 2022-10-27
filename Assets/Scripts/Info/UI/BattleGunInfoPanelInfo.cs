@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ReTouchGunFire.Mediators;
 
 namespace ReTouchGunFire.PanelInfo{
     public sealed class BattleGunInfoPanelInfo : UIInfo
@@ -10,6 +11,7 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "BattleGunInfoPanelInfo";
+            currentLevel = EUILevel.Level3;
             Init();
         }
 
@@ -30,10 +32,13 @@ namespace ReTouchGunFire.PanelInfo{
 
         private Color uncheckedColor = new Color(0,0,0,0.4f);
         private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);
+        public PanelMediator panelMediator;
 
         protected sealed override void Init()
         {
             base.Init();
+            
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGunCube");
             handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGunCube");
             mainGunCube = mainGun.GetComponent<Button>();
@@ -52,6 +57,8 @@ namespace ReTouchGunFire.PanelInfo{
             handGunQuality = handGun.Find("GunName/GunQuality").GetComponent<Image>();
             handGunAmmoText = handGun.Find("AmmoText").GetComponent<Text>();
 
+            mainGunBG.color = checkedColor;
+
             mainGunCube.onClick.AddListener(()=>{
                 mainGunBG.color = checkedColor;
                 handGunBG.color = uncheckedColor;
@@ -61,6 +68,13 @@ namespace ReTouchGunFire.PanelInfo{
                 mainGunBG.color = uncheckedColor;
                 handGunBG.color = checkedColor;
             });
+
+            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
+        }
+
+        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        void RestorePanel(){
+            panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
         }
     }
 }

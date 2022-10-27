@@ -10,6 +10,7 @@ public static class GameEvents{
     public static CloseBackButtonPanelNotify CloseBackButtonPanelNotify = new CloseBackButtonPanelNotify();
     public static ShowLoadingPanelNotify ShowLoadingPanelNotify = new ShowLoadingPanelNotify();
     public static CloseLoadingPanelNotify CloseLoadingPanelNotify = new CloseLoadingPanelNotify();
+    public static RestorePanelNotify RestorePanelNotify = new RestorePanelNotify();
 
 }
 
@@ -28,5 +29,9 @@ public class ShowLoadingPanelNotify : GameEvent{
 }
 
 public class CloseLoadingPanelNotify : GameEvent{
+
+}
+
+public class RestorePanelNotify : GameEvent{
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ReTouchGunFire.Mediators;
 
 
 namespace ReTouchGunFire.PanelInfo{
@@ -76,15 +77,19 @@ namespace ReTouchGunFire.PanelInfo{
         private Transform mainGunBar;
         private Transform handgunBar;
 
+        public PanelMediator panelMediator;
+
         void Start()
         {
             Name = "PlayerPropsPanelInfo";
+            currentLevel = EUILevel.Level3;
             Init();
         }
 
         protected sealed override void Init()
         {
             base.Init();
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             content = transform.Find("Point/LeftBottom/Container/Scroll View/Viewport/Content");
             propsBar = content.Find("PropsBar");
             mainGunBar = content.Find("MainGunBar");
@@ -92,6 +97,7 @@ namespace ReTouchGunFire.PanelInfo{
             InitPropsBar();
             InitMainGunBar();
             InitHandGunBar();
+            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
         void InitPropsBar(){
@@ -132,6 +138,11 @@ namespace ReTouchGunFire.PanelInfo{
             handgunTotalHeadshotDmg = handgunBar.Find("TotalHeadshotDMG/Value").GetComponent<Text>();
             handgunTotalPRate = handgunBar.Find("TotalPRate/Value").GetComponent<Text>();
             handgunTotalAbe = handgunBar.Find("TotalABE/Value").GetComponent<Text>();
+        }
+
+        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        void RestorePanel(){
+            panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3);
         }
     }
 }

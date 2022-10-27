@@ -27,6 +27,7 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "BackpackPanelInfo";
+            currentLevel = EUILevel.Level2;
             Init();
         }
 
@@ -47,6 +48,7 @@ namespace ReTouchGunFire.PanelInfo{
             idlePart = transform.Find("Point/Right/Container/IdlePart");
             InitEquippedPart();
             InitIdlePart();
+            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
         UnityAction ua;
@@ -84,6 +86,11 @@ namespace ReTouchGunFire.PanelInfo{
         void InitIdlePart(){
             backEquippedPartCube = idlePart.Find("ListPart/BackEquippedPartCube").GetComponent<Button>();
             backEquippedPartCube.onClick.AddListener(ua);
+        }
+
+        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        void RestorePanel(){
+            panelMediator.MovePanelLevel(EUIPanelType.BackpackPanel, EUILevel.Level2);
         }
     }
 }

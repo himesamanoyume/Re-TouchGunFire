@@ -17,25 +17,28 @@ public sealed class MainScene : SceneInfo
     {
         // Debug.Log("MainScene Begin");
         panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
-        // panelMediator.SpawnPanel(EUIPanelType.TestPanel, EUILevel.Level2, true, (GameObject obj)=>{});
-        panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
+        SetDefaultPanelLevel();
+        
+        EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
+    }
+
+    void SetDefaultPanelLevel(){
+        panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
             obj.AddComponent<MainInfoPanelInfo>();
         });
-        // panelMediator.SpawnBackButtonPanel();
-        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.Level4, false, (GameObject obj)=>{
+        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.Level4, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
             obj.AddComponent<BackButtonPanelInfo>();
         });
 
-        panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, (GameObject obj)=>{
+        panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
             obj.AddComponent<MainMenuPanelInfo>();
         });
-        panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, (GameObject obj)=>{
+        panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, EUIRestoreType.MovePanelType,(GameObject obj)=>{
             obj.AddComponent<PlayerPropsPanelInfo>();
         });
-        panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
+        panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>();
         });
-        EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
     }
 
     public override void OnUpdate()

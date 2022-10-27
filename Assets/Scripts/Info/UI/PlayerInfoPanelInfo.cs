@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ReTouchGunFire.Mediators;
 
 namespace ReTouchGunFire.PanelInfo{
 
@@ -11,22 +12,32 @@ namespace ReTouchGunFire.PanelInfo{
         public Text playerNameText;
         public Text playerLevelText;
 
+        public PanelMediator panelMediator;
+
         private Transform content;
 
         void Start()
         {
             Name = "PlayerInfoPanelInfo";
+            currentLevel = EUILevel.Level1;
             Init();
         }
 
         protected sealed override void Init(){
             base.Init();
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             content = transform.Find("Point/LeftBottom/Container/Player/Content");
             expBar = content.Find("ExpItem/ExpBar").GetComponent<Slider>();
             playerNameText = content.Find("PlayerInfo/PlayerNameText").GetComponent<Text>();
             playerLevelText = content.Find("PlayerInfo/PlayerLevelText").GetComponent<Text>();
+
+            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
         
+        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        void RestorePanel(){
+            panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1);
+        }
     }
 }
 

@@ -13,6 +13,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         private void Start() {
             Name = "BackButtonPanelInfo";
+            currentLevel = EUILevel.Level4;
             Init();
         }
 

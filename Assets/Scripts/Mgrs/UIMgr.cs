@@ -63,7 +63,9 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void MovePanelLevel(EUIPanelType uIPanelType, EUILevel uILevel){
+            
             if(panelDict.TryGetValue(uIPanelType,out GameObject panel)){
+                panel.GetComponent<UIInfo>().currentLevel = uILevel;
                 panel.transform.SetParent(canvasMediator.GetCanvasLevel(uILevel));
             }else{
                 Debug.LogError("Panel spawned not yet.");

@@ -4,11 +4,11 @@ Rebuild project.
 
 ## TODO
 
-修复BattleGunInfoPanelInfo
+方法生成在当前level再上一级, PushPanel参数eUIRestoreType删除
 
-默认选中主武器
+出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 
-战斗场景的专用选项
+重置面板
 
 ---
 
@@ -32,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.27 13:05`
+panel restore. 
 
 > `22.10.27 9:28`
 add BattleLittleMenuPanelInfo, BattleLittleMenuPanel. 

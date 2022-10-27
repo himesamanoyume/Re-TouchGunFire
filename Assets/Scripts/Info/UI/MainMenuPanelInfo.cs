@@ -21,6 +21,7 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "MainMenuPanelInfo";
+            currentLevel = EUILevel.Level1;
             Init();
         }
 
@@ -51,15 +52,20 @@ namespace ReTouchGunFire.PanelInfo{
             });
             
             backpackCube.onClick.AddListener(()=>{
-                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true, (GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true, EUIRestoreType.MovePanelType,(GameObject obj)=>{
                     obj.AddComponent<BackpackPanelInfo>();
                 });
             });
             settingCube.onClick.AddListener(()=>{
-                panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true,(GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.TestPanel, EUILevel.Level2, true, EUIRestoreType.MovePanelType, (GameObject obj)=>{
                     obj.AddComponent<TestPanelInfo>();
                 });
             });
+        }
+
+        void BackToDefaultMainMenu(){
+            mainTemplate.localScale = Vector3.one;
+            attackTemplate.localScale = Vector3.zero;
         }
 
         void InitAttackTemplate(){
@@ -72,19 +78,23 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             area1Cube.onClick.AddListener(()=>{
-                EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+                panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
+                EventMgr.Broadcast(GameEvents.RestorePanelNotify);
+                // EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
                 
-                panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, (GameObject obj)=>{
+                BackToDefaultMainMenu();
+
+                panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, EUIRestoreType.RemovePanelType, (GameObject obj)=>{
                     obj.AddComponent<AttackArea1PanelInfo>();
                 });
-                panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level2, false, (GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
                     obj.AddComponent<BattleGunInfoPanelInfo>();
                 });
-                panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel, EUILevel.Level2, false, (GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel, EUILevel.Level3, false, EUIRestoreType.RemovePanelType, (GameObject obj)=>{
                     obj.AddComponent<BattleLittleMenuPanelInfo>();
                 });
-                panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level2);
-                panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel, EUILevel.Level2);
+                panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level3);
+                panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel, EUILevel.Level3);
                 panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);
             });
         }

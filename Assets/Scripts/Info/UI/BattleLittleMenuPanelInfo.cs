@@ -16,6 +16,7 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";
+            currentLevel = EUILevel.Level3;
             Init();
         }
 
@@ -25,10 +26,12 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            
             container = transform.Find("Point/RightCenter/Container");
+            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
 
             showAllMenuCube = container.Find("ShowAllMenuCube").GetComponent<Button>();
-            showAllMenuCubeText = showAllMenuCube.GetComponent<Text>();
+            showAllMenuCubeText = container.Find("ShowAllMenuCube/Text").GetComponent<Text>();
 
             showAllMenuCube.onClick.AddListener(()=>{
                 if(!isShowAllMenu){
@@ -42,6 +45,12 @@ namespace ReTouchGunFire.PanelInfo{
                 isShowAllMenu = !isShowAllMenu;
 
             });
+        }
+
+        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        void RestorePanel(){
+            showAllMenuCubeText.text = "完整菜单";
+            isShowAllMenu =false;
         }
     }
 }

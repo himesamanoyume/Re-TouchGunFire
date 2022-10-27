@@ -31,7 +31,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
             //temp
             backpackCube.onClick.AddListener(()=>{
-                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true,(GameObject obj)=>{
+                panelMediator.PushPanel(EUIPanelType.BackpackPanel, EUILevel.Level2, true, EUIRestoreType.MovePanelType, (GameObject obj)=>{
                     obj.AddComponent<BackpackPanelInfo>();
                 });
             });

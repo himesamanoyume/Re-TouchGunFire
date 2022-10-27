@@ -21,10 +21,10 @@ public sealed class InitScene : SceneInfo
         canvasMediator = GameLoop.Instance.GetMediator<CanvasMediator>();
 
         panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-        panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, (GameObject obj)=>{ 
+        panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level2, true, EUIRestoreType.Null,(GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>();
         });
-        panelMediator.PushPanel(EUIPanelType.LoadingPanel, EUILevel.LevelLoading, false , (GameObject obj)=>{
+        panelMediator.PushPanel(EUIPanelType.LoadingPanel, EUILevel.LevelLoading, false , EUIRestoreType.Null, (GameObject obj)=>{
             obj.AddComponent<LoadingPanelInfo>();
         });
 

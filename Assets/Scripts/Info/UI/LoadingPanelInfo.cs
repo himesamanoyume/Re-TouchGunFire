@@ -10,12 +10,14 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "LoadingPanelInfo";
+            currentLevel = EUILevel.LevelLoading;
             Init();
         }
 
         protected sealed override void Init()
         {
             base.Init();
+            
             point = transform.GetChild(0);
             point.gameObject.SetActive(false);
             EventMgr.AddListener<ShowLoadingPanelNotify>(OnShowLoadingPanelNotify);
