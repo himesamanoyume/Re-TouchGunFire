@@ -16,7 +16,6 @@ namespace ReTouchGunFire.PanelInfo{
 
         private void Start() {
             Name = "MainInfoPanelInfo";
-            currentLevel = EUILevel.Level1;
             Init();
         }
 

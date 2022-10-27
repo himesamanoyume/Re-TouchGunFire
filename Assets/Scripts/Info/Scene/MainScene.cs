@@ -23,21 +23,21 @@ public sealed class MainScene : SceneInfo
     }
 
     void SetDefaultPanelLevel(){
-        panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
-            obj.AddComponent<MainInfoPanelInfo>();
+        panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<MainInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
-        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.Level4, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
-            obj.AddComponent<BackButtonPanelInfo>();
+        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.levelBackButton, false, (GameObject obj)=>{
+            obj.AddComponent<BackButtonPanelInfo>().currentLevel = EUILevel.levelBackButton;
         });
 
-        panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
-            obj.AddComponent<MainMenuPanelInfo>();
+        panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<MainMenuPanelInfo>().currentLevel = EUILevel.Level1;
         });
-        panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, EUIRestoreType.MovePanelType,(GameObject obj)=>{
-            obj.AddComponent<PlayerPropsPanelInfo>();
+        panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, (GameObject obj)=>{
+            obj.AddComponent<PlayerPropsPanelInfo>().currentLevel = EUILevel.Level3;
         });
-        panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, EUIRestoreType.MovePanelType, (GameObject obj)=>{
-            obj.AddComponent<PlayerInfoPanelInfo>();
+        panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<PlayerInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
     }
 

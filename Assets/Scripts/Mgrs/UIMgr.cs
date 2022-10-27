@@ -33,25 +33,6 @@ namespace ReTouchGunFire.Mgrs{
             }
         }
 
-        /// <summary>
-        /// 适合已经生成过的面板 在点击对应按钮时显示该面板
-        /// </summary>
-        /// <param name="eUIPanelType"></param>
-        /// <param name="isInsertToList"></param>
-        // public void PushPanel(EUILevel uILevel, GameObject uIPanel, EUIPanelType eUIPanelType, bool isInsertToList){
-
-        //     if(panelDict.TryGetValue(eUIPanelType, out GameObject dictPanel)){
-        //         dictPanel.transform.GetChild(0).gameObject.SetActive(true);
-        //         if(isInsertToList)
-        //             panelList.Insert(0, dictPanel);
-        //     }else{
-        //         panelDict.Add(eUIPanelType, uIPanel);
-        //         uIPanel.transform.SetParent(canvasMediator.GetCanvasLevel(uILevel));
-        //         if(isInsertToList)
-        //             panelList.Insert(0, dictPanel);
-        //     }
-        // }
-
         public void PopPanel(bool isDestroy){
             if(isDestroy){
                 GameObject.Destroy(panelList[0]);
@@ -59,16 +40,16 @@ namespace ReTouchGunFire.Mgrs{
                 panelList[0].transform.GetChild(0).gameObject.SetActive(false);
             }
             
-            panelList.Remove(panelList[0]);
+            if(panelList.Count!=0)
+                panelList.Remove(panelList[0]);
         }
 
         public void MovePanelLevel(EUIPanelType uIPanelType, EUILevel uILevel){
-            
             if(panelDict.TryGetValue(uIPanelType,out GameObject panel)){
                 panel.GetComponent<UIInfo>().currentLevel = uILevel;
                 panel.transform.SetParent(canvasMediator.GetCanvasLevel(uILevel));
             }else{
-                Debug.LogError("Panel spawned not yet.");
+                Debug.LogError(uIPanelType+" Panel spawned not yet.");
             }
         }
     }

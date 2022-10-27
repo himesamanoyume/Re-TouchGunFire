@@ -27,7 +27,6 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "BackpackPanelInfo";
-            currentLevel = EUILevel.Level2;
             Init();
         }
 

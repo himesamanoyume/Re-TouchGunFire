@@ -42,14 +42,31 @@ namespace ReTouchGunFire.Mediators{
             return abMediator.SyncLoadABRes("prefabs", eUIPanelTypeStr, uiMgr.canvasMediator.GetCanvasLevel(eUILevel));
         }
 
-        public void MovePanelLevelUp(){
-
+        public EUILevel GetPanelLevelUp(EUILevel currentUILevel){
+            
+            switch(currentUILevel){
+                case EUILevel.Level1:
+                    return EUILevel.Level2;
+                case EUILevel.Level2:
+                    return EUILevel.Level3;
+                case EUILevel.Level3:
+                    return EUILevel.Level4;
+                case EUILevel.Level4:
+                    return EUILevel.Level5;
+                case EUILevel.Level5:
+                    return EUILevel.Level6;
+                case EUILevel.Level6:
+                    return EUILevel.Level6;
+            }
+            return EUILevel.Level1;
         }
 
-        public void PushPanel(EUIPanelType eUIPanelType, EUILevel uILevel, bool isInsertToList, EUIRestoreType eUIRestoreType, AddInfoScriptDel addInfoScriptDel){
-            // Debug.Log("Push " + eUIPanelType);
+        public void PushPanel(EUIPanelType eUIPanelType, EUILevel uILevel, bool isInsertToList, AddInfoScriptDel addInfoScriptDel){
+            
+            //如果已有该面板 则直接拿去并将其移动至目标参数的level
             if(uiMgr.panelDict.TryGetValue(eUIPanelType, out GameObject dictPanel)){
                 dictPanel.transform.GetChild(0).gameObject.SetActive(true);
+                MovePanelLevel(eUIPanelType, uILevel);
                 if(isInsertToList){
                     uiMgr.InsertPanel(dictPanel);
                     EventMgr.Broadcast(GameEvents.ShowBackButtonPanelNotify);
@@ -58,6 +75,7 @@ namespace ReTouchGunFire.Mediators{
             }else{
                 
                 GameObject uIPanel = SpawnPanel(eUIPanelType,uILevel);
+                // Debug.Log("add uiPanel to Dict");
                 addInfoScriptDel(uIPanel);
                 addInfoScriptDel = null;
                 uiMgr.panelDict.Add(eUIPanelType, uIPanel);
@@ -66,21 +84,8 @@ namespace ReTouchGunFire.Mediators{
                     uiMgr.InsertPanel(uIPanel);
                     EventMgr.Broadcast(GameEvents.ShowBackButtonPanelNotify);
                 }
-            }
-
-            // switch(eUIRestoreType){
-            //     case EUIRestoreType.Null:
-                    
-            //     break;
-            //     case EUIRestoreType.RemovePanelType:
-            //         needToRemoveList.Add(eUIPanelType);
-            //     break;
-            //     case EUIRestoreType.MovePanelType:
-            //         needToMoveList.Add(eUIPanelType);
-            //     break;
-            // }
-                
-            
+            }           
+           
         }
 
         public void PopPanel(bool isDestroy){
@@ -99,7 +104,7 @@ namespace ReTouchGunFire.Mediators{
             uiMgr.MovePanelLevel(eUIPanelType, eUILevel);
         }
 
-        public void RemovePanel(EUIPanelType eUIPanelType){
+        public void DestroyPanel(EUIPanelType eUIPanelType){
             if(uiMgr.panelDict.TryGetValue(eUIPanelType, out GameObject panel)){
                 Destroy(panel);
                 uiMgr.panelDict.Remove(eUIPanelType);

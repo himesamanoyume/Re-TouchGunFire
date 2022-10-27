@@ -32,12 +32,6 @@ namespace ReTouchGunFire.Mediators{
         }
 
         CanvasInfo canvasInfo;
-        public Transform level1;
-        public Transform level2;
-        public Transform level3;
-        public Transform level4;
-        public Transform levelLoading;
-
         public Transform GetCanvasLevel(EUILevel eUILevel){
             switch(eUILevel){
                 case EUILevel.Level1:
@@ -48,6 +42,12 @@ namespace ReTouchGunFire.Mediators{
                     return canvasInfo.level3;
                 case EUILevel.Level4:
                     return canvasInfo.level4;
+                case EUILevel.Level5:
+                    return canvasInfo.level5;
+                case EUILevel.Level6:
+                    return canvasInfo.level6;
+                case EUILevel.levelBackButton:
+                    return canvasInfo.levelBackButton;
                 case EUILevel.LevelLoading:
                     return canvasInfo.levelLoading;
             }

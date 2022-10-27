@@ -10,13 +10,13 @@ namespace ReTouchGunFire.PanelInfo{
     {
         public Transform container;
         public Button showAllMenuCube;
+        public Button leaveBattleCube;
         public Text showAllMenuCubeText;
 
         public PanelMediator panelMediator;
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";
-            currentLevel = EUILevel.Level3;
             Init();
         }
 
@@ -31,6 +31,7 @@ namespace ReTouchGunFire.PanelInfo{
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
 
             showAllMenuCube = container.Find("ShowAllMenuCube").GetComponent<Button>();
+            leaveBattleCube = container.Find("LeaveBattleCube").GetComponent<Button>();
             showAllMenuCubeText = container.Find("ShowAllMenuCube/Text").GetComponent<Text>();
 
             showAllMenuCube.onClick.AddListener(()=>{
@@ -44,6 +45,15 @@ namespace ReTouchGunFire.PanelInfo{
                 }
                 isShowAllMenu = !isShowAllMenu;
 
+            });
+
+            leaveBattleCube.onClick.AddListener(()=>{
+
+                //temp
+                panelMediator.DestroyPanel(EUIPanelType.AttackArea1Panel);
+                panelMediator.DestroyPanel(EUIPanelType.BattleGunInfoPanel);
+                panelMediator.DestroyPanel(EUIPanelType.BattleLittleMenuPanel);
+                //end
             });
         }
 

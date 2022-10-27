@@ -8,7 +8,6 @@ namespace ReTouchGunFire.PanelInfo{
         
         private void Start() {
             Name = "AttackArea1PanelInfo";
-            currentLevel = EUILevel.Level2;
             Init();
         }
 

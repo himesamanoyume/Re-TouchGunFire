@@ -82,7 +82,6 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "PlayerPropsPanelInfo";
-            currentLevel = EUILevel.Level3;
             Init();
         }
 

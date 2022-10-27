@@ -10,6 +10,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform level2;
         public Transform level3;
         public Transform level4;
+        public Transform level5;
+        public Transform level6;
+        public Transform levelBackButton;
         public Transform levelLoading;
         public Camera mainCamera;
 
@@ -27,8 +30,11 @@ namespace ReTouchGunFire.PanelInfo{
             level3 = transform.GetChild(2);
             // Debug.Log(level3.name);
             level4 = transform.GetChild(3);
+            level5 = transform.GetChild(4);
+            level6 = transform.GetChild(5);
+            levelBackButton = transform.GetChild(6);
             // Debug.Log(level4.name);
-            levelLoading = transform.GetChild(4);
+            levelLoading = transform.GetChild(7);
             // Debug.Log(levelLoading.name);
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             DontDestroyOnLoad(this);

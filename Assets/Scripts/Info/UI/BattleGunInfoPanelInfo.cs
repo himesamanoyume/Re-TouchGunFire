@@ -11,7 +11,6 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "BattleGunInfoPanelInfo";
-            currentLevel = EUILevel.Level3;
             Init();
         }
 
@@ -74,7 +73,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
         void RestorePanel(){
-            panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
+            // panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
         }
     }
 }

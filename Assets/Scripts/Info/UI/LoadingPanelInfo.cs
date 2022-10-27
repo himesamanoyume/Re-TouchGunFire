@@ -10,7 +10,6 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "LoadingPanelInfo";
-            currentLevel = EUILevel.LevelLoading;
             Init();
         }
 

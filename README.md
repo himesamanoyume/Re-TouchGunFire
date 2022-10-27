@@ -4,11 +4,13 @@ Rebuild project.
 
 ## TODO
 
-方法生成在当前level再上一级, PushPanel参数eUIRestoreType删除
+二次确认面板
+
+也许战斗场景可以转换为一种SceneState
+
+地区1面板3层Enemy可点击
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
-
-重置面板
 
 ---
 
@@ -32,6 +34,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.28 2:51`
+panel level logic modified. 
 
 > `22.10.27 13:05`
 panel restore. 
