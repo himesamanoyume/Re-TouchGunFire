@@ -14,6 +14,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Text showAllMenuCubeText;
 
         public PanelMediator panelMediator;
+        public SceneMediator sceneMediator;
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";
@@ -26,7 +27,8 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            
+            sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
+
             container = transform.Find("Point/RightCenter/Container");
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
 
@@ -48,19 +50,14 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             leaveBattleCube.onClick.AddListener(()=>{
-
-                //temp
-                panelMediator.DestroyPanel(EUIPanelType.AttackArea1Panel);
-                panelMediator.DestroyPanel(EUIPanelType.BattleGunInfoPanel);
-                panelMediator.DestroyPanel(EUIPanelType.BattleLittleMenuPanel);
-                //end
+                sceneMediator.SetScene(new MainScene(sceneMediator));
             });
         }
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
         void RestorePanel(){
             showAllMenuCubeText.text = "完整菜单";
-            isShowAllMenu =false;
+            isShowAllMenu = false;
         }
     }
 }

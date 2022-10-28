@@ -123,4 +123,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/BattleLittleMenuPanel/BattleLittleMenuPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/PlayerCurrentStatePanel/PlayerCurrentStatePanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/PlayerCurrentStatePanel/PlayerCurrentStatePanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

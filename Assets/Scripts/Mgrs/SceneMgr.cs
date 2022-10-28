@@ -29,6 +29,14 @@ namespace ReTouchGunFire.Mgrs{
             this.sceneInfo = sceneInfo;
         }
 
+        public void SetScene(SceneInfo sceneInfo){
+            isBegin = false;
+            if(this.sceneInfo!=null){
+                this.sceneInfo.OnEnd();
+            }
+            this.sceneInfo = sceneInfo;
+        }
+
         public void SceneUpdate(){
             if(sceneInfo != null && isBegin == false){
                 // Debug.Log("SceneUpdate");

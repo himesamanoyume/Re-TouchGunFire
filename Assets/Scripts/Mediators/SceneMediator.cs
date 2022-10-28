@@ -29,6 +29,10 @@ namespace ReTouchGunFire.Mediators{
             sceneMgr.SetScene(sceneInfo, sceneName);
         }
 
+        public void SetScene(SceneInfo sceneInfo){
+            sceneMgr.SetScene(sceneInfo);
+        }
+
         public void SceneUpdate(){
             sceneMgr.SceneUpdate();
         }

@@ -19,6 +19,7 @@ public sealed class MainScene : SceneInfo
         panelMediator = GameLoop.Instance.GetComponent<PanelMediator>();
         SetDefaultPanelLevel();
         
+        EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
         EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
     }
 

@@ -4,9 +4,7 @@ Rebuild project.
 
 ## TODO
 
-二次确认面板
-
-也许战斗场景可以转换为一种SceneState
+二次确认面板, PlayerCurrentStatePanel,BattleGunInfoPanel, 不要销毁 而是隐藏在屏幕下方,BattleLittleMenuPanel在右方
 
 地区1面板3层Enemy可点击
 
@@ -34,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.28 9:18`
+add PlayerCurrentStatePanel. 
 
 > `22.10.28 2:51`
 panel level logic modified. 

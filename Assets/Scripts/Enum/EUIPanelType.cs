@@ -33,4 +33,6 @@ public enum EUIPanelType
     BattleGunInfoPanel,
     [Tooltip("出击状态小菜单面板")]
     BattleLittleMenuPanel,
+    [Tooltip("出击状态玩家自身血量护甲信息面板")]
+    PlayerCurrentStatePanel,
 }
