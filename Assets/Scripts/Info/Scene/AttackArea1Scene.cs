@@ -22,15 +22,8 @@ public sealed class AttackArea1Scene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, (GameObject obj)=>{
             obj.AddComponent<AttackArea1PanelInfo>().currentLevel = EUILevel.Level2;
         });
-        panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel,EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<BattleGunInfoPanelInfo>().currentLevel = EUILevel.Level3;
-        });
-        panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel,EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<BattleLittleMenuPanelInfo>().currentLevel = EUILevel.Level3;
-        });
-        panelMediator.PushPanel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<PlayerCurrentStatePanelInfo>().currentLevel = EUILevel.Level3;
-        });
+        
+        EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
         panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel,EUILevel.Level1);
@@ -44,8 +37,5 @@ public sealed class AttackArea1Scene : SceneInfo
     public override void OnEnd()
     {
         panelMediator.DestroyPanel(EUIPanelType.AttackArea1Panel);
-        panelMediator.DestroyPanel(EUIPanelType.BattleGunInfoPanel);
-        panelMediator.DestroyPanel(EUIPanelType.BattleLittleMenuPanel);
-        panelMediator.DestroyPanel(EUIPanelType.PlayerCurrentStatePanel);
     }
 }

@@ -68,13 +68,13 @@ namespace ReTouchGunFire.PanelInfo{
                 handGunBG.color = checkedColor;
             });
 
-            EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
+            // EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
-        void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
-        void RestorePanel(){
-            // panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
-        }
+        // void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
+        // void RestorePanel(){
+        //     // panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
+        // }
     }
 }
 

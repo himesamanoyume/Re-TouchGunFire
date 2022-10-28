@@ -8,6 +8,7 @@ public enum EUILevel
     Level4,
     Level5,
     Level6,
-    levelBackButton,
+    LevelBackButton,
+    LevelTwiceConfirm,
     LevelLoading
 }

@@ -27,8 +27,8 @@ public sealed class MainScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.MainInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<MainInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
-        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.levelBackButton, false, (GameObject obj)=>{
-            obj.AddComponent<BackButtonPanelInfo>().currentLevel = EUILevel.levelBackButton;
+        panelMediator.PushPanel(EUIPanelType.BackButtonPanel, EUILevel.LevelBackButton, false, (GameObject obj)=>{
+            obj.AddComponent<BackButtonPanelInfo>().currentLevel = EUILevel.LevelBackButton;
         });
 
         panelMediator.PushPanel(EUIPanelType.MainMenuPanel, EUILevel.Level1, false, (GameObject obj)=>{
@@ -40,6 +40,18 @@ public sealed class MainScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
+        panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel,EUILevel.Level3, false, (GameObject obj)=>{
+            obj.AddComponent<BattleGunInfoPanelInfo>().currentLevel = EUILevel.Level3;
+        });
+        panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel,EUILevel.Level3, false, (GameObject obj)=>{
+            obj.AddComponent<BattleLittleMenuPanelInfo>().currentLevel = EUILevel.Level3;
+        });
+        panelMediator.PushPanel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level3, false, (GameObject obj)=>{
+            obj.AddComponent<PlayerCurrentStatePanelInfo>().currentLevel = EUILevel.Level3;
+        });
+        
+
+        EventMgr.Broadcast(GameEvents.HideBattleLittleMenuPanelNotify);
     }
 
     public override void OnUpdate()

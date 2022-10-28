@@ -35,4 +35,6 @@ public enum EUIPanelType
     BattleLittleMenuPanel,
     [Tooltip("出击状态玩家自身血量护甲信息面板")]
     PlayerCurrentStatePanel,
+    [Tooltip("二次确认面板")]
+    TwiceConfirmPanel,
 }

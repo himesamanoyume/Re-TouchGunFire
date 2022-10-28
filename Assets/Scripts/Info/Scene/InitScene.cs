@@ -28,6 +28,10 @@ public sealed class InitScene : SceneInfo
             obj.AddComponent<LoadingPanelInfo>().currentLevel = EUILevel.LevelLoading;
         });
 
+        panelMediator.PushPanel(EUIPanelType.TwiceConfirmPanel,EUILevel.LevelTwiceConfirm, false, (GameObject obj)=>{
+            obj.AddComponent<TwiceConfirmPanelInfo>().currentLevel = EUILevel.LevelTwiceConfirm;
+        });
+
         hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
         hotUpdateMediator.StartCheck(sceneMediator);
 

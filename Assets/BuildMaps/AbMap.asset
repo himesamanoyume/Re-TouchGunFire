@@ -128,4 +128,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/PlayerCurrentStatePanel/PlayerCurrentStatePanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/TwiceConfirmPanel/TwiceConfirmPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/TwiceConfirmPanel/TwiceConfirmPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

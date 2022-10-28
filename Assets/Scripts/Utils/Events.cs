@@ -11,7 +11,10 @@ public static class GameEvents{
     public static ShowLoadingPanelNotify ShowLoadingPanelNotify = new ShowLoadingPanelNotify();
     public static CloseLoadingPanelNotify CloseLoadingPanelNotify = new CloseLoadingPanelNotify();
     public static RestorePanelNotify RestorePanelNotify = new RestorePanelNotify();
+    public static ShowBattleLittleMenuPanelNotify ShowBattleLittleMenuPanelNotify = new ShowBattleLittleMenuPanelNotify();
+    public static HideBattleLittleMenuPanelNotify HideBattleLittleMenuPanelNotify = new HideBattleLittleMenuPanelNotify();
 
+    // public static ShowTwiceConfirmPanelNotify ShowTwiceConfirmPanelNotify = new ShowTwiceConfirmPanelNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{
@@ -35,3 +38,15 @@ public class CloseLoadingPanelNotify : GameEvent{
 public class RestorePanelNotify : GameEvent{
 
 }
+
+public class ShowBattleLittleMenuPanelNotify : GameEvent{
+
+}
+
+public class HideBattleLittleMenuPanelNotify : GameEvent{
+
+}
+
+// public class ShowTwiceConfirmPanelNotify : GameEvent{
+
+// }

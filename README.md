@@ -4,7 +4,7 @@ Rebuild project.
 
 ## TODO
 
-二次确认面板, PlayerCurrentStatePanel,BattleGunInfoPanel, 不要销毁 而是隐藏在屏幕下方,BattleLittleMenuPanel在右方
+出击状态侧边菜单添加查看详细属性面板按钮 且应为背包的更上层级
 
 地区1面板3层Enemy可点击
 
@@ -32,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.29 6:07`
+add TwiceConfirmPanel and TwiceConfirmPanelInfo. 
 
 > `22.10.28 9:18`
 add PlayerCurrentStatePanel. 

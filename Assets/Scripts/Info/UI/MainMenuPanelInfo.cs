@@ -22,7 +22,6 @@ namespace ReTouchGunFire.PanelInfo{
         void Start()
         {
             Name = "MainMenuPanelInfo";
-            currentLevel = EUILevel.Level1;
             Init();
         }
 
@@ -85,25 +84,12 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             area1Cube.onClick.AddListener(()=>{
-                // panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
-                // EventMgr.Broadcast(GameEvents.RestorePanelNotify);
-                // EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+                GameObject.Find("TwiceConfirmPanel").GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
+                    BackToDefaultMainMenu();
+                    sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
+                });
                 
-                BackToDefaultMainMenu();
-                sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
 
-                // panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, (GameObject obj)=>{
-                //     obj.AddComponent<AttackArea1PanelInfo>().currentLevel = EUILevel.Level2;
-                // });
-                // panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3, false, (GameObject obj)=>{
-                //     obj.AddComponent<BattleGunInfoPanelInfo>().currentLevel = EUILevel.Level3;
-                // });
-                // panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel, EUILevel.Level3, false, (GameObject obj)=>{
-                //     obj.AddComponent<BattleLittleMenuPanelInfo>().currentLevel = EUILevel.Level3;
-                // });
-                // panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel, EUILevel.Level3);
-                // panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel, EUILevel.Level3);
-                // panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);
             });
         }
     }

@@ -46,8 +46,10 @@ namespace ReTouchGunFire.Mediators{
                     return canvasInfo.level5;
                 case EUILevel.Level6:
                     return canvasInfo.level6;
-                case EUILevel.levelBackButton:
+                case EUILevel.LevelBackButton:
                     return canvasInfo.levelBackButton;
+                case EUILevel.LevelTwiceConfirm:
+                    return canvasInfo.levelTwiceConfirm;
                 case EUILevel.LevelLoading:
                     return canvasInfo.levelLoading;
             }

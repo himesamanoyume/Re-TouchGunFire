@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public static class EventMgr
 {
+    //Unity official demo source code
     static readonly Dictionary<Type, Action<GameEvent>> s_Events = new Dictionary<Type, Action<GameEvent>>();
     static readonly Dictionary<Delegate, Action<GameEvent>> s_EventLookups =
         new Dictionary<Delegate, Action<GameEvent>>();
