@@ -141,7 +141,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
         void RestorePanel(){
-            panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3);
+            panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level4);
         }
     }
 }

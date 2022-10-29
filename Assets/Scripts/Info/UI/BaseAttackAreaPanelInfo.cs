@@ -15,6 +15,8 @@ namespace ReTouchGunFire.PanelInfo{
             floor1 = enemyPart.Find("Floor1");
             floor2 = enemyPart.Find("Floor2");
             floor3 = enemyPart.Find("Floor3");
+
+            EventMgr.AddListener<PlayerShootingNotify>(OnPlayerShooting);
         }
 
         Vector3 currentRot;
@@ -22,19 +24,15 @@ namespace ReTouchGunFire.PanelInfo{
         protected virtual void Update() {
             currentRot = enemyPart.localRotation.eulerAngles;
             currentRot.y = 0;
-            
-            // if(currentRot.z > 10) currentRot.z = 10;
-            // if(currentRot.z < 0) currentRot.z = 0;
-            // Debug.Log("Update");
-            // if(currentRot.x > 100){
-            //     currentRot.x = 100;
-            //     Debug.Log(">");
-            // }
+
             if(currentRot.x >= 270 && currentRot.x <=360){
                 currentRot.x = 360;
-                // Debug.Log("<");
             }
             enemyPart.localRotation = Quaternion.Euler(currentRot);
+        }
+
+        private void FixedUpdate() {
+            // ShotRay();
         }
 
         float rotSpeed = 80;
@@ -45,25 +43,37 @@ namespace ReTouchGunFire.PanelInfo{
             if(currentRot.z <= 270 && currentRot.z >= 90){
                 enemyPart.Rotate(Vector3.forward, rotX);
                 enemyPart.Rotate(Vector3.left, rotY);
-                // Debug.Log("one");
-            
-            // }else if(currentRot.z >= 70 && currentRot.z <= 120){
-            //     enemyPart.Rotate(Vector3.forward, rotX);
-            //     enemyPart.Rotate(Vector3.up, -rotY);
             }else{
-                //
-                // Debug.Log("two");
                 enemyPart.Rotate(Vector3.forward, rotX);
                 enemyPart.Rotate(Vector3.left, -rotY);
-                //
             }
-            
-            
-            // enemyPart.Rotate(Vector3.forward, rotX);
-            // enemyPart.Rotate(Vector3.left, -rotY);
+        }
+
+        void OnPlayerShooting(PlayerShootingNotify evt) => ShotRay();
+        void ShotRay(){
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hit = Physics.RaycastAll(ray.origin, ray.direction);
+                
+            for (int i = 0; i < hit.Length; i++)
+            {
+                Debug.DrawLine(ray.origin, hit[i].point, Color.green);
+                Debug.Log(hit[i].collider.name);
+            }
+        
+            // if(Input.GetMouseButton(0)){
+            //     //这部分之后应当转移到射击部分的逻辑中 射击时触发事件 射线检测的发射则在监听的委托当中
+            //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //     RaycastHit[] hit = Physics.RaycastAll(ray.origin, ray.direction);
+                
+            //     for (int i = 0; i < hit.Length; i++)
+            //     {
+            //         Debug.DrawLine(ray.origin, hit[i].point, Color.green);
+            //         Debug.Log(hit[i].collider.name);
+            //     }
+            // }
 
         }
-        
     }
 }
 

@@ -4,15 +4,11 @@ Rebuild project.
 
 ## TODO
 
-出击状态侧边菜单添加查看详细属性面板按钮 且应为背包的更上层级
-
-地区1面板3层Enemy可点击
-
-出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
+登陆UI搭建
 
 ---
 
-登陆UI搭建
+出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 
 BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装备详细信息显示，排序, 分解
 
@@ -32,6 +28,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.30 3:09`
+basically implement player shooting and enemy hit. (raycast hit)
 
 > `22.10.29 6:07`
 add TwiceConfirmPanel and TwiceConfirmPanelInfo. 
@@ -129,6 +128,9 @@ null
 
 
 ## 项目结构
+
+> 为早期结构 现已不适用
+
 ```mermaid
 graph TB
 gl(GameLoop)

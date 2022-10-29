@@ -7,11 +7,26 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class BattleGunInfoPanelInfo : UIInfo
     {
-        
+        //temp
+        public class Ak47Info : GunInfo {
+            public Ak47Info(){
+                gunName = EGunName.AK47;
+                gunType = EGunType.AR;
+                baseDMG = 100;
+                firingRate = 600f;
+                magazine = 30;
+                magazineCount = 16;
+                currentFiringRatePerSecond = (firingRate / 60f) / 100f;
+            }
+        }
+        //end
+
         void Start()
         {
             Name = "BattleGunInfoPanelInfo";
             Init();
+
+            
         }
 
         public Transform mainGun;
@@ -29,6 +44,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Image mainGunQuality;
         public Image handGunQuality;
 
+        public GunInfo mainGunInfo;
+        public GunInfo handGunInfo;
+
         private Color uncheckedColor = new Color(0,0,0,0.4f);
         private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);
         public PanelMediator panelMediator;
@@ -37,7 +55,7 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
             
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            // panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGunCube");
             handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGunCube");
             mainGunCube = mainGun.GetComponent<Button>();
@@ -68,13 +86,42 @@ namespace ReTouchGunFire.PanelInfo{
                 handGunBG.color = checkedColor;
             });
 
+            //temp
+            Ak47Info ak47Info = new Ak47Info();
+            mainGunInfo = ak47Info;
+            //end
+
+            EventMgr.AddListener<PlayerMainGunUpdateNotify>(OnPlayerMainGunUpdate);
+            EventMgr.AddListener<PlayerHandGunUpdateNotify>(OnPlayerHandGunUpdate);
             // EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
-        // void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
-        // void RestorePanel(){
-        //     // panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel, EUILevel.Level3);
-        // }
+        bool gunFiringColdDown = true;
+
+        void Update(){
+            if(gunFiringColdDown){
+                if(Input.GetMouseButton(0)){
+                    gunFiringColdDown = false;
+                    EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
+                    Invoke("SetGunShootingColdDownReady", mainGunInfo.currentFiringRatePerSecond);
+                }
+            }
+                
+        }
+
+        void SetGunShootingColdDownReady(){
+            gunFiringColdDown = true;
+        }
+
+        void OnPlayerMainGunUpdate(PlayerMainGunUpdateNotify evt) => PlayerMainGunUpdate();
+        void PlayerMainGunUpdate(){
+            
+        }
+
+        void OnPlayerHandGunUpdate(PlayerHandGunUpdateNotify evt) => PlayerHandGunUpdate();
+        void PlayerHandGunUpdate(){
+            
+        }
     }
 }
 

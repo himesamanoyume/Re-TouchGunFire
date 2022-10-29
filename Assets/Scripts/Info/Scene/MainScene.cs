@@ -35,7 +35,7 @@ public sealed class MainScene : SceneInfo
             obj.AddComponent<MainMenuPanelInfo>().currentLevel = EUILevel.Level1;
         });
         panelMediator.PushPanel(EUIPanelType.PlayerPropsPanel, EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<PlayerPropsPanelInfo>().currentLevel = EUILevel.Level3;
+            obj.AddComponent<PlayerPropsPanelInfo>().currentLevel = EUILevel.Level4;
         });
         panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>().currentLevel = EUILevel.Level1;

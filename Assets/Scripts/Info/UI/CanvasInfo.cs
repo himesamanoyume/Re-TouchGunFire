@@ -33,7 +33,7 @@ namespace ReTouchGunFire.PanelInfo{
             levelBackButton = transform.GetChild(6);
             levelTwiceConfirm = transform.GetChild(7);
             levelLoading = transform.GetChild(8);
-            mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            mainCamera = Camera.main;
             DontDestroyOnLoad(this);
             DontDestroyOnLoad(mainCamera);
             transform.GetComponent<Canvas>().worldCamera = mainCamera;

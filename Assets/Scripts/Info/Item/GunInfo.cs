@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponInfo : ItemInfo
+public class GunInfo : ItemInfo
 {
     public EGunName gunName;
     public EGunType gunType;
     public float baseDMG;
-    public int firingRate;
+    public float firingRate;
+    public float currentFiringRatePerSecond;
     public int magazine;
     public int magazineCount;
     public EGunCoreProp coreProp;
@@ -18,4 +19,6 @@ public class WeaponInfo : ItemInfo
     public float subProp2Value;
     public ESubProp subProp3;
     public float subProp3Value;
+
+    
 }

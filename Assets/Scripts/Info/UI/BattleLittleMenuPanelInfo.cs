@@ -12,7 +12,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform point;
         public Button showAllMenuCube;
         public Button leaveBattleCube;
+        public Button showPlayerPropsCube;
         public Text showAllMenuCubeText;
+        public Text showPlayerPropsCubeText;
 
         public PanelMediator panelMediator;
         public SceneMediator sceneMediator;
@@ -23,6 +25,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         bool isShowAllMenu = false;
+        bool isShowPlayerProps = false;
 
         protected sealed override void Init()
         {
@@ -39,7 +42,9 @@ namespace ReTouchGunFire.PanelInfo{
 
             showAllMenuCube = container.Find("ShowAllMenuCube").GetComponent<Button>();
             leaveBattleCube = container.Find("LeaveBattleCube").GetComponent<Button>();
+            showPlayerPropsCube = container.Find("ShowPlayerPropsCube").GetComponent<Button>();
             showAllMenuCubeText = container.Find("ShowAllMenuCube/Text").GetComponent<Text>();
+            showPlayerPropsCubeText = container.Find("ShowPlayerPropsCube/Text").GetComponent<Text>();
 
             showAllMenuCube.onClick.AddListener(()=>{
                 if(!isShowAllMenu){
@@ -48,10 +53,22 @@ namespace ReTouchGunFire.PanelInfo{
                     showAllMenuCubeText.text = "隐藏菜单";
                 }else{
                     panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
-                    showAllMenuCubeText.text = "完整菜单";
+                    showAllMenuCubeText.text = "显示菜单";
                 }
                 isShowAllMenu = !isShowAllMenu;
 
+            });
+
+            showPlayerPropsCube.onClick.AddListener(()=>{
+
+                if(!isShowPlayerProps){
+                    panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level5);
+                    showPlayerPropsCubeText.text = "隐藏属性";
+                }else{
+                    panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);
+                    showPlayerPropsCubeText.text = "显示属性";
+                }
+                isShowPlayerProps = !isShowPlayerProps;
             });
 
             leaveBattleCube.onClick.AddListener(()=>{
@@ -68,6 +85,7 @@ namespace ReTouchGunFire.PanelInfo{
         void RestorePanel(){
             showAllMenuCubeText.text = "完整菜单";
             isShowAllMenu = false;
+            isShowPlayerProps = false;
         }
 
         void OnShowThisPanel(ShowBattleLittleMenuPanelNotify evt) => ShowThisPanel();

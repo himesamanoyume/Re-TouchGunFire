@@ -15,6 +15,12 @@ public static class GameEvents{
     public static HideBattleLittleMenuPanelNotify HideBattleLittleMenuPanelNotify = new HideBattleLittleMenuPanelNotify();
 
     // public static ShowTwiceConfirmPanelNotify ShowTwiceConfirmPanelNotify = new ShowTwiceConfirmPanelNotify();
+
+    public static PlayerShootingNotify PlayerShootingNotify = new PlayerShootingNotify();
+
+    public static PlayerMainGunUpdateNotify PlayerMainGunUpdateNotify = new PlayerMainGunUpdateNotify();
+
+    public static PlayerHandGunUpdateNotify PlayerHandGunUpdateNotify = new PlayerHandGunUpdateNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{
@@ -50,3 +56,15 @@ public class HideBattleLittleMenuPanelNotify : GameEvent{
 // public class ShowTwiceConfirmPanelNotify : GameEvent{
 
 // }
+
+public class PlayerShootingNotify : GameEvent{
+
+}
+
+public class PlayerMainGunUpdateNotify : GameEvent{
+
+}
+
+public class PlayerHandGunUpdateNotify : GameEvent{
+
+}
