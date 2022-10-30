@@ -35,6 +35,8 @@ public sealed class InitScene : SceneInfo
         hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
         hotUpdateMediator.StartCheck(sceneMediator);
 
+        EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
+
     }
 
     public override void OnUpdate()
@@ -45,8 +47,16 @@ public sealed class InitScene : SceneInfo
     public override void OnEnd()
     {
         // Debug.Log("InitScene End");
-        EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
-        panelMediator.PopPanel(true);
         
+        panelMediator.PopPanel(true);
+    }
+
+    void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => CheckHotUpdateEnd();
+
+    void CheckHotUpdateEnd(){
+        panelMediator.PopPanel(true);
+        panelMediator.PushPanel(EUIPanelType.LoginRegisterPanel, EUILevel.Level2, true, (GameObject obj)=>{
+            obj.AddComponent<LoginRegisterPanelInfo>().currentLevel = EUILevel.Level2;
+        });
     }
 }

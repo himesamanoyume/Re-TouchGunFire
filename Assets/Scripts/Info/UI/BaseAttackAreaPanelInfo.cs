@@ -60,19 +60,6 @@ namespace ReTouchGunFire.PanelInfo{
                 Debug.DrawLine(ray.origin, hit[i].point, Color.green);
                 Debug.Log(hit[i].collider.name);
             }
-        
-            // if(Input.GetMouseButton(0)){
-            //     //这部分之后应当转移到射击部分的逻辑中 射击时触发事件 射线检测的发射则在监听的委托当中
-            //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //     RaycastHit[] hit = Physics.RaycastAll(ray.origin, ray.direction);
-                
-            //     for (int i = 0; i < hit.Length; i++)
-            //     {
-            //         Debug.DrawLine(ray.origin, hit[i].point, Color.green);
-            //         Debug.Log(hit[i].collider.name);
-            //     }
-            // }
-
         }
     }
 }

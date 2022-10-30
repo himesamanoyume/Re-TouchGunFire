@@ -133,4 +133,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/TwiceConfirmPanel/TwiceConfirmPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/LoginRegisterPanel/LoginRegisterPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/LoginRegisterPanel/LoginRegisterPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

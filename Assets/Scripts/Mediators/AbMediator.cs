@@ -80,11 +80,12 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="abName"></param>
         /// <param name="resName"></param>
         public IEnumerator AsyncLoadAbScene(string abName, string sceneName){
+            
             UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
             yield return assetBundle.SendWebRequest();
             AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
             yield return ab;
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadSceneAsync(sceneName);
             ab.Unload(false);
             
         }

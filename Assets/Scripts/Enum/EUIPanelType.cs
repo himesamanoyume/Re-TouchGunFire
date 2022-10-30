@@ -37,4 +37,6 @@ public enum EUIPanelType
     PlayerCurrentStatePanel,
     [Tooltip("二次确认面板")]
     TwiceConfirmPanel,
+    [Tooltip("登陆注册面板")]
+    LoginRegisterPanel,
 }

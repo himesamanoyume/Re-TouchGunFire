@@ -4,7 +4,11 @@ Rebuild project.
 
 ## TODO
 
-登陆UI搭建
+AB包加载优化
+
+开场空白面板
+
+提示框面板
 
 ---
 
@@ -28,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.30 15:46`
+add LoginRegisterPanel, LoginRegisterPanelInfo. 
 
 > `22.10.30 3:09`
 basically implement player shooting and enemy hit. (raycast hit)

@@ -22,7 +22,7 @@ namespace ReTouchGunFire.Mediators{
         {
             sceneMgr = GameLoop.Instance.gameManager.SceneMgr;
             abMediator = GameLoop.Instance.GetMediator<AbMediator>();
-            EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
+            EventMgr.AddListener<UserLoginSuccessNotify>(OnUserLoginSuccess);
         }
 
         public void SetScene(SceneInfo sceneInfo, string sceneName){
@@ -50,9 +50,9 @@ namespace ReTouchGunFire.Mediators{
         void SetMainScene(){
             MainScene mainScene = new MainScene(this);
             sceneMgr.SetScene(mainScene,mainScene.Name);
-            EventMgr.RemoveListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
+            // EventMgr.RemoveListener<UserLoginSuccessNotify>(OnCheckHotUpdateEnd);
         }
-        void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => SetMainScene();
+        void OnUserLoginSuccess(UserLoginSuccessNotify evt) => SetMainScene();
 
     }
 }
