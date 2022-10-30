@@ -28,8 +28,6 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         // bool isLogin = true;
-        private Vector2 offScreen = new Vector2(0, -5000);
-        private Vector2 inTheScreen = new Vector2(0, 0);
         
         protected sealed override void Init()
         {
@@ -50,7 +48,6 @@ namespace ReTouchGunFire.PanelInfo{
 
             loginPartLoginButton.onClick.AddListener(()=>{
                 //temp
-                EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
                 EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
                 //end
             });

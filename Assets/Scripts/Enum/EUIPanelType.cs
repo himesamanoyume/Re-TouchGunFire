@@ -39,4 +39,6 @@ public enum EUIPanelType
     TwiceConfirmPanel,
     [Tooltip("登陆注册面板")]
     LoginRegisterPanel,
+    [Tooltip("提示通知面板")]
+    NotifyPanel,
 }

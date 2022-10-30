@@ -58,7 +58,7 @@ namespace ReTouchGunFire.PanelInfo{
             CountDownRunning();
         }
 
-        void CountDownRunning(){
+        protected override void CountDownRunning(){
             if(!isCountdown) return;
             countdownLeft.value -= Time.deltaTime;
             countdownRight.value -= Time.deltaTime;

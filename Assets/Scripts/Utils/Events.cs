@@ -23,6 +23,8 @@ public static class GameEvents{
     public static PlayerHandGunUpdateNotify PlayerHandGunUpdateNotify = new PlayerHandGunUpdateNotify();
 
     public static UserLoginSuccessNotify UserLoginSuccessNotify = new UserLoginSuccessNotify();
+
+    public static AbLoadEndNotify AbLoadEndNotify = new AbLoadEndNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{
@@ -72,5 +74,9 @@ public class PlayerHandGunUpdateNotify : GameEvent{
 }
 
 public class UserLoginSuccessNotify : GameEvent{
+
+}
+
+public class AbLoadEndNotify : GameEvent{
 
 }

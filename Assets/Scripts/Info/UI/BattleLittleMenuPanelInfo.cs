@@ -73,6 +73,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             leaveBattleCube.onClick.AddListener(()=>{
                 GameObject.Find("TwiceConfirmPanel").GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要撤退吗?", 10, ()=>{
+                    EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
                     sceneMediator.SetScene(new MainScene(sceneMediator));
                 });
                 

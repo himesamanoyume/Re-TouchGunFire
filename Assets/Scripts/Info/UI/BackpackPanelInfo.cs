@@ -12,8 +12,6 @@ namespace ReTouchGunFire.PanelInfo{
         private Transform equippedPart;
         private Transform idlePart;
         public PanelMediator panelMediator;
-        private Vector2 offScreen = new Vector2(0, -5000);
-        private Vector2 inTheScreen = new Vector2(0, 0);
         public Button backEquippedPartCube;
         public Button mainGunCube;
         public Button handgunCube;

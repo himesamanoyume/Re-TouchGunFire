@@ -4,15 +4,13 @@ Rebuild project.
 
 ## TODO
 
-AB包加载优化
-
-开场空白面板
-
-提示框面板
+联网部分
 
 ---
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
+
+开场空白面板
 
 BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装备详细信息显示，排序, 分解
 
@@ -32,6 +30,11 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.10.31 7:42`
+add NotifyPanel and NotifyPanelInfo. 
+AbMediator fixed. 
+GameLoop change: now there's only one scene. 
 
 > `22.10.30 15:46`
 add LoginRegisterPanel, LoginRegisterPanelInfo. 

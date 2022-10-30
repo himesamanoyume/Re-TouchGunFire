@@ -27,6 +27,7 @@ public sealed class AttackArea1Scene : SceneInfo
         panelMediator.MovePanelLevel(EUIPanelType.PlayerInfoPanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel,EUILevel.Level1);
+        EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
     }
 
     public override void OnUpdate()

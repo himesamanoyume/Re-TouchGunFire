@@ -38,16 +38,6 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/TestPanel
         assetBundleName: prefabs
         assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/scenes/InitScene.unity
-      Value:
-        assetPath: Assets/AssetBundleLocal/scenes/InitScene.unity
-        assetBundleName: scenes
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/scenes/MainScene.unity
-      Value:
-        assetPath: Assets/AssetBundleLocal/scenes/MainScene.unity
-        assetBundleName: scenes
-        assetBundleVariant: 
     - Key: Assets/AssetBundleLocal/prefabs/Canvas/Canvas.prefab
       Value:
         assetPath: Assets/AssetBundleLocal/prefabs/Canvas/Canvas.prefab
@@ -62,11 +52,6 @@ MonoBehaviour:
       Value:
         assetPath: Assets/AssetBundleLocal/prefabs/TestPanel/TestPanel.prefab
         assetBundleName: prefabs
-        assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/scenes/TestScene.unity
-      Value:
-        assetPath: Assets/AssetBundleLocal/scenes/TestScene.unity
-        assetBundleName: scenes
         assetBundleVariant: 
     - Key: Assets/AssetBundleLocal/prefabs/BackButtonPanel/BackButtonPanel.prefab
       Value:
@@ -136,6 +121,11 @@ MonoBehaviour:
     - Key: Assets/AssetBundleLocal/prefabs/LoginRegisterPanel/LoginRegisterPanel.prefab
       Value:
         assetPath: Assets/AssetBundleLocal/prefabs/LoginRegisterPanel/LoginRegisterPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/NotifyPanel/NotifyPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/NotifyPanel/NotifyPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
     keyCollision: 0

@@ -15,6 +15,7 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public PanelMediator panelMediator;
+        AssetBundle prefabsAb;
 
         private void Start() {
             Init();
@@ -23,6 +24,15 @@ namespace ReTouchGunFire.Mediators{
         public override void Init()
         {
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            StartCoroutine(LoadPrefabsAb());
+        }
+
+        IEnumerator LoadPrefabsAb(){
+            UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + "prefabs");
+            yield return assetBundle.SendWebRequest();
+            prefabsAb = DownloadHandlerAssetBundle.GetContent(assetBundle);
+            yield return prefabsAb;
+            EventMgr.Broadcast(GameEvents.AbLoadEndNotify);
         }
 
         private const string abMapPathStr = "/AbMap/AssetBundle/";
@@ -106,7 +116,9 @@ namespace ReTouchGunFire.Mediators{
             ab.Unload(false);
             GameObject obj = Instantiate(tobj, transform);
             obj.name = resName;
+            
         }
+
 
         /// <summary>
         /// 异步加载UI面板,会直接Push该面板
@@ -115,20 +127,27 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="panelName"></param>
         /// <param name="transform"></param>
         /// <param name="eUILevel"></param>
-        // public IEnumerator AsyncLoadABRes(string abName, string panelName, Transform transform, EUILevel eUILevel){
+        public IEnumerator AsyncLoadABRes(string panelName, Transform transform, EUIPanelType eUIPanelType, EUILevel eUILevel,bool isInsertToList, PanelMediator.AddInfoScriptDel addInfoScriptDel){
 
+            GameObject tobj = prefabsAb.LoadAsset<GameObject>(panelName);
+            yield return tobj;
+            // ab.Unload(false);
+            GameObject obj = Instantiate(tobj, transform);
+            yield return obj;
+            obj.name = panelName;
+            panelMediator.LoadResFromAbMediatorCallback(obj, eUIPanelType, eUILevel, isInsertToList, addInfoScriptDel);
+
+            // UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
+            // yield return assetBundle.SendWebRequest();
+            // AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
+            // yield return ab;
+            // GameObject tobj = ab.LoadAsset<GameObject>(panelName);
+            // ab.Unload(false);
+            // GameObject obj = Instantiate(tobj, transform);
+            // obj.name = panelName;
+            // panelMediator.PushPanel(eUILevel, obj);
             
-        //     UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
-        //     yield return assetBundle.SendWebRequest();
-        //     AssetBundle ab = DownloadHandlerAssetBundle.GetContent(assetBundle);
-        //     yield return ab;
-        //     GameObject tobj = ab.LoadAsset<GameObject>(panelName);
-        //     ab.Unload(false);
-        //     GameObject obj = Instantiate(tobj, transform);
-        //     obj.name = panelName;
-        //     // panelMediator.PushPanel(eUILevel, obj);
-            
-        // }
+        }
 
         /// <summary>
         /// 获取ab依赖

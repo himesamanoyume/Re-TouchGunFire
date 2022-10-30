@@ -27,12 +27,12 @@ namespace ReTouchGunFire.PanelInfo{
         void OnCloseLoadingPanelNotify(CloseLoadingPanelNotify evt) => ClosePanel();
 
         void ShowPanel(){
-            Debug.Log("show");
+            // Debug.Log("show");
             point.gameObject.SetActive(true);
         }
 
         void ClosePanel(){
-            Debug.Log("close");
+            // Debug.Log("close");
             point.gameObject.SetActive(false);
         }
     }

@@ -48,8 +48,11 @@ namespace ReTouchGunFire.Mediators{
 
 
         void SetMainScene(){
-            MainScene mainScene = new MainScene(this);
-            sceneMgr.SetScene(mainScene,mainScene.Name);
+            // MainScene mainScene = new MainScene(this);
+            // sceneMgr.SetScene(mainScene,mainScene.Name);
+
+            EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+            sceneMgr.SetScene(new MainScene(this));
             // EventMgr.RemoveListener<UserLoginSuccessNotify>(OnCheckHotUpdateEnd);
         }
         void OnUserLoginSuccess(UserLoginSuccessNotify evt) => SetMainScene();

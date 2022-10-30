@@ -52,6 +52,10 @@ namespace ReTouchGunFire.PanelInfo{
                 mainTemplate.localScale = Vector3.zero;
                 attackTemplate.localScale = Vector3.one;
             });
+
+            friendsCube.onClick.AddListener(()=>{
+                GameObject.Find("NotifyPanel").GetComponent<NotifyPanelInfo>().ShowNotifyPanel("好友系统暂未开放~",3f);
+            });
             
             backpackCube.onClick.AddListener(()=>{
                 panelMediator.PushPanel(EUIPanelType.BackpackPanel, panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
@@ -69,7 +73,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
         }
 
-        void BackToDefaultMainMenu(){
+        void SetDefaultMainMenuPos(){
             mainTemplate.localScale = Vector3.one;
             attackTemplate.localScale = Vector3.zero;
         }
@@ -85,7 +89,8 @@ namespace ReTouchGunFire.PanelInfo{
 
             area1Cube.onClick.AddListener(()=>{
                 GameObject.Find("TwiceConfirmPanel").GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
-                    BackToDefaultMainMenu();
+                    SetDefaultMainMenuPos();
+                    EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
                     sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
                 });
                 
