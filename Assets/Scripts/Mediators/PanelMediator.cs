@@ -158,6 +158,10 @@ namespace ReTouchGunFire.Mediators{
                 uiMgr.panelDict.Remove(eUIPanelType);
             }
         }
+
+        public void ShowNotifyPanel(string text, float countdown){
+            canvasMediator.GetCanvasLevel(EUILevel.Level6).GetChild(0).GetComponent<NotifyPanelInfo>().ShowNotifyPanel(text,countdown);
+        }
     }
 }
 

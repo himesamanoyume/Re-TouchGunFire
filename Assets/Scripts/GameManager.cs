@@ -22,10 +22,14 @@ public class GameManager
         objectMgr.Init();
         sceneMgr.Init();
         uiMgr.Init();
-        // clientMgr.Init();
-        requestMgr.Init();
         requestMgr.Init();
         luaMgr.Init();
+        EventMgr.AddListener<StartConnectMasterServer>(OnConnectMasterServer);
+    }
+
+    void OnConnectMasterServer(StartConnectMasterServer evt) => InitClientMgr();
+    void InitClientMgr(){
+        clientMgr.Init();
     }
 
     public InfoMgr InfoMgr{

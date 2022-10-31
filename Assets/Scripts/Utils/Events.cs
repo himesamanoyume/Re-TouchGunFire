@@ -25,58 +25,22 @@ public static class GameEvents{
     public static UserLoginSuccessNotify UserLoginSuccessNotify = new UserLoginSuccessNotify();
 
     public static AbLoadEndNotify AbLoadEndNotify = new AbLoadEndNotify();
+
+    public static StartConnectMasterServer StartConnectMasterServer = new StartConnectMasterServer();
 }
 
-public class CheckHotUpdateEndNotify : GameEvent{
-        
-}
-public class ShowBackButtonPanelNotify : GameEvent{
-
-}
-public class CloseBackButtonPanelNotify : GameEvent{
-
-}
-
-public class ShowLoadingPanelNotify : GameEvent{
-
-}
-
-public class CloseLoadingPanelNotify : GameEvent{
-
-}
-
-public class RestorePanelNotify : GameEvent{
-
-}
-
-public class ShowBattleLittleMenuPanelNotify : GameEvent{
-
-}
-
-public class HideBattleLittleMenuPanelNotify : GameEvent{
-
-}
-
-// public class ShowTwiceConfirmPanelNotify : GameEvent{
-
-// }
-
-public class PlayerShootingNotify : GameEvent{
-
-}
-
-public class PlayerMainGunUpdateNotify : GameEvent{
-
-}
-
-public class PlayerHandGunUpdateNotify : GameEvent{
-
-}
-
-public class UserLoginSuccessNotify : GameEvent{
-
-}
-
-public class AbLoadEndNotify : GameEvent{
-
-}
+public class CheckHotUpdateEndNotify : GameEvent{}
+public class ShowBackButtonPanelNotify : GameEvent{}
+public class CloseBackButtonPanelNotify : GameEvent{}
+public class ShowLoadingPanelNotify : GameEvent{}
+public class CloseLoadingPanelNotify : GameEvent{}
+public class RestorePanelNotify : GameEvent{}
+public class ShowBattleLittleMenuPanelNotify : GameEvent{}
+public class HideBattleLittleMenuPanelNotify : GameEvent{}
+// public class ShowTwiceConfirmPanelNotify : GameEvent{}
+public class PlayerShootingNotify : GameEvent{}
+public class PlayerMainGunUpdateNotify : GameEvent{}
+public class PlayerHandGunUpdateNotify : GameEvent{}
+public class UserLoginSuccessNotify : GameEvent{}
+public class AbLoadEndNotify : GameEvent{}
+public class StartConnectMasterServer : GameEvent{}

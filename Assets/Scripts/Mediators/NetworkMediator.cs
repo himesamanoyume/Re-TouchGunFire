@@ -10,6 +10,7 @@ namespace ReTouchGunFire.Mediators{
     {
         public ClientMgr clientMgr;
         public RequestMgr requestMgr;
+        public PanelMediator panelMediator;
         public NetworkMediator(){
             Name = "NetworkMediator";
         }
@@ -22,6 +23,7 @@ namespace ReTouchGunFire.Mediators{
         {
             clientMgr = GameLoop.Instance.gameManager.ClientMgr;
             requestMgr = GameLoop.Instance.gameManager.RequestMgr;
+            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
         }
 
         public void Send(MainPack mainPack){
@@ -41,6 +43,33 @@ namespace ReTouchGunFire.Mediators{
         public void HandleResponse(MainPack mainPack){
             requestMgr.HandleResponse(mainPack);
         }
+
+        public void OnUserLoginSuccess(){
+            // Debug.Log("广播登陆成功");
+            isNeedShowUserLoginSuccess = true;
+        }
+
+        public void OnUserLoginFail(){
+            isNeedShowUserLoginFail = true;
+        }
+
+        bool isNeedShowUserLoginSuccess = false;
+        bool isNeedShowUserLoginFail = false;
+
+        private void Update() {
+            if(isNeedShowUserLoginSuccess){
+                isNeedShowUserLoginSuccess = false;
+                panelMediator.ShowNotifyPanel("登陆成功",2f);
+                EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
+            }
+            if(isNeedShowUserLoginFail){
+                isNeedShowUserLoginFail = false;
+                panelMediator.ShowNotifyPanel("登陆失败~",2f);
+            }
+
+        }
+
+        
     }
 }
 

@@ -54,7 +54,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             friendsCube.onClick.AddListener(()=>{
-                GameObject.Find("NotifyPanel").GetComponent<NotifyPanelInfo>().ShowNotifyPanel("好友系统暂未开放~",3f);
+                panelMediator.ShowNotifyPanel("好友系统暂未开放~",3f);
             });
             
             backpackCube.onClick.AddListener(()=>{

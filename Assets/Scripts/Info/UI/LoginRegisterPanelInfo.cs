@@ -21,6 +21,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Button registerSendRegisterButton;
 
 
+        public LoginRequest loginRequest;
+        public RegisterRequest registerRequest;
+
         public PanelMediator panelMediator;
         private void Start() {
             Name = "LoginRegisterPanelInfo";
@@ -33,6 +36,8 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            loginRequest = gameObject.AddComponent<LoginRequest>();
+            registerRequest = gameObject.AddComponent<RegisterRequest>();
 
             loginPart = transform.Find("Point/Center/LoginPart");
             registerPart = transform.Find("Point/Center/RegisterPart");
@@ -48,7 +53,8 @@ namespace ReTouchGunFire.PanelInfo{
 
             loginPartLoginButton.onClick.AddListener(()=>{
                 //temp
-                EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
+                loginRequest.SendRequest("123","123");
+                // EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
                 //end
             });
 

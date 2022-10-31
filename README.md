@@ -4,7 +4,9 @@ Rebuild project.
 
 ## TODO
 
-联网部分
+**联网部分**
+
+- 完善注册部分
 
 ---
 
@@ -30,6 +32,9 @@ ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/
 ```
 
 ## CHANGELOG
+
+> `22.11.1 4:51`
+basically implement login function. 
 
 > `22.10.31 7:42`
 add NotifyPanel and NotifyPanelInfo. 

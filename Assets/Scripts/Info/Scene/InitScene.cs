@@ -42,6 +42,11 @@ public sealed class InitScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level6, true,(GameObject obj)=>{ 
             obj.AddComponent<InitPanelInfo>().currentLevel = EUILevel.Level6;
         });
+
+        panelMediator.PushPanel(EUIPanelType.NotifyPanel,EUILevel.Level6, false, (GameObject obj)=>{
+            obj.AddComponent<NotifyPanelInfo>().currentLevel = EUILevel.Level6;
+        });
+
         panelMediator.PushPanel(EUIPanelType.LoadingPanel, EUILevel.LevelLoading, false, (GameObject obj)=>{
             obj.AddComponent<LoadingPanelInfo>().currentLevel = EUILevel.LevelLoading;
         });
@@ -50,20 +55,15 @@ public sealed class InitScene : SceneInfo
             obj.AddComponent<TwiceConfirmPanelInfo>().currentLevel = EUILevel.LevelTwiceConfirm;
         });
 
-        panelMediator.PushPanel(EUIPanelType.NotifyPanel,EUILevel.Level6, false, (GameObject obj)=>{
-            obj.AddComponent<NotifyPanelInfo>().currentLevel = EUILevel.Level6;
-        });
-
-        hotUpdateMediator = GameLoop.Instance.GetMediator<HotUpdateMediator>();
-        hotUpdateMediator.StartCheck(sceneMediator);
-
         EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
+        EventMgr.Broadcast(GameEvents.StartConnectMasterServer);
     }
 
     void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => CheckHotUpdateEnd();
 
     void CheckHotUpdateEnd(){
         panelMediator.PopPanel(true);
+        
         panelMediator.PushPanel(EUIPanelType.LoginRegisterPanel, EUILevel.Level2, true, (GameObject obj)=>{
             obj.AddComponent<LoginRegisterPanelInfo>().currentLevel = EUILevel.Level2;
         });

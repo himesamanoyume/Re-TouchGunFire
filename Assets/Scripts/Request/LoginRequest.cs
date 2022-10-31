@@ -2,32 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
-using ReTouchGunFire.PanelInfo;
 using ReTouchGunFire.Mediators;
 
-public class RegisterRequest : IRequest
+public class LoginRequest : IRequest
 {
     public override void Awake() {
-        Name = "RegisterRequest";
+        Name = "LoginRequest";
         requestCode = RequestCode.User;
-        actionCode = ActionCode.Register;
+        actionCode = ActionCode.Login;
         base.Awake();
+        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
     }
+
+    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {
+        Debug.Log(mainPack.ReturnCode);
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                Debug.Log("Register Success.");
+                networkMediator.OnUserLoginSuccess();
             break;
             case ReturnCode.Fail:
-                Debug.LogWarning("Register Failed.");
+                
+                Debug.LogWarning("Login Failed.");
+            break;
+            case ReturnCode.ReturnNone:
+                Debug.LogError("不正常情况");
             break;
         }
     }
 
     /// <summary>
-    /// 发送注册请求
+    /// 发送登陆请求
     /// </summary>
     /// <param name="userName"></param>
     /// <param name="password"></param>
@@ -36,10 +43,10 @@ public class RegisterRequest : IRequest
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        RegisterPack registerPack = new RegisterPack();
-        registerPack.UserName = userName;
-        registerPack.Password = password;
-        mainPack.RegisterPack = registerPack;
+        LoginPack loginPack = new LoginPack();
+        loginPack.UserName = userName;
+        loginPack.Password = password;
+        mainPack.LoginPack = loginPack;
         base.SendRequest(mainPack);
     }
 }

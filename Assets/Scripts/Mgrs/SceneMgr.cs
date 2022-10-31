@@ -30,6 +30,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void SetScene(SceneInfo sceneInfo){
+            // Debug.Log("SetScene");
             isBegin = false;
             if(this.sceneInfo!=null){
                 this.sceneInfo.OnEnd();
