@@ -8,7 +8,7 @@ public class GameManager
 {
     private MediatorMgr mediatorMgr = new MediatorMgr();
     private InfoMgr infoMgr = new InfoMgr();
-    private ObjectMgr objectMgr = new ObjectMgr();
+    private EntityMgr entityMgr = new EntityMgr();
     private SceneMgr sceneMgr = new SceneMgr();
     private UIMgr uiMgr = new UIMgr();
     private ClientMgr clientMgr = new ClientMgr();
@@ -19,7 +19,7 @@ public class GameManager
         // Debug.Log("GameManager Init Start");
         mediatorMgr.Init();
         infoMgr.Init();
-        objectMgr.Init();
+        entityMgr.Init();
         sceneMgr.Init();
         uiMgr.Init();
         requestMgr.Init();
@@ -36,8 +36,8 @@ public class GameManager
         get{return infoMgr;}
     }
 
-    public ObjectMgr ObjectMgr{
-        get{return objectMgr;}
+    public EntityMgr EntityMgr{
+        get{return entityMgr;}
     }
 
     public SceneMgr SceneMgr{

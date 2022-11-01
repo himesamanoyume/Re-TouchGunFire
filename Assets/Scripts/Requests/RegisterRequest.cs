@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
-using ReTouchGunFire.PanelInfo;
 using ReTouchGunFire.Mediators;
 
 public class RegisterRequest : IRequest
@@ -12,16 +11,22 @@ public class RegisterRequest : IRequest
         requestCode = RequestCode.User;
         actionCode = ActionCode.Register;
         base.Awake();
+        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
     }
+
+    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                Debug.Log("Register Success.");
+                networkMediator.OnUserRegisterSuccess();
             break;
             case ReturnCode.Fail:
-                Debug.LogWarning("Register Failed.");
+                networkMediator.OnUserRegisterFail();
+            break;
+            case ReturnCode.ReturnNone:
+                Debug.LogError("不正常情况");
             break;
         }
     }

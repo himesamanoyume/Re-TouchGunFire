@@ -45,7 +45,6 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void OnUserLoginSuccess(){
-            // Debug.Log("广播登陆成功");
             isNeedShowUserLoginSuccess = true;
         }
 
@@ -53,8 +52,18 @@ namespace ReTouchGunFire.Mediators{
             isNeedShowUserLoginFail = true;
         }
 
+        public void OnUserRegisterSuccess(){
+            isNeedShowUserRegisterSuccess = true;
+        }
+
+        public void OnUserRegisterFail(){
+            isNeedShowUserRegisterFail = true;
+        }
+
         bool isNeedShowUserLoginSuccess = false;
         bool isNeedShowUserLoginFail = false;
+        bool isNeedShowUserRegisterSuccess = false;
+        bool isNeedShowUserRegisterFail = false;
 
         private void Update() {
             if(isNeedShowUserLoginSuccess){
@@ -65,6 +74,14 @@ namespace ReTouchGunFire.Mediators{
             if(isNeedShowUserLoginFail){
                 isNeedShowUserLoginFail = false;
                 panelMediator.ShowNotifyPanel("登陆失败~",2f);
+            }
+            if(isNeedShowUserRegisterSuccess){
+                isNeedShowUserRegisterSuccess = false;
+                panelMediator.ShowNotifyPanel("注册成功",2f);
+            }
+            if(isNeedShowUserRegisterFail){
+                isNeedShowUserRegisterFail = false;
+                panelMediator.ShowNotifyPanel("注册失败~",2f);
             }
 
         }

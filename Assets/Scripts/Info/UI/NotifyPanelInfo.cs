@@ -47,15 +47,6 @@ namespace ReTouchGunFire.PanelInfo{
             CountDownRunning(center, countdownLeft, countdownRight, isCountdown);
         }
 
-        // void CountDownRunning(){
-        //     if(!isCountdown) return;
-        //     countdownLeft.value -= Time.deltaTime;
-        //     countdownRight.value -= Time.deltaTime;
-        //     if(countdownLeft.value <= 0 && countdownRight.value <= 0){
-        //         isCountdown = false;
-        //         center.GetComponent<RectTransform>().offsetMax = offScreen;
-        //     }
-        // }
     }
 }
 

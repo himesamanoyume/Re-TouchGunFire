@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-using ReTouchGunFire.Mgrs;
 
 namespace ReTouchGunFire.Mediators{
     public class AbMediator : IMediator

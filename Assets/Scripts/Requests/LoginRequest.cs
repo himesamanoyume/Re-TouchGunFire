@@ -24,8 +24,7 @@ public class LoginRequest : IRequest
                 networkMediator.OnUserLoginSuccess();
             break;
             case ReturnCode.Fail:
-                
-                Debug.LogWarning("Login Failed.");
+                networkMediator.OnUserRegisterFail();
             break;
             case ReturnCode.ReturnNone:
                 Debug.LogError("不正常情况");

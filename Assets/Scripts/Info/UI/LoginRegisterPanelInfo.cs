@@ -52,9 +52,12 @@ namespace ReTouchGunFire.PanelInfo{
             registerSendRegisterButton = registerPart.Find("Container/SendRegisterButton").GetComponent<Button>();
 
             loginPartLoginButton.onClick.AddListener(()=>{
+                
+                // if(loginPartAccount.text != null && loginPartPassword.text != null)
+                //     loginRequest.SendRequest(loginPartAccount.text, loginPartPassword.text);
+
                 //temp
                 loginRequest.SendRequest("123","123");
-                // EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
                 //end
             });
 
@@ -63,7 +66,9 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             registerSendRegisterButton.onClick.AddListener(()=>{
-                
+                // if(registerPartAccount.text != null && registerPartPassword.text != null)
+                //     registerRequest.SendRequest(registerPartAccount.text, loginPartPassword.text);
+                registerRequest.SendRequest("123","123");
             });
 
             registerPartBackButton.onClick.AddListener(()=>{

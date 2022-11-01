@@ -6,8 +6,6 @@ Rebuild project.
 
 **联网部分**
 
-- 完善注册部分
-
 ---
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
@@ -19,19 +17,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-
-- 似乎多个资源异步加载时会触发如果AB包没及时卸载就再次尝试加载的Error
-```
-- The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
-
-- Error while getting Asset Bundle: The AssetBundle 'D:/Source/Re-TouchGunFire/Assets/StreamingAssets/AbMap/AssetBundle/prefabs' can't be loaded because another AssetBundle with the same files is already loaded.
-
-- NullReferenceException: Object reference not set to an instance of an object
-ReTouchGunFire.Mediators.AbMediator+<AsyncLoadABRes>d__9.MoveNext () (at Assets/Scripts/Mediators/AbMediator.cs:150)
-
-```
+null
 
 ## CHANGELOG
+
+> `22.11.1 8:13`
+basically implement register function. 
+something modify. 
 
 > `22.11.1 4:51`
 basically implement login function. 
