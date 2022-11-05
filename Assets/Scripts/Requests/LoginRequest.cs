@@ -21,10 +21,12 @@ public class LoginRequest : IRequest
         Debug.Log(mainPack.ReturnCode);
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
+                networkMediator.uid = mainPack.Uid;
+                Debug.Log(mainPack.Uid);
                 networkMediator.OnUserLoginSuccess();
             break;
             case ReturnCode.Fail:
-                networkMediator.OnUserRegisterFail();
+                networkMediator.OnUserLoginFail();
             break;
             case ReturnCode.ReturnNone:
                 Debug.LogError("不正常情况");
@@ -35,15 +37,15 @@ public class LoginRequest : IRequest
     /// <summary>
     /// 发送登陆请求
     /// </summary>
-    /// <param name="userName"></param>
+    /// <param name="account"></param>
     /// <param name="password"></param>
-    public void SendRequest(string userName, string password)
+    public void SendRequest(string account, string password)
     {
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
         LoginPack loginPack = new LoginPack();
-        loginPack.UserName = userName;
+        loginPack.Account = account;
         loginPack.Password = password;
         mainPack.LoginPack = loginPack;
         base.SendRequest(mainPack);

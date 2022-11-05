@@ -4,6 +4,8 @@ Rebuild project.
 
 ## TODO
 
+缩小ui
+
 **联网部分**
 
 ---
@@ -20,6 +22,10 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.5 17:57`
+add InitPlayerInfoRequest. 
+implement user login/register/init info. 
 
 > `22.11.1 8:13`
 basically implement register function. 

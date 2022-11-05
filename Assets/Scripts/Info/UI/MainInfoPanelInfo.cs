@@ -13,6 +13,8 @@ namespace ReTouchGunFire.PanelInfo{
         public Button coinButton;
 
         public PanelMediator panelMediator;
+        public InitPlayerInfoRequest initPlayerInfoRequest;
+        PlayerInfo playerInfo;
 
         private void Start() {
             Name = "MainInfoPanelInfo";
@@ -22,17 +24,35 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init(){
             base.Init();
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
+            initPlayerInfoRequest = gameObject.AddComponent<InitPlayerInfoRequest>();
             diamondButton = transform.Find("Point/InfoContainer/InfoButton_Diamond").GetComponent<Button>();
             diamondText = transform.Find("Point/InfoContainer/InfoButton_Diamond/obj/obj2/InfoText_Diamond").GetComponent<Text>();
             coinButton = transform.Find("Point/InfoContainer/InfoButton_Coin").GetComponent<Button>();
             coinText = transform.Find("Point/InfoContainer/InfoButton_Coin/obj/obj2/InfoText_Coin").GetComponent<Text>();
-        
+            initPlayerInfoRequest.SendRequest();
+            EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
         void RestorePanel(){
             panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
+        }
+
+        bool isPlayerInfoUpdate = false;
+
+        void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
+        void PlayerInfoUpdate(){
+            isPlayerInfoUpdate = true; 
+        }
+
+        private void Update() {
+            if(isPlayerInfoUpdate){
+                isPlayerInfoUpdate = false;
+                diamondText.text = playerInfo.diamond.ToString();
+                coinText.text = playerInfo.coin.ToString();
+            }
         }
     }
 

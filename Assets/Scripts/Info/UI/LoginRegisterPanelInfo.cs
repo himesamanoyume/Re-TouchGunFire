@@ -12,6 +12,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform registerPart;
         public InputField loginPartAccount;
         public InputField loginPartPassword;
+        public InputField registerPartPlayerName;
         public InputField registerPartAccount;
         public InputField registerPartPassword;
         public Button registerPartBackButton;
@@ -43,6 +44,7 @@ namespace ReTouchGunFire.PanelInfo{
             registerPart = transform.Find("Point/Center/RegisterPart");
             loginPartAccount = loginPart.Find("Container/AccountInputField").GetComponent<InputField>();
             loginPartPassword = loginPart.Find("Container/PasswordInputField").GetComponent<InputField>();
+            registerPartPlayerName = registerPart.Find("Container/PlayerNameInputField").GetComponent<InputField>();
             registerPartAccount = registerPart.Find("Container/AccountInputField").GetComponent<InputField>();
             registerPartPassword = registerPart.Find("Container/PasswordInputField").GetComponent<InputField>();
             registerPartBackButton = registerPart.transform.Find("TitleContent/BackButton").GetComponent<Button>();
@@ -53,11 +55,11 @@ namespace ReTouchGunFire.PanelInfo{
 
             loginPartLoginButton.onClick.AddListener(()=>{
                 
-                // if(loginPartAccount.text != null && loginPartPassword.text != null)
-                //     loginRequest.SendRequest(loginPartAccount.text, loginPartPassword.text);
+                if(loginPartAccount.text != null && loginPartPassword.text != null)
+                    loginRequest.SendRequest(loginPartAccount.text, loginPartPassword.text);
 
                 //temp
-                loginRequest.SendRequest("123","123");
+                // loginRequest.SendRequest("123","123");
                 //end
             });
 
@@ -66,9 +68,12 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             registerSendRegisterButton.onClick.AddListener(()=>{
-                // if(registerPartAccount.text != null && registerPartPassword.text != null)
-                //     registerRequest.SendRequest(registerPartAccount.text, loginPartPassword.text);
-                registerRequest.SendRequest("123","123");
+                if(registerPartPlayerName.text != null && registerPartAccount.text != null && registerPartPassword.text != null)
+                    registerRequest.SendRequest(registerPartPlayerName.text, registerPartAccount.text, registerPartPassword.text);
+                
+                //temp
+                // registerRequest.SendRequest("123","123");
+                //end
             });
 
             registerPartBackButton.onClick.AddListener(()=>{

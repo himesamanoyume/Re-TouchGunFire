@@ -24,10 +24,10 @@ public class GameManager
         uiMgr.Init();
         requestMgr.Init();
         luaMgr.Init();
-        EventMgr.AddListener<StartConnectMasterServer>(OnConnectMasterServer);
+        EventMgr.AddListener<StartConnectMasterServerNotify>(OnConnectMasterServer);
     }
 
-    void OnConnectMasterServer(StartConnectMasterServer evt) => InitClientMgr();
+    void OnConnectMasterServer(StartConnectMasterServerNotify evt) => InitClientMgr();
     void InitClientMgr(){
         clientMgr.Init();
     }

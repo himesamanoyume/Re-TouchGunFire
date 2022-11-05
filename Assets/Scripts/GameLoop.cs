@@ -36,6 +36,7 @@ public class GameLoop : UnitySingleton<GameLoop>
         sceneMediator = GetMediator<SceneMediator>();
         // Debug.Log("GameLoop Start.");
         sceneMediator.SetScene(new InitScene(this.sceneMediator));
+        gameObject.AddComponent<PlayerInfo>();
         // sceneMediator.SetScene(new InitScene(this.sceneMediator), "");
 
     }

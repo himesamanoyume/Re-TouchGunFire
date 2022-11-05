@@ -26,7 +26,9 @@ public static class GameEvents{
 
     public static AbLoadEndNotify AbLoadEndNotify = new AbLoadEndNotify();
 
-    public static StartConnectMasterServer StartConnectMasterServer = new StartConnectMasterServer();
+    public static StartConnectMasterServerNotify StartConnectMasterServerNotify = new StartConnectMasterServerNotify();
+
+    public static PlayerInfoUpdateNotify PlayerInfoUpdateNotify = new PlayerInfoUpdateNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{}
@@ -37,10 +39,10 @@ public class CloseLoadingPanelNotify : GameEvent{}
 public class RestorePanelNotify : GameEvent{}
 public class ShowBattleLittleMenuPanelNotify : GameEvent{}
 public class HideBattleLittleMenuPanelNotify : GameEvent{}
-// public class ShowTwiceConfirmPanelNotify : GameEvent{}
 public class PlayerShootingNotify : GameEvent{}
 public class PlayerMainGunUpdateNotify : GameEvent{}
 public class PlayerHandGunUpdateNotify : GameEvent{}
 public class UserLoginSuccessNotify : GameEvent{}
 public class AbLoadEndNotify : GameEvent{}
-public class StartConnectMasterServer : GameEvent{}
+public class StartConnectMasterServerNotify : GameEvent{}
+public class PlayerInfoUpdateNotify : GameEvent{}

@@ -34,15 +34,17 @@ public class RegisterRequest : IRequest
     /// <summary>
     /// 发送注册请求
     /// </summary>
-    /// <param name="userName"></param>
+    /// <param name="playerName"></param>
+    /// <param name="account"></param>
     /// <param name="password"></param>
-    public void SendRequest(string userName, string password)
+    public void SendRequest(string playerName, string account, string password)
     {
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
         RegisterPack registerPack = new RegisterPack();
-        registerPack.UserName = userName;
+        registerPack.PlayerName = playerName;
+        registerPack.Account = account;
         registerPack.Password = password;
         mainPack.RegisterPack = registerPack;
         base.SendRequest(mainPack);

@@ -11,6 +11,9 @@ namespace ReTouchGunFire.Mediators{
         public ClientMgr clientMgr;
         public RequestMgr requestMgr;
         public PanelMediator panelMediator;
+
+        public int uid = 0;
+
         public NetworkMediator(){
             Name = "NetworkMediator";
         }

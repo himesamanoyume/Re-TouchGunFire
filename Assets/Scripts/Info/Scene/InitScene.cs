@@ -39,8 +39,8 @@ public sealed class InitScene : SceneInfo
 
     void OnAbLoadEnd(AbLoadEndNotify evt) => AbLoadEnd();
     void AbLoadEnd(){
-        panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level6, true,(GameObject obj)=>{ 
-            obj.AddComponent<InitPanelInfo>().currentLevel = EUILevel.Level6;
+        panelMediator.PushPanel(EUIPanelType.InitPanel, EUILevel.Level1, true,(GameObject obj)=>{ 
+            obj.AddComponent<InitPanelInfo>().currentLevel = EUILevel.Level1;
         });
 
         panelMediator.PushPanel(EUIPanelType.NotifyPanel,EUILevel.Level6, false, (GameObject obj)=>{
@@ -56,7 +56,7 @@ public sealed class InitScene : SceneInfo
         });
 
         EventMgr.AddListener<CheckHotUpdateEndNotify>(OnCheckHotUpdateEnd);
-        EventMgr.Broadcast(GameEvents.StartConnectMasterServer);
+        EventMgr.Broadcast(GameEvents.StartConnectMasterServerNotify);
     }
 
     void OnCheckHotUpdateEnd(CheckHotUpdateEndNotify evt) => CheckHotUpdateEnd();
