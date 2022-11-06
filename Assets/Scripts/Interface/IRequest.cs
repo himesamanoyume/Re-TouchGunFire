@@ -32,7 +32,11 @@ public abstract class IRequest : MonoBehaviour
 
     public abstract void OnResponse(MainPack mainPack);
 
-    public virtual void SendRequest(MainPack mainPack){
-        clientMgr.Send(mainPack);
+    public void TcpSendRequest(MainPack mainPack){
+        clientMgr.TcpSend(mainPack);
+    }
+
+    public void UdpSendRequest(MainPack mainPack){
+        clientMgr.UdpSend(mainPack);
     }
 }

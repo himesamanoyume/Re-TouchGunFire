@@ -42,20 +42,13 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
         void PlayerInfoUpdate(){
-            isPlayerInfoUpdate = true; 
-        }
-
-        bool isPlayerInfoUpdate = false;
-
-        private void Update() {
-            if (isPlayerInfoUpdate)
-            {
-                isPlayerInfoUpdate = false;
+            Loom.QueueOnMainThread(()=>{
                 playerNameText.text = playerInfo.playerName;
                 playerLevelText.text = playerInfo.level.ToString();
                 expBar.value = playerInfo.currentExp;
-            }
+            });
         }
+
     }
 }
 

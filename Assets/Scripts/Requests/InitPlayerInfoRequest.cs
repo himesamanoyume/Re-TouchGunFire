@@ -50,6 +50,6 @@ public class InitPlayerInfoRequest : IRequest
         mainPack.ActionCode = actionCode;
         mainPack.Uid = networkMediator.uid;
         
-        base.SendRequest(mainPack);
+        base.TcpSendRequest(mainPack);
     }
 }

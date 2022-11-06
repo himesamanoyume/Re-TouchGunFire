@@ -50,11 +50,15 @@ public class Message
 
     }
 
-    public static byte[] PackData(MainPack mainPack)
+    public static byte[] TcpPackData(MainPack mainPack)
     {
         byte[] data = mainPack.ToByteArray();
         byte[] head = BitConverter.GetBytes(data.Length);
         return head.Concat(data).ToArray();
+    }
+
+    public static byte[] UdpPackData(MainPack mainPack){
+        return mainPack.ToByteArray();
     }
 
 }

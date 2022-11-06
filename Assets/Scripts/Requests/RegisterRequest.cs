@@ -47,6 +47,6 @@ public class RegisterRequest : IRequest
         registerPack.Account = account;
         registerPack.Password = password;
         mainPack.RegisterPack = registerPack;
-        base.SendRequest(mainPack);
+        base.TcpSendRequest(mainPack);
     }
 }

@@ -4,8 +4,6 @@ Rebuild project.
 
 ## TODO
 
-缩小ui
-
 **联网部分**
 
 ---
@@ -22,6 +20,10 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.6 12:39`
+add Loom, add Udp support.
+redesign ui size.
 
 > `22.11.5 17:57`
 add InitPlayerInfoRequest. 

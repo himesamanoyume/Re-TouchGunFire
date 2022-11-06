@@ -29,8 +29,12 @@ namespace ReTouchGunFire.Mediators{
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
         }
 
-        public void Send(MainPack mainPack){
-            clientMgr.Send(mainPack);
+        public void TcpSend(MainPack mainPack){
+            clientMgr.TcpSend(mainPack);
+        }
+
+        public void UdpSend(MainPack mainPack){
+            clientMgr.UdpSend(mainPack);
         }
 
         public void AddRequest(IRequest request)
@@ -48,47 +52,29 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void OnUserLoginSuccess(){
-            isNeedShowUserLoginSuccess = true;
+            Loom.QueueOnMainThread(()=>{
+                panelMediator.ShowNotifyPanel("登陆成功",2f);
+                EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
+            });
         }
 
         public void OnUserLoginFail(){
-            isNeedShowUserLoginFail = true;
+            Loom.QueueOnMainThread(()=>{
+                panelMediator.ShowNotifyPanel("登陆失败~",2f);
+            });
         }
 
         public void OnUserRegisterSuccess(){
-            isNeedShowUserRegisterSuccess = true;
+            Loom.QueueOnMainThread(()=>{
+                panelMediator.ShowNotifyPanel("注册成功",2f);
+            });
         }
 
         public void OnUserRegisterFail(){
-            isNeedShowUserRegisterFail = true;
-        }
-
-        bool isNeedShowUserLoginSuccess = false;
-        bool isNeedShowUserLoginFail = false;
-        bool isNeedShowUserRegisterSuccess = false;
-        bool isNeedShowUserRegisterFail = false;
-
-        private void Update() {
-            if(isNeedShowUserLoginSuccess){
-                isNeedShowUserLoginSuccess = false;
-                panelMediator.ShowNotifyPanel("登陆成功",2f);
-                EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
-            }
-            if(isNeedShowUserLoginFail){
-                isNeedShowUserLoginFail = false;
-                panelMediator.ShowNotifyPanel("登陆失败~",2f);
-            }
-            if(isNeedShowUserRegisterSuccess){
-                isNeedShowUserRegisterSuccess = false;
-                panelMediator.ShowNotifyPanel("注册成功",2f);
-            }
-            if(isNeedShowUserRegisterFail){
-                isNeedShowUserRegisterFail = false;
+            Loom.QueueOnMainThread(()=>{
                 panelMediator.ShowNotifyPanel("注册失败~",2f);
-            }
-
+            });
         }
-
         
     }
 }

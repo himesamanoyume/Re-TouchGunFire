@@ -40,19 +40,13 @@ namespace ReTouchGunFire.PanelInfo{
             panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
         }
 
-        bool isPlayerInfoUpdate = false;
 
         void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
         void PlayerInfoUpdate(){
-            isPlayerInfoUpdate = true; 
-        }
-
-        private void Update() {
-            if(isPlayerInfoUpdate){
-                isPlayerInfoUpdate = false;
+            Loom.QueueOnMainThread(()=>{
                 diamondText.text = playerInfo.diamond.ToString();
                 coinText.text = playerInfo.coin.ToString();
-            }
+            });
         }
     }
 

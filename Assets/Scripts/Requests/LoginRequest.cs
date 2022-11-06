@@ -48,6 +48,6 @@ public class LoginRequest : IRequest
         loginPack.Account = account;
         loginPack.Password = password;
         mainPack.LoginPack = loginPack;
-        base.SendRequest(mainPack);
+        base.TcpSendRequest(mainPack);
     }
 }
