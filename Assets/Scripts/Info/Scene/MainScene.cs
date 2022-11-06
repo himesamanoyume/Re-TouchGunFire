@@ -40,14 +40,14 @@ public sealed class MainScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.PlayerInfoPanel, EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
-        panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel,EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<BattleGunInfoPanelInfo>().currentLevel = EUILevel.Level3;
+        panelMediator.PushPanel(EUIPanelType.BattleGunInfoPanel,EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<BattleGunInfoPanelInfo>().currentLevel = EUILevel.Level1;
         });
         panelMediator.PushPanel(EUIPanelType.BattleLittleMenuPanel,EUILevel.Level3, false, (GameObject obj)=>{
             obj.AddComponent<BattleLittleMenuPanelInfo>().currentLevel = EUILevel.Level3;
         });
-        panelMediator.PushPanel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level3, false, (GameObject obj)=>{
-            obj.AddComponent<PlayerCurrentStatePanelInfo>().currentLevel = EUILevel.Level3;
+        panelMediator.PushPanel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<PlayerCurrentStatePanelInfo>().currentLevel = EUILevel.Level1;
         });
         
 

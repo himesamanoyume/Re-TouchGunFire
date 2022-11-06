@@ -21,6 +21,9 @@ null
 
 ## CHANGELOG
 
+> `22.11.6 20:18`
+add FriendsPanel. 
+
 > `22.11.6 12:39`
 add Loom, add Udp support.
 redesign ui size.

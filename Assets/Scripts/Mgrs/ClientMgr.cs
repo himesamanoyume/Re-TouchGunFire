@@ -51,6 +51,7 @@ namespace ReTouchGunFire.Mgrs{
 
         private void CloseSocket(){
             if(tcpSocket.Connected && tcpSocket != null){
+                Debug.Log("关闭Socket");
                 tcpSocket.Close();
             }
         }
