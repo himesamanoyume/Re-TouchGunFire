@@ -134,7 +134,14 @@ namespace ReTouchGunFire.Mediators{
             GameObject obj = Instantiate(tobj, transform);
             yield return obj;
             obj.name = panelName;
-            panelMediator.LoadResFromAbMediatorCallback(obj, eUIPanelType, eUILevel, isInsertToList, addInfoScriptDel);
+            switch(eUIPanelType){
+                case EUIPanelType.Null:
+
+                default:
+                    panelMediator.LoadResFromAbMediatorCallback(obj, eUIPanelType, eUILevel, isInsertToList, addInfoScriptDel);
+                break;
+            }
+            
 
             // UnityWebRequest assetBundle = UnityWebRequestAssetBundle.GetAssetBundle(Application.streamingAssetsPath + abMapPathStr + abName);
             // yield return assetBundle.SendWebRequest();

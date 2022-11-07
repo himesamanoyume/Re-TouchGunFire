@@ -128,4 +128,14 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/NotifyPanel/NotifyPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/FriendsPanel/FriendsPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/FriendsPanel/FriendsPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/FriendPlayerInfoBar/FriendPlayerInfoBar.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/FriendPlayerInfoBar/FriendPlayerInfoBar.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

@@ -54,7 +54,17 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             friendsCube.onClick.AddListener(()=>{
-                panelMediator.ShowNotifyPanel("好友系统暂未开放~",3f);
+                panelMediator.PushPanel(EUIPanelType.FriendsPanel, panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
+                    obj.AddComponent<FriendsPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
+                });
+            });
+
+            warehouseCube.onClick.AddListener(()=>{
+                panelMediator.ShowNotifyPanel("仓库系统暂未开放~",3f);
+            });
+
+            buildingCube.onClick.AddListener(()=>{
+                panelMediator.ShowNotifyPanel("合成系统暂未开放~",3f);
             });
             
             backpackCube.onClick.AddListener(()=>{

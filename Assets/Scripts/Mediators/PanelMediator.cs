@@ -59,13 +59,13 @@ namespace ReTouchGunFire.Mediators{
 
         public void LoadResFromAbMediatorCallback(GameObject uIPanel, EUIPanelType eUIPanelType, EUILevel eUILevel, bool isInsertToList,AddInfoScriptDel addInfoScriptDel ){
             addInfoScriptDel(uIPanel);
-                addInfoScriptDel = null;
-                uiMgr.panelDict.Add(eUIPanelType, uIPanel);
-                uIPanel.transform.SetParent(canvasMediator.GetCanvasLevel(eUILevel));
-                if(isInsertToList){
-                    uiMgr.InsertPanel(uIPanel);
-                    EventMgr.Broadcast(GameEvents.ShowBackButtonPanelNotify);
-                }
+            addInfoScriptDel = null;
+            uiMgr.panelDict.Add(eUIPanelType, uIPanel);
+            uIPanel.transform.SetParent(canvasMediator.GetCanvasLevel(eUILevel));
+            if(isInsertToList){
+                uiMgr.InsertPanel(uIPanel);
+                EventMgr.Broadcast(GameEvents.ShowBackButtonPanelNotify);
+            }
         }
 
         public EUILevel GetPanelLevelUp(EUILevel currentUILevel){

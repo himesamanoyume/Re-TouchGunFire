@@ -6,6 +6,8 @@ Rebuild project.
 
 **联网部分**
 
+好友申请列表
+
 ---
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
@@ -20,6 +22,9 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.7 12:19`
+add FriendsPanelInfo 50%. 
 
 > `22.11.6 20:18`
 add FriendsPanel. 

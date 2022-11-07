@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum EUIPanelType
 {
+    Null,
     [Tooltip("初始化面板")]
     InitPanel,
     [Tooltip("测试面板")]
@@ -41,4 +42,6 @@ public enum EUIPanelType
     LoginRegisterPanel,
     [Tooltip("提示通知面板")]
     NotifyPanel,
+    [Tooltip("好友列表面板")]
+    FriendsPanel,
 }
