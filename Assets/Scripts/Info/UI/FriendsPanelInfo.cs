@@ -12,6 +12,11 @@ namespace ReTouchGunFire.PanelInfo{
         public PanelMediator panelMediator;
         public AbMediator abMediator;
 
+        public SearchFriendRequest searchFriendRequest;
+        public GetFriendRequestRequest getFriendRequestRequest;
+        public GetFriendsRequest getFriendsRequest;
+        public SendRequestFriendRequest sendRequestFriendRequest;
+
         void Start()
         {
             Name = "FriendsPanelInfo";
@@ -51,7 +56,10 @@ namespace ReTouchGunFire.PanelInfo{
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             abMediator = GameLoop.Instance.GetMediator<AbMediator>();
 
-
+            getFriendRequestRequest = gameObject.AddComponent<GetFriendRequestRequest>();
+            getFriendsRequest = gameObject.AddComponent<GetFriendsRequest>();
+            searchFriendRequest = gameObject.AddComponent<SearchFriendRequest>();
+            sendRequestFriendRequest = gameObject.AddComponent<SendRequestFriendRequest>();
             //bind
 
             point = transform.Find("Point").GetComponent<Button>();
@@ -84,6 +92,12 @@ namespace ReTouchGunFire.PanelInfo{
                 panelMediator.PopPanel(false);
                 if(panelMediator.CheckPanelList())
                     EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
+            });
+
+            searchButton.onClick.AddListener(()=>{
+                //temp
+                sendRequestFriendRequest.SendRequest(3);
+                //end
             });
         }
 

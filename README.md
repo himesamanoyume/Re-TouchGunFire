@@ -23,6 +23,10 @@ null
 
 ## CHANGELOG
 
+> `22.11.7 18:37`
+add GetFriendRequestRequest 50%, GetFriendsRequest 50%, SearchFriendRequest 50%, SendRequestFriendRequest. 
+FriendsPanelInfo 60%. 
+
 > `22.11.7 12:19`
 add FriendsPanelInfo 50%. 
 
