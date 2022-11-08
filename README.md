@@ -33,6 +33,10 @@ null
 
 ## CHANGELOG
 
+> `22.11.8 19:18`
+add GetPlayerBaseInfoRequest. 
+FriendsPanelInfo 75%. 
+
 > `22.11.8 12:38`
 SearchFriendRequest finished.
 FriendsPanelInfo 65%.

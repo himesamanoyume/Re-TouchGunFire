@@ -11,13 +11,10 @@ public class InitPlayerInfoRequest : IRequest
         requestCode = RequestCode.User;
         actionCode = ActionCode.InitPlayerInfo;
         base.Awake();
-        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
         playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
     }
 
     PlayerInfo playerInfo;
-
-    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {

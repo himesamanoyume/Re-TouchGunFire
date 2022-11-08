@@ -13,10 +13,7 @@ public class SendRequestFriendRequest : IRequest
         requestCode = RequestCode.Friend;
         actionCode = ActionCode.SendRequestFriend;
         base.Awake();
-        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
     }
-
-    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {

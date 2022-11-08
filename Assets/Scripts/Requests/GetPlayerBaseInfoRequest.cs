@@ -4,32 +4,33 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
 using ReTouchGunFire.PanelInfo;
+using Google.Protobuf.Collections;
 
-public class SearchFriendRequest : IRequest
+public class GetPlayerBaseInfoRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "FriendRequest";
-        requestCode = RequestCode.Friend;
-        actionCode = ActionCode.SearchFriend;
+        Name = "GetPlayerBaseInfoRequest";
+        requestCode = RequestCode.User;
+        actionCode = ActionCode.GetPlayerBaseInfo;
         base.Awake();
-        
     }
-
-
 
     public override void OnResponse(MainPack mainPack)
     {
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                Debug.Log("搜索玩家成功");
+                Debug.Log("请求获取玩家基本信息成功");
+            
                 Loom.QueueOnMainThread(()=>{
-                    panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().SearchFriendCallback(mainPack);
+                    friendPlayerInfoBarInfoList.TryGetValue(mainPack.PlayerInfoPack.Uid,out FriendPlayerInfoBarInfo friendPlayerInfoBarInfo);
+                    friendPlayerInfoBarInfo.GetPlayerBaseInfoCallback(mainPack.PlayerInfoPack);
+                    friendPlayerInfoBarInfoList.Remove(mainPack.PlayerInfoPack.Uid);
                 });
                 
             break;
             case ReturnCode.Fail:
-                Debug.Log("搜索玩家失败");
+                Debug.Log("请求获取玩家基本信息失败");
             break;
             case ReturnCode.ReturnNone:
                 Debug.LogError("不正常情况");
@@ -37,7 +38,9 @@ public class SearchFriendRequest : IRequest
         }
     }
 
-    public void SendRequest(int targetPlayerUid)
+    Dictionary<int, FriendPlayerInfoBarInfo> friendPlayerInfoBarInfoList = new Dictionary<int,FriendPlayerInfoBarInfo>();
+
+    public void SendRequest(int targetPlayerUid, FriendPlayerInfoBarInfo friendPlayerInfoBarInfo)
     {
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
@@ -46,7 +49,7 @@ public class SearchFriendRequest : IRequest
         PlayerInfoPack playerInfoPack = new PlayerInfoPack();
         playerInfoPack.Uid = targetPlayerUid;
         mainPack.PlayerInfoPack = playerInfoPack;
-        
+        friendPlayerInfoBarInfoList.Add(targetPlayerUid, friendPlayerInfoBarInfo);
         base.TcpSendRequest(mainPack);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mgrs;
+using ReTouchGunFire.Mediators;
 
 public abstract class IRequest : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public abstract class IRequest : MonoBehaviour
     protected RequestMgr requestMgr;
     protected ClientMgr clientMgr;
 
+    protected NetworkMediator networkMediator;
+    protected PanelMediator panelMediator;
+
     public ActionCode ActionCode{
         get{ return actionCode;}
     }
@@ -23,6 +27,8 @@ public abstract class IRequest : MonoBehaviour
     public virtual void Awake() {
         requestMgr = GameLoop.Instance.gameManager.RequestMgr;
         clientMgr = GameLoop.Instance.gameManager.ClientMgr;
+        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
+        panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
         requestMgr.AddRequest(this);
     }
 

@@ -22,7 +22,7 @@ namespace ReTouchGunFire.Mediators{
         public override void Init()
         {
             abMediator = GameLoop.Instance.GetMediator<AbMediator>();
-            canvas = abMediator.SyncLoadABRes("prefabs", "Canvas", null);
+            canvas = abMediator.FristTimeSyncLoadABRes("prefabs", "Canvas", null);
             canvas.name = "Canvas";
             canvas.AddComponent<CanvasInfo>();
             canvasInfo = canvas.GetComponent<CanvasInfo>();

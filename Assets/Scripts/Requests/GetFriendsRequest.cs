@@ -12,10 +12,7 @@ public class GetFriendsRequest : IRequest
         requestCode = RequestCode.Friend;
         actionCode = ActionCode.GetFriends;
         base.Awake();
-        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
     }
-
-    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {

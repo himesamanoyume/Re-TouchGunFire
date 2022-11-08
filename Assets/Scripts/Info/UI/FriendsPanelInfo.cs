@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
 using SocketProtocol;
+using Google.Protobuf.Collections;
 
 
 namespace ReTouchGunFire.PanelInfo{
@@ -17,6 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
         public GetFriendRequestRequest getFriendRequestRequest;
         public GetFriendsRequest getFriendsRequest;
         public SendRequestFriendRequest sendRequestFriendRequest;
+        
 
         void Start()
         {
@@ -62,6 +64,7 @@ namespace ReTouchGunFire.PanelInfo{
             getFriendsRequest = gameObject.AddComponent<GetFriendsRequest>();
             searchFriendRequest = gameObject.AddComponent<SearchFriendRequest>();
             sendRequestFriendRequest = gameObject.AddComponent<SendRequestFriendRequest>();
+            
             //bind
 
             point = transform.Find("Point").GetComponent<Button>();
@@ -76,7 +79,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             friendsPartScrollViewContent = container1.Find("FriendsPart/Scroll View/Viewport/Content");
 
-            EventMgr.AddListener<AbLoadEndNotify>(OnAbLoadEnd);
+            LoadTemplate();
             
             container2 = transform.Find("Point/Center/Container2");
 
@@ -127,14 +130,28 @@ namespace ReTouchGunFire.PanelInfo{
             });
         }
 
-        void OnAbLoadEnd(AbLoadEndNotify evt) => AbLoadEnd();
-        void AbLoadEnd(){
-            friendPlayerInfoBarTemplate = abMediator.SyncLoadABRes("prefab","FriendPlayerInfoBar", friendsPartScrollViewContent);
+        void LoadTemplate(){
+            friendPlayerInfoBarTemplate = abMediator.SyncLoadABRes("prefabs","FriendPlayerInfoBar");
         }
 
-        public void ResponseCallback(MainPack mainPack){
+        public void SearchFriendCallback(MainPack mainPack){
             playerNameText.text = mainPack.PlayerInfoPack.PlayerName;
             levelText.text = "Lv." + mainPack.PlayerInfoPack.Level.ToString();
+        }
+
+        public void GetFriendRequestCallback(RepeatedField<FriendsPack> friendsPacks){
+            // Debug.Log(friendsPartScrollViewContent.childCount);
+            for (int i = 0; i < friendsPartScrollViewContent.childCount; i++)
+            {
+                Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);
+            }
+            foreach (var item in friendsPacks)
+            {
+                GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
+                playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
+                playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().isRequestType = true;
+            }
+
         }
 
     }

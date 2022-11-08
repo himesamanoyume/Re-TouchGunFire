@@ -13,7 +13,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         void Start()
         {
-            Name = "Custom PanelInfo";
+            Name = "CustomPanelInfo";
             Init();
         }
 

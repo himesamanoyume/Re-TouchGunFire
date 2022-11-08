@@ -11,10 +11,7 @@ public class LoginRequest : IRequest
         requestCode = RequestCode.User;
         actionCode = ActionCode.Login;
         base.Awake();
-        networkMediator = GameLoop.Instance.GetMediator<NetworkMediator>();
     }
-
-    public NetworkMediator networkMediator;
 
     public override void OnResponse(MainPack mainPack)
     {
