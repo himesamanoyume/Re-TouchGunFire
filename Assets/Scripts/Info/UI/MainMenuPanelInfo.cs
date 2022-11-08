@@ -98,7 +98,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             area1Cube.onClick.AddListener(()=>{
-                GameObject.Find("TwiceConfirmPanel").GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
+                panelMediator.GetPanel(EUIPanelType.TwiceConfirmPanel).GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
                     SetDefaultMainMenuPos();
                     EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
                     sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));

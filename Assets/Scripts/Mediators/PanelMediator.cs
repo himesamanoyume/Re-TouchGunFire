@@ -32,6 +32,15 @@ namespace ReTouchGunFire.Mediators{
             // EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
+        public GameObject GetPanel(EUIPanelType eUIPanelType){
+            if (uiMgr.panelDict.TryGetValue(eUIPanelType, out GameObject panel))
+            {
+                return panel;
+            }else{
+                return null;
+            }
+        }
+
         public delegate void AddInfoScriptDel(GameObject panel);
         
         //------------temp

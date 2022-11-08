@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
+using Google.Protobuf.Collections;
 
 public class GetFriendRequestRequest : IRequest
 {
@@ -21,10 +22,15 @@ public class GetFriendRequestRequest : IRequest
     {
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                
+                Debug.Log("请求添加好友申请列表成功");
+                RepeatedField<FriendsPack> friendsPacks = mainPack.FriendsPack;
+                foreach (var item in friendsPacks)
+                {
+                    Debug.Log(item.Player1Uid);
+                }
             break;
             case ReturnCode.Fail:
-                
+                Debug.Log("请求添加好友申请列表失败");
             break;
             case ReturnCode.ReturnNone:
                 Debug.LogError("不正常情况");

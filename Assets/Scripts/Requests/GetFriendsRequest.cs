@@ -21,10 +21,10 @@ public class GetFriendsRequest : IRequest
     {
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                
+                Debug.Log("请求好友列表成功");
             break;
             case ReturnCode.Fail:
-                
+                Debug.Log("请求好友列表失败");
             break;
             case ReturnCode.ReturnNone:
                 Debug.LogError("不正常情况");

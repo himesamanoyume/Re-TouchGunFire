@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
+using SocketProtocol;
 
 
 namespace ReTouchGunFire.PanelInfo{
@@ -43,6 +44,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform container2;
             //SearchPlayerPart
                 public Transform searchPlayerInfoBar;
+                    private int targetPlayerUid;
                     public Text playerNameText;
                     public Text levelText;
                     public Button addFriendButton;
@@ -88,15 +90,39 @@ namespace ReTouchGunFire.PanelInfo{
 
             //end
 
+            getFriendsRequest.SendRequest();
+
             point.onClick.AddListener(()=>{
                 panelMediator.PopPanel(false);
                 if(panelMediator.CheckPanelList())
                     EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
             });
 
+            friendsPageButton.onClick.AddListener(()=>{
+                getFriendsRequest.SendRequest();
+            });
+
+            friendRequestPageButton.onClick.AddListener(()=>{
+                getFriendRequestRequest.SendRequest();
+            });
+
             searchButton.onClick.AddListener(()=>{
                 //temp
-                sendRequestFriendRequest.SendRequest(3);
+                int _targetPlayerUid = int.Parse(searchInputField.text);
+                Debug.Log(_targetPlayerUid);
+                searchFriendRequest.SendRequest(_targetPlayerUid);
+                targetPlayerUid = _targetPlayerUid;
+                container2.GetComponent<RectTransform>().offsetMax = inTheScreen;
+                //end
+            });
+
+            closeButton.onClick.AddListener(()=>{
+                container2.GetComponent<RectTransform>().offsetMax = offScreen;
+            });
+
+            addFriendButton.onClick.AddListener(()=>{
+                //temp
+                sendRequestFriendRequest.SendRequest(targetPlayerUid);
                 //end
             });
         }
@@ -106,6 +132,10 @@ namespace ReTouchGunFire.PanelInfo{
             friendPlayerInfoBarTemplate = abMediator.SyncLoadABRes("prefab","FriendPlayerInfoBar", friendsPartScrollViewContent);
         }
 
+        public void ResponseCallback(MainPack mainPack){
+            playerNameText.text = mainPack.PlayerInfoPack.PlayerName;
+            levelText.text = "Lv." + mainPack.PlayerInfoPack.Level.ToString();
+        }
 
     }
 }

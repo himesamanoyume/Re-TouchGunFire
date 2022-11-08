@@ -4,9 +4,19 @@ Rebuild project.
 
 ## TODO
 
-**联网部分**
+联网部分
 
-好友申请列表
+好友相关
+
+- 获取好友列表
+
+- 同意或拒绝好友申请
+
+- 邀请入队
+
+- 同意入队
+
+- 离开小队
 
 ---
 
@@ -22,6 +32,10 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.8 12:38`
+SearchFriendRequest finished.
+FriendsPanelInfo 65%.
 
 > `22.11.7 18:37`
 add GetFriendRequestRequest 50%, GetFriendsRequest 50%, SearchFriendRequest 50%, SendRequestFriendRequest. 
