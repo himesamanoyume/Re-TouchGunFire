@@ -72,6 +72,7 @@ namespace ReTouchGunFire.PanelInfo{
         [Tooltip("副武器总破甲效率")]
         public Text handgunTotalAbe;
         
+        public Transform point;
         private Transform content;
         private Transform propsBar;
         private Transform mainGunBar;
@@ -87,14 +88,18 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
 
+            point = transform.Find("Point");
             content = transform.Find("Point/LeftBottom/Container/Scroll View/Viewport/Content");
             propsBar = content.Find("PropsBar");
             mainGunBar = content.Find("MainGunBar");
             handgunBar = content.Find("HandGunBar");
+            point.GetComponent<RectTransform>().offsetMax = offScreen;
             InitPropsBar();
             InitMainGunBar();
             InitHandGunBar();
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
+            EventMgr.AddListener<BackpackPanelOpenNotify>(OnBackpackOpen);
+            EventMgr.AddListener<BackpackPanelCloseNotify>(OnBackpackClose);
         }
 
         void InitPropsBar(){
@@ -137,8 +142,19 @@ namespace ReTouchGunFire.PanelInfo{
             handgunTotalAbe = handgunBar.Find("TotalABE/Value").GetComponent<Text>();
         }
 
+        void OnBackpackOpen(BackpackPanelOpenNotify evt) => BackpackOpen();
+        void BackpackOpen(){
+            point.GetComponent<RectTransform>().offsetMax = inTheScreen;
+        }
+
+        void OnBackpackClose(BackpackPanelCloseNotify evt) => BackpackClose();
+        void BackpackClose(){
+            point.GetComponent<RectTransform>().offsetMax = offScreen;
+        }
+
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();
         void RestorePanel(){
+            point.GetComponent<RectTransform>().offsetMax = offScreen;
             panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level4);
         }
     }

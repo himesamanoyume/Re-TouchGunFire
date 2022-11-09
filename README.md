@@ -8,8 +8,6 @@ Rebuild project.
 
 好友相关
 
-- 删除好友
-
 - 邀请入队
 
 - 同意入队
@@ -30,6 +28,10 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.9 20:00`
+modify some UI and UIInfo. 
+Requests something changed. 
 
 > `22.11.9 14:21`
 rebuild request: add RequestMediator. 

@@ -17,21 +17,24 @@ public sealed class GetFriendsRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Debug.Log("请求好友列表成功");
-                Loom.QueueOnMainThread(()=>{
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
+                    // Debug.Log("请求好友列表成功");
+                    // panelMediator.ShowNotifyPanel("请求好友列表成功",3f);
                     FriendsPanelInfo friendsPanelInfo = panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>();
                     friendsPanelInfo.GetFriendsCallback(mainPack.FriendsPack);
-                });
-            break;
-            case ReturnCode.Fail:
-                Debug.Log("请求好友列表失败");
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+                break;
+                case ReturnCode.Fail:
+                    // Debug.Log("请求好友列表失败");
+                    panelMediator.ShowNotifyPanel("请求好友列表失败",3f);
+                break;
+                case ReturnCode.ReturnNone:
+                    // Debug.LogError("不正常情况");
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                break;
+            }
+        });
     }
 
     public void SendRequest()

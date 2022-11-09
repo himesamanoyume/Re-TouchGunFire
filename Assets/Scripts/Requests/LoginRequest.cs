@@ -15,22 +15,23 @@ public sealed class LoginRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        Debug.Log(mainPack.ReturnCode);
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Loom.QueueOnMainThread(()=>{
+        Loom.QueueOnMainThread(()=>{
+            Debug.Log(mainPack.ReturnCode);
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
                     networkMediator.uid = mainPack.Uid;
                     Debug.Log(mainPack.Uid);
                     networkMediator.OnUserLoginSuccess();
-                });
-            break;
-            case ReturnCode.Fail:
-                networkMediator.OnUserLoginFail();
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+                break;
+                case ReturnCode.Fail:
+                    networkMediator.OnUserLoginFail();
+                break;
+                case ReturnCode.ReturnNone:
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                    // Debug.LogError("不正常情况");
+                break;
+            }
+        });
     }
 
     /// <summary>

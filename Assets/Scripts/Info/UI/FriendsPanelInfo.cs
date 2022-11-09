@@ -108,21 +108,21 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             friendsPageButton.onClick.AddListener(()=>{
+                container2.GetComponent<RectTransform>().offsetMax = offScreen;
                 getFriendsRequest.SendRequest();
             });
 
             friendRequestPageButton.onClick.AddListener(()=>{
+                container2.GetComponent<RectTransform>().offsetMax = offScreen;
                 getFriendRequestRequest.SendRequest();
             });
 
             searchButton.onClick.AddListener(()=>{
-                //temp
                 int _targetPlayerUid = int.Parse(searchInputField.text);
-                Debug.Log(_targetPlayerUid);
+                // Debug.Log(_targetPlayerUid);
                 searchFriendRequest.SendRequest(_targetPlayerUid);
                 targetPlayerUid = _targetPlayerUid;
                 container2.GetComponent<RectTransform>().offsetMax = inTheScreen;
-                //end
             });
 
             closeButton.onClick.AddListener(()=>{
@@ -162,7 +162,6 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void GetFriendsCallback(RepeatedField<FriendsPack> friendsPacks){
-            Debug.Log(friendsPacks.Count);
             for (int i = 0; i < friendsPartScrollViewContent.childCount; i++)
             {
                 Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);

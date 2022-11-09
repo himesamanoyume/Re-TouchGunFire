@@ -15,17 +15,20 @@ public sealed class RegisterRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                networkMediator.OnUserRegisterSuccess();
-            break;
-            case ReturnCode.Fail:
-                networkMediator.OnUserRegisterFail();
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
+                    networkMediator.OnUserRegisterSuccess();
+                break;
+                case ReturnCode.Fail:
+                    networkMediator.OnUserRegisterFail();
+                break;
+                case ReturnCode.ReturnNone:
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                    // Debug.LogError("不正常情况");
+                break;
+            }
+        });
     }
 
     /// <summary>

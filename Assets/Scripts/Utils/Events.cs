@@ -29,6 +29,10 @@ public static class GameEvents{
     public static StartConnectMasterServerNotify StartConnectMasterServerNotify = new StartConnectMasterServerNotify();
 
     public static PlayerInfoUpdateNotify PlayerInfoUpdateNotify = new PlayerInfoUpdateNotify();
+
+    public static BackpackPanelOpenNotify BackpackPanelOpenNotify = new BackpackPanelOpenNotify();
+
+    public static BackpackPanelCloseNotify BackpackPanelCloseNotify = new BackpackPanelCloseNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{}
@@ -46,3 +50,5 @@ public class UserLoginSuccessNotify : GameEvent{}
 public class AbLoadEndNotify : GameEvent{}
 public class StartConnectMasterServerNotify : GameEvent{}
 public class PlayerInfoUpdateNotify : GameEvent{}
+public class BackpackPanelOpenNotify : GameEvent{}
+public class BackpackPanelCloseNotify : GameEvent{}

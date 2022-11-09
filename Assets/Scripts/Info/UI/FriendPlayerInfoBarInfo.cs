@@ -32,6 +32,9 @@ namespace ReTouchGunFire.PanelInfo{
         public Button refuseFriendRequestButton;
         public Text onlineStateText;
 
+        Color green = new Color(0.4f, 0.8f, 0.1f);
+        Color grey = new Color(0.5f, 0.5f, 0.5f);
+
         protected sealed override void Init()
         {
             base.Init();
@@ -59,7 +62,9 @@ namespace ReTouchGunFire.PanelInfo{
             }
 
             deleteFriendButton.onClick.AddListener(()=>{
-                deleteFriendRequest.SendRequest(playerUid, this);
+                panelMediator.ShowTwiceConfirmPanel("真的要删除好友吗?",10f,()=>{
+                    deleteFriendRequest.SendRequest(playerUid, this);
+                });
             });
 
             acceptFriendRequestButton.onClick.AddListener(()=>{
@@ -89,7 +94,7 @@ namespace ReTouchGunFire.PanelInfo{
             inviteMyTeamButton.gameObject.SetActive(false);
             refuseFriendRequestButton.gameObject.SetActive(true);
             acceptFriendRequestButton.gameObject.SetActive(true);
-
+            onlineStateText.gameObject.SetActive(false);
         }
 
         public void GetPlayerBaseInfoCallback(PlayerInfoPack playerInfoPack){
@@ -97,6 +102,14 @@ namespace ReTouchGunFire.PanelInfo{
             playerNameStr = playerInfoPack.PlayerName;
             levelText.text = "Lv."+playerInfoPack.Level.ToString();
             levelStr = playerInfoPack.Level.ToString();
+            if(playerInfoPack.IsOnline){
+                onlineStateText.text = "在线";
+                onlineStateText.color = green;
+            }else
+            {
+                onlineStateText.text = "离线";
+                onlineStateText.color = grey;
+            }
         }
 
         public void AcceptFriendRequestCallback(){

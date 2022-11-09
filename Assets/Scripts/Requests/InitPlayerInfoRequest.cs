@@ -18,9 +18,9 @@ public sealed class InitPlayerInfoRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Loom.QueueOnMainThread(()=>{
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
                     playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
                     playerInfo.uid = mainPack.PlayerInfoPack.Uid;
                     playerInfo.playerName = mainPack.PlayerInfoPack.PlayerName;
@@ -31,17 +31,17 @@ public sealed class InitPlayerInfoRequest : IRequest
                     //赋值装备与武器
 
                     //end
-                    EventMgr.Broadcast(GameEvents.PlayerInfoUpdateNotify);
-                });
-                
-            break;
-            case ReturnCode.Fail:
-                
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+                    EventMgr.Broadcast(GameEvents.PlayerInfoUpdateNotify); 
+                break;
+                case ReturnCode.Fail:
+                    
+                break;
+                case ReturnCode.ReturnNone:
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                    // Debug.LogError("不正常情况");
+                break;
+            }
+        });
     }
 
     public void SendRequest()

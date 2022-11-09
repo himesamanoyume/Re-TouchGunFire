@@ -17,20 +17,26 @@ public sealed class SendRequestFriendRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Debug.Log("添加好友请求发送成功");
-            break;
-            case ReturnCode.Fail:
-                Debug.Log("添加好友请求发送失败");
-            break;
-            case ReturnCode.RepeatedRequest:
-                Debug.Log("玩家之间已为好友或已发送过添加好友请求");
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
+                    // Debug.Log("添加好友请求发送成功");
+                    panelMediator.ShowNotifyPanel("添加好友请求发送成功", 3f);
+                break;
+                case ReturnCode.Fail:
+                    // Debug.Log("添加好友请求发送失败");
+                    panelMediator.ShowNotifyPanel("添加好友请求发送失败", 3f);
+                break;
+                case ReturnCode.RepeatedRequest:
+                    // Debug.Log("玩家之间已为好友或已发送过添加好友请求");
+                    panelMediator.ShowNotifyPanel("玩家之间已为好友或已发送过添加好友请求", 3f);
+                break;
+                case ReturnCode.ReturnNone:
+                    // Debug.LogError("不正常情况");
+                    panelMediator.ShowNotifyPanel("不正常情况", 3f);
+                break;
+            }
+        });
     }
 
     public void SendRequest(int targetPlayerUid)

@@ -18,24 +18,25 @@ public sealed class GetPlayerBaseInfoRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Debug.Log("请求获取玩家基本信息成功");
-            
-                Loom.QueueOnMainThread(()=>{
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
+                    // Debug.Log("请求获取玩家基本信息成功");
+                    // panelMediator.ShowNotifyPanel("请求获取玩家基本信息成功",3f);
                     friendPlayerInfoBarInfoList.TryGetValue(mainPack.PlayerInfoPack.Uid,out FriendPlayerInfoBarInfo friendPlayerInfoBarInfo);
                     friendPlayerInfoBarInfo.GetPlayerBaseInfoCallback(mainPack.PlayerInfoPack);
                     friendPlayerInfoBarInfoList.Remove(mainPack.PlayerInfoPack.Uid);
-                });
-                
-            break;
-            case ReturnCode.Fail:
-                Debug.Log("请求获取玩家基本信息失败");
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+                break;
+                case ReturnCode.Fail:
+                    // Debug.Log("请求获取玩家基本信息失败");
+                    panelMediator.ShowNotifyPanel("请求获取玩家基本信息失败",3f);
+                break;
+                case ReturnCode.ReturnNone:
+                    // Debug.LogError("不正常情况");
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                break;
+            }
+        });
     }
 
     Dictionary<int, FriendPlayerInfoBarInfo> friendPlayerInfoBarInfoList = new Dictionary<int,FriendPlayerInfoBarInfo>();

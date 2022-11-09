@@ -33,6 +33,7 @@ namespace ReTouchGunFire.PanelInfo{
             point = transform.GetChild(0).GetComponent<Button>();
             point.onClick.AddListener(()=>{
                 panelMediator.PopPanel(false);
+                EventMgr.Broadcast(GameEvents.BackpackPanelCloseNotify);
                 isEquippedPartShowed = false;
                 ShowIdlePart();
                 if(panelMediator.CheckPanelList())
@@ -48,6 +49,10 @@ namespace ReTouchGunFire.PanelInfo{
 
         UnityAction ua;
         bool isEquippedPartShowed = true;
+
+        /// <summary>
+        /// 显示背包列表
+        /// </summary>
         void ShowIdlePart(){
             if(isEquippedPartShowed){
                 equippedPart.GetComponent<RectTransform>().offsetMax = offScreen;

@@ -37,7 +37,9 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnCloseBackButtonPanel(CloseBackButtonPanelNotify evt) => ClosePanel();
         void ClosePanel(){
+            EventMgr.Broadcast(GameEvents.BackpackPanelCloseNotify);
             point.SetActive(false);
+            
         }
 
 

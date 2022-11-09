@@ -20,21 +20,23 @@ public sealed class SearchFriendRequest : IRequest
 
     public override void OnResponse(MainPack mainPack)
     {
-        switch(mainPack.ReturnCode){
-            case ReturnCode.Success:
-                Debug.Log("搜索玩家成功");
-                Loom.QueueOnMainThread(()=>{
+        Loom.QueueOnMainThread(()=>{
+            switch(mainPack.ReturnCode){
+                case ReturnCode.Success:
+                    // Debug.Log("搜索玩家成功");
+                    // panelMediator.ShowNotifyPanel("搜索玩家成功",3f);
                     panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().SearchFriendCallback(mainPack);
-                });
-                
-            break;
-            case ReturnCode.Fail:
-                Debug.Log("搜索玩家失败");
-            break;
-            case ReturnCode.ReturnNone:
-                Debug.LogError("不正常情况");
-            break;
-        }
+                break;
+                case ReturnCode.Fail:
+                    // Debug.Log("搜索玩家失败");
+                    panelMediator.ShowNotifyPanel("搜索玩家失败",3f);
+                break;
+                case ReturnCode.ReturnNone:
+                    // Debug.LogError("不正常情况");
+                    panelMediator.ShowNotifyPanel("不正常情况",3f);
+                break;
+            }
+        });
     }
 
     public void SendRequest(int targetPlayerUid)

@@ -33,7 +33,10 @@ public abstract class IRequest : MonoBehaviour
     }
 
     public virtual void OnDestroy() {
-        requestMgr.RemoveRequest(this);
+        if (requestMgr!=null)
+        {
+            requestMgr.RemoveRequest(this);
+        }
     }
 
     public abstract void OnResponse(MainPack mainPack);

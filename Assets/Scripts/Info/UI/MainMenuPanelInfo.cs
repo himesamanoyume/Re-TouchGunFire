@@ -68,6 +68,11 @@ namespace ReTouchGunFire.PanelInfo{
                     obj.AddComponent<BackpackPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
                     
                 });
+                panelMediator.MovePanelLevel(
+                    EUIPanelType.PlayerPropsPanel, 
+                    panelMediator.GetPanelLevelUp(panelMediator.GetPanelLevelUp(currentLevel))
+                );
+                EventMgr.Broadcast(GameEvents.BackpackPanelOpenNotify);
                 
             });
 
