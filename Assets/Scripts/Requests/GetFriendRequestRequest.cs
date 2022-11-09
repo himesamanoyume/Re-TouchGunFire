@@ -4,9 +4,8 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
 using ReTouchGunFire.PanelInfo;
-using Google.Protobuf.Collections;
 
-public class GetFriendRequestRequest : IRequest
+public sealed class GetFriendRequestRequest : IRequest
 {
     public override void Awake()
     {

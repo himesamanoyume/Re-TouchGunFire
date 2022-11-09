@@ -25,7 +25,6 @@ namespace ReTouchGunFire.PanelInfo{
         public LoginRequest loginRequest;
         public RegisterRequest registerRequest;
 
-        public PanelMediator panelMediator;
         private void Start() {
             Name = "LoginRegisterPanelInfo";
             Init();
@@ -36,9 +35,10 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            loginRequest = gameObject.AddComponent<LoginRequest>();
-            registerRequest = gameObject.AddComponent<RegisterRequest>();
+
+            loginRequest = (LoginRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.Login);
+
+            registerRequest = (RegisterRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.Register);
 
             loginPart = transform.Find("Point/Center/LoginPart");
             registerPart = transform.Find("Point/Center/RegisterPart");
@@ -87,18 +87,6 @@ namespace ReTouchGunFire.PanelInfo{
             });
         }
 
-        // void ShowRegisterPart(){
-        //     if(isLogin){
-        //         loginPart.GetComponent<RectTransform>().offsetMax = inTheScreen;
-        //         registerPart.GetComponent<RectTransform>().offsetMax = offScreen;
-        //     }else{
-        //         loginPart.GetComponent<RectTransform>().offsetMax = offScreen;
-        //         registerPart.GetComponent<RectTransform>().offsetMax = inTheScreen;
-        //     }
-        //     isLogin = !isLogin;
-        // }
-
-        
     }
 }
 

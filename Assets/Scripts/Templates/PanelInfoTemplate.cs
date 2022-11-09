@@ -9,7 +9,6 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class PanelInfoTemplate : UIInfo
     {
-        public PanelMediator panelMediator;
 
         void Start()
         {
@@ -20,7 +19,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+
             //do something
         }
     }

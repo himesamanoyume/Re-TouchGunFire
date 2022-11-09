@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
+using ReTouchGunFire.PanelInfo;
 
-public class GetFriendsRequest : IRequest
+public sealed class GetFriendsRequest : IRequest
 {
     public override void Awake()
     {
@@ -19,6 +20,10 @@ public class GetFriendsRequest : IRequest
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
                 Debug.Log("请求好友列表成功");
+                Loom.QueueOnMainThread(()=>{
+                    FriendsPanelInfo friendsPanelInfo = panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>();
+                    friendsPanelInfo.GetFriendsCallback(mainPack.FriendsPack);
+                });
             break;
             case ReturnCode.Fail:
                 Debug.Log("请求好友列表失败");

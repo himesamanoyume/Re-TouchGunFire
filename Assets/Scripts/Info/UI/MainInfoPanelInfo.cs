@@ -12,7 +12,6 @@ namespace ReTouchGunFire.PanelInfo{
         public Text coinText;
         public Button coinButton;
 
-        public PanelMediator panelMediator;
         public InitPlayerInfoRequest initPlayerInfoRequest;
         PlayerInfo playerInfo;
 
@@ -23,9 +22,11 @@ namespace ReTouchGunFire.PanelInfo{
 
         protected sealed override void Init(){
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+
             playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
-            initPlayerInfoRequest = gameObject.AddComponent<InitPlayerInfoRequest>();
+
+            initPlayerInfoRequest = (InitPlayerInfoRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.InitPlayerInfo);
+            
             diamondButton = transform.Find("Point/InfoContainer/InfoButton_Diamond").GetComponent<Button>();
             diamondText = transform.Find("Point/InfoContainer/InfoButton_Diamond/obj/obj2/InfoText_Diamond").GetComponent<Text>();
             coinButton = transform.Find("Point/InfoContainer/InfoButton_Coin").GetComponent<Button>();

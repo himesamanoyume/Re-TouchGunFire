@@ -62,4 +62,5 @@ public class GameManager
     public LuaMgr LuaMgr{
         get{return luaMgr;}
     }
+
 }

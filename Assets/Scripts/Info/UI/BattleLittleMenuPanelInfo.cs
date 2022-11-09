@@ -15,9 +15,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Button showPlayerPropsCube;
         public Text showAllMenuCubeText;
         public Text showPlayerPropsCubeText;
-
-        public PanelMediator panelMediator;
-        public SceneMediator sceneMediator;
+        
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";
@@ -30,9 +28,6 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
-
             container = transform.Find("Point/RightCenter/Container");
             point = transform.GetChild(0);
             
@@ -72,7 +67,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             leaveBattleCube.onClick.AddListener(()=>{
-                panelMediator.GetPanel(EUIPanelType.TwiceConfirmPanel).GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要撤退吗?", 10, ()=>{
+                panelMediator.ShowTwiceConfirmPanel("确定要撤退吗?", 10, ()=>{
                     EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
                     sceneMediator.SetScene(new MainScene(sceneMediator));
                 });

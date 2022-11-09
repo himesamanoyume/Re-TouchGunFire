@@ -25,8 +25,6 @@ namespace ReTouchGunFire.PanelInfo{
         {
             Name = "BattleGunInfoPanelInfo";
             Init();
-
-            
         }
 
         public Transform mainGun;
@@ -49,13 +47,11 @@ namespace ReTouchGunFire.PanelInfo{
 
         private Color uncheckedColor = new Color(0,0,0,0.4f);
         private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);
-        public PanelMediator panelMediator;
 
         protected sealed override void Init()
         {
             base.Init();
-            
-            // panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+    
             mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGunCube");
             handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGunCube");
             mainGunCube = mainGun.GetComponent<Button>();

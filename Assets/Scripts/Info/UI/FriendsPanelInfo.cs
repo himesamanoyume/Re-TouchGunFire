@@ -11,13 +11,12 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class FriendsPanelInfo : UIInfo
     {
-        public PanelMediator panelMediator;
-        public AbMediator abMediator;
-
         public SearchFriendRequest searchFriendRequest;
         public GetFriendRequestRequest getFriendRequestRequest;
         public GetFriendsRequest getFriendsRequest;
+        public GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
         public SendRequestFriendRequest sendRequestFriendRequest;
+        public AcceptFriendRequestRequest acceptFriendRequestRequest;
         
 
         void Start()
@@ -32,6 +31,7 @@ namespace ReTouchGunFire.PanelInfo{
             //PagePart
                 public Button friendsPageButton;
                 public Button friendRequestPageButton;
+                public Text friendCountText;
             //end
             //SearchPart
                 public InputField searchInputField;
@@ -57,14 +57,19 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            abMediator = GameLoop.Instance.GetMediator<AbMediator>();
-
-            getFriendRequestRequest = gameObject.AddComponent<GetFriendRequestRequest>();
-            getFriendsRequest = gameObject.AddComponent<GetFriendsRequest>();
-            searchFriendRequest = gameObject.AddComponent<SearchFriendRequest>();
-            sendRequestFriendRequest = gameObject.AddComponent<SendRequestFriendRequest>();
             
+            getFriendRequestRequest = (GetFriendRequestRequest)requestMediator.GetRequest(ActionCode.GetFriendRequest);
+
+            getFriendsRequest = (GetFriendsRequest)requestMediator.GetRequest(ActionCode.GetFriends);
+
+            searchFriendRequest = (SearchFriendRequest)requestMediator.GetRequest(ActionCode.SearchFriend);
+
+            sendRequestFriendRequest = (SendRequestFriendRequest)requestMediator.GetRequest(ActionCode.SendRequestFriend);
+
+            acceptFriendRequestRequest = (AcceptFriendRequestRequest)requestMediator.GetRequest(ActionCode.AcceptFriendRequest);
+
+            getPlayerBaseInfoRequest =  (GetPlayerBaseInfoRequest)requestMediator.GetRequest(ActionCode.GetPlayerBaseInfo);
+
             //bind
 
             point = transform.Find("Point").GetComponent<Button>();
@@ -73,6 +78,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             friendsPageButton = container1.Find("PagePart/Page/Content/FriendsPageButton").GetComponent<Button>();
             friendRequestPageButton = container1.Find("PagePart/Page/Content/FriendRequestPageButton").GetComponent<Button>();
+            friendCountText = container1.Find("PagePart/FriendCountContent/FriendCountText").GetComponent<Text>();
 
             searchInputField = container1.Find("SearchPart/SearchInputField").GetComponent<InputField>();
             searchButton = container1.Find("SearchPart/SearchButton").GetComponent<Button>();
@@ -145,6 +151,7 @@ namespace ReTouchGunFire.PanelInfo{
             {
                 Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);
             }
+            
             foreach (var item in friendsPacks)
             {
                 GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
@@ -152,6 +159,23 @@ namespace ReTouchGunFire.PanelInfo{
                 playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().isRequestType = true;
             }
 
+        }
+
+        public void GetFriendsCallback(RepeatedField<FriendsPack> friendsPacks){
+            Debug.Log(friendsPacks.Count);
+            for (int i = 0; i < friendsPartScrollViewContent.childCount; i++)
+            {
+                Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);
+            }
+            int count = 0;
+            friendCountText.text = string.Format("好友数 {0}/30",count);
+            foreach (var item in friendsPacks)
+            {
+                count++;
+                friendCountText.text = string.Format("好友数 {0}/30",count);
+                GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
+                playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
+            }
         }
 
     }

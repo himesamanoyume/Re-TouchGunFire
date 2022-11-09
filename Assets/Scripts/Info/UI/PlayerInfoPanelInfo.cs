@@ -12,8 +12,6 @@ namespace ReTouchGunFire.PanelInfo{
         public Text playerNameText;
         public Text playerLevelText;
 
-        public PanelMediator panelMediator;
-
         private Transform content;
         PlayerInfo playerInfo;
 
@@ -25,7 +23,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         protected sealed override void Init(){
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+
             playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
             content = transform.Find("Point/LeftBottom/Container/Player/Content");
             expBar = content.Find("ExpItem/ExpBar").GetComponent<Slider>();

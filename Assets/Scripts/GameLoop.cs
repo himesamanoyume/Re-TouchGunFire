@@ -17,12 +17,14 @@ public class GameLoop : UnitySingleton<GameLoop>
         //游戏初始化
         mediatorMgr = gameManager.MediatorMgr;
         mediatorMgr.initDel += mediatorMgr.InitAbMediator;
+        mediatorMgr.initDel += mediatorMgr.InitNetworkMediator;
+        mediatorMgr.initDel += mediatorMgr.InitRequestMediator;
         mediatorMgr.initDel += mediatorMgr.InitSceneMediator;
         mediatorMgr.initDel += mediatorMgr.InitHotUpdateMediator;
         mediatorMgr.initDel += mediatorMgr.InitCanvasMediator;
         mediatorMgr.initDel += mediatorMgr.InitLuaMediator;
         mediatorMgr.initDel += mediatorMgr.InitPanelMediator;
-        mediatorMgr.initDel += mediatorMgr.InitNetworkMediator;
+        
 
         mediatorMgr.InitDelMediator();
 
@@ -37,7 +39,7 @@ public class GameLoop : UnitySingleton<GameLoop>
         // Debug.Log("GameLoop Start.");
         sceneMediator.SetScene(new InitScene(this.sceneMediator));
         gameObject.AddComponent<PlayerInfo>();
-        gameObject.AddComponent<GetPlayerBaseInfoRequest>();
+        
         // sceneMediator.SetScene(new InitScene(this.sceneMediator), "");
 
     }

@@ -11,7 +11,17 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public override void Init(){
-            
+            GameLoop.Instance.gameObject.AddComponent<AcceptFriendRequestRequest>();
+            GameLoop.Instance.gameObject.AddComponent<GetFriendRequestRequest>();
+            GameLoop.Instance.gameObject.AddComponent<GetFriendsRequest>();
+            GameLoop.Instance.gameObject.AddComponent<GetPlayerBaseInfoRequest>();
+            GameLoop.Instance.gameObject.AddComponent<InitPlayerInfoRequest>();
+            GameLoop.Instance.gameObject.AddComponent<LoginRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RegisterRequest>();
+            GameLoop.Instance.gameObject.AddComponent<SearchFriendRequest>();
+            GameLoop.Instance.gameObject.AddComponent<SendRequestFriendRequest>();
+            GameLoop.Instance.gameObject.AddComponent<DeleteFriendRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RefuseFriendRequestRequest>();
         }
 
         private Dictionary<ActionCode, IRequest> requestDict = new Dictionary<ActionCode, IRequest>();
@@ -30,6 +40,15 @@ namespace ReTouchGunFire.Mgrs{
                 request.OnResponse(mainPack);
             }else{
                 Debug.LogWarning(mainPack.ActionCode+" 找不到对应的处理.");
+            }
+        }
+
+        public IRequest GetRequest(ActionCode actionCode){
+            if(requestDict.TryGetValue(actionCode, out IRequest request)){
+                return request; 
+            }else{
+                Debug.LogWarning(actionCode +" 找不到对应的Request.");
+                return null;
             }
         }
     }

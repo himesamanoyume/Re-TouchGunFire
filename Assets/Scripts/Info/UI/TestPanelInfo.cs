@@ -8,7 +8,6 @@ namespace ReTouchGunFire.PanelInfo{
     public class TestPanelInfo : UIInfo
     {
         public Button point;
-        public PanelMediator panelMediator;
         //temp
         public Button backpackCube;
         //end
@@ -21,7 +20,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+
             point = transform.GetChild(0).GetComponent<Button>();
             backpackCube = transform.Find("Point/BackpackCube").GetComponent<Button>();
             point.onClick.AddListener(()=>{

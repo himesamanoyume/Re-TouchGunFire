@@ -4,7 +4,7 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
 
-public class RegisterRequest : IRequest
+public sealed class RegisterRequest : IRequest
 {
     public override void Awake() {
         Name = "RegisterRequest";

@@ -4,7 +4,7 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.Mediators;
 
-public class LoginRequest : IRequest
+public sealed class LoginRequest : IRequest
 {
     public override void Awake() {
         Name = "LoginRequest";
@@ -18,9 +18,11 @@ public class LoginRequest : IRequest
         Debug.Log(mainPack.ReturnCode);
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                networkMediator.uid = mainPack.Uid;
-                Debug.Log(mainPack.Uid);
-                networkMediator.OnUserLoginSuccess();
+                Loom.QueueOnMainThread(()=>{
+                    networkMediator.uid = mainPack.Uid;
+                    Debug.Log(mainPack.Uid);
+                    networkMediator.OnUserLoginSuccess();
+                });
             break;
             case ReturnCode.Fail:
                 networkMediator.OnUserLoginFail();

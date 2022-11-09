@@ -5,7 +5,7 @@ using SocketProtocol;
 using ReTouchGunFire.Mediators;
 
 
-public class SendRequestFriendRequest : IRequest
+public sealed class SendRequestFriendRequest : IRequest
 {
     public override void Awake()
     {

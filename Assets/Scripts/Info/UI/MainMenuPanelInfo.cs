@@ -7,8 +7,6 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class MainMenuPanelInfo : UIInfo
     {
-        public PanelMediator panelMediator;
-        public SceneMediator sceneMediator;
 
         public Button attackCube;
         public Button backpackCube;
@@ -31,8 +29,6 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
             
             mainTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/MainTemplate");
             attackTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/AttackTemplate");
@@ -98,7 +94,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             area1Cube.onClick.AddListener(()=>{
-                panelMediator.GetPanel(EUIPanelType.TwiceConfirmPanel).GetComponent<TwiceConfirmPanelInfo>().ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
+                panelMediator.ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
                     SetDefaultMainMenuPos();
                     EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
                     sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));

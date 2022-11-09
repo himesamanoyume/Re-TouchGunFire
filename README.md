@@ -8,9 +8,7 @@ Rebuild project.
 
 好友相关
 
-- 获取好友列表
-
-- 同意或拒绝好友申请
+- 删除好友
 
 - 邀请入队
 
@@ -32,6 +30,10 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.9 14:21`
+rebuild request: add RequestMediator. 
+add AcceptFriendRequestRequest, DeleteFriendRequest, RefuseFriendRequestRequest. 
 
 > `22.11.8 19:18`
 add GetPlayerBaseInfoRequest. 

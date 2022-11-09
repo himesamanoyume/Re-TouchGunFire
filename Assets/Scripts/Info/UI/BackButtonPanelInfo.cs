@@ -9,7 +9,6 @@ namespace ReTouchGunFire.PanelInfo{
     {
         public Button backButton;
         private GameObject point;
-        public PanelMediator panelMediator;
 
         private void Start() {
             Name = "BackButtonPanelInfo";
@@ -19,12 +18,6 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
-            // if(GameLoop.Instance.TryGetComponent<PanelMediator>(out PanelMediator panelMediator)){
-            //     panelMediator = panelMediator;
-            // }else{
-            //     Debug.LogWarning("未拿到对应组件");
-            // }
             backButton = transform.Find("Point/BackContainer/BackButton").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
                 panelMediator.PopPanel(false);

@@ -77,8 +77,6 @@ namespace ReTouchGunFire.PanelInfo{
         private Transform mainGunBar;
         private Transform handgunBar;
 
-        public PanelMediator panelMediator;
-
         void Start()
         {
             Name = "PlayerPropsPanelInfo";
@@ -88,7 +86,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+
             content = transform.Find("Point/LeftBottom/Container/Scroll View/Viewport/Content");
             propsBar = content.Find("PropsBar");
             mainGunBar = content.Find("MainGunBar");

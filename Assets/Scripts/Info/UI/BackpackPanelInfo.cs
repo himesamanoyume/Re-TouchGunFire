@@ -11,7 +11,6 @@ namespace ReTouchGunFire.PanelInfo{
         public Button point;
         private Transform equippedPart;
         private Transform idlePart;
-        public PanelMediator panelMediator;
         public Button backEquippedPartCube;
         public Button mainGunCube;
         public Button handgunCube;
@@ -31,7 +30,6 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
-            panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
             point = transform.GetChild(0).GetComponent<Button>();
             point.onClick.AddListener(()=>{
                 panelMediator.PopPanel(false);

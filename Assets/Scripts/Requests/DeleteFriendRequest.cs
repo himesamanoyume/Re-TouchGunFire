@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
-using ReTouchGunFire.Mediators;
 using ReTouchGunFire.PanelInfo;
-using Google.Protobuf.Collections;
 
-public sealed class GetPlayerBaseInfoRequest : IRequest
+public sealed class DeleteFriendRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "GetPlayerBaseInfoRequest";
-        requestCode = RequestCode.User;
-        actionCode = ActionCode.GetPlayerBaseInfo;
+        Name = "DeleteFriendRequest";
+        requestCode = RequestCode.Friend;
+        actionCode = ActionCode.DeleteFriend;
         base.Awake();
     }
 
@@ -20,19 +18,20 @@ public sealed class GetPlayerBaseInfoRequest : IRequest
     {
         switch(mainPack.ReturnCode){
             case ReturnCode.Success:
-                Debug.Log("请求获取玩家基本信息成功");
-            
+                Debug.Log("删除好友请求成功");
                 Loom.QueueOnMainThread(()=>{
                     friendPlayerInfoBarInfoList.TryGetValue(mainPack.PlayerInfoPack.Uid,out FriendPlayerInfoBarInfo friendPlayerInfoBarInfo);
-                    friendPlayerInfoBarInfo.GetPlayerBaseInfoCallback(mainPack.PlayerInfoPack);
+                    friendPlayerInfoBarInfo.DeleteFriendCallback();
                     friendPlayerInfoBarInfoList.Remove(mainPack.PlayerInfoPack.Uid);
                 });
-                
             break;
             case ReturnCode.Fail:
-                Debug.Log("请求获取玩家基本信息失败");
+                Debug.Log("删除好友请求失败");
             break;
-            case ReturnCode.ReturnNone:
+            case ReturnCode.NotFound:
+                Debug.Log("未找到该好友请求");
+            break;
+            default:
                 Debug.LogError("不正常情况");
             break;
         }
@@ -40,8 +39,7 @@ public sealed class GetPlayerBaseInfoRequest : IRequest
 
     Dictionary<int, FriendPlayerInfoBarInfo> friendPlayerInfoBarInfoList = new Dictionary<int,FriendPlayerInfoBarInfo>();
 
-    public void SendRequest(int targetPlayerUid, FriendPlayerInfoBarInfo friendPlayerInfoBarInfo)
-    {
+    public void SendRequest(int targetPlayerUid, FriendPlayerInfoBarInfo friendPlayerInfoBarInfo){
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;

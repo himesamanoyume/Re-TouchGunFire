@@ -49,6 +49,10 @@ namespace ReTouchGunFire.Mgrs{
         public void InitPanelMediator(){
             GameLoop.Instance.gameObject.AddComponent<PanelMediator>();
         }
+
+        public void InitRequestMediator(){
+            GameLoop.Instance.gameObject.AddComponent<RequestMediator>();
+        }
     }
 
 }
