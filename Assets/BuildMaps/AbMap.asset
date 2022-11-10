@@ -138,4 +138,14 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/FriendPlayerInfoBar/FriendPlayerInfoBar.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/PartyCurrentStatePanel/PartyCurrentStatePanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/PartyCurrentStatePanel/PartyCurrentStatePanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/TeammateBar/TeammateBar.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/TeammateBar/TeammateBar.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

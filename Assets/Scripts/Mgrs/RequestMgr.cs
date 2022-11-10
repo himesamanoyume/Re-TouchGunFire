@@ -22,6 +22,13 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<SendRequestFriendRequest>();
             GameLoop.Instance.gameObject.AddComponent<DeleteFriendRequest>();
             GameLoop.Instance.gameObject.AddComponent<RefuseFriendRequestRequest>();
+            GameLoop.Instance.gameObject.AddComponent<InviteTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<InvitedTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<JoinTeamRequestRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RefusedInviteTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AcceptInviteTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AcceptedInviteTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RefuseInviteTeamRequest>();
         }
 
         private Dictionary<ActionCode, IRequest> requestDict = new Dictionary<ActionCode, IRequest>();
@@ -35,7 +42,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void HandleResponse(MainPack mainPack){
-            Debug.Log("处理响应");
+            Debug.Log("处理响应："+mainPack.ActionCode);
             if(requestDict.TryGetValue(mainPack.ActionCode, out IRequest request)){
                 request.OnResponse(mainPack);
             }else{

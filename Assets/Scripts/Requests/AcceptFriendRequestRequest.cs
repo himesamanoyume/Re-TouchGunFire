@@ -21,7 +21,7 @@ public sealed class AcceptFriendRequestRequest : IRequest
                 case ReturnCode.Success:
                     // Debug.Log("同意添加好友请求成功");
                     panelMediator.ShowNotifyPanel("同意添加好友请求成功",3f);
-                    friendPlayerInfoBarInfoList.TryGetValue(mainPack.PlayerInfoPack.Uid,out FriendPlayerInfoBarInfo friendPlayerInfoBarInfo);
+                    friendPlayerInfoBarInfoList.TryGetValue(mainPack.PlayerInfoPack.Uid, out FriendPlayerInfoBarInfo friendPlayerInfoBarInfo);
                     friendPlayerInfoBarInfo.AcceptFriendRequestCallback();
                     friendPlayerInfoBarInfoList.Remove(mainPack.PlayerInfoPack.Uid);
                 break;

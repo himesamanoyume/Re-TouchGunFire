@@ -14,6 +14,7 @@ namespace ReTouchGunFire.PanelInfo{
         public AcceptFriendRequestRequest acceptFriendRequestRequest;
         public RefuseFriendRequestRequest refuseFriendRequestRequest;
         public DeleteFriendRequest deleteFriendRequest;
+        public InviteTeamRequest inviteTeamRequest;
 
         void Start()
         {
@@ -43,6 +44,7 @@ namespace ReTouchGunFire.PanelInfo{
             acceptFriendRequestRequest = (AcceptFriendRequestRequest)requestMediator.GetRequest(ActionCode.AcceptFriendRequest);
             refuseFriendRequestRequest = (RefuseFriendRequestRequest)requestMediator.GetRequest(ActionCode.RefuseFriendRequest);
             deleteFriendRequest = (DeleteFriendRequest)requestMediator.GetRequest(ActionCode.DeleteFriend);
+            inviteTeamRequest = (InviteTeamRequest)requestMediator.GetRequest(ActionCode.InviteTeam);
 
             //do something
             deleteFriendButton = transform.Find("Content/ButtonList/DeleteFriendButton").GetComponent<Button>();
@@ -76,7 +78,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             inviteMyTeamButton.onClick.AddListener(()=>{
-                //unfinished
+                inviteTeamRequest.SendRequest(playerUid);
             });
         }
 

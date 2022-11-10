@@ -1,0 +1,88 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using ReTouchGunFire.Mediators;
+
+
+namespace ReTouchGunFire.PanelInfo{
+
+    public class TeammateBarInfo : UIInfo
+    {
+
+        void Start()
+        {
+            Name = "TeammateBarInfo";
+            Init();
+        }
+
+        public int teammateUid;
+
+        public Transform infoContent;
+        public Slider health;
+        public Slider shield;
+        public Text playerNameText;
+
+
+        public Transform inviteContent;
+        public Text inviteText;
+        public Button refuseButton;
+        public Button acceptButton;
+        public Slider countdown;
+
+        public AcceptInviteTeamRequest acceptInviteTeamRequest;
+        public RefuseInviteTeamRequest refuseInviteTeamRequest;
+
+        bool isCountdown = true;
+
+        protected sealed override void Init()
+        {
+            base.Init();
+
+            acceptInviteTeamRequest = (AcceptInviteTeamRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.AcceptInviteTeam);
+            refuseInviteTeamRequest = (RefuseInviteTeamRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.RefuseInviteTeam);
+
+            inviteContent = transform.Find("InviteContent");
+            inviteText = inviteContent.Find("InviteText").GetComponent<Text>();
+            refuseButton = inviteContent.Find("ButtonList/RefuseButton").GetComponent<Button>();
+            acceptButton = inviteContent.Find("ButtonList/AcceptButton").GetComponent<Button>();
+            countdown = inviteContent.Find("Countdown").GetComponent<Slider>();
+            countdown.maxValue = 10;
+            countdown.value = 10;
+
+
+            infoContent = transform.Find("InfoContent");
+            health = infoContent.Find("Health").GetComponent<Slider>();
+            shield = infoContent.Find("Shield").GetComponent<Slider>();
+            playerNameText = infoContent.Find("PlayerNameText").GetComponent<Text>();
+
+            refuseButton.onClick.AddListener(()=>{
+                refuseInviteTeamRequest.SendRequest();
+            });
+
+            acceptButton.onClick.AddListener(()=>{
+                acceptInviteTeamRequest.SendRequest(teammateUid);
+            });
+        }
+
+        private void Update() {
+            CountDownRunning();
+        }
+
+        
+
+        protected override void CountDownRunning()
+        {
+            if(!isCountdown) return;
+            countdown.value -= Time.deltaTime;
+            if(countdown.value <= 0){
+                countdown.value = 0;
+                isCountdown = false;
+                Destroy(gameObject);
+            }
+        }
+
+    }
+}
+
+

@@ -49,6 +49,9 @@ public sealed class MainScene : SceneInfo
         panelMediator.PushPanel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level1, false, (GameObject obj)=>{
             obj.AddComponent<PlayerCurrentStatePanelInfo>().currentLevel = EUILevel.Level1;
         });
+        panelMediator.PushPanel(EUIPanelType.PartyCurrentStatePanel, EUILevel.Level1, false, (GameObject obj)=>{
+            obj.AddComponent<PartyCurrentStatePanelInfo>().currentLevel = EUILevel.Level1;
+        });
         
 
         EventMgr.Broadcast(GameEvents.HideBattleLittleMenuPanelNotify);

@@ -4,15 +4,11 @@ Rebuild project.
 
 ## TODO
 
-联网部分
+同意入队
 
-好友相关
+离开小队
 
-- 邀请入队
-
-- 同意入队
-
-- 离开小队
+申请加入小队
 
 ---
 
@@ -28,6 +24,11 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 null
 
 ## CHANGELOG
+
+> `22.11.10 19:37`
+add AcceptInviteTeamRequest 20%, AcceptedInviteTeamRequest 20%, InvitedTeamRequest, InviteTeamRequest, JoinTeamRequestRequest 30%, RefuseInviteTeamRequest 50%. 
+add PartyCurrentStatePanelInfo, TeammateBarInfo. 
+add PartyCurrentStatePanel, TeammateBar. 
 
 > `22.11.9 20:00`
 modify some UI and UIInfo. 
