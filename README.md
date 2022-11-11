@@ -4,11 +4,15 @@ Rebuild project.
 
 ## TODO
 
-同意入队
+好友面板加入小队页面
+
+离线的好友不显示邀请组队
 
 离开小队
 
-申请加入小队
+玩家可对已有小队的玩家发起申请加入小队
+
+ShowNotifyPanel不再阻挡点击
 
 ---
 
@@ -21,9 +25,12 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-null
+11.11:Build完编辑器下第一次启动有概率会报错
 
 ## CHANGELOG
+
+> `22.11.11 18:03`
+Finish AcceptInviteTeamRequest, AcceptedInviteTeamRequest, RefuseInviteTeamRequest, RefusedInviteTeamRequest. 
 
 > `22.11.10 19:37`
 add AcceptInviteTeamRequest 20%, AcceptedInviteTeamRequest 20%, InvitedTeamRequest, InviteTeamRequest, JoinTeamRequestRequest 30%, RefuseInviteTeamRequest 50%. 

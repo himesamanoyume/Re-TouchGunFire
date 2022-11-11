@@ -122,7 +122,6 @@ namespace ReTouchGunFire.PanelInfo{
                 // Debug.Log(_targetPlayerUid);
                 searchFriendRequest.SendRequest(_targetPlayerUid);
                 targetPlayerUid = _targetPlayerUid;
-                container2.GetComponent<RectTransform>().offsetMax = inTheScreen;
             });
 
             closeButton.onClick.AddListener(()=>{
@@ -141,6 +140,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void SearchFriendCallback(MainPack mainPack){
+            container2.GetComponent<RectTransform>().offsetMax = inTheScreen;
             playerNameText.text = mainPack.PlayerInfoPack.PlayerName;
             levelText.text = "Lv." + mainPack.PlayerInfoPack.Level.ToString();
         }

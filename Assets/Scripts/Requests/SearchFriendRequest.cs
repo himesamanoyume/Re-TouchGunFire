@@ -31,6 +31,9 @@ public sealed class SearchFriendRequest : IRequest
                     // Debug.Log("搜索玩家失败");
                     panelMediator.ShowNotifyPanel("搜索玩家失败",3f);
                 break;
+                case ReturnCode.RepeatedRequest:
+                    panelMediator.ShowNotifyPanel("你无法搜索自己的信息",3f);
+                break;
                 case ReturnCode.ReturnNone:
                     // Debug.LogError("不正常情况");
                     panelMediator.ShowNotifyPanel("不正常情况",3f);

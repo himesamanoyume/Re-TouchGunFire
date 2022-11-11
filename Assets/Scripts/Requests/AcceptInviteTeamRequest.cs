@@ -19,8 +19,8 @@ public sealed class AcceptInviteTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("邀请好友入队成功");
-                    // panelMediator.ShowNotifyPanel("邀请好友入队成功",3f);
+                    // Debug.Log("邀请好友入队成功");
+                    panelMediator.ShowNotifyPanel("已邀请好友入队成功",3f);
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("邀请好友入队失败",3f);
@@ -42,6 +42,7 @@ public sealed class AcceptInviteTeamRequest : IRequest
         teammatePack.SenderUid = inviteSenderPlayerUid;
         teammatePack.TargetUid = networkMediator.uid;
         teammatePack.State = 1;
+        Debug.Log(teammatePack.SenderUid+ "_"+teammatePack.TargetUid);
         mainPack.TeammatePack = teammatePack;
         base.TcpSendRequest(mainPack);
     }

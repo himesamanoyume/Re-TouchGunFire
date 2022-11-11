@@ -36,6 +36,10 @@ namespace ReTouchGunFire.PanelInfo{
             teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
         }
 
+        public void AcceptedInviteTeamCallback(){
+
+        }
+
     }
 }
 

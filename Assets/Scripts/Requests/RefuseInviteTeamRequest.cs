@@ -20,7 +20,7 @@ public sealed class RefuseInviteTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("拒绝好友的邀请入队请求失败成功");
+                    Debug.Log("已拒绝好友的邀请入队请求");
                     
                 break;
                 case ReturnCode.Fail:
@@ -35,8 +35,17 @@ public sealed class RefuseInviteTeamRequest : IRequest
         });
     }
 
-    public void SendRequest(){
-        
+    public void SendRequest(int senderUid){
+        MainPack mainPack = new MainPack();
+        mainPack.RequestCode = requestCode;
+        mainPack.ActionCode = actionCode;
+        TeammatePack teammatePack = new TeammatePack();
+        mainPack.Uid = networkMediator.uid;
+        teammatePack.SenderUid = senderUid;
+        teammatePack.TargetUid = networkMediator.uid;
+        teammatePack.State = 2;
+        mainPack.TeammatePack = teammatePack;
+        base.TcpSendRequest(mainPack);
     }
 
 }

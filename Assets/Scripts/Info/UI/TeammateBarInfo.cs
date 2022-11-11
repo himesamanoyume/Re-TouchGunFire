@@ -57,11 +57,13 @@ namespace ReTouchGunFire.PanelInfo{
             playerNameText = infoContent.Find("PlayerNameText").GetComponent<Text>();
 
             refuseButton.onClick.AddListener(()=>{
-                refuseInviteTeamRequest.SendRequest();
+                refuseInviteTeamRequest.SendRequest(teammateUid);
+                Destroy(gameObject);
             });
 
             acceptButton.onClick.AddListener(()=>{
                 acceptInviteTeamRequest.SendRequest(teammateUid);
+                inviteContent.gameObject.SetActive(false);
             });
         }
 

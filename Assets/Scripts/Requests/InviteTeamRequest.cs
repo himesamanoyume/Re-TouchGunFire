@@ -22,7 +22,7 @@ public sealed class InviteTeamRequest : IRequest
                     panelMediator.ShowNotifyPanel("邀请好友入队成功",3f);
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("邀请好友入队失败",3f);
+                    panelMediator.ShowNotifyPanel("邀请好友入队失败,对方或已有队伍",3f);
                 break;
                 case ReturnCode.RepeatedRequest:
                     panelMediator.ShowNotifyPanel("好友不在线",3f);
