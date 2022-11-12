@@ -12,7 +12,8 @@ namespace ReTouchGunFire.Mediators{
         public RequestMgr requestMgr;
         public PanelMediator panelMediator;
 
-        public int uid = 0;
+        public int playerSelfUid = 0;
+        public int teamMasterPlayerUid = 0;
 
         public NetworkMediator(){
             Name = "NetworkMediator";

@@ -128,7 +128,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void UdpSend(MainPack mainPack){
-            mainPack.Uid = networkMediator.uid;
+            mainPack.Uid = networkMediator.playerSelfUid;
             byte[] buffer = Message.UdpPackData(mainPack);
             udpSocket.Send(buffer, buffer.Length, SocketFlags.None);
         }

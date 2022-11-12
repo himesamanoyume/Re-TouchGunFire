@@ -24,7 +24,7 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public IEnumerator CheckHotUpdate(bool isConnected){
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
             if(!isConnected)
                 GameLoop.Instance.GetMediator<PanelMediator>().ShowNotifyPanel("主服务器未能连接~",2f);
                 

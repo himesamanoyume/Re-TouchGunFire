@@ -4,15 +4,17 @@ Rebuild project.
 
 ## TODO
 
-好友面板加入小队页面
-
-离线的好友不显示邀请组队
-
 离开小队
 
-玩家可对已有小队的玩家发起申请加入小队
+添加小队长标识
 
-ShowNotifyPanel不再阻挡点击
+好友页面如果该好友已在其他或自己队伍中则不显示邀请入队
+
+好友面板加入小队页面
+
+登陆账号密码 注册时等不能为空
+
+玩家可对已有小队的玩家发起申请加入小队
 
 ---
 
@@ -28,6 +30,12 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 11.11:Build完编辑器下第一次启动有概率会报错
 
 ## CHANGELOG
+
+> `22.11.12 21:36`
+GetTeammatesRequest Finished. 
+bug fixed. 
+
+<details>
 
 > `22.11.11 18:03`
 Finish AcceptInviteTeamRequest, AcceptedInviteTeamRequest, RefuseInviteTeamRequest, RefusedInviteTeamRequest. 
@@ -182,7 +190,7 @@ add XLua, SocketClient etc.
 > `Init / 22.9.24`
 null
 
-
+</details>
 
 ## 项目结构
 
@@ -238,6 +246,3 @@ si:ii-->esi:si
 90 ~ 180 two
 -90 ~ 0 four 270 ~ 360
 -90 ~ -180 three 180 ~ 270
-
-
-```

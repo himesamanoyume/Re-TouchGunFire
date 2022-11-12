@@ -13,6 +13,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         public Slider shieldBar;
         public Slider hpBar;
+        public Text uidBarText;
 
         private void Start() {
             Name = "PlayerCurrentStatePanelInfo";
@@ -27,6 +28,14 @@ namespace ReTouchGunFire.PanelInfo{
 
             shieldBar = container.Find("ShieldBar").GetComponent<Slider>();
             hpBar = container.Find("HpBar").GetComponent<Slider>();
+            uidBarText = container.Find("UidBar/Text").GetComponent<Text>();
+            EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
+
+        }
+
+        void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
+        void PlayerInfoUpdate(){
+            uidBarText.text = "UID:"+GameLoop.Instance.GetComponent<PlayerInfo>().uid.ToString();
         }
     }
 }

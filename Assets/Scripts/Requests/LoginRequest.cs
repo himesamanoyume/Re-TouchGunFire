@@ -19,7 +19,7 @@ public sealed class LoginRequest : IRequest
             Debug.Log(mainPack.ReturnCode);
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    networkMediator.uid = mainPack.Uid;
+                    networkMediator.playerSelfUid = mainPack.Uid;
                     Debug.Log(mainPack.Uid);
                     networkMediator.OnUserLoginSuccess();
                 break;

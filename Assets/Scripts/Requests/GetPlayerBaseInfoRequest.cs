@@ -46,7 +46,7 @@ public sealed class GetPlayerBaseInfoRequest : IRequest
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.uid;
+        mainPack.Uid = networkMediator.playerSelfUid;
         PlayerInfoPack playerInfoPack = new PlayerInfoPack();
         playerInfoPack.Uid = targetPlayerUid;
         mainPack.PlayerInfoPack = playerInfoPack;

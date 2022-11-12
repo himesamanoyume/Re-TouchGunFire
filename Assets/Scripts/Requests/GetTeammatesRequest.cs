@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class RefuseInviteTeamRequest : IRequest
+public sealed class GetTeammatesRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "RefuseInviteTeamRequest";
+        Name = "GetTeammatesRequest";
         requestCode = RequestCode.Team;
-        actionCode = ActionCode.RefuseInviteTeam;
+        actionCode = ActionCode.GetTeammates;
         base.Awake();
     }
 
@@ -20,11 +20,15 @@ public sealed class RefuseInviteTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("已拒绝好友的邀请入队请求");
-                    
+                    Debug.Log("获取队伍信息成功");
+                    panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetTeammatesCallback(mainPack);
+                    networkMediator.teamMasterPlayerUid = mainPack.PlayerInfoPack.Uid;
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("拒绝好友的邀请入队请求失败",3f);
+                    panelMediator.ShowNotifyPanel("获取队伍信息失败",3f);
+                break;
+                case ReturnCode.NotFound:
+                    panelMediator.ShowNotifyPanel("你没有在队伍当中",3f);
                 break;
                 default:
                     // Debug.Log(mainPack.ReturnCode);
@@ -37,14 +41,10 @@ public sealed class RefuseInviteTeamRequest : IRequest
 
     public void SendRequest(int senderUid){
         MainPack mainPack = new MainPack();
+        mainPack.Uid = networkMediator.playerSelfUid;
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        TeammatePack teammatePack = new TeammatePack();
-        mainPack.Uid = networkMediator.playerSelfUid;
-        teammatePack.SenderUid = senderUid;
-        teammatePack.TargetUid = networkMediator.playerSelfUid;
-        teammatePack.State = 2;
-        mainPack.TeammatePack = teammatePack;
+        
         base.TcpSendRequest(mainPack);
     }
 

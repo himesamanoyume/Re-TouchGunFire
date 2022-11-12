@@ -49,7 +49,7 @@ public sealed class InitPlayerInfoRequest : IRequest
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.uid;
+        mainPack.Uid = networkMediator.playerSelfUid;
         
         base.TcpSendRequest(mainPack);
     }

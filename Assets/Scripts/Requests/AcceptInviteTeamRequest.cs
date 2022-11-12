@@ -20,10 +20,9 @@ public sealed class AcceptInviteTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     // Debug.Log("邀请好友入队成功");
-                    panelMediator.ShowNotifyPanel("已邀请好友入队成功",3f);
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("邀请好友入队失败",3f);
+                    panelMediator.ShowNotifyPanel("接受好友的入队邀请失败",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
@@ -37,12 +36,11 @@ public sealed class AcceptInviteTeamRequest : IRequest
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.uid;
+        mainPack.Uid = networkMediator.playerSelfUid;
         TeammatePack teammatePack = new TeammatePack();
         teammatePack.SenderUid = inviteSenderPlayerUid;
-        teammatePack.TargetUid = networkMediator.uid;
+        teammatePack.TargetUid = networkMediator.playerSelfUid;
         teammatePack.State = 1;
-        Debug.Log(teammatePack.SenderUid+ "_"+teammatePack.TargetUid);
         mainPack.TeammatePack = teammatePack;
         base.TcpSendRequest(mainPack);
     }

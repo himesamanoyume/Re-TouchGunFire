@@ -39,9 +39,9 @@ public sealed class InviteTeamRequest : IRequest
         MainPack mainPack = new MainPack();
         mainPack.RequestCode = requestCode;
         mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.uid;
+        mainPack.Uid = networkMediator.playerSelfUid;
         TeammatePack teammatePack = new TeammatePack();
-        teammatePack.SenderUid = networkMediator.uid;
+        teammatePack.SenderUid = networkMediator.playerSelfUid;
         teammatePack.TargetUid = targetPlayerUid;
         teammatePack.State = 0;
         mainPack.TeammatePack = teammatePack;

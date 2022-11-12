@@ -17,7 +17,7 @@ namespace ReTouchGunFire.PanelInfo{
         public GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
         public SendRequestFriendRequest sendRequestFriendRequest;
         public AcceptFriendRequestRequest acceptFriendRequestRequest;
-        
+        public GetTeammatesRequest getTeammatesRequest;
 
         void Start()
         {
@@ -30,6 +30,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Transform container1;
             //PagePart
                 public Button friendsPageButton;
+                public Button teammatesPageButton;
                 public Button friendRequestPageButton;
                 public Text friendCountText;
             //end
@@ -68,7 +69,9 @@ namespace ReTouchGunFire.PanelInfo{
 
             acceptFriendRequestRequest = (AcceptFriendRequestRequest)requestMediator.GetRequest(ActionCode.AcceptFriendRequest);
 
-            getPlayerBaseInfoRequest =  (GetPlayerBaseInfoRequest)requestMediator.GetRequest(ActionCode.GetPlayerBaseInfo);
+            getPlayerBaseInfoRequest = (GetPlayerBaseInfoRequest)requestMediator.GetRequest(ActionCode.GetPlayerBaseInfo);
+
+            getTeammatesRequest = (GetTeammatesRequest)requestMediator.GetRequest(ActionCode.GetTeammates);
 
             //bind
 
@@ -77,6 +80,7 @@ namespace ReTouchGunFire.PanelInfo{
             container1 = transform.Find("Point/Center/Container1");
 
             friendsPageButton = container1.Find("PagePart/Page/Content/FriendsPageButton").GetComponent<Button>();
+            teammatesPageButton = container1.Find("PagePart/Page/Content/TeammatesPageButton").GetComponent<Button>();
             friendRequestPageButton = container1.Find("PagePart/Page/Content/FriendRequestPageButton").GetComponent<Button>();
             friendCountText = container1.Find("PagePart/FriendCountContent/FriendCountText").GetComponent<Text>();
 
@@ -110,6 +114,11 @@ namespace ReTouchGunFire.PanelInfo{
             friendsPageButton.onClick.AddListener(()=>{
                 container2.GetComponent<RectTransform>().offsetMax = offScreen;
                 getFriendsRequest.SendRequest();
+            });
+
+            teammatesPageButton.onClick.AddListener(()=>{
+                container2.GetComponent<RectTransform>().offsetMax = offScreen;
+                getTeammatesRequest.SendRequest(networkMediator.playerSelfUid);
             });
 
             friendRequestPageButton.onClick.AddListener(()=>{
@@ -156,7 +165,7 @@ namespace ReTouchGunFire.PanelInfo{
             {
                 GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
                 playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
-                playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().isRequestType = true;
+                playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().type = EFriendPlayerInfoBarType.RequestType;
             }
 
         }
@@ -174,6 +183,20 @@ namespace ReTouchGunFire.PanelInfo{
                 friendCountText.text = string.Format("好友数 {0}/30",count);
                 GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
                 playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
+            }
+        }
+
+        public void GetTeammatesCallback(MainPack mainPack){
+            RepeatedField<FriendsPack> friendsPacks = mainPack.FriendsPack;
+            for (int i = 0; i < friendsPartScrollViewContent.childCount; i++)
+            {
+                Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);
+            }
+            foreach (var item in friendsPacks)
+            {
+                GameObject playerInfoBar = Instantiate(friendPlayerInfoBarTemplate, friendsPartScrollViewContent);
+                playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
+                playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().type = EFriendPlayerInfoBarType.TeammateType;
             }
         }
 

@@ -19,12 +19,11 @@ public sealed class AcceptedInviteTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("接受好友的入队邀请成功");
-                    // panelMediator.ShowNotifyPanel("邀请好友入队成功",3f);
                     panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback();
+                    Debug.Log("发送给好友的入队邀请已被接受");
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("接受好友的入队邀请失败",3f);
+                    panelMediator.ShowNotifyPanel("发送给好友的入队邀请发生错误",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
