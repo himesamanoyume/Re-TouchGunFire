@@ -55,12 +55,21 @@ namespace ReTouchGunFire.PanelInfo{
 
             loginPartLoginButton.onClick.AddListener(()=>{
                 
-                if(loginPartAccount.text != null && loginPartPassword.text != null)
-                    loginRequest.SendRequest(loginPartAccount.text, loginPartPassword.text);
-
-                //temp
-                // loginRequest.SendRequest("123","123");
-                //end
+                if(loginPartAccount.text.Equals("") && loginPartPassword.text.Equals("")){
+                    panelMediator.ShowNotifyPanel("未输入账号密码",2f);
+                    return;
+                }
+                if (loginPartAccount.text.Equals(""))
+                {
+                    panelMediator.ShowNotifyPanel("账号不能为空",2f);
+                    return;
+                }
+                if (loginPartPassword.text.Equals(""))
+                {
+                    panelMediator.ShowNotifyPanel("密码不能为空",2f);
+                    return;
+                }
+                loginRequest.SendRequest(loginPartAccount.text, loginPartPassword.text);
             });
 
             loginPartCancelButton.onClick.AddListener(()=>{
@@ -68,12 +77,28 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             registerSendRegisterButton.onClick.AddListener(()=>{
-                if(registerPartPlayerName.text != null && registerPartAccount.text != null && registerPartPassword.text != null)
-                    registerRequest.SendRequest(registerPartPlayerName.text, registerPartAccount.text, registerPartPassword.text);
-                
-                //temp
-                // registerRequest.SendRequest("123","123");
-                //end
+
+                if(registerPartPlayerName.text.Equals("") && registerPartAccount.text.Equals("") && registerPartPassword.text.Equals("")){
+                    panelMediator.ShowNotifyPanel("必要信息未填入",2f);
+                    return;
+                }
+                if (registerPartPlayerName.text.Equals(""))
+                {
+                    panelMediator.ShowNotifyPanel("玩家名不能为空",2f);
+                    return;
+                }
+                if (registerPartAccount.text.Equals(""))
+                {
+                    panelMediator.ShowNotifyPanel("账号不能为空",2f);
+                    return;
+                }
+                if (registerPartPassword.text.Equals(""))
+                {
+                    panelMediator.ShowNotifyPanel("密码不能为空",2f);
+                    return;
+                }
+                registerRequest.SendRequest(registerPartPlayerName.text, registerPartAccount.text, registerPartPassword.text);
+
             });
 
             registerPartBackButton.onClick.AddListener(()=>{

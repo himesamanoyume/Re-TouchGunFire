@@ -104,13 +104,11 @@ namespace ReTouchGunFire.PanelInfo{
             acceptFriendRequestButton.gameObject.SetActive(false);
             refuseFriendRequestButton.gameObject.SetActive(false);
             deleteFriendButton.gameObject.SetActive(true);
-            inviteMyTeamButton.gameObject.SetActive(true);
             kickPlayerButton.gameObject.SetActive(false);
         }
 
         public void RequestType(){
             deleteFriendButton.gameObject.SetActive(false);
-            inviteMyTeamButton.gameObject.SetActive(false);
             refuseFriendRequestButton.gameObject.SetActive(true);
             acceptFriendRequestButton.gameObject.SetActive(true);
             onlineStateText.gameObject.SetActive(false);
@@ -119,7 +117,6 @@ namespace ReTouchGunFire.PanelInfo{
 
         public void TeammateType(){
             deleteFriendButton.gameObject.SetActive(false);
-            inviteMyTeamButton.gameObject.SetActive(false);
             refuseFriendRequestButton.gameObject.SetActive(false);
             acceptFriendRequestButton.gameObject.SetActive(false);
             onlineStateText.gameObject.SetActive(false);
@@ -133,7 +130,12 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void GetPlayerBaseInfoCallback(PlayerInfoPack playerInfoPack){
-            playerNameText.text = playerInfoPack.PlayerName;
+            if(playerInfoPack.IsTeamMaster){
+                playerNameText.text = playerInfoPack.PlayerName + "[队长]";
+            }else
+            {
+                playerNameText.text = playerInfoPack.PlayerName;
+            }
             playerNameStr = playerInfoPack.PlayerName;
             levelText.text = "Lv."+playerInfoPack.Level.ToString();
             uidText.text = "UID:"+playerInfoPack.Uid.ToString();
@@ -146,7 +148,14 @@ namespace ReTouchGunFire.PanelInfo{
                 {
                     inviteMyTeamButton.gameObject.SetActive(false);
                 }else{
-                    inviteMyTeamButton.gameObject.SetActive(true);
+                    if (playerInfoPack.IsTeam)
+                    {
+                        inviteMyTeamButton.gameObject.SetActive(false);
+                    }else
+                    {
+                        inviteMyTeamButton.gameObject.SetActive(true);
+                    }
+                    
                 }
                 
             }else
@@ -155,6 +164,7 @@ namespace ReTouchGunFire.PanelInfo{
                 onlineStateText.color = grey;
                 inviteMyTeamButton.gameObject.SetActive(false);
             }
+            
         }
 
         public void AcceptFriendRequestCallback(){

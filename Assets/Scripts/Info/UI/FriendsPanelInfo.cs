@@ -54,6 +54,10 @@ namespace ReTouchGunFire.PanelInfo{
                 public Button closeButton;
             //end
         //container2 end
+        //container3
+        public Transform container3;
+            public Button leaveTeamButton;
+        //container3 end
 
         protected sealed override void Init()
         {
@@ -101,6 +105,10 @@ namespace ReTouchGunFire.PanelInfo{
 
             closeButton = container2.Find("SearchPlayerPart/CloseButton").GetComponent<Button>();
 
+            container3 = transform.Find("Point/Center/Container3");
+
+            leaveTeamButton = container3.Find("ButtonPart/LeaveTeamButton").GetComponent<Button>();
+
             //end
 
             getFriendsRequest.SendRequest();
@@ -113,6 +121,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             friendsPageButton.onClick.AddListener(()=>{
                 container2.GetComponent<RectTransform>().offsetMax = offScreen;
+                leaveTeamButton.gameObject.SetActive(false);
                 getFriendsRequest.SendRequest();
             });
 
@@ -123,6 +132,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             friendRequestPageButton.onClick.AddListener(()=>{
                 container2.GetComponent<RectTransform>().offsetMax = offScreen;
+                leaveTeamButton.gameObject.SetActive(false);
                 getFriendRequestRequest.SendRequest();
             });
 
@@ -135,13 +145,17 @@ namespace ReTouchGunFire.PanelInfo{
 
             closeButton.onClick.AddListener(()=>{
                 container2.GetComponent<RectTransform>().offsetMax = offScreen;
+                leaveTeamButton.gameObject.SetActive(false);
             });
 
             addFriendButton.onClick.AddListener(()=>{
-                //temp
                 sendRequestFriendRequest.SendRequest(targetPlayerUid);
-                //end
             });
+
+            leaveTeamButton.onClick.AddListener(()=>{
+
+            });
+            leaveTeamButton.gameObject.SetActive(false);
         }
 
         void LoadTemplate(){
@@ -198,6 +212,8 @@ namespace ReTouchGunFire.PanelInfo{
                 playerInfoBar.AddComponent<FriendPlayerInfoBarInfo>().playerUid = item.Player1Uid;
                 playerInfoBar.GetComponent<FriendPlayerInfoBarInfo>().type = EFriendPlayerInfoBarType.TeammateType;
             }
+            if(friendsPacks.Count>0)
+                leaveTeamButton.gameObject.SetActive(true);
         }
 
     }

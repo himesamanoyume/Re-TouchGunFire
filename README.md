@@ -6,15 +6,11 @@ Rebuild project.
 
 离开小队
 
-添加小队长标识
-
-好友页面如果该好友已在其他或自己队伍中则不显示邀请入队
+如果是别人的队伍不显示其队长身份[已完成待验证]
 
 好友面板加入小队页面
 
-登陆账号密码 注册时等不能为空
-
-玩家可对已有小队的玩家发起申请加入小队
+玩家可对已有小队且人数未满的玩家发起申请加入小队
 
 ---
 
@@ -27,15 +23,18 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-11.11:Build完编辑器下第一次启动有概率会报错
+null
 
 ## CHANGELOG
+
+> `22.11.13 13:00`
+FriendsPanelInfo, FriendPlayerInfoBarInfo, LoginRegisterPanelInfo modify. 
+
+<details>
 
 > `22.11.12 21:36`
 GetTeammatesRequest Finished. 
 bug fixed. 
-
-<details>
 
 > `22.11.11 18:03`
 Finish AcceptInviteTeamRequest, AcceptedInviteTeamRequest, RefuseInviteTeamRequest, RefusedInviteTeamRequest. 

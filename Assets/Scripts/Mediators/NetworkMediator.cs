@@ -61,7 +61,7 @@ namespace ReTouchGunFire.Mediators{
 
         public void OnUserLoginFail(){
             Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("登陆失败~",2f);
+                panelMediator.ShowNotifyPanel("登陆失败~请检查账号密码是否输入正确",2f);
             });
         }
 
@@ -73,7 +73,7 @@ namespace ReTouchGunFire.Mediators{
 
         public void OnUserRegisterFail(){
             Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("注册失败~",2f);
+                panelMediator.ShowNotifyPanel("注册失败~可能账号已被注册",2f);
             });
         }
         
