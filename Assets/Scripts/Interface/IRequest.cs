@@ -39,6 +39,14 @@ public abstract class IRequest : MonoBehaviour
         }
     }
 
+    public MainPack InitRequest(){
+        MainPack mainPack = new MainPack();
+        mainPack.Uid = networkMediator.playerSelfUid;
+        mainPack.RequestCode = requestCode;
+        mainPack.ActionCode = actionCode;
+        return mainPack;
+    }
+
     public abstract void OnResponse(MainPack mainPack);
 
     public void TcpSendRequest(MainPack mainPack){

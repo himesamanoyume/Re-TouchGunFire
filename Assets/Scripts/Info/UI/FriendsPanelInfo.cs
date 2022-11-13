@@ -18,6 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
         public SendRequestFriendRequest sendRequestFriendRequest;
         public AcceptFriendRequestRequest acceptFriendRequestRequest;
         public GetTeammatesRequest getTeammatesRequest;
+        public LeaveTeamRequest leaveTeamRequest;
 
         void Start()
         {
@@ -76,6 +77,8 @@ namespace ReTouchGunFire.PanelInfo{
             getPlayerBaseInfoRequest = (GetPlayerBaseInfoRequest)requestMediator.GetRequest(ActionCode.GetPlayerBaseInfo);
 
             getTeammatesRequest = (GetTeammatesRequest)requestMediator.GetRequest(ActionCode.GetTeammates);
+
+            leaveTeamRequest = (LeaveTeamRequest)requestMediator.GetRequest(ActionCode.LeaveTeam);
 
             //bind
 
@@ -153,7 +156,8 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             leaveTeamButton.onClick.AddListener(()=>{
-
+                leaveTeamRequest.SendRequest();
+                leaveTeamButton.gameObject.SetActive(false);
             });
             leaveTeamButton.gameObject.SetActive(false);
         }

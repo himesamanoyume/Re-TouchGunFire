@@ -31,7 +31,6 @@ public sealed class GetTeammatesRequest : IRequest
                     panelMediator.ShowNotifyPanel("你没有在队伍当中",3f);
                 break;
                 default:
-                    // Debug.Log(mainPack.ReturnCode);
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
                 break;
             
@@ -40,10 +39,7 @@ public sealed class GetTeammatesRequest : IRequest
     }
 
     public void SendRequest(int senderUid){
-        MainPack mainPack = new MainPack();
-        mainPack.Uid = networkMediator.playerSelfUid;
-        mainPack.RequestCode = requestCode;
-        mainPack.ActionCode = actionCode;
+        MainPack mainPack = base.InitRequest();
         
         base.TcpSendRequest(mainPack);
     }

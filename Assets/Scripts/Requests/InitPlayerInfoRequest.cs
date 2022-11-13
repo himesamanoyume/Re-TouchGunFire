@@ -46,10 +46,7 @@ public sealed class InitPlayerInfoRequest : IRequest
 
     public void SendRequest()
     {
-        MainPack mainPack = new MainPack();
-        mainPack.RequestCode = requestCode;
-        mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.playerSelfUid;
+        MainPack mainPack = base.InitRequest();
         
         base.TcpSendRequest(mainPack);
     }

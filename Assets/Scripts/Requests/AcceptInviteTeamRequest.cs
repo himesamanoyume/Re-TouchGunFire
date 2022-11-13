@@ -33,10 +33,7 @@ public sealed class AcceptInviteTeamRequest : IRequest
     }
 
     public void SendRequest(int inviteSenderPlayerUid){
-        MainPack mainPack = new MainPack();
-        mainPack.RequestCode = requestCode;
-        mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.playerSelfUid;
+        MainPack mainPack = base.InitRequest();
         TeammatePack teammatePack = new TeammatePack();
         teammatePack.SenderUid = inviteSenderPlayerUid;
         teammatePack.TargetUid = networkMediator.playerSelfUid;

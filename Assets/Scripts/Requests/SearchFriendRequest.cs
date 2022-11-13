@@ -44,10 +44,7 @@ public sealed class SearchFriendRequest : IRequest
 
     public void SendRequest(int targetPlayerUid)
     {
-        MainPack mainPack = new MainPack();
-        mainPack.RequestCode = requestCode;
-        mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.playerSelfUid;
+        MainPack mainPack = base.InitRequest();
         PlayerInfoPack playerInfoPack = new PlayerInfoPack();
         playerInfoPack.Uid = targetPlayerUid;
         mainPack.PlayerInfoPack = playerInfoPack;

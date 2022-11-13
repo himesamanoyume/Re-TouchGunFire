@@ -41,10 +41,7 @@ public sealed class SendRequestFriendRequest : IRequest
 
     public void SendRequest(int targetPlayerUid)
     {
-        MainPack mainPack = new MainPack();
-        mainPack.RequestCode = requestCode;
-        mainPack.ActionCode = actionCode;
-        mainPack.Uid = networkMediator.playerSelfUid;
+        MainPack mainPack = base.InitRequest();
         SendRequestFriendPack sendRequestFriendPack = new SendRequestFriendPack();
         sendRequestFriendPack.TargetPlayerUid = targetPlayerUid;
         mainPack.SendRequestFriendPack = sendRequestFriendPack;
