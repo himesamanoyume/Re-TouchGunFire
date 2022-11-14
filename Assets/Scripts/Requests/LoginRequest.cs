@@ -20,11 +20,14 @@ public sealed class LoginRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     networkMediator.playerSelfUid = mainPack.Uid;
-                    Debug.Log(mainPack.Uid);
-                    networkMediator.OnUserLoginSuccess();
+                    panelMediator.ShowNotifyPanel("登陆成功",2f);
+                    EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
                 break;
                 case ReturnCode.Fail:
-                    networkMediator.OnUserLoginFail();
+                    panelMediator.ShowNotifyPanel("登陆错误",2f);
+                break;
+                case ReturnCode.Incorrect:
+                    panelMediator.ShowNotifyPanel("登陆失败~请检查账号密码是否输入正确",2f);
                 break;
                 case ReturnCode.ReturnNone:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);

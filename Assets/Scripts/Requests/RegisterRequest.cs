@@ -18,10 +18,10 @@ public sealed class RegisterRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    networkMediator.OnUserRegisterSuccess();
+                    panelMediator.ShowNotifyPanel("注册成功",2f);
                 break;
                 case ReturnCode.Fail:
-                    networkMediator.OnUserRegisterFail();
+                    panelMediator.ShowNotifyPanel("注册失败~可能账号已被注册",2f);
                 break;
                 case ReturnCode.ReturnNone:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);

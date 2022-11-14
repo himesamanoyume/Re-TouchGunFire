@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class LeaveTeamRequest : IRequest
+public sealed class BreakTeamRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "LeaveTeamRequest";
+        Name = "BreakTeamRequest";
         requestCode = RequestCode.Team;
-        actionCode = ActionCode.LeaveTeam;
+        actionCode = ActionCode.BreakTeam;
         base.Awake();
     }
 
@@ -19,10 +19,11 @@ public sealed class LeaveTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    panelMediator.ShowNotifyPanel("你已离队",1f);
+                    Debug.Log("已自动解散离队");
+                    panelMediator.ShowNotifyPanel("已自动解散离队",1f);
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("离队失败",3f);
+                    panelMediator.ShowNotifyPanel("解散队伍失败",3f);
                 break;
                 default:
                     // Debug.Log(mainPack.ReturnCode);
@@ -35,6 +36,7 @@ public sealed class LeaveTeamRequest : IRequest
 
     public void SendRequest(){
         MainPack mainPack = base.InitRequest();
+        Debug.Log("发送解散队伍请求");
         base.TcpSendRequest(mainPack);
     }
 

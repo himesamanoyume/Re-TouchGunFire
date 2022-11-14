@@ -51,31 +51,6 @@ namespace ReTouchGunFire.Mediators{
         public void HandleResponse(MainPack mainPack){
             requestMgr.HandleResponse(mainPack);
         }
-
-        public void OnUserLoginSuccess(){
-            Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("登陆成功",2f);
-                EventMgr.Broadcast(GameEvents.UserLoginSuccessNotify);
-            });
-        }
-
-        public void OnUserLoginFail(){
-            Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("登陆失败~请检查账号密码是否输入正确",2f);
-            });
-        }
-
-        public void OnUserRegisterSuccess(){
-            Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("注册成功",2f);
-            });
-        }
-
-        public void OnUserRegisterFail(){
-            Loom.QueueOnMainThread(()=>{
-                panelMediator.ShowNotifyPanel("注册失败~可能账号已被注册",2f);
-            });
-        }
         
     }
 }

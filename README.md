@@ -4,13 +4,11 @@ Rebuild project.
 
 ## TODO
 
-离开小队
+**注册功能可能有问题**
 
 好友面板加入小队页面
 
 玩家可对已有小队且人数未满的玩家发起申请加入小队
-
-账号密码错误没有返回错误信息
 
 ---
 
@@ -23,14 +21,18 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-显示离队,但是2号不会显示不在队伍中,1号显示不在队伍中 但是1号2号都不能发出邀请,并且1号离开后2号还会错误地接受到队伍信息
+null
 
 ## CHANGELOG
 
-> `22.11.13 22:11`
-add LeaveTeamRequest 90%. 
+> `22.11.14 16:27`
+add BreakTeamRequest, TeammateLeaveTeamRequest. 
+bug fixed. 
 
 <details>
+
+> `22.11.13 22:11`
+add LeaveTeamRequest 90%. 
 
 > `22.11.13 13:00`
 FriendsPanelInfo, FriendPlayerInfoBarInfo, LoginRegisterPanelInfo modify. 
