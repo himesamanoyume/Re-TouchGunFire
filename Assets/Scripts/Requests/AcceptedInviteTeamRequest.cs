@@ -19,7 +19,7 @@ public sealed class AcceptedInviteTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback();
+                    panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid);
                     Debug.Log("发送给好友的入队邀请已被接受");
                 break;
                 case ReturnCode.Fail:

@@ -20,7 +20,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         public Transform infoContent;
         public Slider health;
-        public Slider shield;
+        public Slider armor;
         public Text playerNameText;
 
 
@@ -53,7 +53,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             infoContent = transform.Find("InfoContent");
             health = infoContent.Find("Health").GetComponent<Slider>();
-            shield = infoContent.Find("Shield").GetComponent<Slider>();
+            armor = infoContent.Find("Armor").GetComponent<Slider>();
             playerNameText = infoContent.Find("PlayerNameText").GetComponent<Text>();
 
             refuseButton.onClick.AddListener(()=>{
@@ -64,6 +64,7 @@ namespace ReTouchGunFire.PanelInfo{
             acceptButton.onClick.AddListener(()=>{
                 acceptInviteTeamRequest.SendRequest(teammateUid);
                 inviteContent.gameObject.SetActive(false);
+                infoContent.gameObject.SetActive(true);
             });
         }
 
@@ -71,7 +72,11 @@ namespace ReTouchGunFire.PanelInfo{
             CountDownRunning();
         }
 
-        
+        public void Accepted(){
+            isCountdown = false;
+            inviteContent.gameObject.SetActive(false);
+            infoContent.gameObject.SetActive(true);
+        }
 
         protected override void CountDownRunning()
         {

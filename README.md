@@ -4,7 +4,9 @@ Rebuild project.
 
 ## TODO
 
-**注册功能可能有问题**
+登陆后开始同步基础信息 且包含队友的基础信息
+
+实现小队右下角面板
 
 好友面板加入小队页面
 
@@ -21,15 +23,21 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-null
+[基本实现]服务端实现Buff类 数值均为0 每一个具体的Buff为一个函数 在函数中实例化Buff类 对其对应数值赋值 然后将函数赋值到委托中 每次buff更新时 以角色初始数值加上所有在委托中的buff函数得到最终数值
+
+如何做到脱下或装备某些装备时 对应的buff能被正确地卸载和加载？
 
 ## CHANGELOG
+
+> `22.11.15 22:51`
+add UpdatePlayerInfoRequest. 
+some modify. 
+
+<details>
 
 > `22.11.14 16:27`
 add BreakTeamRequest, TeammateLeaveTeamRequest. 
 bug fixed. 
-
-<details>
 
 > `22.11.13 22:11`
 add LeaveTeamRequest 90%. 

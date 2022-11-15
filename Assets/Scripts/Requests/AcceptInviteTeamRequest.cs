@@ -19,7 +19,8 @@ public sealed class AcceptInviteTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("邀请好友入队成功");
+                    
+                    
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("接受好友的入队邀请失败",3f);
