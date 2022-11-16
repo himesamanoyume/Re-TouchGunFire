@@ -37,7 +37,8 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
         void PlayerInfoUpdate(){
-            uidBarText.text = "UID:"+GameLoop.Instance.GetComponent<PlayerInfo>().uid.ToString();
+            // uidBarText.text = "UID:"+GameLoop.Instance.GetComponent<PlayerInfo>().uid.ToString();
+            uidBarText.text = "UID:"+networkMediator.playerSelfUid;
         }
 
         public void UpdatePlayerInfoCallback(RepeatedField<UpdatePlayerInfoPack> updatePlayerInfoPacks){

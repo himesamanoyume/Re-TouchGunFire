@@ -29,6 +29,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             LoadTemplate();
             container = transform.Find("Point/Right/Container");
+            EventMgr.Broadcast(GameEvents.MainSceneBeginNotify);
         }
 
         void LoadTemplate(){

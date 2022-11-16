@@ -53,7 +53,7 @@ public sealed class MainScene : SceneInfo
             obj.AddComponent<PartyCurrentStatePanelInfo>().currentLevel = EUILevel.Level1;
         });
         
-
+        
         EventMgr.Broadcast(GameEvents.HideBattleLittleMenuPanelNotify);
     }
 

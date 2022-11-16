@@ -23,17 +23,23 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
+队长邀请队友且队友接受后没有正常出现队友血条 且队友接受后血条也出现但10秒内会消失
+
 [基本实现]服务端实现Buff类 数值均为0 每一个具体的Buff为一个函数 在函数中实例化Buff类 对其对应数值赋值 然后将函数赋值到委托中 每次buff更新时 以角色初始数值加上所有在委托中的buff函数得到最终数值
 
 如何做到脱下或装备某些装备时 对应的buff能被正确地卸载和加载？
 
 ## CHANGELOG
 
+> `22.11.16 18:09`
+UpdatePlayerInfoRequest done. 
+something need fix. 
+
+<details>
+
 > `22.11.15 22:51`
 add UpdatePlayerInfoRequest. 
 some modify. 
-
-<details>
 
 > `22.11.14 16:27`
 add BreakTeamRequest, TeammateLeaveTeamRequest. 

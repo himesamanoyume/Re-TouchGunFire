@@ -79,6 +79,8 @@ public class GameLoop : UnitySingleton<GameLoop>
         // }
     //end
 
+    
+
     void Update()
     {
         sceneMediator.SceneUpdate();

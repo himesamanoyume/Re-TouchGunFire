@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
+using Google.Protobuf.Collections;
+using SocketProtocol;
 
 namespace ReTouchGunFire.PanelInfo{
     public sealed class MainInfoPanelInfo : UIInfo
@@ -13,7 +15,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Button coinButton;
 
         public InitPlayerInfoRequest initPlayerInfoRequest;
-        PlayerInfo playerInfo;
+        // PlayerInfo playerInfo;
 
         private void Start() {
             Name = "MainInfoPanelInfo";
@@ -23,7 +25,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init(){
             base.Init();
 
-            playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
+            // playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
 
             initPlayerInfoRequest = (InitPlayerInfoRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.InitPlayerInfo);
             
@@ -32,7 +34,7 @@ namespace ReTouchGunFire.PanelInfo{
             coinButton = transform.Find("Point/InfoContainer/InfoButton_Coin").GetComponent<Button>();
             coinText = transform.Find("Point/InfoContainer/InfoButton_Coin/obj/obj2/InfoText_Coin").GetComponent<Text>();
             initPlayerInfoRequest.SendRequest();
-            EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
+            // EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
 
@@ -42,12 +44,20 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
 
-        void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
-        void PlayerInfoUpdate(){
-            Loom.QueueOnMainThread(()=>{
-                diamondText.text = playerInfo.diamond.ToString();
-                coinText.text = playerInfo.coin.ToString();
-            });
+        // void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
+        // void PlayerInfoUpdate(){
+        //     Loom.QueueOnMainThread(()=>{
+        //         diamondText.text = playerInfo.diamond.ToString();
+        //         coinText.text = playerInfo.coin.ToString();
+        //     });
+        // }
+
+        public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
+            if (updatePlayerInfoPack.Uid == networkMediator.playerSelfUid)
+            {
+                diamondText.text = updatePlayerInfoPack.Diamond.ToString();
+                coinText.text = updatePlayerInfoPack.Coin.ToString();
+            }
         }
     }
 

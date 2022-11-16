@@ -21,13 +21,14 @@ public sealed class InitPlayerInfoRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
-                    playerInfo.uid = mainPack.PlayerInfoPack.Uid;
-                    playerInfo.playerName = mainPack.PlayerInfoPack.PlayerName;
-                    playerInfo.level = mainPack.PlayerInfoPack.Level;
-                    playerInfo.currentExp = mainPack.PlayerInfoPack.CurrentExp;
-                    playerInfo.diamond = mainPack.PlayerInfoPack.Diamond;
-                    playerInfo.coin = mainPack.PlayerInfoPack.Coin;
+                    // playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
+                    // playerInfo.uid = mainPack.PlayerInfoPack.Uid;
+                    // playerInfo.playerName = mainPack.PlayerInfoPack.PlayerName;
+                    // playerInfo.level = mainPack.PlayerInfoPack.Level;
+                    // playerInfo.currentExp = mainPack.PlayerInfoPack.CurrentExp;
+                    // playerInfo.diamond = mainPack.PlayerInfoPack.Diamond;
+                    // playerInfo.coin = mainPack.PlayerInfoPack.Coin;
+                    networkMediator.playerSelfUid = mainPack.PlayerInfoPack.Uid;
                     //赋值装备与武器
 
                     //end
