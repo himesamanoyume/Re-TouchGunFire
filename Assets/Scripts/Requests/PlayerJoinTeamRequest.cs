@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class JoinTeamRequestRequest : IRequest
+public sealed class PlayerJoinTeamRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "JoinTeamRequestRequest";
+        Name = "PlayerJoinTeamRequest";
         requestCode = RequestCode.Team;
-        actionCode = ActionCode.JoinTeamRequest;
+        actionCode = ActionCode.PlayerJoinTeam;
         base.Awake();
     }
 
@@ -19,8 +19,8 @@ public sealed class JoinTeamRequestRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    //右下角显示有人拉我
-                    Debug.Log("JoinTeamRequestRequest Success");
+
+                    Debug.Log("PlayerJoinTeamRequest Success");
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("",3f);
@@ -31,17 +31,6 @@ public sealed class JoinTeamRequestRequest : IRequest
             
             }
         });
-    }
-
-    public void SendRequest(int targetPlayerUid){
-        MainPack mainPack = base.InitRequest();
-        TeammatePack teammatePack = new TeammatePack();
-        teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMasterUid = targetPlayerUid;
-        teammatePack.State = 0;
-        mainPack.TeammatePack = teammatePack;
-
-        base.TcpSendRequest(mainPack);
     }
 
 }

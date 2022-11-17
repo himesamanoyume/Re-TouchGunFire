@@ -4,7 +4,11 @@ Rebuild project.
 
 ## TODO
 
-好友面板加入小队页面
+好友面板添加加入小队按钮
+
+完善接受加入小队 拒绝加入小队
+
+踢出小队
 
 玩家可对已有小队且人数未满的玩家发起申请加入小队
 
@@ -19,16 +23,19 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-第三玩家加入小队时 除了队长以外队员未能正确显示另外2人信息
+一段时间后数据库会关闭
 
 如何做到脱下或装备某些装备时 对应的buff能被正确地卸载和加载？
 
 ## CHANGELOG
 
-> `22.11.17 15:01`
-rebuild request callback. 
+> `22.11.17 21:56`
+add AcceptJoinTeamRequest, PlayerJoinTeamRequest. 
 
 <details>
+
+> `22.11.17 15:01`
+rebuild request callback. 
 
 > `22.11.16 18:09`
 UpdatePlayerInfoRequest done. 

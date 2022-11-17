@@ -58,6 +58,14 @@ namespace ReTouchGunFire.PanelInfo{
             } 
         }
 
+        public void AcceptJoinTeamCallback(){
+
+        }
+
+        public void JoinTeamRequestCallback(){
+            
+        }
+
         public void TeammateLeaveTeamCallback(int targetPlayerUid){
             teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
             if (teammateBarInfo != null)
@@ -78,12 +86,29 @@ namespace ReTouchGunFire.PanelInfo{
                 {
                     continue;
                 }
-                teammateBarInfoDict.TryGetValue(updatePlayerInfoPack.Uid, out TeammateBarInfo teammateBarInfo);
-                teammateBarInfo.playerNameText.text = updatePlayerInfoPack.PlayerName;
-                teammateBarInfo.armor.maxValue = updatePlayerInfoPack.MaxArmor;
-                teammateBarInfo.armor.value = updatePlayerInfoPack.CurrentArmor;
-                teammateBarInfo.health.maxValue = updatePlayerInfoPack.MaxHealth;
-                teammateBarInfo.health.value = updatePlayerInfoPack.CurrentHealth;
+                try
+                {
+                    teammateBarInfoDict.TryGetValue(updatePlayerInfoPack.Uid, out TeammateBarInfo teammateBarInfo);
+                    if (teammateBarInfo != null)
+                    {
+                        teammateBarInfo.playerNameText.text = updatePlayerInfoPack.PlayerName;
+                        teammateBarInfo.armor.maxValue = updatePlayerInfoPack.MaxArmor;
+                        teammateBarInfo.armor.value = updatePlayerInfoPack.CurrentArmor;
+                        teammateBarInfo.health.maxValue = updatePlayerInfoPack.MaxHealth;
+                        teammateBarInfo.health.value = updatePlayerInfoPack.CurrentHealth;
+                    }else{
+                        GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                        teammateBar.AddComponent<TeammateBarInfo>().teammateUid = updatePlayerInfoPack.Uid;
+                        TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                        teammateBarInfoDict.Add(updatePlayerInfoPack.Uid, teammateBarInfo1);
+                        teammateBarInfo1.Accepted();
+                    }
+                }
+                catch 
+                {
+                    
+                }
+                
             }
         }
 
