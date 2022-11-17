@@ -22,8 +22,9 @@ public sealed class GetFriendRequestRequest : IRequest
                 case ReturnCode.Success:
                     // Debug.Log("请求添加好友申请列表成功");
                     // panelMediator.ShowNotifyPanel("请求添加好友申请列表成功",3f);
-                    FriendsPanelInfo friendsPanelInfo = panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>();
-                    friendsPanelInfo.GetFriendRequestCallback(mainPack.FriendsPack);
+                    // FriendsPanelInfo friendsPanelInfo = panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>();
+                    // friendsPanelInfo.GetFriendRequestCallback(mainPack.FriendsPack);
+                    networkMediator.GetFriendRequestCallback(mainPack.FriendsPack);
                 break;
                 case ReturnCode.Fail:
                     // Debug.Log("请求添加好友申请列表失败");

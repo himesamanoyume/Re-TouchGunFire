@@ -20,6 +20,7 @@ public sealed class LeaveTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     panelMediator.ShowNotifyPanel("你已离队",1f);
+                    networkMediator.LeaveTeamCallback();
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("离队失败",3f);

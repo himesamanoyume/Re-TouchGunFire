@@ -46,8 +46,29 @@ namespace ReTouchGunFire.PanelInfo{
             GameObject teammateBar = Instantiate(teammateBarTemplate, container);
             teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
             TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
-            teammateBarInfo.Accepted();
             teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
+            teammateBarInfo.Accepted();
+        }
+
+        public void AcceptInviteTeamCallback(int targetPlayerUid){
+            teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+            if (teammateBarInfo != null)
+            {
+                teammateBarInfo.Accepted();
+            } 
+        }
+
+        public void TeammateLeaveTeamCallback(int targetPlayerUid){
+            teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+            if (teammateBarInfo != null)
+            {
+                Destroy(teammateBarInfo.gameObject);
+                teammateBarInfoDict.Remove(targetPlayerUid);
+            } 
+        }
+
+        public void LeaveTeamCallback(){
+
         }
 
         public void UpdatePlayerInfoCallback(RepeatedField<UpdatePlayerInfoPack> updatePlayerInfoPacks){

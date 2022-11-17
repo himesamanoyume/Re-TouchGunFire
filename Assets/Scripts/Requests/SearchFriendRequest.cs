@@ -25,7 +25,7 @@ public sealed class SearchFriendRequest : IRequest
                 case ReturnCode.Success:
                     // Debug.Log("搜索玩家成功");
                     // panelMediator.ShowNotifyPanel("搜索玩家成功",3f);
-                    panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().SearchFriendCallback(mainPack);
+                    networkMediator.SearchFriendCallback(mainPack);
                 break;
                 case ReturnCode.Fail:
                     // Debug.Log("搜索玩家失败");

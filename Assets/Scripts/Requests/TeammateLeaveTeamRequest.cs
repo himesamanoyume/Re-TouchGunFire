@@ -21,6 +21,8 @@ public sealed class TeammateLeaveTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     panelMediator.ShowNotifyPanel("有队友离队",1f);
+                    // panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().TeammateLeaveTeamCallback(mainPack.TeammatePack.LeaveTeamPlayerUid);
+                    networkMediator.TeammateLeaveTeamCallback(mainPack.TeammatePack.LeaveTeamPlayerUid);
                     if (mainPack.TeammatePack.TeammateCount == 1 && mainPack.TeammatePack.TeamMasterUid == networkMediator.playerSelfUid)
                     {
                         RequestMediator requestMediator = GameLoop.Instance.GetMediator<RequestMediator>();

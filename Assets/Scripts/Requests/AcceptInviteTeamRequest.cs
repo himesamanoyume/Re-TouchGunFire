@@ -19,7 +19,7 @@ public sealed class AcceptInviteTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    
+                    panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptInviteTeamCallback(mainPack.TeammatePack.SenderUid);
                     
                 break;
                 case ReturnCode.Fail:

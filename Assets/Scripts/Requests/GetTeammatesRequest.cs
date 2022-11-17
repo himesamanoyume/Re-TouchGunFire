@@ -21,7 +21,8 @@ public sealed class GetTeammatesRequest : IRequest
                 case ReturnCode.Success:
                     //右下角显示有人拉我
                     Debug.Log("获取队伍信息成功");
-                    panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetTeammatesCallback(mainPack);
+                    // panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetTeammatesCallback(mainPack);
+                    networkMediator.GetTeammatesCallback(mainPack);
                     networkMediator.teamMasterPlayerUid = mainPack.TeammatePack.TeamMasterUid;
                 break;
                 case ReturnCode.Fail:

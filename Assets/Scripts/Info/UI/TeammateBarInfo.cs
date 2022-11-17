@@ -33,7 +33,8 @@ namespace ReTouchGunFire.PanelInfo{
         public AcceptInviteTeamRequest acceptInviteTeamRequest;
         public RefuseInviteTeamRequest refuseInviteTeamRequest;
 
-        bool isCountdown = true;
+        [SerializeField] bool isCountdown = true;
+        [SerializeField] bool isAccepted = false;
 
         protected sealed override void Init()
         {
@@ -63,9 +64,17 @@ namespace ReTouchGunFire.PanelInfo{
 
             acceptButton.onClick.AddListener(()=>{
                 acceptInviteTeamRequest.SendRequest(teammateUid);
+                isCountdown = false;
                 inviteContent.gameObject.SetActive(false);
                 infoContent.gameObject.SetActive(true);
             });
+
+            if (isAccepted)
+            {
+                isCountdown = false;
+                inviteContent.gameObject.SetActive(false);
+                infoContent.gameObject.SetActive(true);
+            }
         }
 
         private void Update() {
@@ -73,9 +82,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void Accepted(){
-            isCountdown = false;
-            inviteContent.gameObject.SetActive(false);
-            infoContent.gameObject.SetActive(true);
+            isAccepted = true;
         }
 
         protected override void CountDownRunning()

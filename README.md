@@ -4,10 +4,6 @@ Rebuild project.
 
 ## TODO
 
-登陆后开始同步基础信息 且包含队友的基础信息
-
-实现小队右下角面板
-
 好友面板加入小队页面
 
 玩家可对已有小队且人数未满的玩家发起申请加入小队
@@ -23,19 +19,20 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
-队长邀请队友且队友接受后没有正常出现队友血条 且队友接受后血条也出现但10秒内会消失
-
-[基本实现]服务端实现Buff类 数值均为0 每一个具体的Buff为一个函数 在函数中实例化Buff类 对其对应数值赋值 然后将函数赋值到委托中 每次buff更新时 以角色初始数值加上所有在委托中的buff函数得到最终数值
+第三玩家加入小队时 除了队长以外队员未能正确显示另外2人信息
 
 如何做到脱下或装备某些装备时 对应的buff能被正确地卸载和加载？
 
 ## CHANGELOG
 
+> `22.11.17 15:01`
+rebuild request callback. 
+
+<details>
+
 > `22.11.16 18:09`
 UpdatePlayerInfoRequest done. 
 something need fix. 
-
-<details>
 
 > `22.11.15 22:51`
 add UpdatePlayerInfoRequest. 
