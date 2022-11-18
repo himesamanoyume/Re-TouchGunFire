@@ -19,11 +19,10 @@ public sealed class PlayerJoinTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-
-                    Debug.Log("PlayerJoinTeamRequest Success");
+                    networkMediator.PlayerJoinTeamCallback(mainPack.TeammatePack.JoinTeamPlayerUid, mainPack.TeammatePack.SenderName);
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("",3f);
+                    panelMediator.ShowNotifyPanel("无法收到玩家的申请入队请求",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);

@@ -20,8 +20,9 @@ public sealed class JoinTeamRequestRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("JoinTeamRequestRequest Success");
-                    networkMediator.JoinTeamRequestCallback(mainPack.TeammatePack.SenderUid, mainPack.TeammatePack.SenderName);
+                    // Debug.Log("JoinTeamRequestRequest Success");
+                    // networkMediator.JoinTeamRequestCallback(mainPack.TeammatePack.SenderUid, mainPack.TeammatePack.SenderName);
+                    panelMediator.ShowNotifyPanel("已发送申请",3f);
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("失败",3f);

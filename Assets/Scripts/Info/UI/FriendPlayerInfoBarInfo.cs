@@ -121,6 +121,7 @@ namespace ReTouchGunFire.PanelInfo{
             acceptFriendRequestButton.gameObject.SetActive(true);
             onlineStateText.gameObject.SetActive(false);
             kickPlayerButton.gameObject.SetActive(false);
+            joinTeamRequestButton.gameObject.SetActive(false);
         }
 
         public void TeammateType(){
@@ -155,11 +156,19 @@ namespace ReTouchGunFire.PanelInfo{
                 if (EFriendPlayerInfoBarType.TeammateType == type)
                 {
                     inviteMyTeamButton.gameObject.SetActive(false);
+                    joinTeamRequestButton.gameObject.SetActive(false);
                 }else{
                     if (playerInfoPack.IsTeam)
                     {
                         inviteMyTeamButton.gameObject.SetActive(false);
-                        joinTeamRequestButton.gameObject.SetActive(true);
+                        if (playerInfoPack.IsSameTeam)
+                        {
+                            joinTeamRequestButton.gameObject.SetActive(false);
+                        }else
+                        {
+                            joinTeamRequestButton.gameObject.SetActive(true);
+                        }
+                        
                     }else
                     {
                         inviteMyTeamButton.gameObject.SetActive(true);

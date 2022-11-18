@@ -36,8 +36,8 @@ public sealed class AcceptJoinTeamRequest : IRequest
     public void SendRequest(int targetPlayerUid){
         MainPack mainPack = base.InitRequest();
         TeammatePack teammatePack = new TeammatePack();
-        teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMemberUid = targetPlayerUid;
+        teammatePack.JoinTeamPlayerUid = targetPlayerUid;
+        teammatePack.TeamMemberUid = networkMediator.playerSelfUid;
         teammatePack.State = 1;
         mainPack.TeammatePack = teammatePack;
 

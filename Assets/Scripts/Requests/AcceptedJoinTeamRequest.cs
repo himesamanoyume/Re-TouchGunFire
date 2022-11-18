@@ -32,16 +32,4 @@ public sealed class AcceptedJoinTeamRequest : IRequest
             }
         });
     }
-
-    public void SendRequest(int targetPlayerUid){
-        MainPack mainPack = base.InitRequest();
-        TeammatePack teammatePack = new TeammatePack();
-        teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMemberUid = targetPlayerUid;
-        teammatePack.State = 1;
-        mainPack.TeammatePack = teammatePack;
-
-        base.TcpSendRequest(mainPack);
-    }
-
 }

@@ -38,6 +38,7 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<RefusedJoinTeamRequest>();
             GameLoop.Instance.gameObject.AddComponent<AcceptedJoinTeamRequest>();
             GameLoop.Instance.gameObject.AddComponent<AcceptJoinTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<PlayerJoinTeamRequest>();
             
         }
 

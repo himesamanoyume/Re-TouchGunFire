@@ -37,21 +37,57 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void InvitedTeamCallback(int targetPlayerUid, string targetPlayerName){
-            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
-            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
-            TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
-            teammateBarInfo.teammateName = targetPlayerName;
-            teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
+            teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+            if (teammateBarInfo != null)
+            {
+                teammateBarInfoDict.Remove(targetPlayerUid);
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+            }else{
+                
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+            }
+            
         }
 
         public void AcceptedInviteTeamCallback(int targetPlayerUid, string targetPlayerName){
-            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
-            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
-            TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
-            teammateBarInfo.teammateName = targetPlayerName;
-            teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
-            teammateBarInfo.Accepted();
+            teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+            if (teammateBarInfo != null)
+            {
+                teammateBarInfoDict.Remove(targetPlayerUid);
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+                teammateBarInfo1.Accepted();
+            }else{
+                
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+                teammateBarInfo1.Accepted();
+            }
+            
         }
+
+        // public void RefuseJoinTeamCallback(int targetPlayerUid){
+        //     teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+        //     if (teammateBarInfo != null)
+        //     {
+        //         Destroy(teammateBarInfo.gameObject);
+        //         teammateBarInfoDict.Remove(targetPlayerUid);
+        //     } 
+        // }
 
         public void AcceptInviteTeamCallback(int targetPlayerUid){
             teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
@@ -61,19 +97,6 @@ namespace ReTouchGunFire.PanelInfo{
             } 
         }
 
-        public void AcceptJoinTeamCallback(){
-
-        }
-
-        public void JoinTeamRequestCallback(int targetPlayerUid, string targetPlayerName){
-            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
-            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
-            TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
-            teammateBarInfo.teammateName = targetPlayerName;
-            teammateBarInfo.JoinRequest();
-            teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
-        }
-
         public void TeammateLeaveTeamCallback(int targetPlayerUid){
             teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
             if (teammateBarInfo != null)
@@ -81,6 +104,29 @@ namespace ReTouchGunFire.PanelInfo{
                 Destroy(teammateBarInfo.gameObject);
                 teammateBarInfoDict.Remove(targetPlayerUid);
             } 
+        }
+
+        public void PlayerJoinTeamCallback(int targetPlayerUid, string targetPlayerName){
+            teammateBarInfoDict.TryGetValue(targetPlayerUid, out TeammateBarInfo teammateBarInfo);
+            if (teammateBarInfo != null)
+            {
+                teammateBarInfoDict.Remove(targetPlayerUid);
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfo1.JoinRequest();
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+            }else{
+                teammateBarInfoDict.Remove(targetPlayerUid);
+                GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+                teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+                TeammateBarInfo teammateBarInfo1 = teammateBar.GetComponent<TeammateBarInfo>();
+                teammateBarInfo1.teammateName = targetPlayerName;
+                teammateBarInfo1.JoinRequest();
+                teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo1);
+            }
+            
         }
 
         public void LeaveTeamCallback(){
@@ -100,6 +146,7 @@ namespace ReTouchGunFire.PanelInfo{
                     if (teammateBarInfo != null)
                     {
                         teammateBarInfo.playerNameText.text = updatePlayerInfoPack.PlayerName;
+                        teammateBarInfo.teammateName = updatePlayerInfoPack.PlayerName;
                         teammateBarInfo.armor.maxValue = updatePlayerInfoPack.MaxArmor;
                         teammateBarInfo.armor.value = updatePlayerInfoPack.CurrentArmor;
                         teammateBarInfo.health.maxValue = updatePlayerInfoPack.MaxHealth;

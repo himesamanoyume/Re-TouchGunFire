@@ -105,6 +105,10 @@ namespace ReTouchGunFire.Mediators{
                     playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
         }
 
+        public void PlayerJoinTeamCallback(int targetPlayerUid, string targetPlayerName){
+            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().PlayerJoinTeamCallback(targetPlayerUid, targetPlayerName);
+        }
+
         public void GetFriendsCallback(RepeatedField<FriendsPack> friendsPacks){
             panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetFriendsCallback(friendsPacks);
         }
@@ -121,9 +125,9 @@ namespace ReTouchGunFire.Mediators{
             panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetFriendRequestCallback(friendsPacks);
         }
 
-        public void JoinTeamRequestCallback(int targetPlayerUid, string targetPlayerName){
-            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().JoinTeamRequestCallback(targetPlayerUid, targetPlayerName);
-        }
+        // public void RefuseJoinTeamCallback(int targetPlayerUid){
+        //     panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().RefuseJoinTeamCallback(targetPlayerUid);
+        // }
 
     }
 }

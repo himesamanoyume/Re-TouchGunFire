@@ -36,8 +36,8 @@ public sealed class RefuseJoinTeamRequest : IRequest
     public void SendRequest(int targetPlayerUid){
         MainPack mainPack = base.InitRequest();
         TeammatePack teammatePack = new TeammatePack();
-        teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMemberUid = targetPlayerUid;
+        teammatePack.JoinTeamPlayerUid = targetPlayerUid;
+        teammatePack.TeamMemberUid = networkMediator.playerSelfUid;
         teammatePack.State = 2;
         mainPack.TeammatePack = teammatePack;
 

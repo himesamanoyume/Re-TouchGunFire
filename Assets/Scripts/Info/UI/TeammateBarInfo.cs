@@ -93,7 +93,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             refuseJoinButton.onClick.AddListener(()=>{
-
+                refuseJoinTeamRequest.SendRequest(teammateUid);
                 Destroy(gameObject);
             });
 
@@ -144,8 +144,13 @@ namespace ReTouchGunFire.PanelInfo{
         {
             if(!isCountdown) return;
             countdown.value -= Time.deltaTime;
+            joinCountdown.value -= Time.deltaTime;
             if(countdown.value <= 0){
-                countdown.value = 0;
+                isCountdown = false;
+                Destroy(gameObject);
+            }
+            if (joinCountdown.value <= 0)
+            {
                 isCountdown = false;
                 Destroy(gameObject);
             }

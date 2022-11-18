@@ -20,7 +20,7 @@ public sealed class RefusedJoinTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("RefusedJoinTeamRequest Success");
+                    panelMediator.ShowNotifyPanel("申请加入小队被拒绝",3f);
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("失败",3f);
@@ -33,15 +33,15 @@ public sealed class RefusedJoinTeamRequest : IRequest
         });
     }
 
-    public void SendRequest(int targetPlayerUid){
-        MainPack mainPack = base.InitRequest();
-        TeammatePack teammatePack = new TeammatePack();
-        teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMemberUid = targetPlayerUid;
-        teammatePack.State = 2;
-        mainPack.TeammatePack = teammatePack;
+    // public void SendRequest(int targetPlayerUid){
+    //     MainPack mainPack = base.InitRequest();
+    //     TeammatePack teammatePack = new TeammatePack();
+    //     teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
+    //     teammatePack.TeamMemberUid = targetPlayerUid;
+    //     teammatePack.State = 2;
+    //     mainPack.TeammatePack = teammatePack;
 
-        base.TcpSendRequest(mainPack);
-    }
+    //     base.TcpSendRequest(mainPack);
+    // }
 
 }

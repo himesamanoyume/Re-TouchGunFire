@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
+using SocketProtocol;
 
 namespace ReTouchGunFire.PanelInfo{
     public sealed class MainMenuPanelInfo : UIInfo
@@ -43,6 +44,8 @@ namespace ReTouchGunFire.PanelInfo{
             friendsCube = mainTemplate.Find("line3/FriendsCube").GetComponent<Button>();
             buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
             settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
+
+            GetFriendsRequest getFriendsRequest = (GetFriendsRequest)requestMediator.GetRequest(ActionCode.GetFriends);
             
             attackCube.onClick.AddListener(()=>{
                 mainTemplate.localScale = Vector3.zero;
@@ -50,6 +53,10 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             friendsCube.onClick.AddListener(()=>{
+                if (panelMediator.GetPanel(EUIPanelType.FriendsPanel)!=null)
+                {
+                    getFriendsRequest.SendRequest();
+                }
                 panelMediator.PushPanel(EUIPanelType.FriendsPanel, panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
                     obj.AddComponent<FriendsPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
                 });
