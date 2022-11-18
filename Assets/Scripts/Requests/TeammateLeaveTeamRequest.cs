@@ -23,7 +23,7 @@ public sealed class TeammateLeaveTeamRequest : IRequest
                     panelMediator.ShowNotifyPanel("有队友离队",1f);
                     // panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().TeammateLeaveTeamCallback(mainPack.TeammatePack.LeaveTeamPlayerUid);
                     networkMediator.TeammateLeaveTeamCallback(mainPack.TeammatePack.LeaveTeamPlayerUid);
-                    if (mainPack.TeammatePack.TeammateCount == 1 && mainPack.TeammatePack.TeamMasterUid == networkMediator.playerSelfUid)
+                    if (mainPack.TeammatePack.TeammateCount == 1 && mainPack.TeammatePack.TeamMemberUid == networkMediator.playerSelfUid)
                     {
                         RequestMediator requestMediator = GameLoop.Instance.GetMediator<RequestMediator>();
                         BreakTeamRequest breakTeamRequest = (BreakTeamRequest)requestMediator.GetRequest(ActionCode.BreakTeam);

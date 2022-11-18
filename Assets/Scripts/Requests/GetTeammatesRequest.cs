@@ -23,7 +23,7 @@ public sealed class GetTeammatesRequest : IRequest
                     Debug.Log("获取队伍信息成功");
                     // panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetTeammatesCallback(mainPack);
                     networkMediator.GetTeammatesCallback(mainPack);
-                    networkMediator.teamMasterPlayerUid = mainPack.TeammatePack.TeamMasterUid;
+                    networkMediator.teamMasterPlayerUid = mainPack.TeammatePack.TeamMemberUid;
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("获取队伍信息失败",3f);

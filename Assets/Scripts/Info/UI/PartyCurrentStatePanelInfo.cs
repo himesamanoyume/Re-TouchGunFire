@@ -36,16 +36,19 @@ namespace ReTouchGunFire.PanelInfo{
             teammateBarTemplate = abMediator.SyncLoadABRes("prefabs","TeammateBar");
         }
 
-        public void InvitedTeamCallback(int targetPlayerUid){
-            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
-            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
-            teammateBarInfoDict.Add(targetPlayerUid, teammateBar.GetComponent<TeammateBarInfo>());
-        }
-
-        public void AcceptedInviteTeamCallback(int targetPlayerUid){
+        public void InvitedTeamCallback(int targetPlayerUid, string targetPlayerName){
             GameObject teammateBar = Instantiate(teammateBarTemplate, container);
             teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
             TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
+            teammateBarInfo.teammateName = targetPlayerName;
+            teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
+        }
+
+        public void AcceptedInviteTeamCallback(int targetPlayerUid, string targetPlayerName){
+            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+            TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
+            teammateBarInfo.teammateName = targetPlayerName;
             teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
             teammateBarInfo.Accepted();
         }
@@ -62,8 +65,13 @@ namespace ReTouchGunFire.PanelInfo{
 
         }
 
-        public void JoinTeamRequestCallback(){
-            
+        public void JoinTeamRequestCallback(int targetPlayerUid, string targetPlayerName){
+            GameObject teammateBar = Instantiate(teammateBarTemplate, container);
+            teammateBar.AddComponent<TeammateBarInfo>().teammateUid = targetPlayerUid;
+            TeammateBarInfo teammateBarInfo = teammateBar.GetComponent<TeammateBarInfo>();
+            teammateBarInfo.teammateName = targetPlayerName;
+            teammateBarInfo.JoinRequest();
+            teammateBarInfoDict.Add(targetPlayerUid, teammateBarInfo);
         }
 
         public void TeammateLeaveTeamCallback(int targetPlayerUid){

@@ -20,7 +20,7 @@ public sealed class AcceptedInviteTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     // panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid);
-                    networkMediator.AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid);
+                    networkMediator.AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid, mainPack.TeammatePack.TargetName);
                     Debug.Log("发送给好友的入队邀请已被接受");
                 break;
                 case ReturnCode.Fail:

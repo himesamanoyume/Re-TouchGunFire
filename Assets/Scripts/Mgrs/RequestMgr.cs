@@ -34,6 +34,11 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<TeammateLeaveTeamRequest>();
             GameLoop.Instance.gameObject.AddComponent<BreakTeamRequest>();
             GameLoop.Instance.gameObject.AddComponent<UpdatePlayerInfoRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RefuseJoinTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<RefusedJoinTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AcceptedJoinTeamRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AcceptJoinTeamRequest>();
+            
         }
 
         private Dictionary<ActionCode, IRequest> requestDict = new Dictionary<ActionCode, IRequest>();

@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class JoinTeamRequestRequest : IRequest
+public sealed class RefusedJoinTeamRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "JoinTeamRequestRequest";
+        Name = "RefusedJoinTeamRequest";
         requestCode = RequestCode.Team;
-        actionCode = ActionCode.JoinTeamRequest;
+        actionCode = ActionCode.RefusedJoinTeam;
         base.Awake();
     }
 
@@ -20,8 +20,7 @@ public sealed class JoinTeamRequestRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("JoinTeamRequestRequest Success");
-                    networkMediator.JoinTeamRequestCallback(mainPack.TeammatePack.SenderUid, mainPack.TeammatePack.SenderName);
+                    Debug.Log("RefusedJoinTeamRequest Success");
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("失败",3f);
@@ -39,7 +38,7 @@ public sealed class JoinTeamRequestRequest : IRequest
         TeammatePack teammatePack = new TeammatePack();
         teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
         teammatePack.TeamMemberUid = targetPlayerUid;
-        teammatePack.State = 0;
+        teammatePack.State = 2;
         mainPack.TeammatePack = teammatePack;
 
         base.TcpSendRequest(mainPack);

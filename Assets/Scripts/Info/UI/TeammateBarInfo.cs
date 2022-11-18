@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
+using SocketProtocol;
 
 
 namespace ReTouchGunFire.PanelInfo{
@@ -17,6 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public int teammateUid;
+        public string teammateName;
 
         public Transform infoContent;
         public Slider health;
@@ -36,8 +38,10 @@ namespace ReTouchGunFire.PanelInfo{
         public Button acceptJoinButton;
         public Slider joinCountdown;
 
-        public AcceptInviteTeamRequest acceptInviteTeamRequest;
-        public RefuseInviteTeamRequest refuseInviteTeamRequest;
+        [SerializeField] AcceptInviteTeamRequest acceptInviteTeamRequest;
+        [SerializeField] RefuseInviteTeamRequest refuseInviteTeamRequest;
+        [SerializeField] AcceptJoinTeamRequest acceptJoinTeamRequest;
+        [SerializeField] RefuseJoinTeamRequest refuseJoinTeamRequest;
 
         [SerializeField] bool isCountdown = true;
         [SerializeField] bool isAccepted = false;
@@ -47,8 +51,10 @@ namespace ReTouchGunFire.PanelInfo{
         {
             base.Init();
 
-            acceptInviteTeamRequest = (AcceptInviteTeamRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.AcceptInviteTeam);
-            refuseInviteTeamRequest = (RefuseInviteTeamRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.RefuseInviteTeam);
+            acceptInviteTeamRequest = (AcceptInviteTeamRequest)requestMediator.GetRequest(ActionCode.AcceptInviteTeam);
+            refuseInviteTeamRequest = (RefuseInviteTeamRequest)requestMediator.GetRequest(ActionCode.RefuseInviteTeam);
+            acceptJoinTeamRequest = (AcceptJoinTeamRequest)requestMediator.GetRequest(ActionCode.AcceptJoinTeam);
+            refuseJoinTeamRequest = (RefuseJoinTeamRequest)requestMediator.GetRequest(ActionCode.RefuseJoinTeam);
 
             inviteContent = transform.Find("InviteContent");
             inviteText = inviteContent.Find("InviteText").GetComponent<Text>();
@@ -66,9 +72,9 @@ namespace ReTouchGunFire.PanelInfo{
 
             joinTeamContent = transform.Find("JoinTeamContent");
             joinText = joinTeamContent.Find("JoinText").GetComponent<Text>();
-            refuseJoinButton = inviteContent.Find("ButtonList/RefuseButton").GetComponent<Button>();
-            acceptJoinButton = inviteContent.Find("ButtonList/AcceptButton").GetComponent<Button>();
-            joinCountdown = inviteContent.Find("Countdown").GetComponent<Slider>();
+            refuseJoinButton = joinTeamContent.Find("ButtonList/RefuseButton").GetComponent<Button>();
+            acceptJoinButton = joinTeamContent.Find("ButtonList/AcceptButton").GetComponent<Button>();
+            joinCountdown = joinTeamContent.Find("Countdown").GetComponent<Slider>();
             joinCountdown.maxValue = 10;
             joinCountdown.value = 10;
 
@@ -86,16 +92,31 @@ namespace ReTouchGunFire.PanelInfo{
                 infoContent.gameObject.SetActive(true);
             });
 
+            refuseJoinButton.onClick.AddListener(()=>{
+
+                Destroy(gameObject);
+            });
+
+            acceptJoinButton.onClick.AddListener(()=>{
+                acceptJoinTeamRequest.SendRequest(teammateUid);
+                isCountdown = false;
+                inviteContent.gameObject.SetActive(false);
+                joinTeamContent.gameObject.SetActive(false);
+                infoContent.gameObject.SetActive(true);
+            });
+
             if (isInvite)
             {
                 inviteContent.gameObject.SetActive(true);
                 joinTeamContent.gameObject.SetActive(false);
                 infoContent.gameObject.SetActive(false);
+                inviteText.text = teammateName+"邀请你加入小队";
             }else
             {
                 inviteContent.gameObject.SetActive(false);
                 joinTeamContent.gameObject.SetActive(true);
                 infoContent.gameObject.SetActive(false);
+                joinText.text = teammateName+"申请加入小队";
             }
 
             if (isAccepted)
@@ -115,7 +136,7 @@ namespace ReTouchGunFire.PanelInfo{
             isAccepted = true;
         }
 
-        public void AcceptedJoin(){
+        public void JoinRequest(){
             isInvite = false;
         }
 

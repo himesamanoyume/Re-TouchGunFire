@@ -70,8 +70,8 @@ namespace ReTouchGunFire.Mediators{
             requestMgr.HandleResponse(mainPack);
         }
         
-        public void InvitedTeamCallback(int targetPlayerUid){
-            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().InvitedTeamCallback(targetPlayerUid);
+        public void InvitedTeamCallback(int targetPlayerUid, string targetPlayerName){
+            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().InvitedTeamCallback(targetPlayerUid, targetPlayerName);
         }
 
         public void TeammateLeaveTeamCallback(int targetPlayerUid){
@@ -113,12 +113,16 @@ namespace ReTouchGunFire.Mediators{
             panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetTeammatesCallback(mainPack);
         }
 
-        public void AcceptedInviteTeamCallback(int targetPlayerUid){
-            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback(targetPlayerUid);
+        public void AcceptedInviteTeamCallback(int targetPlayerUid, string targetPlayerName){
+            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback(targetPlayerUid, targetPlayerName);
         }
 
         public void GetFriendRequestCallback(RepeatedField<FriendsPack> friendsPacks){
             panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetFriendRequestCallback(friendsPacks);
+        }
+
+        public void JoinTeamRequestCallback(int targetPlayerUid, string targetPlayerName){
+            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().JoinTeamRequestCallback(targetPlayerUid, targetPlayerName);
         }
 
     }

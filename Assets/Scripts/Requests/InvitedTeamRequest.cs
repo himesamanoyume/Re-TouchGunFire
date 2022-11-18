@@ -22,7 +22,7 @@ public sealed class InvitedTeamRequest : IRequest
                     //右下角显示有人拉我
                     // panelMediator.ShowNotifyPanel("接收好友邀请入队成功",3f);
                     // panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().InvitedTeamCallback(mainPack.TeammatePack.SenderUid);
-                    networkMediator.InvitedTeamCallback(mainPack.TeammatePack.SenderUid);
+                    networkMediator.InvitedTeamCallback(mainPack.TeammatePack.SenderUid, mainPack.TeammatePack.SenderName);
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("接收好友邀请入队失败",3f);

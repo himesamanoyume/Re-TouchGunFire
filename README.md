@@ -23,16 +23,24 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## 已知问题
 
+第三号玩家申请加入小队时却在自己右下角显示了队友信息 且被申请加入的玩家显示PlayerJoinTeam找不到对应处理(还没写)
+
+已在小队中的队友不应再看到加入小队按钮
+
 一段时间后数据库会关闭
 
 如何做到脱下或装备某些装备时 对应的buff能被正确地卸载和加载？
 
 ## CHANGELOG
 
-> `22.11.17 21:56`
-add AcceptJoinTeamRequest, PlayerJoinTeamRequest. 
+> `22.11.18 17:42`
+add AcceptedJoinTeamRequest, RefusedJoinTeamRequest, RefuseJoinTeamRequest. 
+a lot of modify.
 
 <details>
+
+> `22.11.17 21:56`
+add AcceptJoinTeamRequest, PlayerJoinTeamRequest. 
 
 > `22.11.17 15:01`
 rebuild request callback. 

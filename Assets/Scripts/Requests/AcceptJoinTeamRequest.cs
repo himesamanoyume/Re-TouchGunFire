@@ -23,7 +23,7 @@ public sealed class AcceptJoinTeamRequest : IRequest
                     Debug.Log("AcceptJoinTeamRequest Success");
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("",3f);
+                    panelMediator.ShowNotifyPanel("失败",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
@@ -37,7 +37,7 @@ public sealed class AcceptJoinTeamRequest : IRequest
         MainPack mainPack = base.InitRequest();
         TeammatePack teammatePack = new TeammatePack();
         teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-        teammatePack.TeamMasterUid = targetPlayerUid;
+        teammatePack.TeamMemberUid = targetPlayerUid;
         teammatePack.State = 1;
         mainPack.TeammatePack = teammatePack;
 

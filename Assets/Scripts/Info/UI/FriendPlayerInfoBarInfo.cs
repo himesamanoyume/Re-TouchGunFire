@@ -10,11 +10,12 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class FriendPlayerInfoBarInfo : UIInfo
     {
-        public GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
-        public AcceptFriendRequestRequest acceptFriendRequestRequest;
-        public RefuseFriendRequestRequest refuseFriendRequestRequest;
-        public DeleteFriendRequest deleteFriendRequest;
-        public InviteTeamRequest inviteTeamRequest;
+        [SerializeField] GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
+        [SerializeField] AcceptFriendRequestRequest acceptFriendRequestRequest;
+        [SerializeField] RefuseFriendRequestRequest refuseFriendRequestRequest;
+        [SerializeField] DeleteFriendRequest deleteFriendRequest;
+        [SerializeField] InviteTeamRequest inviteTeamRequest;
+        [SerializeField] JoinTeamRequestRequest joinTeamRequestRequest;
 
         void Start()
         {
@@ -32,6 +33,7 @@ namespace ReTouchGunFire.PanelInfo{
         public Button acceptFriendRequestButton;
         public Button refuseFriendRequestButton;
         public Button kickPlayerButton;
+        public Button joinTeamRequestButton;
         public Text onlineStateText;
         public Text uidText;
 
@@ -47,12 +49,14 @@ namespace ReTouchGunFire.PanelInfo{
             refuseFriendRequestRequest = (RefuseFriendRequestRequest)requestMediator.GetRequest(ActionCode.RefuseFriendRequest);
             deleteFriendRequest = (DeleteFriendRequest)requestMediator.GetRequest(ActionCode.DeleteFriend);
             inviteTeamRequest = (InviteTeamRequest)requestMediator.GetRequest(ActionCode.InviteTeam);
+            joinTeamRequestRequest = (JoinTeamRequestRequest)requestMediator.GetRequest(ActionCode.JoinTeamRequest);
 
             //do something
             deleteFriendButton = transform.Find("Content/ButtonList/DeleteFriendButton").GetComponent<Button>();
             inviteMyTeamButton = transform.Find("Content/ButtonList/InviteMyTeamButton").GetComponent<Button>();
             acceptFriendRequestButton = transform.Find("Content/ButtonList/AcceptFriendRequestButton").GetComponent<Button>();
             refuseFriendRequestButton = transform.Find("Content/ButtonList/RefuseFriendRequestButton").GetComponent<Button>();
+            joinTeamRequestButton = transform.Find("Content/ButtonList/JoinTeamRequestButton").GetComponent<Button>();
             kickPlayerButton = transform.Find("Content/ButtonList/KickPlayerButton").GetComponent<Button>();
             playerNameText = transform.Find("Content/PlayerNameText").GetComponent<Text>();
             onlineStateText = transform.Find("Content/OnlineText").GetComponent<Text>();
@@ -93,6 +97,10 @@ namespace ReTouchGunFire.PanelInfo{
 
             kickPlayerButton.onClick.AddListener(()=>{
 
+            });
+
+            joinTeamRequestButton.onClick.AddListener(()=>{
+                joinTeamRequestRequest.SendRequest(playerUid);
             });
 
         }
@@ -151,17 +159,18 @@ namespace ReTouchGunFire.PanelInfo{
                     if (playerInfoPack.IsTeam)
                     {
                         inviteMyTeamButton.gameObject.SetActive(false);
+                        joinTeamRequestButton.gameObject.SetActive(true);
                     }else
                     {
                         inviteMyTeamButton.gameObject.SetActive(true);
+                        joinTeamRequestButton.gameObject.SetActive(false);
                     }
-                    
                 }
-                
             }else
             {
                 onlineStateText.text = "离线";
                 onlineStateText.color = grey;
+                joinTeamRequestButton.gameObject.SetActive(false);
                 inviteMyTeamButton.gameObject.SetActive(false);
             }
             
