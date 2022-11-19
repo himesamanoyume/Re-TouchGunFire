@@ -130,6 +130,10 @@ namespace ReTouchGunFire.PanelInfo{
 
             teammatesPageButton.onClick.AddListener(()=>{
                 container2.GetComponent<RectTransform>().offsetMax = offScreen;
+                for (int i = 0; i < friendsPartScrollViewContent.childCount; i++)
+                {
+                    Destroy(friendsPartScrollViewContent.GetChild(i).gameObject);
+                }
                 getTeammatesRequest.SendRequest(networkMediator.playerSelfUid);
             });
 

@@ -4,7 +4,7 @@ Rebuild project.
 
 ## TODO
 
-踢出小队
+开始实现血量等同步
 
 ---
 
@@ -12,10 +12,14 @@ Rebuild project.
 
 开场空白面板
 
+另一个客户端登陆同一账号时可以顶号
+
 BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装备详细信息显示，排序, 分解
 
 
 ## 已知问题
+
+两人互相邀请的时候会产生bug
 
 一段时间后数据库会关闭
 
@@ -23,10 +27,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.18 22:19`
-request finished. 
+> `22.11.19 14:59`
+add KickPlayerRequest. 
 
 <details>
+
+> `22.11.18 22:19`
+request finished. 
 
 > `22.11.18 17:42`
 add AcceptedJoinTeamRequest, RefusedJoinTeamRequest, RefuseJoinTeamRequest. 

@@ -130,7 +130,11 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void LeaveTeamCallback(){
-
+            for (int i = 0; i < container.childCount; i++)
+            {
+                Destroy(container.GetChild(i).gameObject);
+            }
+            teammateBarInfoDict.Clear();
         }
 
         public void UpdatePlayerInfoCallback(RepeatedField<UpdatePlayerInfoPack> updatePlayerInfoPacks){

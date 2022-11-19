@@ -16,6 +16,7 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] DeleteFriendRequest deleteFriendRequest;
         [SerializeField] InviteTeamRequest inviteTeamRequest;
         [SerializeField] JoinTeamRequestRequest joinTeamRequestRequest;
+        [SerializeField] KickPlayerRequest kickPlayerRequest;
 
         void Start()
         {
@@ -50,6 +51,7 @@ namespace ReTouchGunFire.PanelInfo{
             deleteFriendRequest = (DeleteFriendRequest)requestMediator.GetRequest(ActionCode.DeleteFriend);
             inviteTeamRequest = (InviteTeamRequest)requestMediator.GetRequest(ActionCode.InviteTeam);
             joinTeamRequestRequest = (JoinTeamRequestRequest)requestMediator.GetRequest(ActionCode.JoinTeamRequest);
+            kickPlayerRequest = (KickPlayerRequest)requestMediator.GetRequest(ActionCode.KickPlayer);
 
             //do something
             deleteFriendButton = transform.Find("Content/ButtonList/DeleteFriendButton").GetComponent<Button>();
@@ -96,7 +98,7 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             kickPlayerButton.onClick.AddListener(()=>{
-
+                kickPlayerRequest.SendRequest(playerUid);
             });
 
             joinTeamRequestButton.onClick.AddListener(()=>{
