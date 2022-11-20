@@ -12,6 +12,7 @@ namespace ReTouchGunFire.Mediators{
         public ClientMgr clientMgr;
         public RequestMgr requestMgr;
         public PanelMediator panelMediator;
+        PlayerInfo playerInfo;
 
         public int playerSelfUid = 0;
         public int teamMasterPlayerUid = 0;
@@ -24,11 +25,16 @@ namespace ReTouchGunFire.Mediators{
             Init();
         }
 
+        public PlayerInfo GetPlayerInfo{
+            get{ return playerInfo;}
+        }
+
         public override void Init()
         {
             clientMgr = GameLoop.Instance.gameManager.ClientMgr;
             requestMgr = GameLoop.Instance.gameManager.RequestMgr;
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
             EventMgr.AddListener<MainSceneBeginNotify>(OnMainSceneBegin);
         }
 
@@ -96,13 +102,20 @@ namespace ReTouchGunFire.Mediators{
                         }
                     }
 
-                    mainInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+                    //old自身的信息改为同步到PlayerInfo 再由PlayerInfo同步到UI
+                    // mainInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+                    // playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+                    //end
+                    //new
+                    playerInfo.UpdatePlayerInfo(_updatePlayerInfoPack);
+                    //end
+
 
                     partyCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
 
                     playerCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
 
-                    playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+                    
         }
 
         public void PlayerJoinTeamCallback(int targetPlayerUid, string targetPlayerName){

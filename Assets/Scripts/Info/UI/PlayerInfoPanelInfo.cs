@@ -31,6 +31,7 @@ namespace ReTouchGunFire.PanelInfo{
             playerNameText = content.Find("PlayerInfo/PlayerNameText").GetComponent<Text>();
             playerLevelText = content.Find("PlayerInfo/PlayerLevelText").GetComponent<Text>();
             // EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
+            networkMediator.GetPlayerInfo.playerInfoUpdateCallback += UpdatePlayerInfoCallback;
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
         }
         

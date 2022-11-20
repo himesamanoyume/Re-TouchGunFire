@@ -36,6 +36,7 @@ namespace ReTouchGunFire.PanelInfo{
             initPlayerInfoRequest.SendRequest();
             // EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
+            networkMediator.GetPlayerInfo.playerInfoUpdateCallback += UpdatePlayerInfoCallback;
         }
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();

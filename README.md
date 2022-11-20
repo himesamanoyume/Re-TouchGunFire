@@ -6,6 +6,8 @@ Rebuild project.
 
 开始实现血量等同步
 
+聊天系统
+
 ---
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
@@ -27,10 +29,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.19 14:59`
-add KickPlayerRequest. 
+> `22.11.21 3:00`
+add RegenerationRequest. 
 
 <details>
+
+> `22.11.19 14:59`
+add KickPlayerRequest. 
 
 > `22.11.18 22:19`
 request finished. 
