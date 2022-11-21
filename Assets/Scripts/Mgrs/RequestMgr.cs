@@ -55,7 +55,7 @@ namespace ReTouchGunFire.Mgrs{
         }
 
         public void HandleResponse(MainPack mainPack){
-            Debug.Log("处理响应："+mainPack.ActionCode);
+            // Debug.Log("处理响应："+mainPack.ActionCode);
             if(requestDict.TryGetValue(mainPack.ActionCode, out IRequest request)){
                 request.OnResponse(mainPack);
             }else{

@@ -1025,8 +1025,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 90638547}
   m_HandleRect: {fileID: 90638546}
   m_Direction: 2
-  m_Value: 0.99999946
-  m_Size: 0.5629954
+  m_Value: 0.9999993
+  m_Size: 0.5644903
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6414,7 +6414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u62A4\u7532\u503C"
+  m_Text: "\u6700\u5927\u62A4\u7532\u503C"
 --- !u!1 &4830547191320337561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8426,7 +8426,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u751F\u547D\u503C"
+  m_Text: "\u6700\u5927\u751F\u547D\u503C"
 --- !u!1 &6759927497255876803
 GameObject:
   m_ObjectHideFlags: 0

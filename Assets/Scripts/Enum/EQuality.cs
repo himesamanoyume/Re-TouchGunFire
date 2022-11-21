@@ -1,6 +1,6 @@
 
 
-public enum EEquipmentQuality
+public enum EQuality
 {
    Null,
    Normal,

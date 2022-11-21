@@ -32,7 +32,7 @@ public class PlayerInfo : EntityInfo
     }
     [SerializeField] float currentHealth;
     [SerializeField] float maxHealth;
-    [SerializeField] float currentAmor;
+    [SerializeField] float currentArmor;
     [SerializeField] float maxArmor;
     public float CurrentHealth
     {
@@ -40,7 +40,7 @@ public class PlayerInfo : EntityInfo
     }
     public float CurrentArmor
     {
-        get { return currentAmor; }
+        get { return currentArmor; }
     }
     public float MaxHealth
     {
@@ -145,7 +145,7 @@ public class PlayerInfo : EntityInfo
         maxExp = updatePlayerInfoPack.MaxExp;
         currentHealth = updatePlayerInfoPack.CurrentHealth;
         maxHealth = updatePlayerInfoPack.MaxHealth;
-        currentAmor = updatePlayerInfoPack.CurrentArmor;
+        currentArmor = updatePlayerInfoPack.CurrentArmor;
         maxArmor = updatePlayerInfoPack.MaxArmor;
         baseDmgBonus = updatePlayerInfoPack.BaseDmgRateBonus;
         critDmgRateBonus  = updatePlayerInfoPack.CritDmgRateBonus;
@@ -174,7 +174,7 @@ public class PlayerInfo : EntityInfo
     RegenerationRequest regenerationRequest;
     void Regeneration(){
         // Debug.Log("Regeneration");
-        if (currentHealth<maxHealth && currentHealth > 0)
+        if ((currentHealth<maxHealth && currentHealth > 0) || (currentArmor < maxArmor && currentArmor > 0))
         {
             //每1秒回复10次最大生命值的(1/20)/10
             regenerationRequest.SendRequest();

@@ -4,9 +4,7 @@ Rebuild project.
 
 ## TODO
 
-开始实现血量等同步
-
-聊天系统
+背包系统
 
 ---
 
@@ -14,14 +12,13 @@ Rebuild project.
 
 开场空白面板
 
-另一个客户端登陆同一账号时可以顶号
+另一个客户端登陆同一账号时不可以顶号
 
 BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装备详细信息显示，排序, 分解
 
+聊天系统
 
 ## 已知问题
-
-两人互相邀请的时候会产生bug
 
 一段时间后数据库会关闭
 
@@ -29,10 +26,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.21 3:00`
-add RegenerationRequest. 
+> `22.11.21 18:15`
+something changed. 
 
 <details>
+
+> `22.11.21 3:00`
+add RegenerationRequest. 
 
 > `22.11.19 14:59`
 add KickPlayerRequest. 

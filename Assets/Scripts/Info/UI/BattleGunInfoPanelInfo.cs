@@ -8,17 +8,17 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class BattleGunInfoPanelInfo : UIInfo
     {
         //temp
-        public class Ak47Info : GunInfo {
-            public Ak47Info(){
-                gunName = EGunName.AK47;
-                gunType = EGunType.AR;
-                baseDMG = 100;
-                firingRate = 600f;
-                magazine = 30;
-                magazineCount = 16;
-                currentFiringRatePerSecond = (firingRate / 60f) / 100f;
-            }
-        }
+        // public class Ak47Info : GunInfo {
+        //     public Ak47Info(){
+        //         gunName = EGunName.AK47;
+        //         gunType = EGunType.AR;
+        //         baseDMG = 100;
+        //         firingRate = 600f;
+        //         magazine = 30;
+        //         magazineCount = 16;
+        //         currentFiringRatePerSecond = (firingRate / 60f) / 100f;
+        //     }
+        // }
         //end
 
         void Start()
@@ -83,8 +83,8 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             //temp
-            Ak47Info ak47Info = new Ak47Info();
-            mainGunInfo = ak47Info;
+            // Ak47Info ak47Info = new Ak47Info();
+            // mainGunInfo = ak47Info;
             //end
 
             EventMgr.AddListener<PlayerMainGunUpdateNotify>(OnPlayerMainGunUpdate);
@@ -98,8 +98,8 @@ namespace ReTouchGunFire.PanelInfo{
             if(gunFiringColdDown){
                 if(Input.GetMouseButton(0)){
                     gunFiringColdDown = false;
-                    EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
-                    Invoke("SetGunShootingColdDownReady", mainGunInfo.currentFiringRatePerSecond);
+                    // EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
+                    // Invoke("SetGunShootingColdDownReady", mainGunInfo.currentFiringRatePerSecond);
                 }
             }
                 

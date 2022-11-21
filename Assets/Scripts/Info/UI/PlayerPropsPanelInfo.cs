@@ -102,6 +102,7 @@ namespace ReTouchGunFire.PanelInfo{
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
             EventMgr.AddListener<BackpackPanelOpenNotify>(OnBackpackOpen);
             EventMgr.AddListener<BackpackPanelCloseNotify>(OnBackpackClose);
+            networkMediator.GetPlayerInfo.playerInfoUpdateCallback += UpdatePlayerInfoCallback;
         }
 
         void InitPropsBar(){
@@ -160,29 +161,23 @@ namespace ReTouchGunFire.PanelInfo{
             panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level4);
         }
 
-        public void UpdatePlayerInfoCallback(RepeatedField<UpdatePlayerInfoPack> updatePlayerInfoPacks){
-            foreach (UpdatePlayerInfoPack updatePlayerInfoPack in updatePlayerInfoPacks)
-            {
-                if (updatePlayerInfoPack.Uid != networkMediator.playerSelfUid)
-                {
-                    continue;
-                }
-                health.text = updatePlayerInfoPack.MaxHealth.ToString("f0");
-                armor.text = updatePlayerInfoPack.MaxArmor.ToString("f0");
-                baseDmgBonus.text = (updatePlayerInfoPack.BaseDmgRateBonus * 100).ToString("f1") + "%";
-                cDmgRateBonus.text = (updatePlayerInfoPack.CritDmgRateBonus * 100).ToString("f1") + "%";
-                cDmgBonus.text = (updatePlayerInfoPack.CritDmgBonus * 100).ToString("f1") + "%";
-                headshotDmgBonus.text = (updatePlayerInfoPack.HeadshotDmgBonus * 100).ToString("f1") + "%";
-                pRateBonus.text = (updatePlayerInfoPack.PRateBonus * 100).ToString("f1") + "%";
-                abeBonus.text = (updatePlayerInfoPack.AbeBonus * 100).ToString("f1") + "%";
-                arDmgBonus.text = (updatePlayerInfoPack.ArDmgBonus * 100).ToString("f1") + "%";
-                dmrDmgBonus.text = (updatePlayerInfoPack.DmrDmgBonus * 100).ToString("f1") + "%";
-                smgDmgBonus.text = (updatePlayerInfoPack.SmgDmgBonus * 100).ToString("f1") + "%";
-                sgDmgBonus.text = (updatePlayerInfoPack.SgDmgBonus * 100).ToString("f1") + "%";
-                srDmgBonus.text = (updatePlayerInfoPack.SrDmgBonus * 100).ToString("f1") + "%";
-                mgDmgBonus.text = (updatePlayerInfoPack.MgDmgBonus * 100).ToString("f1") + "%";
-                hgDmgBonus.text = (updatePlayerInfoPack.HgDmgBonus * 100).ToString("f1") + "%";
-            }
+        public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
+            
+            health.text = updatePlayerInfoPack.MaxHealth.ToString("f0");
+            armor.text = updatePlayerInfoPack.MaxArmor.ToString("f0");
+            baseDmgBonus.text = (updatePlayerInfoPack.BaseDmgRateBonus * 100).ToString("f1") + "%";
+            cDmgRateBonus.text = (updatePlayerInfoPack.CritDmgRateBonus * 100).ToString("f1") + "%";
+            cDmgBonus.text = (updatePlayerInfoPack.CritDmgBonus * 100).ToString("f1") + "%";
+            headshotDmgBonus.text = (updatePlayerInfoPack.HeadshotDmgBonus * 100).ToString("f1") + "%";
+            pRateBonus.text = (updatePlayerInfoPack.PRateBonus * 100).ToString("f1") + "%";
+            abeBonus.text = (updatePlayerInfoPack.AbeBonus * 100).ToString("f1") + "%";
+            arDmgBonus.text = (updatePlayerInfoPack.ArDmgBonus * 100).ToString("f1") + "%";
+            dmrDmgBonus.text = (updatePlayerInfoPack.DmrDmgBonus * 100).ToString("f1") + "%";
+            smgDmgBonus.text = (updatePlayerInfoPack.SmgDmgBonus * 100).ToString("f1") + "%";
+            sgDmgBonus.text = (updatePlayerInfoPack.SgDmgBonus * 100).ToString("f1") + "%";
+            srDmgBonus.text = (updatePlayerInfoPack.SrDmgBonus * 100).ToString("f1") + "%";
+            mgDmgBonus.text = (updatePlayerInfoPack.MgDmgBonus * 100).ToString("f1") + "%";
+            hgDmgBonus.text = (updatePlayerInfoPack.HgDmgBonus * 100).ToString("f1") + "%";
         }
     }
 }
