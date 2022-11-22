@@ -32,7 +32,7 @@ namespace ReTouchGunFire.PanelInfo{
             hpBar = container.Find("HpBar").GetComponent<Slider>();
             uidBarText = container.Find("UidBar/Text").GetComponent<Text>();
             EventMgr.AddListener<PlayerInfoUpdateNotify>(OnPlayerInfoUpdate);
-
+            networkMediator.GetPlayerInfo.playerInfoUpdateCallback += UpdatePlayerInfoCallback;
         }
 
         void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
@@ -41,18 +41,13 @@ namespace ReTouchGunFire.PanelInfo{
             uidBarText.text = "UID:"+networkMediator.playerSelfUid;
         }
 
-        public void UpdatePlayerInfoCallback(RepeatedField<UpdatePlayerInfoPack> updatePlayerInfoPacks){
-            foreach (UpdatePlayerInfoPack updatePlayerInfoPack in updatePlayerInfoPacks)
-            {
-                if (updatePlayerInfoPack.Uid != networkMediator.playerSelfUid)
-                {
-                    continue;
-                }
-                armorBar.maxValue = updatePlayerInfoPack.MaxArmor;
-                armorBar.value = updatePlayerInfoPack.CurrentArmor;
-                hpBar.maxValue = updatePlayerInfoPack.MaxHealth;
-                hpBar.value = updatePlayerInfoPack.CurrentHealth;
-            }
+        public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
+    
+            armorBar.maxValue = updatePlayerInfoPack.MaxArmor;
+            armorBar.value = updatePlayerInfoPack.CurrentArmor;
+            hpBar.maxValue = updatePlayerInfoPack.MaxHealth;
+            hpBar.value = updatePlayerInfoPack.CurrentHealth;
+            
         }
     }
 }

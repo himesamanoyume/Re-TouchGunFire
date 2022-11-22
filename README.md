@@ -4,6 +4,8 @@ Rebuild project.
 
 ## TODO
 
+物品系统
+
 背包系统
 
 ---
@@ -26,10 +28,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.21 18:15`
-something changed. 
+> `22.11.22 22:59`
+item system work in progress. 
 
 <details>
+
+> `22.11.21 18:15`
+something changed. 
 
 > `22.11.21 3:00`
 add RegenerationRequest. 
@@ -276,8 +281,12 @@ si:ii-->esi:si
 ```
 ## 临时流程指导笔记
 
+不要一个装备一个类
 
-0 ~ 90 one 
-90 ~ 180 two
--90 ~ 0 four 270 ~ 360
--90 ~ -180 three 180 ~ 270
+装备没有品质差别 有套装效果 但不能一开始就获取 需要等级条件达成后用金币购买进行解锁
+
+词条默认全开 但词条属性和数值完全随机 需要花费金币刷新
+
+装备天赋固定
+
+装备有一个管理器 控制穿戴、脱下时添加和删除的委托 类似于状态机
