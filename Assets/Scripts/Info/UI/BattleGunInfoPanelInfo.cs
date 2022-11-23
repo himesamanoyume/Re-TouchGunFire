@@ -100,6 +100,8 @@ namespace ReTouchGunFire.PanelInfo{
                     gunFiringColdDown = false;
                     // EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
                     // Invoke("SetGunShootingColdDownReady", mainGunInfo.currentFiringRatePerSecond);
+                    //上为错误写法
+                    //应为1/(FiringRate/60)
                 }
             }
                 

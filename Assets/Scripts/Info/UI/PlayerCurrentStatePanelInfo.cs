@@ -41,13 +41,22 @@ namespace ReTouchGunFire.PanelInfo{
             uidBarText.text = "UID:"+networkMediator.playerSelfUid;
         }
 
+        UpdatePlayerInfoPack _updatePlayerInfoPack = null;
+
+        private void Update() {
+            if (_updatePlayerInfoPack != null)
+            {
+                armorBar.maxValue = _updatePlayerInfoPack.MaxArmor;
+                // armorBar.value = _updatePlayerInfoPack.CurrentArmor;
+                armorBar.value = Mathf.Lerp(armorBar.value, _updatePlayerInfoPack.CurrentArmor, 0.5f);
+                hpBar.maxValue = _updatePlayerInfoPack.MaxHealth;
+                // hpBar.value = _updatePlayerInfoPack.CurrentHealth;
+                hpBar.value = Mathf.Lerp(hpBar.value, _updatePlayerInfoPack.CurrentHealth, 0.5f);
+            }
+        }
+
         public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
-    
-            armorBar.maxValue = updatePlayerInfoPack.MaxArmor;
-            armorBar.value = updatePlayerInfoPack.CurrentArmor;
-            hpBar.maxValue = updatePlayerInfoPack.MaxHealth;
-            hpBar.value = updatePlayerInfoPack.CurrentHealth;
-            
+            _updatePlayerInfoPack = updatePlayerInfoPack;
         }
     }
 }

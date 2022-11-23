@@ -2,13 +2,13 @@ using SocketProtocol;
 
 public abstract class EquipmentInfo : ItemInfo
 {
-   EEquipmentSuit equipmentSuit;
-   EEquipmentName equipmentName;
-   ESubProp subProp1;
+   string equipmentSuit;
+   string equipmentName;
+   string subProp1;
    float subProp1Value;
-   ESubProp subProp2;
+   string subProp2;
    float subProp2Value;
-   ESubProp subProp3;
+   string subProp3;
    float subProp3Value;
    EEquipmentTalent talent1;
    EEquipmentTalent talent2;
@@ -16,13 +16,13 @@ public abstract class EquipmentInfo : ItemInfo
    bool use;
    bool block;
 
-   public EEquipmentSuit EquipmentSuit { get => equipmentSuit; }
-   public EEquipmentName EquipmentName { get => equipmentName; }
-   public ESubProp SubProp1 { get => subProp1; }
+   public string EquipmentSuit { get => equipmentSuit; }
+   public string EquipmentName { get => equipmentName; }
+   public string SubProp1 { get => subProp1; }
    public float SubProp1Value { get => subProp1Value; }
-   public ESubProp SubProp2 { get => subProp2; }
+   public string SubProp2 { get => subProp2; }
    public float SubProp2Value { get => subProp2Value; }
-   public ESubProp SubProp3 { get => subProp3; }
+   public string SubProp3 { get => subProp3; }
    public float SubProp3Value { get => subProp3Value; }
    public EEquipmentTalent Talent1 { get => talent1; }
    public EEquipmentTalent Talent2 { get => talent2; }
@@ -34,12 +34,13 @@ public abstract class EquipmentInfo : ItemInfo
         use = equipmentPack.Use;
         uid = equipmentPack.EquipmentId;
         block = equipmentPack.Block;
-        equipmentSuit = (EEquipmentSuit)equipmentPack.EquipmentSuit;
-        equipmentName = (EEquipmentName)equipmentPack.EquipmentName;
+        equipmentSuit = equipmentPack.EquipmentSuit;
+        equipmentName = equipmentPack.EquipmentName;
+        subProp1 = equipmentPack.SubProp1;
         subProp1Value = equipmentPack.SubProp1Value;
-        subProp2 = (ESubProp)equipmentPack.SubProp2;
+        subProp2 = equipmentPack.SubProp2;
         subProp2Value = equipmentPack.SubProp2Value;
-        subProp3 = (ESubProp)equipmentPack.SubProp3;
+        subProp3 = equipmentPack.SubProp3;
         subProp3Value = equipmentPack.SubProp3Value;
         talent1 = (EEquipmentTalent)equipmentPack.Talent1;
         talent2 = (EEquipmentTalent)equipmentPack.Talent2;

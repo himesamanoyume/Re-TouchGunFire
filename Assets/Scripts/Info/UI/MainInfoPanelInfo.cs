@@ -59,6 +59,7 @@ namespace ReTouchGunFire.PanelInfo{
                 diamondText.text = updatePlayerInfoPack.Diamond.ToString();
                 coinText.text = updatePlayerInfoPack.Coin.ToString();
             }
+            
         }
     }
 

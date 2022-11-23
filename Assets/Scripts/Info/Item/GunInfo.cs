@@ -1,39 +1,37 @@
 using SocketProtocol;
 public class GunInfo : ItemInfo
 {
-    EGunName gunName;
-    EGunType gunType;
+    string gunName;
+    string gunType;
     float baseDMG;
     float firingRate;
     float currentFiringRatePerSecond;
     int magazine;
-    int magazineCount;
-    EGunCoreProp coreProp;
+    string coreProp;
     float corePropValue;
-    ESubProp subProp1;
+    string subProp1;
     float subProp1Value;
-    ESubProp subProp2;
+    string subProp2;
     float subProp2Value;
-    ESubProp subProp3;
+    string subProp3;
     float subProp3Value;
     int uid;
     bool use;
     bool block;
 
-    public EGunName GunName { get => gunName; }
-    public EGunType GunType { get => gunType; }
+    public string GunName { get => gunName; }
+    public string GunType { get => gunType; }
     public float BaseDMG { get => baseDMG; }
     public float FiringRate { get => firingRate; }
     public float CurrentFiringRatePerSecond { get => currentFiringRatePerSecond; }
     public int Magazine { get => magazine; }
-    public int MagazineCount { get => magazineCount; }
-    public EGunCoreProp CoreProp { get => coreProp; }
+    public string CoreProp { get => coreProp; }
     public float CorePropValue { get => corePropValue; }
-    public ESubProp SubProp1 { get => subProp1; }
+    public string SubProp1 { get => subProp1; }
     public float SubProp1Value { get => subProp1Value; }
-    public ESubProp SubProp2 { get => subProp2;}
+    public string SubProp2 { get => subProp2;}
     public float SubProp2Value { get => subProp2Value; }
-    public ESubProp SubProp3 { get => subProp3; }
+    public string SubProp3 { get => subProp3; }
     public float SubProp3Value { get => subProp3Value; }
     public int Uid { get => uid; }
     public bool Use { get => use;}
@@ -43,20 +41,19 @@ public class GunInfo : ItemInfo
         use = gunPack.Use;
         uid = gunPack.GunId;
         block = gunPack.Block;
-        gunName = (EGunName)gunPack.GunName;
-        gunType = (EGunType)gunPack.GunType;
+        gunName = gunPack.GunName;
+        gunType = gunPack.GunType;
         baseDMG = gunPack.BaseDMG;
         firingRate = gunPack.FiringRate;
         currentFiringRatePerSecond = gunPack.CurrentFiringRatePerSecond;
         magazine = gunPack.Magazine;
-        magazineCount = gunPack.MagazineCount;
-        coreProp = (EGunCoreProp)gunPack.CoreProp;
+        coreProp = gunPack.CoreProp;
         corePropValue = gunPack.CorePropValue;
-        subProp1 = (ESubProp)gunPack.SubProp1;
+        subProp1 = gunPack.SubProp1;
         subProp1Value = gunPack.SubProp1Value;
-        subProp2 = (ESubProp)gunPack.SubProp2;
+        subProp2 = gunPack.SubProp2;
         subProp2Value = gunPack.SubProp2Value;
-        subProp3 = (ESubProp)gunPack.SubProp3;
+        subProp3 = gunPack.SubProp3;
         subProp3Value = gunPack.SubProp3Value;
     }
 }

@@ -6,6 +6,8 @@ Rebuild project.
 
 物品系统
 
+- 接收武器装备Packs
+
 背包系统
 
 ---
@@ -28,10 +30,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.22 22:59`
-item system work in progress. 
+> `22.11.23 20:47`
+some changed. 
 
 <details>
+
+> `22.11.22 22:59`
+item system work in progress. 
 
 > `22.11.21 18:15`
 something changed. 
