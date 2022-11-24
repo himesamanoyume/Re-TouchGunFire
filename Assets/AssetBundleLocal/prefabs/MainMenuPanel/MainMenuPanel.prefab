@@ -2879,7 +2879,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4ED3\u5E93\n"
+  m_Text: "\u5546\u5E97\n"
 --- !u!1 &6475501766213636841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,7 +3305,7 @@ GameObject:
   - component: {fileID: 8871126481043793255}
   - component: {fileID: 7971512677094148156}
   m_Layer: 5
-  m_Name: WarehouseCube
+  m_Name: ShopCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

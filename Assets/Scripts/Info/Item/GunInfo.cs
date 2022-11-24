@@ -15,7 +15,7 @@ public class GunInfo : ItemInfo
     float subProp2Value;
     string subProp3;
     float subProp3Value;
-    int uid;
+    int gunId;
     bool use;
     bool block;
 
@@ -33,13 +33,13 @@ public class GunInfo : ItemInfo
     public float SubProp2Value { get => subProp2Value; }
     public string SubProp3 { get => subProp3; }
     public float SubProp3Value { get => subProp3Value; }
-    public int Uid { get => uid; }
+    public int GunId { get => gunId; }
     public bool Use { get => use;}
     public bool Block { get => block; }
 
     public void Init(GunPack gunPack){
         use = gunPack.Use;
-        uid = gunPack.GunId;
+        gunId = gunPack.GunId;
         block = gunPack.Block;
         gunName = gunPack.GunName;
         gunType = gunPack.GunType;

@@ -30,10 +30,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.23 20:47`
-some changed. 
+> `22.11.24 18:29`
+server work done. 
+client some modify to be ready to work for Backpack System. 
 
 <details>
+
+> `22.11.23 20:47`
+some changed. 
 
 > `22.11.22 22:59`
 item system work in progress. 

@@ -138,6 +138,14 @@ namespace ReTouchGunFire.Mediators{
             panelMediator.GetPanel(EUIPanelType.FriendsPanel).GetComponent<FriendsPanelInfo>().GetFriendRequestCallback(friendsPacks);
         }
 
+        public void UpdatePlayerGunInfoCallback(RepeatedField<GunPack> gunPacks){
+
+        }
+
+        public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
+            
+        }
+
         // public void RefuseJoinTeamCallback(int targetPlayerUid){
         //     panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().RefuseJoinTeamCallback(targetPlayerUid);
         // }

@@ -12,7 +12,7 @@ public abstract class EquipmentInfo : ItemInfo
    float subProp3Value;
    EEquipmentTalent talent1;
    EEquipmentTalent talent2;
-   int uid;
+   int equipmentId;
    bool use;
    bool block;
 
@@ -26,13 +26,13 @@ public abstract class EquipmentInfo : ItemInfo
    public float SubProp3Value { get => subProp3Value; }
    public EEquipmentTalent Talent1 { get => talent1; }
    public EEquipmentTalent Talent2 { get => talent2; }
-   public int Uid { get => uid; }
+   public int EquipmentId { get => equipmentId; }
    public bool Use { get => use; }
    public bool Block { get => block; }
 
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;
-        uid = equipmentPack.EquipmentId;
+        equipmentId = equipmentPack.EquipmentId;
         block = equipmentPack.Block;
         equipmentSuit = equipmentPack.EquipmentSuit;
         equipmentName = equipmentPack.EquipmentName;

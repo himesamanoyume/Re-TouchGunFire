@@ -11,7 +11,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         public Button attackCube;
         public Button backpackCube;
-        public Button warehouseCube;
+        public Button shopCube;
         public Button friendsCube;
         public Button buildingCube;
         public Button settingCube;
@@ -40,7 +40,7 @@ namespace ReTouchGunFire.PanelInfo{
         void InitMainTemplate(){
             attackCube = mainTemplate.Find("line1/AttackCube").GetComponent<Button>();
             backpackCube = mainTemplate.Find("line2/BackpackCube").GetComponent<Button>();
-            warehouseCube = mainTemplate.Find("line2/WarehouseCube").GetComponent<Button>();
+            shopCube = mainTemplate.Find("line2/ShopCube").GetComponent<Button>();
             friendsCube = mainTemplate.Find("line3/FriendsCube").GetComponent<Button>();
             buildingCube = mainTemplate.Find("line3/BuildingCube").GetComponent<Button>();
             settingCube = mainTemplate.Find("line4/SettingCube").GetComponent<Button>();
@@ -62,8 +62,8 @@ namespace ReTouchGunFire.PanelInfo{
                 });
             });
 
-            warehouseCube.onClick.AddListener(()=>{
-                panelMediator.ShowNotifyPanel("仓库系统暂未开放~",3f);
+            shopCube.onClick.AddListener(()=>{
+                panelMediator.ShowNotifyPanel("商店系统暂未开放~",3f);
             });
 
             buildingCube.onClick.AddListener(()=>{
