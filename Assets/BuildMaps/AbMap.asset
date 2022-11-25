@@ -148,4 +148,9 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/TeammateBar/TeammateBar.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/ShopPanel/ShopPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/ShopPanel/ShopPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
     keyCollision: 0

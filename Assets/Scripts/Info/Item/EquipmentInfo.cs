@@ -15,6 +15,7 @@ public abstract class EquipmentInfo : ItemInfo
    int equipmentId;
    bool use;
    bool block;
+   float price;
 
    public string EquipmentSuit { get => equipmentSuit; }
    public string EquipmentName { get => equipmentName; }
@@ -29,6 +30,7 @@ public abstract class EquipmentInfo : ItemInfo
    public int EquipmentId { get => equipmentId; }
    public bool Use { get => use; }
    public bool Block { get => block; }
+   public float Price { get => price; }
 
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;
@@ -44,5 +46,6 @@ public abstract class EquipmentInfo : ItemInfo
         subProp3Value = equipmentPack.SubProp3Value;
         talent1 = (EEquipmentTalent)equipmentPack.Talent1;
         talent2 = (EEquipmentTalent)equipmentPack.Talent2;
+        price = equipmentPack.Price;
     }
 }

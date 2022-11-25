@@ -46,4 +46,6 @@ public enum EUIPanelType
     FriendsPanel,
     [Tooltip("队伍当前状态面板")]
     PartyCurrentStatePanel,
+    [Tooltip("商店面板")]
+    ShopPanel,
 }
