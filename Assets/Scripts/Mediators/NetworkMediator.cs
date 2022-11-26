@@ -139,11 +139,11 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void UpdatePlayerGunInfoCallback(RepeatedField<GunPack> gunPacks){
-
+            //playerInfo
         }
 
         public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
-            
+            //playerInfo
         }
 
         // public void RefuseJoinTeamCallback(int targetPlayerUid){

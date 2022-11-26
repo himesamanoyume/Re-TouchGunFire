@@ -9,9 +9,9 @@ namespace ReTouchGunFire.PanelInfo{
 
     public sealed class PlayerInfoPanelInfo : UIInfo
     {
-        public Slider expBar;
-        public Text playerNameText;
-        public Text playerLevelText;
+        [SerializeField] Slider expBar;
+        [SerializeField] Text playerNameText;
+        [SerializeField] Text playerLevelText;
 
         private Transform content;
         // PlayerInfo playerInfo;

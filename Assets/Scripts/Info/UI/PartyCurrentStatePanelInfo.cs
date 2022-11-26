@@ -18,8 +18,8 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public Transform container;
-        public GameObject teammateBarTemplate;
+        [SerializeField] Transform container;
+        [SerializeField] GameObject teammateBarTemplate;
 
         public Dictionary<int,TeammateBarInfo> teammateBarInfoDict = new Dictionary<int, TeammateBarInfo>();
 

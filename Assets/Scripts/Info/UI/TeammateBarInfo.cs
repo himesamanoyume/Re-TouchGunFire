@@ -26,17 +26,17 @@ namespace ReTouchGunFire.PanelInfo{
         public Text playerNameText;
 
 
-        public Transform inviteContent;
-        public Text inviteText;
-        public Button refuseButton;
-        public Button acceptButton;
-        public Slider countdown;
+        [SerializeField] Transform inviteContent;
+        [SerializeField] Text inviteText;
+        [SerializeField] Button refuseButton;
+        [SerializeField] Button acceptButton;
+        [SerializeField] Slider countdown;
 
-        public Transform joinTeamContent;
-        public Text joinText;
-        public Button refuseJoinButton;
-        public Button acceptJoinButton;
-        public Slider joinCountdown;
+        [SerializeField] Transform joinTeamContent;
+        [SerializeField] Text joinText;
+        [SerializeField] Button refuseJoinButton;
+        [SerializeField] Button acceptJoinButton;
+        [SerializeField] Slider joinCountdown;
 
         [SerializeField] AcceptInviteTeamRequest acceptInviteTeamRequest;
         [SerializeField] RefuseInviteTeamRequest refuseInviteTeamRequest;

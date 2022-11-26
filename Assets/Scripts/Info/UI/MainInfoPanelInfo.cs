@@ -9,12 +9,12 @@ using SocketProtocol;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class MainInfoPanelInfo : UIInfo
     {
-        public Text diamondText;
-        public Button diamondButton;
-        public Text coinText;
-        public Button coinButton;
+        [SerializeField] Text diamondText;
+        [SerializeField] Button diamondButton;
+        [SerializeField] Text coinText;
+        [SerializeField] Button coinButton;
 
-        public InitPlayerInfoRequest initPlayerInfoRequest;
+        [SerializeField] InitPlayerInfoRequest initPlayerInfoRequest;
         // PlayerInfo playerInfo;
 
         private void Start() {

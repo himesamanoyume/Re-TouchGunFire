@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
+using Google.Protobuf.Collections;
 using ReTouchGunFire.Mediators;
 
 public class PlayerInfo : EntityInfo
@@ -178,6 +179,101 @@ public class PlayerInfo : EntityInfo
         {
             //每1秒回复10次最大生命值的(1/20)/10
             regenerationRequest.SendRequest();
+        }
+    }
+
+    Dictionary<string,GunInfo> arList = new Dictionary<string, GunInfo>();
+    Dictionary<string,GunInfo> dmrList = new Dictionary<string, GunInfo>();
+    Dictionary<string,GunInfo> smgList = new Dictionary<string, GunInfo>();
+    Dictionary<string,GunInfo> sgList = new Dictionary<string, GunInfo>();
+    Dictionary<string,GunInfo> mgList = new Dictionary<string, GunInfo>();
+    Dictionary<string,GunInfo> hgList = new Dictionary<string, GunInfo>();
+    Dictionary<string,EquipmentInfo> armorList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,EquipmentInfo> headList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,EquipmentInfo> handList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,EquipmentInfo> legList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,EquipmentInfo> kneeList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,EquipmentInfo> bootsList = new Dictionary<string, EquipmentInfo>();
+
+    public void UpdatePlayerGunInfoCallback(RepeatedField<GunPack> gunPacks){
+        foreach (GunPack item in gunPacks)
+        {
+            switch(item.GunType){
+                case "AR":
+                    UpdatePlayerGunInfoList(arList, item);
+                break;
+                case "DMR":
+                    UpdatePlayerGunInfoList(dmrList, item);
+                break;
+                case "SMG":
+                    UpdatePlayerGunInfoList(smgList, item);
+                break;
+                case "SG":
+                    UpdatePlayerGunInfoList(sgList, item);
+                break;
+                case "MG":
+                    UpdatePlayerGunInfoList(mgList, item);
+                break;
+                case "HG":
+                    UpdatePlayerGunInfoList(hgList, item);
+                break;
+                default:
+                    Debug.LogWarning("不正常情况");
+                break;
+            }
+        }
+    }
+
+    public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
+        foreach (EquipmentPack item in equipmentPacks)
+        {
+            switch(item.EquipmentType){
+                case "Armor":
+                    UpdateEquipmentInfoList(armorList, item);
+                break;
+                case "Head":
+                    UpdateEquipmentInfoList(headList, item);
+                break;
+                case "Hand":
+                    UpdateEquipmentInfoList(handList, item);
+                break;
+                case "Leg":
+                    UpdateEquipmentInfoList(legList, item);
+                break;
+                case "Knee":
+                    UpdateEquipmentInfoList(kneeList, item);
+                break;
+                case "Boots":
+                    UpdateEquipmentInfoList(bootsList, item);
+                break;
+                default:
+                    Debug.LogWarning("不正常情况");
+                break;
+            }
+        }
+    }
+
+    void UpdatePlayerGunInfoList(Dictionary<string,GunInfo> list, GunPack gunPack){
+        if (list.TryGetValue(gunPack.GunName, out GunInfo gunInfo))
+        {
+            gunInfo.Init(gunPack);
+        }else
+        {
+            GunInfo newGunInfo = new GunInfo();
+            newGunInfo.Init(gunPack);
+            list.Add(gunPack.GunName, newGunInfo);
+        }
+    }
+
+    void UpdateEquipmentInfoList(Dictionary<string,EquipmentInfo> list, EquipmentPack equipmentPack){
+        if (list.TryGetValue(equipmentPack.EquipmentName, out EquipmentInfo equipmentInfo))
+        {
+            equipmentInfo.Init(equipmentPack);
+        }else
+        {
+            EquipmentInfo newEquipmentInfo = new EquipmentInfo();
+            newEquipmentInfo.Init(equipmentPack);
+            list.Add(equipmentPack.EquipmentName, newEquipmentInfo);
         }
     }
 }

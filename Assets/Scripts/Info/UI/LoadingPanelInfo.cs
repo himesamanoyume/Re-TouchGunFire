@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class LoadingPanelInfo : UIInfo
     {
-        public Transform point;
+        [SerializeField] Transform point;
         
         void Start()
         {

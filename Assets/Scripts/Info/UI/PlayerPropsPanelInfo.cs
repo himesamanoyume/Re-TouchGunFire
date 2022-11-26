@@ -12,69 +12,69 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class PlayerPropsPanelInfo : UIInfo
     {
         [Tooltip("生命值")]
-        public Text health;
+        [SerializeField] Text health;
         [Tooltip("护甲值")]
-        public Text armor;
+        [SerializeField] Text armor;
         [Tooltip("基础伤害加成")]
-        public Text baseDmgBonus;
+        [SerializeField] Text baseDmgBonus;
         [Tooltip("暴击率加成")]
-        public Text cDmgRateBonus;
+        [SerializeField] Text cDmgRateBonus;
         [Tooltip("暴击伤害加成")]
-        public Text cDmgBonus;
+        [SerializeField] Text cDmgBonus;
         [Tooltip("爆头伤害加成")]
-        public Text headshotDmgBonus;
+        [SerializeField] Text headshotDmgBonus;
         [Tooltip("穿透率加成")]
-        public Text pRateBonus;
+        [SerializeField] Text pRateBonus;
         [Tooltip("破甲效率加成")]
-        public Text abeBonus;
+        [SerializeField] Text abeBonus;
         [Tooltip("自动步枪伤害加成")]
-        public Text arDmgBonus;
+        [SerializeField] Text arDmgBonus;
         [Tooltip("精确射手步枪伤害加成")]
-        public Text dmrDmgBonus;
+        [SerializeField] Text dmrDmgBonus;
         [Tooltip("微型冲锋枪伤害加成")]
-        public Text smgDmgBonus;
+        [SerializeField] Text smgDmgBonus;
         [Tooltip("霰弹枪伤害加成")]
-        public Text sgDmgBonus;
+        [SerializeField] Text sgDmgBonus;
         [Tooltip("狙击步枪伤害加成")]
-        public Text srDmgBonus;
+        [SerializeField] Text srDmgBonus;
         [Tooltip("轻机枪伤害加成")]
-        public Text mgDmgBonus;
+        [SerializeField] Text mgDmgBonus;
         [Tooltip("手枪伤害加成")]
-        public Text hgDmgBonus;
+        [SerializeField] Text hgDmgBonus;
         [Tooltip("主武器名字")]
-        public Text mainGunName;
+        [SerializeField] Text mainGunName;
         [Tooltip("主武器类型")]
-        public Text mainGunType;
+        [SerializeField] Text mainGunType;
         [Tooltip("主武器基础伤害")]
-        public Text mainBaseDmg;
+        [SerializeField] Text mainBaseDmg;
         [Tooltip("主武器总暴击率")]
-        public Text mainTotalCDmgRate;
+        [SerializeField] Text mainTotalCDmgRate;
         [Tooltip("主武器总暴击伤害")]
-        public Text mainTotalCDmg;
+        [SerializeField] Text mainTotalCDmg;
         [Tooltip("主武器总爆头伤害")]
-        public Text mainTotalHeadshotDmg;
+        [SerializeField] Text mainTotalHeadshotDmg;
         [Tooltip("主武器总穿透率")]
-        public Text mainTotalPRate;
+        [SerializeField] Text mainTotalPRate;
         [Tooltip("主武器总破甲效率")]
-        public Text mainTotalAbe;
+        [SerializeField] Text mainTotalAbe;
         [Tooltip("副武器名字")]
-        public Text handgunGunName;
+        [SerializeField] Text handgunGunName;
         [Tooltip("副武器类型")]
-        public Text handgunGunType;
+        [SerializeField] Text handgunGunType;
         [Tooltip("副武器基础伤害")]
-        public Text handgunBaseDmg;
+        [SerializeField] Text handgunBaseDmg;
         [Tooltip("副武器总暴击率")]
-        public Text handgunTotalCDmgRate;
+        [SerializeField] Text handgunTotalCDmgRate;
         [Tooltip("副武器总暴击伤害")]
-        public Text handgunTotalCDmg;
+        [SerializeField] Text handgunTotalCDmg;
         [Tooltip("副武器总爆头伤害")]
-        public Text handgunTotalHeadshotDmg;
+        [SerializeField] Text handgunTotalHeadshotDmg;
         [Tooltip("副武器总穿透率")]
-        public Text handgunTotalPRate;
+        [SerializeField] Text handgunTotalPRate;
         [Tooltip("副武器总破甲效率")]
-        public Text handgunTotalAbe;
+        [SerializeField] Text handgunTotalAbe;
         
-        public Transform point;
+        [SerializeField] Transform point;
         private Transform content;
         private Transform propsBar;
         private Transform mainGunBar;

@@ -11,14 +11,14 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class FriendsPanelInfo : UIInfo
     {
-        public SearchFriendRequest searchFriendRequest;
-        public GetFriendRequestRequest getFriendRequestRequest;
-        public GetFriendsRequest getFriendsRequest;
-        public GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
-        public SendRequestFriendRequest sendRequestFriendRequest;
-        public AcceptFriendRequestRequest acceptFriendRequestRequest;
-        public GetTeammatesRequest getTeammatesRequest;
-        public LeaveTeamRequest leaveTeamRequest;
+        [SerializeField] SearchFriendRequest searchFriendRequest;
+        [SerializeField] GetFriendRequestRequest getFriendRequestRequest;
+        [SerializeField] GetFriendsRequest getFriendsRequest;
+        [SerializeField] GetPlayerBaseInfoRequest getPlayerBaseInfoRequest;
+        [SerializeField] SendRequestFriendRequest sendRequestFriendRequest;
+        [SerializeField] AcceptFriendRequestRequest acceptFriendRequestRequest;
+        [SerializeField] GetTeammatesRequest getTeammatesRequest;
+        [SerializeField] LeaveTeamRequest leaveTeamRequest;
 
         void Start()
         {
@@ -26,38 +26,38 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public Button point;
+        [SerializeField] Button point;
         //container1
-        public Transform container1;
+        [SerializeField] Transform container1;
             //PagePart
-                public Button friendsPageButton;
-                public Button teammatesPageButton;
-                public Button friendRequestPageButton;
-                public Text friendCountText;
+                [SerializeField] Button friendsPageButton;
+                [SerializeField] Button teammatesPageButton;
+                [SerializeField] Button friendRequestPageButton;
+                [SerializeField] Text friendCountText;
             //end
             //SearchPart
-                public InputField searchInputField;
-                public Button searchButton;
+                [SerializeField] InputField searchInputField;
+                [SerializeField] Button searchButton;
             //end
             //FriendsPart
-                public Transform friendsPartScrollViewContent;
-                public GameObject friendPlayerInfoBarTemplate; // UIComponent
+                [SerializeField] Transform friendsPartScrollViewContent;
+                [SerializeField] GameObject friendPlayerInfoBarTemplate; // UIComponent
             //end
         //container1 end
         //container2
-        public Transform container2;
+        [SerializeField] Transform container2;
             //SearchPlayerPart
-                public Transform searchPlayerInfoBar;
+                [SerializeField] Transform searchPlayerInfoBar;
                     private int targetPlayerUid;
-                    public Text playerNameText;
-                    public Text levelText;
-                    public Button addFriendButton;
-                public Button closeButton;
+                    [SerializeField] Text playerNameText;
+                    [SerializeField] Text levelText;
+                    [SerializeField] Button addFriendButton;
+                [SerializeField] Button closeButton;
             //end
         //container2 end
         //container3
-        public Transform container3;
-            public Button leaveTeamButton;
+        [SerializeField] Transform container3;
+            [SerializeField] Button leaveTeamButton;
         //container3 end
 
         protected sealed override void Init()

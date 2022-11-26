@@ -7,10 +7,10 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public class TestPanelInfo : UIInfo
     {
-        public Button point;
-        //temp
-        public Button backpackCube;
-        //end
+        [SerializeField] Button point;
+        //temp-------------------------
+        [SerializeField] Button backpackCube;
+        //end--------------------------
         void Start()
         {
             Name = "TestPanelInfo";

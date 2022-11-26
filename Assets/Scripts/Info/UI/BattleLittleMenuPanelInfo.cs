@@ -8,14 +8,14 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class BattleLittleMenuPanelInfo : UIInfo
     {
-        public Transform container;
-        public Transform point;
-        public Button showAllMenuCube;
-        public Button leaveBattleCube;
-        public Button showPlayerPropsCube;
-        public Text showAllMenuCubeText;
-        public Text showPlayerPropsCubeText;
-        
+        [SerializeField] Transform container;
+        [SerializeField] Transform point;
+        [SerializeField] Button showAllMenuCube;
+        [SerializeField] Button leaveBattleCube;
+        [SerializeField] Button showPlayerPropsCube;
+        [SerializeField] Text showAllMenuCubeText;
+        [SerializeField] Text showPlayerPropsCubeText;
+        [SerializeField]
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";

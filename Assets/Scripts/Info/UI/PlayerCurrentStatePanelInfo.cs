@@ -10,12 +10,12 @@ namespace ReTouchGunFire.PanelInfo{
 
     public class PlayerCurrentStatePanelInfo : UIInfo
     {
-        public Transform container;
+        [SerializeField] Transform container;
         // RectTransform containerRect;
 
-        public Slider armorBar;
-        public Slider hpBar;
-        public Text uidBarText;
+        [SerializeField] Slider armorBar;
+        [SerializeField] Slider hpBar;
+        [SerializeField] Text uidBarText;
 
         private void Start() {
             Name = "PlayerCurrentStatePanelInfo";

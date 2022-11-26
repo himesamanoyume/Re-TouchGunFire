@@ -25,18 +25,18 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public int playerUid;
-        public Text playerNameText;
-        public string playerNameStr;
-        public Text levelText;
-        public string levelStr;
-        public Button inviteMyTeamButton;
-        public Button deleteFriendButton;
-        public Button acceptFriendRequestButton;
-        public Button refuseFriendRequestButton;
-        public Button kickPlayerButton;
-        public Button joinTeamRequestButton;
-        public Text onlineStateText;
-        public Text uidText;
+        [SerializeField] Text playerNameText;
+        [SerializeField] string playerNameStr;
+        [SerializeField] Text levelText;
+        [SerializeField] string levelStr;
+        [SerializeField] Button inviteMyTeamButton;
+        [SerializeField] Button deleteFriendButton;
+        [SerializeField] Button acceptFriendRequestButton;
+        [SerializeField] Button refuseFriendRequestButton;
+        [SerializeField] Button kickPlayerButton;
+        [SerializeField] Button joinTeamRequestButton;
+        [SerializeField] Text onlineStateText;
+        [SerializeField] Text uidText;
 
         Color green = new Color(0.4f, 0.8f, 0.1f);
         Color grey = new Color(0.5f, 0.5f, 0.5f);

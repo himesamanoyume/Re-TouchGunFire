@@ -1,9 +1,10 @@
 using SocketProtocol;
 
-public abstract class EquipmentInfo : ItemInfo
+public class EquipmentInfo : ItemInfo
 {
    string equipmentSuit;
    string equipmentName;
+   string equipmentType;
    string subProp1;
    float subProp1Value;
    string subProp2;
@@ -19,6 +20,7 @@ public abstract class EquipmentInfo : ItemInfo
 
    public string EquipmentSuit { get => equipmentSuit; }
    public string EquipmentName { get => equipmentName; }
+   public string EquipmentType { get => equipmentType; }
    public string SubProp1 { get => subProp1; }
    public float SubProp1Value { get => subProp1Value; }
    public string SubProp2 { get => subProp2; }
@@ -35,6 +37,7 @@ public abstract class EquipmentInfo : ItemInfo
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;
         equipmentId = equipmentPack.EquipmentId;
+        equipmentType = equipmentPack.EquipmentType;
         block = equipmentPack.Block;
         equipmentSuit = equipmentPack.EquipmentSuit;
         equipmentName = equipmentPack.EquipmentName;

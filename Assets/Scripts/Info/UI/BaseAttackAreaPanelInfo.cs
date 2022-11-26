@@ -5,10 +5,10 @@ using UnityEngine;
 namespace ReTouchGunFire.PanelInfo{
     public abstract class BaseAttackAreaPanelInfo : UIInfo
     {
-        public Transform enemyPart;
-        public Transform floor1;
-        public Transform floor2;
-        public Transform floor3;
+        [SerializeField] Transform enemyPart;
+        [SerializeField] Transform floor1;
+        [SerializeField] Transform floor2;
+        [SerializeField] Transform floor3;
         protected override void Init(){
             base.Init();
             enemyPart = transform.Find("Point/MiddleCenter/BattlePart/EnemyPart");

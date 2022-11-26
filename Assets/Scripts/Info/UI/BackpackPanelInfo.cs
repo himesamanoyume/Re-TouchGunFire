@@ -8,18 +8,18 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class BackpackPanelInfo : UIInfo
     {
-        public Button point;
-        private Transform equippedPart;
-        private Transform idlePart;
-        public Button backEquippedPartCube;
-        public Button mainGunCube;
-        public Button handgunCube;
-        public Button armorCube;
-        public Button headCube;
-        public Button handCube;
-        public Button kneeCube;
-        public Button legCube;
-        public Button bootsCube;
+        [SerializeField] Button point;
+        [SerializeField] Transform equippedPart;
+        [SerializeField] Transform idlePart;
+        [SerializeField] Button backEquippedPartCube;
+        [SerializeField] Button mainGunCube;
+        [SerializeField] Button handgunCube;
+        [SerializeField] Button armorCube;
+        [SerializeField] Button headCube;
+        [SerializeField] Button handCube;
+        [SerializeField] Button kneeCube;
+        [SerializeField] Button legCube;
+        [SerializeField] Button bootsCube;
 
         void Start()
         {

@@ -8,22 +8,22 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class LoginRegisterPanelInfo : UIInfo
     {
 
-        public Transform loginPart;
-        public Transform registerPart;
-        public InputField loginPartAccount;
-        public InputField loginPartPassword;
-        public InputField registerPartPlayerName;
-        public InputField registerPartAccount;
-        public InputField registerPartPassword;
-        public Button registerPartBackButton;
-        public Button loginPartLoginButton;
-        public Button loginPartRegisterButton;
-        public Button loginPartCancelButton;
-        public Button registerSendRegisterButton;
+        [SerializeField] Transform loginPart;
+        [SerializeField] Transform registerPart;
+        [SerializeField] InputField loginPartAccount;
+        [SerializeField] InputField loginPartPassword;
+        [SerializeField] InputField registerPartPlayerName;
+        [SerializeField] InputField registerPartAccount;
+        [SerializeField] InputField registerPartPassword;
+        [SerializeField] Button registerPartBackButton;
+        [SerializeField] Button loginPartLoginButton;
+        [SerializeField] Button loginPartRegisterButton;
+        [SerializeField] Button loginPartCancelButton;
+        [SerializeField] Button registerSendRegisterButton;
 
 
-        public LoginRequest loginRequest;
-        public RegisterRequest registerRequest;
+        [SerializeField] LoginRequest loginRequest;
+        [SerializeField] RegisterRequest registerRequest;
 
         private void Start() {
             Name = "LoginRegisterPanelInfo";

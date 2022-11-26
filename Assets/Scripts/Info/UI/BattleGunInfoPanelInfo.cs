@@ -27,23 +27,23 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public Transform mainGun;
-        public Transform handGun;
-        public Button mainGunCube;
-        public Button handGunCube;
-        public Slider mainGunReloadingBar;
-        public Slider handGunReloadingBar;
-        public Image mainGunBG;
-        public Image handGunBG;
-        public Text mainGunNameText;
-        public Text handGunNameText;
-        public Text mainGunAmmoText;
-        public Text handGunAmmoText;
-        public Image mainGunQuality;
-        public Image handGunQuality;
+        [SerializeField] Transform mainGun;
+        [SerializeField] Transform handGun;
+        [SerializeField] Button mainGunCube;
+        [SerializeField] Button handGunCube;
+        [SerializeField] Slider mainGunReloadingBar;
+        [SerializeField] Slider handGunReloadingBar;
+        [SerializeField] Image mainGunBG;
+        [SerializeField] Image handGunBG;
+        [SerializeField] Text mainGunNameText;
+        [SerializeField] Text handGunNameText;
+        [SerializeField] Text mainGunAmmoText;
+        [SerializeField] Text handGunAmmoText;
+        [SerializeField] Image mainGunQuality;
+        [SerializeField] Image handGunQuality;
 
-        public GunInfo mainGunInfo;
-        public GunInfo handGunInfo;
+        [SerializeField] GunInfo mainGunInfo;
+        [SerializeField] GunInfo handGunInfo;
 
         private Color uncheckedColor = new Color(0,0,0,0.4f);
         private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);

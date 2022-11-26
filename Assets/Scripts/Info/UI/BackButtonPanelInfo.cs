@@ -7,7 +7,7 @@ using ReTouchGunFire.Mediators;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class BackButtonPanelInfo : UIInfo
     {
-        public Button backButton;
+        [SerializeField] Button backButton;
         private GameObject point;
 
         private void Start() {

@@ -13,10 +13,10 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
-        public Transform center;
-        public Text notifyText;
-        public Slider countdownLeft;
-        public Slider countdownRight;
+        [SerializeField] Transform center;
+        [SerializeField] Text notifyText;
+        [SerializeField] Slider countdownLeft;
+        [SerializeField] Slider countdownRight;
 
         
         private bool isCountdown;

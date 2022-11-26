@@ -9,15 +9,15 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class MainMenuPanelInfo : UIInfo
     {
 
-        public Button attackCube;
-        public Button backpackCube;
-        public Button shopCube;
-        public Button friendsCube;
-        public Button buildingCube;
-        public Button settingCube;
+        [SerializeField] Button attackCube;
+        [SerializeField] Button backpackCube;
+        [SerializeField] Button shopCube;
+        [SerializeField] Button friendsCube;
+        [SerializeField] Button buildingCube;
+        [SerializeField] Button settingCube;
 
-        public Button attackBackCube;
-        public Button area1Cube;
+        [SerializeField] Button attackBackCube;
+        [SerializeField] Button area1Cube;
         void Start()
         {
             Name = "MainMenuPanelInfo";

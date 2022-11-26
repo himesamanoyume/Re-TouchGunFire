@@ -27,11 +27,15 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.11.26 22:21`
+panelInfo: public -> SerializeField
+PlayerInfo 80%. 
+
+<details>
+
 > `22.11.26 21:32`
 ShopPanel finished. 
 add ShopPanelInfo. 
-
-<details>
 
 > `22.11.25 17:23`
 add ShopPanel 70%. 
