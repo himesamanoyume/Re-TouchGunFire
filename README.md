@@ -4,17 +4,8 @@ Rebuild project.
 
 ## TODO
 
-商店面板
-
-- 商品信息列表 显示价格 顶部按钮增加解锁词条 刷新主、副词条按钮
-
-- 商品详细信息显示词条值的范围
-
-背包系统
-
-- 删除二层界面 点击按钮直接打开商店界面
-
 接收武器装备Packs
+- 通信到PlayerInfo 生成各种类List 再由商店获取更新
 
 ---
 
@@ -36,10 +27,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.25 17:23`
-add ShopPanel 70%. 
+> `22.11.26 21:32`
+ShopPanel finished. 
+add ShopPanelInfo. 
 
 <details>
+
+> `22.11.25 17:23`
+add ShopPanel 70%. 
 
 > `22.11.24 18:29`
 server work done. 

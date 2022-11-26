@@ -63,7 +63,11 @@ namespace ReTouchGunFire.PanelInfo{
             });
 
             shopCube.onClick.AddListener(()=>{
-                panelMediator.ShowNotifyPanel("商店系统暂未开放~",3f);
+                panelMediator.PushPanel(EUIPanelType.ShopPanel, 
+                panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
+                    obj.AddComponent<ShopPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
+                    
+                });
             });
 
             buildingCube.onClick.AddListener(()=>{

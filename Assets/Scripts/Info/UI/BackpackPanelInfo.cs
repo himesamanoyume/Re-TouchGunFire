@@ -35,7 +35,7 @@ namespace ReTouchGunFire.PanelInfo{
                 panelMediator.PopPanel(false);
                 EventMgr.Broadcast(GameEvents.BackpackPanelCloseNotify);
                 isEquippedPartShowed = false;
-                ShowIdlePart();
+                // ShowIdlePart();
                 if(panelMediator.CheckPanelList())
                     EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
             });
@@ -54,14 +54,18 @@ namespace ReTouchGunFire.PanelInfo{
         /// 显示背包列表
         /// </summary>
         void ShowIdlePart(){
-            if(isEquippedPartShowed){
-                equippedPart.GetComponent<RectTransform>().offsetMax = offScreen;
-                idlePart.GetComponent<RectTransform>().offsetMax = inTheScreen;
-            }else{
-                idlePart.GetComponent<RectTransform>().offsetMax = offScreen;
-                equippedPart.GetComponent<RectTransform>().offsetMax = inTheScreen;
-            }
-            isEquippedPartShowed = !isEquippedPartShowed;
+            // if(isEquippedPartShowed){
+            //     equippedPart.GetComponent<RectTransform>().offsetMax = offScreen;
+            //     idlePart.GetComponent<RectTransform>().offsetMax = inTheScreen;
+            // }else{
+            //     idlePart.GetComponent<RectTransform>().offsetMax = offScreen;
+            //     equippedPart.GetComponent<RectTransform>().offsetMax = inTheScreen;
+            // }
+            // isEquippedPartShowed = !isEquippedPartShowed;
+
+            panelMediator.PushPanel(EUIPanelType.ShopPanel, panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
+                    obj.AddComponent<ShopPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
+                });
         }
 
         void InitEquippedPart(){
