@@ -5,7 +5,6 @@ Rebuild project.
 ## TODO
 
 ShopPanel
-- 显示详细信息
 - 刷新词条、解锁词条、消耗货币、穿戴武器装备
 
 ---
@@ -28,12 +27,15 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.11.28 0:52`
+ShopPanelInfo 80%. 
+
+<details>
+
 > `22.11.27 18:18`
 add ItemBarInfo. 
 ShopPanelInfo 70%. 
 PlayerInfo finished. 
-
-<details>
 
 > `22.11.26 22:21`
 panelInfo: public -> SerializeField

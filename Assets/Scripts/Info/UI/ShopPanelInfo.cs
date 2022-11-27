@@ -52,21 +52,82 @@ namespace ReTouchGunFire.PanelInfo{
                     //show detail info
                     if (isGun)
                     {
-                        ShowGunModeInfo();
+                        ShowGunModeInfo((GunInfo)item);
                     }else
                     {
-                        ShowGunModeInfo();
+                        ShowEquipmentModeInfo((EquipmentInfo)item);
                     }
                 });
             }
+            if (isGun)
+            {
+                ShowGunModeInfo((GunInfo)list[0]);
+            }else
+            {
+                ShowEquipmentModeInfo((EquipmentInfo)list[0]);
+            }
         }
 
-        void ShowGunModeInfo(){
-
+        void ShowGunModeInfo(GunInfo gunInfo){
+            itemNameText.text = gunInfo.GunType;
+            itemNameValueText.text = gunInfo.GunName;
+            itemSuit.gameObject.SetActive(false);
+            itemSuitEffect1.gameObject.SetActive(false);
+            itemSuitEffect2.gameObject.SetActive(false);
+            itemSuitEffect3.gameObject.SetActive(false);
+            itemBaseDMG.gameObject.SetActive(true);
+            itemBaseDMGValueText.text = gunInfo.BaseDMG.ToString("f1");
+            itemFiringRate.gameObject.SetActive(true);
+            itemFiringRateValueText.text = gunInfo.FiringRate.ToString();
+            itemMagazine.gameObject.SetActive(true);
+            itemMagazineValueText.text = gunInfo.Magazine.ToString();
+            itemCoreProp.gameObject.SetActive(true);
+            itemCorePropValueText.text = gunInfo.CoreProp;
+            itemCorePropValueSlider.maxValue = 15f;
+            itemCorePropValueSlider.value = gunInfo.CorePropValue;
+            // itemSubProp1.gameObject.SetActive(true);
+            itemSubProp1ValueText.text = gunInfo.SubProp1;
+            itemSubProp1ValueSlider.maxValue = 10f;
+            itemSubProp1ValueSlider.value = gunInfo.SubProp1Value;
+            // itemSubProp2.gameObject.SetActive(true);
+            itemSubProp2ValueText.text = gunInfo.SubProp2;
+            itemSubProp2ValueSlider.maxValue = 10f;
+            itemSubProp2ValueSlider.value = gunInfo.SubProp2Value;
+            // itemSubProp3.gameObject.SetActive(true);
+            itemSubProp3ValueText.text = gunInfo.SubProp3;
+            itemSubProp3ValueSlider.maxValue = 10f;
+            itemSubProp3ValueSlider.value = gunInfo.SubProp3Value;
+            itemTalent1.gameObject.SetActive(false);
+            itemTalent2.gameObject.SetActive(false);
         }
 
-        void ShowEquipmentModeInfo(){
-
+        void ShowEquipmentModeInfo(EquipmentInfo equipmentInfo){
+            itemNameText.text = equipmentInfo.EquipmentType;
+            itemNameValueText.text = equipmentInfo.EquipmentName;
+            itemSuit.gameObject.SetActive(true);
+            itemSuitEffect1.gameObject.SetActive(false);
+            itemSuitEffect2.gameObject.SetActive(false);
+            itemSuitEffect3.gameObject.SetActive(false);
+            itemBaseDMG.gameObject.SetActive(false);
+            itemFiringRate.gameObject.SetActive(false);
+            itemMagazine.gameObject.SetActive(false);
+            itemCoreProp.gameObject.SetActive(false);
+            // itemSubProp1.gameObject.SetActive(true);
+            itemSubProp1ValueText.text = equipmentInfo.SubProp1;
+            itemSubProp1ValueSlider.maxValue = 10f;
+            itemSubProp1ValueSlider.value = equipmentInfo.SubProp1Value;
+            // itemSubProp2.gameObject.SetActive(true);
+            itemSubProp2ValueText.text = equipmentInfo.SubProp2;
+            itemSubProp2ValueSlider.maxValue = 10f;
+            itemSubProp2ValueSlider.value = equipmentInfo.SubProp2Value;
+            // itemSubProp3.gameObject.SetActive(true);
+            itemSubProp3ValueText.text = equipmentInfo.SubProp3;
+            itemSubProp3ValueSlider.maxValue = 10f;
+            itemSubProp3ValueSlider.value = equipmentInfo.SubProp3Value;
+            itemTalent1.gameObject.SetActive(true);
+            itemTalent1ValueText.text = equipmentInfo.Talent1.ToString();
+            itemTalent2.gameObject.SetActive(true);
+            itemTalent2ValueText.text = equipmentInfo.Talent2.ToString();
         }
 
         [SerializeField] Button point;
@@ -241,7 +302,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             itemMagazine = rightItemInfoScrollViewContent.Find("ItemMagazine");
             itemMagazineText = itemMagazine.Find("Text").GetComponent<Text>();
-            itemMagazineValueText = itemFiringRate.Find("Value").GetComponent<Text>();
+            itemMagazineValueText = itemMagazine.Find("Value").GetComponent<Text>();
 
             itemCoreProp = rightItemInfoScrollViewContent.Find("ItemCoreProp");
             itemCorePropText = itemCoreProp.Find("Text").GetComponent<Text>();
