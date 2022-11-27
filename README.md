@@ -4,8 +4,9 @@ Rebuild project.
 
 ## TODO
 
-接收武器装备Packs
-- 通信到PlayerInfo 生成各种类List 再由商店获取更新
+ShopPanel
+- 显示详细信息
+- 刷新词条、解锁词条、消耗货币、穿戴武器装备
 
 ---
 
@@ -27,11 +28,16 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.11.27 18:18`
+add ItemBarInfo. 
+ShopPanelInfo 70%. 
+PlayerInfo finished. 
+
+<details>
+
 > `22.11.26 22:21`
 panelInfo: public -> SerializeField
 PlayerInfo 80%. 
-
-<details>
 
 > `22.11.26 21:32`
 ShopPanel finished. 

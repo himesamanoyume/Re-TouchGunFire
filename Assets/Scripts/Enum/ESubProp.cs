@@ -34,3 +34,18 @@ public enum ESubProp
     hgDmgBonus,
 
 }
+
+public enum EItemList{
+    ar,
+    dmr,
+    smg,
+    sg,
+    mg,
+    hg,
+    armor,
+    head,
+    hand,
+    leg,
+    knee,
+    boots
+}

@@ -14,9 +14,7 @@ public class EquipmentInfo : ItemInfo
    EEquipmentTalent talent1;
    EEquipmentTalent talent2;
    int equipmentId;
-   bool use;
-   bool block;
-   float price;
+   
 
    public string EquipmentSuit { get => equipmentSuit; }
    public string EquipmentName { get => equipmentName; }
@@ -30,9 +28,7 @@ public class EquipmentInfo : ItemInfo
    public EEquipmentTalent Talent1 { get => talent1; }
    public EEquipmentTalent Talent2 { get => talent2; }
    public int EquipmentId { get => equipmentId; }
-   public bool Use { get => use; }
-   public bool Block { get => block; }
-   public float Price { get => price; }
+   
 
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;

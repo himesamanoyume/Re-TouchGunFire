@@ -12,7 +12,7 @@ namespace ReTouchGunFire.Mediators{
         public ClientMgr clientMgr;
         public RequestMgr requestMgr;
         public PanelMediator panelMediator;
-        PlayerInfo playerInfo;
+        [SerializeField] PlayerInfo playerInfo;
 
         public int playerSelfUid = 0;
         public int teamMasterPlayerUid = 0;
@@ -139,11 +139,15 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void UpdatePlayerGunInfoCallback(RepeatedField<GunPack> gunPacks){
-            //playerInfo
+            playerInfo.UpdatePlayerGunInfoCallback(gunPacks);
         }
 
         public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
-            //playerInfo
+            playerInfo.UpdatePlayerEquipmentInfoCallback(equipmentPacks);
+        }
+
+        public List<ItemInfo> GetItemInfoList(EItemList eItemList){
+            return playerInfo.GetItemInfoList(eItemList);
         }
 
         // public void RefuseJoinTeamCallback(int targetPlayerUid){

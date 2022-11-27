@@ -29,6 +29,44 @@ namespace ReTouchGunFire.PanelInfo{
             InitRightItemInfoScrollViewContent();
             InitRightItemScrollViewContent();
             InitRightTop();
+
+            // List<ItemInfo> test = networkMediator.GetItemInfoList(EItemList.ar);
+            // foreach (GunInfo item in test)
+            // {
+            //     Debug.Log(item.GunName);
+            // }
+            ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true);
+        }
+
+        void ShowItemList(List<ItemInfo> list, bool isGun){
+            for (int i = 1; i < rightItemScrollViewContent.childCount; i++)
+            {
+                Destroy(rightItemScrollViewContent.GetChild(i).gameObject);
+            }
+            foreach (ItemInfo item in list)
+            {
+                GameObject newItemBar = Instantiate(itemBarTemplate, rightItemScrollViewContent);
+                newItemBar.AddComponent<ItemBarInfo>().InitInfo(item, isGun);
+                newItemBar.SetActive(true);
+                newItemBar.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(()=>{
+                    //show detail info
+                    if (isGun)
+                    {
+                        ShowGunModeInfo();
+                    }else
+                    {
+                        ShowGunModeInfo();
+                    }
+                });
+            }
+        }
+
+        void ShowGunModeInfo(){
+
+        }
+
+        void ShowEquipmentModeInfo(){
+
         }
 
         [SerializeField] Button point;
@@ -62,7 +100,42 @@ namespace ReTouchGunFire.PanelInfo{
             bootsButton = leftScrollViewContent.Find("Boots_Button").GetComponent<Button>();
 
             //
-
+            arButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true);
+            });
+            dmrButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.dmr), true);
+            });
+            smgButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.smg), true);
+            });
+            sgButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.sg), true);
+            });
+            mgButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.mg), true);
+            });
+            hgButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.hg), true);
+            });
+            armorButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.armor), false);
+            });
+            headButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.head), false);
+            });
+            handButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.hand), false);
+            });
+            legButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.leg), false);
+            });
+            kneeButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.knee), false);
+            });
+            bootsButton.onClick.AddListener(()=>{
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.boots), false);
+            });
             //end
         }
 
@@ -197,7 +270,6 @@ namespace ReTouchGunFire.PanelInfo{
             itemTalent2 = rightItemInfoScrollViewContent.Find("ItemTalent2");
             itemTalent2Text = itemTalent2.Find("Text").GetComponent<Text>();
             itemTalent2ValueText = itemTalent2.Find("Value").GetComponent<Text>();
-
         }
 
         [SerializeField] Transform rightTop;

@@ -7,6 +7,7 @@ using ReTouchGunFire.Mediators;
 
 public class PlayerInfo : EntityInfo
 {
+    #region info
     [SerializeField] int uid;
     public int Uid {
         get { return uid; }
@@ -126,6 +127,7 @@ public class PlayerInfo : EntityInfo
     {
         get { return coin; }
     }
+    #endregion
 
     private void Start() {
         base.Init();
@@ -182,40 +184,99 @@ public class PlayerInfo : EntityInfo
         }
     }
 
-    Dictionary<string,GunInfo> arList = new Dictionary<string, GunInfo>();
-    Dictionary<string,GunInfo> dmrList = new Dictionary<string, GunInfo>();
-    Dictionary<string,GunInfo> smgList = new Dictionary<string, GunInfo>();
-    Dictionary<string,GunInfo> sgList = new Dictionary<string, GunInfo>();
-    Dictionary<string,GunInfo> mgList = new Dictionary<string, GunInfo>();
-    Dictionary<string,GunInfo> hgList = new Dictionary<string, GunInfo>();
-    Dictionary<string,EquipmentInfo> armorList = new Dictionary<string, EquipmentInfo>();
-    Dictionary<string,EquipmentInfo> headList = new Dictionary<string, EquipmentInfo>();
-    Dictionary<string,EquipmentInfo> handList = new Dictionary<string, EquipmentInfo>();
-    Dictionary<string,EquipmentInfo> legList = new Dictionary<string, EquipmentInfo>();
-    Dictionary<string,EquipmentInfo> kneeList = new Dictionary<string, EquipmentInfo>();
-    Dictionary<string,EquipmentInfo> bootsList = new Dictionary<string, EquipmentInfo>();
+    Dictionary<string,ItemInfo> arDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> dmrDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> smgDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> sgDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> mgDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> hgDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> armorDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> headDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> handDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> legDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> kneeDict = new Dictionary<string, ItemInfo>();
+    Dictionary<string,ItemInfo> bootsDict = new Dictionary<string, ItemInfo>();
+
+    // public List<GunInfo> GetGunInfoList(Dictionary<string, GunInfo> gunDict){
+    //     List<GunInfo> list = new List<GunInfo>();
+    //     foreach (var item in gunDict)
+    //     {
+    //         list.Add(item.Value);
+    //     }
+    //     return list;
+    // }
+
+    // public List<EquipmentInfo> GetEquipmentInfoList(Dictionary<string, EquipmentInfo> equipmentDict){
+    //     List<EquipmentInfo> list = new List<EquipmentInfo>();
+    //     foreach (var item in equipmentDict)
+    //     {
+    //         list.Add(item.Value);
+    //     }
+    //     return list;
+    // }
+
+    public List<ItemInfo> GetItemInfoList(EItemList eItemList){
+        switch (eItemList)
+        {
+            case EItemList.ar:
+                return GetItemInfo(arDict);
+            case EItemList.dmr:
+                return GetItemInfo(dmrDict);
+            case EItemList.smg:
+                return GetItemInfo(smgDict);
+            case EItemList.sg:
+                return GetItemInfo(sgDict);
+            case EItemList.mg:
+                return GetItemInfo(mgDict);
+            case EItemList.hg:
+                return GetItemInfo(hgDict);
+            case EItemList.armor:
+                return GetItemInfo(armorDict);
+            case EItemList.head:
+                return GetItemInfo(headDict);
+            case EItemList.hand:
+                return GetItemInfo(handDict);
+            case EItemList.leg:
+                return GetItemInfo(legDict);
+            case EItemList.knee:
+                return GetItemInfo(kneeDict);
+            case EItemList.boots:
+                return GetItemInfo(bootsDict);
+        }
+        return null;
+    }
+
+    List<ItemInfo> GetItemInfo(Dictionary<string, ItemInfo> itemDict){
+        List<ItemInfo> list = new List<ItemInfo>();
+        foreach (var item in itemDict)
+        {
+            list.Add(item.Value);
+        }
+        return list;
+    }
 
     public void UpdatePlayerGunInfoCallback(RepeatedField<GunPack> gunPacks){
         foreach (GunPack item in gunPacks)
         {
+            // Debug.Log(item);
             switch(item.GunType){
                 case "AR":
-                    UpdatePlayerGunInfoList(arList, item);
+                    UpdatePlayerGunInfoList(arDict, item);
                 break;
                 case "DMR":
-                    UpdatePlayerGunInfoList(dmrList, item);
+                    UpdatePlayerGunInfoList(dmrDict, item);
                 break;
                 case "SMG":
-                    UpdatePlayerGunInfoList(smgList, item);
+                    UpdatePlayerGunInfoList(smgDict, item);
                 break;
                 case "SG":
-                    UpdatePlayerGunInfoList(sgList, item);
+                    UpdatePlayerGunInfoList(sgDict, item);
                 break;
                 case "MG":
-                    UpdatePlayerGunInfoList(mgList, item);
+                    UpdatePlayerGunInfoList(mgDict, item);
                 break;
                 case "HG":
-                    UpdatePlayerGunInfoList(hgList, item);
+                    UpdatePlayerGunInfoList(hgDict, item);
                 break;
                 default:
                     Debug.LogWarning("不正常情况");
@@ -227,24 +288,25 @@ public class PlayerInfo : EntityInfo
     public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
         foreach (EquipmentPack item in equipmentPacks)
         {
+            // Debug.Log(item);
             switch(item.EquipmentType){
                 case "Armor":
-                    UpdateEquipmentInfoList(armorList, item);
+                    UpdateEquipmentInfoList(armorDict, item);
                 break;
                 case "Head":
-                    UpdateEquipmentInfoList(headList, item);
+                    UpdateEquipmentInfoList(headDict, item);
                 break;
                 case "Hand":
-                    UpdateEquipmentInfoList(handList, item);
+                    UpdateEquipmentInfoList(handDict, item);
                 break;
                 case "Leg":
-                    UpdateEquipmentInfoList(legList, item);
+                    UpdateEquipmentInfoList(legDict, item);
                 break;
                 case "Knee":
-                    UpdateEquipmentInfoList(kneeList, item);
+                    UpdateEquipmentInfoList(kneeDict, item);
                 break;
                 case "Boots":
-                    UpdateEquipmentInfoList(bootsList, item);
+                    UpdateEquipmentInfoList(bootsDict, item);
                 break;
                 default:
                     Debug.LogWarning("不正常情况");
@@ -253,10 +315,10 @@ public class PlayerInfo : EntityInfo
         }
     }
 
-    void UpdatePlayerGunInfoList(Dictionary<string,GunInfo> list, GunPack gunPack){
-        if (list.TryGetValue(gunPack.GunName, out GunInfo gunInfo))
+    void UpdatePlayerGunInfoList(Dictionary<string,ItemInfo> list, GunPack gunPack){
+        if (list.TryGetValue(gunPack.GunName, out ItemInfo gunInfo))
         {
-            gunInfo.Init(gunPack);
+            ((GunInfo)gunInfo).Init(gunPack);
         }else
         {
             GunInfo newGunInfo = new GunInfo();
@@ -265,10 +327,10 @@ public class PlayerInfo : EntityInfo
         }
     }
 
-    void UpdateEquipmentInfoList(Dictionary<string,EquipmentInfo> list, EquipmentPack equipmentPack){
-        if (list.TryGetValue(equipmentPack.EquipmentName, out EquipmentInfo equipmentInfo))
+    void UpdateEquipmentInfoList(Dictionary<string,ItemInfo> list, EquipmentPack equipmentPack){
+        if (list.TryGetValue(equipmentPack.EquipmentName, out ItemInfo equipmentInfo))
         {
-            equipmentInfo.Init(equipmentPack);
+            ((EquipmentInfo)equipmentInfo).Init(equipmentPack);
         }else
         {
             EquipmentInfo newEquipmentInfo = new EquipmentInfo();
