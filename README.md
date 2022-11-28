@@ -4,6 +4,8 @@ Rebuild project.
 
 ## TODO
 
+server: 粘包断包处理
+
 ShopPanel
 - 刷新词条、解锁词条、消耗货币、穿戴武器装备
 
@@ -27,10 +29,13 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.28 0:52`
-ShopPanelInfo 80%. 
+> `22.11.29 1:41`
+ShopPanelInfo 85%. 
 
 <details>
+
+> `22.11.28 0:52`
+ShopPanelInfo 80%. 
 
 > `22.11.27 18:18`
 add ItemBarInfo. 

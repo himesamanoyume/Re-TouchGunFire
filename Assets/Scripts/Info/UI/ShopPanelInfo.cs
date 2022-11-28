@@ -57,6 +57,19 @@ namespace ReTouchGunFire.PanelInfo{
                     {
                         ShowEquipmentModeInfo((EquipmentInfo)item);
                     }
+                    ShowButtonList(item);
+                    buyButton.onClick.AddListener(()=>{
+
+                    });
+                    equipButton.onClick.AddListener(()=>{
+
+                    });
+                    refreshButton.onClick.AddListener(()=>{
+                        
+                    });
+                    unlockButton.onClick.AddListener(()=>{
+                        
+                    });
                 });
             }
             if (isGun)
@@ -65,6 +78,22 @@ namespace ReTouchGunFire.PanelInfo{
             }else
             {
                 ShowEquipmentModeInfo((EquipmentInfo)list[0]);
+            }
+            ShowButtonList(list[0]);
+        }
+
+        void ShowButtonList(ItemInfo itemInfo){
+            if(itemInfo.Block){
+                buyButton.gameObject.SetActive(true);
+                equipButton.gameObject.SetActive(false);
+                refreshButton.gameObject.SetActive(false);
+                unlockButton.gameObject.SetActive(false);
+            }else
+            {
+                buyButton.gameObject.SetActive(false);
+                equipButton.gameObject.SetActive(true);
+                refreshButton.gameObject.SetActive(true);
+                unlockButton.gameObject.SetActive(true);
             }
         }
 

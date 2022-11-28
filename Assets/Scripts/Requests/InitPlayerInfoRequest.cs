@@ -21,6 +21,7 @@ public sealed class InitPlayerInfoRequest : IRequest
                 case ReturnCode.Success:
                     networkMediator.playerSelfUid = mainPack.PlayerInfoPack.Uid;
                     //赋值装备与武器
+                    // Debug.Log(mainPack.PlayerInfoPack.EquipmentPacks);
                     networkMediator.UpdatePlayerGunInfoCallback(mainPack.PlayerInfoPack.GunPacks);
                     networkMediator.UpdatePlayerEquipmentInfoCallback(mainPack.PlayerInfoPack.EquipmentPacks);
                     //end
