@@ -134,6 +134,7 @@ namespace ReTouchGunFire.PanelInfo{
             itemNameText.text = equipmentInfo.EquipmentType;
             itemNameValueText.text = equipmentInfo.EquipmentName;
             itemSuit.gameObject.SetActive(true);
+            itemSuitValueText.text = equipmentInfo.EquipmentSuit;
             itemSuitEffect1.gameObject.SetActive(false);
             itemSuitEffect2.gameObject.SetActive(false);
             itemSuitEffect3.gameObject.SetActive(false);

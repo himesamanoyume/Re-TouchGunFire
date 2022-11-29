@@ -26,21 +26,34 @@ public class Message
         get { return buffer.Length - startIndex; }
     }
 
-    public void ReadBuffer(int length, Action<MainPack> handleResponse)
+    public int InitTotalDataSize(){
+        totalDataSize = BitConverter.ToInt32(buffer, 0);
+        return totalDataSize;
+    }
+
+    public int TotalDataSize{
+        get { return totalDataSize; }
+    }
+    int totalDataSize;
+
+
+    public void ReadBuffer(int bufferSize, Action<MainPack> handleResponse)
     {
-        startIndex += length;
+        startIndex += bufferSize;
         
         while (true)
         {
+            //大小不如以存放包头 说明不完整
             if (startIndex <= 4) return;
-            int count = BitConverter.ToInt32(buffer, 0);
+            //获取了包体的完整长度 不包括加上包头的长度
+            int dataSize = TotalDataSize;
             
-            if (startIndex >= count + 4)
+            if (startIndex >= dataSize + 4)//这是小于1024的情况
             {
-                MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(buffer, 4, count);
+                MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(buffer, 4, dataSize);
                 handleResponse(mainPack);
-                Array.Copy(buffer, count + 4, buffer, 0, startIndex - count - 4);
-                startIndex -= (count + 4);
+                // Array.Copy(buffer, dataSize + 4, buffer, 0, startIndex - dataSize - 4);
+                startIndex -= (dataSize + 4);
             }
             else
             {
@@ -48,6 +61,12 @@ public class Message
             }
         }
 
+    }
+
+    public void ReadBigBuffer(byte[] bigBuffer, Action<MainPack> handleResponse){
+        
+        MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(bigBuffer, 4, TotalDataSize);
+        handleResponse(mainPack);
     }
 
     public static byte[] TcpPackData(MainPack mainPack)

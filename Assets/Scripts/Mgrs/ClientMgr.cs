@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using SocketProtocol;
+using System.Linq;
 using ReTouchGunFire.PanelInfo;
 using ReTouchGunFire.Mediators;
 
@@ -15,6 +16,7 @@ namespace ReTouchGunFire.Mgrs{
         private Socket tcpSocket;
         private Message message;
         bool isConnected;
+        bool isUnfinished;
         public NetworkMediator networkMediator;
 
         public ClientMgr(){
@@ -61,21 +63,58 @@ namespace ReTouchGunFire.Mgrs{
             tcpSocket.BeginReceive(message.Buffer, message.StartIndex, message.Remsize, SocketFlags.None, ReceiveCallback, null);
         }
 
+        bool isFirst = true;
+        byte[] bigBuffer;
+        int progress=0;
+
         private void ReceiveCallback(IAsyncResult iar){
             try{
                 // Debug.Log("接收到消息");
                 if(tcpSocket == null || tcpSocket.Connected == false) return;
-                int length = tcpSocket.EndReceive(iar);
-                if(length == 0){
-                    Debug.Log("length为0");
-                    CloseSocket();
-                    return;
+
+                //此为单个包的全部大小 包括包头包体
+                int bufferSize = tcpSocket.EndReceive(iar);
+                if (isFirst)
+                {
+                    message.InitTotalDataSize();
                 }
 
-                message.ReadBuffer(length, HandleResponse);
-                StartReceive();
-            }catch{
+                if (message.TotalDataSize <= 1020)
+                {
+                    if(bufferSize == 0){
+                        Debug.Log("length为0");
+                        CloseSocket();
+                        return;
+                    }
 
+                    message.ReadBuffer(bufferSize, HandleResponse);
+                }else
+                {
+                    // progress = dataSize + 4;
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        int dataSize = message.TotalDataSize;
+                        bigBuffer = new byte[dataSize + 4];
+                    }
+                    
+                    if (bufferSize > 0)
+                    {
+                        // bigBuffer.Concat(message.Buffer).ToArray();
+                        Array.Copy(message.Buffer, 0, bigBuffer, progress, bufferSize);
+                        progress += bufferSize;
+                        if (progress >= message.TotalDataSize + 4)
+                        {
+                            message.ReadBigBuffer(bigBuffer, HandleResponse);
+                            progress = 0;
+                            isFirst = true;
+                            bigBuffer = null;
+                        }
+                    }
+                }
+                StartReceive();
+            }catch(Exception e){
+                Debug.LogError(e.Message);
             }
         }
 
