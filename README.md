@@ -5,7 +5,7 @@ Rebuild project.
 ## TODO
 
 ShopPanel
-- 刷新词条、解锁词条、消耗货币、穿戴武器装备
+- 刷新词条、解锁词条、穿戴武器装备
 
 ---
 
@@ -27,10 +27,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.11.29 20:26`
-protobuf buffer bug fixed. 
+> `22.11.30 19:29`
+add ShoppingRequest, GetItemInfoRequest. 
+ShopPanelInfo 85% -> 93%. 
 
 <details>
+
+> `22.11.29 20:26`
+protobuf buffer bug fixed. 
 
 > `22.11.29 1:41`
 ShopPanelInfo 85%. 

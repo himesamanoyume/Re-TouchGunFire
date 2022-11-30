@@ -117,8 +117,8 @@ public class PlayerInfo : EntityInfo
     {
         get { return hgDmgBonus; }
     }
-    [SerializeField] long diamond;
-    public long Diamond
+    [SerializeField] float diamond;
+    public float Diamond
     {
         get { return diamond; }
     }
@@ -283,6 +283,7 @@ public class PlayerInfo : EntityInfo
                 break;
             }
         }
+        EventMgr.Broadcast(GameEvents.UpdateItemInfoListNotify);
     }
 
     public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
@@ -313,6 +314,7 @@ public class PlayerInfo : EntityInfo
                 break;
             }
         }
+        EventMgr.Broadcast(GameEvents.UpdateItemInfoListNotify);
     }
 
     void UpdatePlayerGunInfoList(Dictionary<string,ItemInfo> list, GunPack gunPack){

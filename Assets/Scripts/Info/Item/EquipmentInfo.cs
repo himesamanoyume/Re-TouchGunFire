@@ -5,12 +5,7 @@ public class EquipmentInfo : ItemInfo
    string equipmentSuit;
    string equipmentName;
    string equipmentType;
-   string subProp1;
-   float subProp1Value;
-   string subProp2;
-   float subProp2Value;
-   string subProp3;
-   float subProp3Value;
+   
    EEquipmentTalent talent1;
    EEquipmentTalent talent2;
    int equipmentId;
@@ -19,12 +14,7 @@ public class EquipmentInfo : ItemInfo
    public string EquipmentSuit { get => equipmentSuit; }
    public string EquipmentName { get => equipmentName; }
    public string EquipmentType { get => equipmentType; }
-   public string SubProp1 { get => subProp1; }
-   public float SubProp1Value { get => subProp1Value; }
-   public string SubProp2 { get => subProp2; }
-   public float SubProp2Value { get => subProp2Value; }
-   public string SubProp3 { get => subProp3; }
-   public float SubProp3Value { get => subProp3Value; }
+   
    public EEquipmentTalent Talent1 { get => talent1; }
    public EEquipmentTalent Talent2 { get => talent2; }
    public int EquipmentId { get => equipmentId; }
@@ -33,6 +23,7 @@ public class EquipmentInfo : ItemInfo
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;
         equipmentId = equipmentPack.EquipmentId;
+        baseUid = equipmentId;
         equipmentType = equipmentPack.EquipmentType;
         block = equipmentPack.Block;
         equipmentSuit = equipmentPack.EquipmentSuit;
@@ -46,5 +37,8 @@ public class EquipmentInfo : ItemInfo
         talent1 = (EEquipmentTalent)equipmentPack.Talent1;
         talent2 = (EEquipmentTalent)equipmentPack.Talent2;
         price = equipmentPack.Price;
+        diamondPrice = price/10000f;
+        unlockAllSubPropPrice = price/4f;
+        refreshAllPropPrice = price/10f;
     }
 }

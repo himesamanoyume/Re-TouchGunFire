@@ -41,6 +41,8 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<PlayerJoinTeamRequest>();
             GameLoop.Instance.gameObject.AddComponent<KickPlayerRequest>();
             GameLoop.Instance.gameObject.AddComponent<RegenerationRequest>();
+            GameLoop.Instance.gameObject.AddComponent<ShoppingRequest>();
+            GameLoop.Instance.gameObject.AddComponent<GetItemInfoRequest>();
             
         }
 

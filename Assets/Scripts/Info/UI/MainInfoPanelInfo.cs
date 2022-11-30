@@ -44,15 +44,6 @@ namespace ReTouchGunFire.PanelInfo{
             panelMediator.MovePanelLevel(EUIPanelType.MainMenuPanel, EUILevel.Level1);
         }
 
-
-        // void OnPlayerInfoUpdate(PlayerInfoUpdateNotify evt) => PlayerInfoUpdate();
-        // void PlayerInfoUpdate(){
-        //     Loom.QueueOnMainThread(()=>{
-        //         diamondText.text = playerInfo.diamond.ToString();
-        //         coinText.text = playerInfo.coin.ToString();
-        //     });
-        // }
-
         public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
             if (updatePlayerInfoPack.Uid == networkMediator.playerSelfUid)
             {

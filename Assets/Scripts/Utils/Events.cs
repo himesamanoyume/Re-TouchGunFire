@@ -35,6 +35,7 @@ public static class GameEvents{
     public static BackpackPanelCloseNotify BackpackPanelCloseNotify = new BackpackPanelCloseNotify();
 
     public static MainSceneBeginNotify MainSceneBeginNotify = new MainSceneBeginNotify();
+    public static UpdateItemInfoListNotify UpdateItemInfoListNotify = new UpdateItemInfoListNotify();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{}
@@ -55,3 +56,4 @@ public class PlayerInfoUpdateNotify : GameEvent{}
 public class BackpackPanelOpenNotify : GameEvent{}
 public class BackpackPanelCloseNotify : GameEvent{}
 public class MainSceneBeginNotify : GameEvent{}
+public class UpdateItemInfoListNotify : GameEvent{}

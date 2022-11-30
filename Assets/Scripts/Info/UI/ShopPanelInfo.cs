@@ -9,7 +9,9 @@ using SocketProtocol;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class ShopPanelInfo : UIInfo
     {
-
+        [SerializeField] ShoppingRequest shoppingRequest;
+        [SerializeField] EItemList currentItemList;
+        bool currentIsGun = true;
         private void Start() {
             Name = "ShopPanelInfo";
             Init();
@@ -35,14 +37,18 @@ namespace ReTouchGunFire.PanelInfo{
             // {
             //     Debug.Log(item.GunName);
             // }
-            ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true);
+            ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true, EItemList.ar);
+            shoppingRequest = (ShoppingRequest)requestMediator.GetRequest(ActionCode.Shopping);
+            EventMgr.AddListener<UpdateItemInfoListNotify>(OnUpdateItemInfoList);
         }
 
-        void ShowItemList(List<ItemInfo> list, bool isGun){
+        void ShowItemList(List<ItemInfo> list, bool isGun , EItemList currentItemList){
             for (int i = 1; i < rightItemScrollViewContent.childCount; i++)
             {
                 Destroy(rightItemScrollViewContent.GetChild(i).gameObject);
             }
+            this.currentItemList = currentItemList;
+            currentIsGun = isGun;
             foreach (ItemInfo item in list)
             {
                 GameObject newItemBar = Instantiate(itemBarTemplate, rightItemScrollViewContent);
@@ -59,10 +65,21 @@ namespace ReTouchGunFire.PanelInfo{
                     }
                     ShowButtonList(item);
                     buyButton.onClick.AddListener(()=>{
-
+                        if (networkMediator.GetPlayerInfo.Coin < item.Price)
+                        {
+                            panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ item.DiamondPrice+"钻石购买该物品?",7f, ()=>{
+                                shoppingRequest.SendRequest(item.DiamondPrice, item.BaseUid, true);
+                            });
+                        }else
+                        {
+                            panelMediator.ShowTwiceConfirmPanel("确认要花费"+ item.Price+"金币购买该物品吗?",7f, ()=>{
+                                shoppingRequest.SendRequest(item.Price, item.BaseUid);
+                            });
+                        }
+                        
                     });
                     equipButton.onClick.AddListener(()=>{
-
+                        
                     });
                     refreshButton.onClick.AddListener(()=>{
                         
@@ -82,9 +99,29 @@ namespace ReTouchGunFire.PanelInfo{
             ShowButtonList(list[0]);
         }
 
+        void OnUpdateItemInfoList(UpdateItemInfoListNotify evt) => UpdateItemInfoList();
+
+        void UpdateItemInfoList(){
+            ShowItemList(networkMediator.GetItemInfoList(currentItemList), currentIsGun, currentItemList);
+        }
+
         void ShowButtonList(ItemInfo itemInfo){
             if(itemInfo.Block){
                 buyButton.gameObject.SetActive(true);
+                buyButton.onClick.AddListener(()=>{
+                    if (networkMediator.GetPlayerInfo.Coin < itemInfo.Price)
+                    {
+                        panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ itemInfo.DiamondPrice+"钻石购买该物品?",7f, ()=>{
+                            shoppingRequest.SendRequest(itemInfo.DiamondPrice, itemInfo.BaseUid, true);
+                        });
+                    }else
+                    {
+                        panelMediator.ShowTwiceConfirmPanel("确认要花费"+ itemInfo.Price+"金币购买该物品吗?",7f, ()=>{
+                            shoppingRequest.SendRequest(itemInfo.Price, itemInfo.BaseUid);
+                        });
+                    }
+                    
+                });
                 equipButton.gameObject.SetActive(false);
                 refreshButton.gameObject.SetActive(false);
                 unlockButton.gameObject.SetActive(false);
@@ -192,40 +229,40 @@ namespace ReTouchGunFire.PanelInfo{
 
             //
             arButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true, EItemList.ar);
             });
             dmrButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.dmr), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.dmr), true, EItemList.dmr);
             });
             smgButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.smg), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.smg), true, EItemList.smg);
             });
             sgButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.sg), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.sg), true, EItemList.sg);
             });
             mgButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.mg), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.mg), true, EItemList.mg);
             });
             hgButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.hg), true);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.hg), true, EItemList.hg);
             });
             armorButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.armor), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.armor), false, EItemList.armor);
             });
             headButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.head), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.head), false, EItemList.head);
             });
             handButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.hand), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.hand), false, EItemList.hand);
             });
             legButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.leg), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.leg), false, EItemList.leg);
             });
             kneeButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.knee), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.knee), false, EItemList.knee);
             });
             bootsButton.onClick.AddListener(()=>{
-                ShowItemList(networkMediator.GetItemInfoList(EItemList.boots), false);
+                ShowItemList(networkMediator.GetItemInfoList(EItemList.boots), false, EItemList.boots);
             });
             //end
         }

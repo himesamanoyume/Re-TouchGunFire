@@ -48,11 +48,10 @@ public class Message
             //获取了包体的完整长度 不包括加上包头的长度
             int dataSize = TotalDataSize;
             
-            if (startIndex >= dataSize + 4)//这是小于1024的情况
+            if (startIndex >= dataSize + 4)//
             {
                 MainPack mainPack = (MainPack)MainPack.Descriptor.Parser.ParseFrom(buffer, 4, dataSize);
                 handleResponse(mainPack);
-                // Array.Copy(buffer, dataSize + 4, buffer, 0, startIndex - dataSize - 4);
                 startIndex -= (dataSize + 4);
             }
             else

@@ -16,7 +16,6 @@ public sealed class LoginRequest : IRequest
     public override void OnResponse(MainPack mainPack)
     {
         Loom.QueueOnMainThread(()=>{
-            Debug.Log(mainPack.ReturnCode);
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     networkMediator.playerSelfUid = mainPack.Uid;

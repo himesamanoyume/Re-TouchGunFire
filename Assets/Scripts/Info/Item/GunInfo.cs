@@ -9,12 +9,6 @@ public class GunInfo : ItemInfo
     int magazine;
     string coreProp;
     float corePropValue;
-    string subProp1;
-    float subProp1Value;
-    string subProp2;
-    float subProp2Value;
-    string subProp3;
-    float subProp3Value;
     int gunId;
 
 
@@ -26,18 +20,13 @@ public class GunInfo : ItemInfo
     public int Magazine { get => magazine; }
     public string CoreProp { get => coreProp; }
     public float CorePropValue { get => corePropValue; }
-    public string SubProp1 { get => subProp1; }
-    public float SubProp1Value { get => subProp1Value; }
-    public string SubProp2 { get => subProp2;}
-    public float SubProp2Value { get => subProp2Value; }
-    public string SubProp3 { get => subProp3; }
-    public float SubProp3Value { get => subProp3Value; }
     public int GunId { get => gunId; }
     
 
     public void Init(GunPack gunPack){
         use = gunPack.Use;
         gunId = gunPack.GunId;
+        baseUid = gunId;
         block = gunPack.Block;
         gunName = gunPack.GunName;
         gunType = gunPack.GunType;
@@ -54,5 +43,8 @@ public class GunInfo : ItemInfo
         subProp3 = gunPack.SubProp3;
         subProp3Value = gunPack.SubProp3Value;
         price = gunPack.Price;
+        diamondPrice = price/10000f;
+        unlockAllSubPropPrice = price/4f;
+        refreshAllPropPrice = price/10f;
     }
 }

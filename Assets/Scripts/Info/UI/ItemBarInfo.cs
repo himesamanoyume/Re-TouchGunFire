@@ -50,7 +50,7 @@ namespace ReTouchGunFire.PanelInfo{
                 titleNameText.text = ((EquipmentInfo)itemInfo).EquipmentName;
             }
             coinPrice = itemInfo.Price;
-            diamondPrice = coinPrice/10000f;
+            diamondPrice = itemInfo.DiamondPrice;
             coinPriceText.text = coinPrice.ToString();
             diamondPriceText.text = diamondPrice.ToString("f2");
             if (!itemInfo.Block)
