@@ -4,7 +4,6 @@ public class EquipmentInfo : ItemInfo
 {
    string equipmentSuit;
    string equipmentName;
-   string equipmentType;
    
    EEquipmentTalent talent1;
    EEquipmentTalent talent2;
@@ -13,7 +12,6 @@ public class EquipmentInfo : ItemInfo
 
    public string EquipmentSuit { get => equipmentSuit; }
    public string EquipmentName { get => equipmentName; }
-   public string EquipmentType { get => equipmentType; }
    
    public EEquipmentTalent Talent1 { get => talent1; }
    public EEquipmentTalent Talent2 { get => talent2; }
@@ -22,9 +20,8 @@ public class EquipmentInfo : ItemInfo
 
     public void Init(EquipmentPack equipmentPack){
         use = equipmentPack.Use;
-        equipmentId = equipmentPack.EquipmentId;
-        baseUid = equipmentId;
-        equipmentType = equipmentPack.EquipmentType;
+        itemId = equipmentPack.ItemId;
+        itemType = equipmentPack.ItemType;
         block = equipmentPack.Block;
         equipmentSuit = equipmentPack.EquipmentSuit;
         equipmentName = equipmentPack.EquipmentName;

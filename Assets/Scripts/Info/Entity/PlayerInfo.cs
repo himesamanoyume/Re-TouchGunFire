@@ -259,7 +259,7 @@ public class PlayerInfo : EntityInfo
         foreach (GunPack item in gunPacks)
         {
             // Debug.Log(item);
-            switch(item.GunType){
+            switch(item.ItemType){
                 case "AR":
                     UpdatePlayerGunInfoList(arDict, item);
                 break;
@@ -290,7 +290,7 @@ public class PlayerInfo : EntityInfo
         foreach (EquipmentPack item in equipmentPacks)
         {
             // Debug.Log(item);
-            switch(item.EquipmentType){
+            switch(item.ItemType){
                 case "Armor":
                     UpdateEquipmentInfoList(armorDict, item);
                 break;

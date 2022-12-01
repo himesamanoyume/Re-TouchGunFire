@@ -2,34 +2,29 @@ using SocketProtocol;
 public class GunInfo : ItemInfo
 {
     string gunName;
-    string gunType;
     float baseDMG;
     float firingRate;
     float currentFiringRatePerSecond;
     int magazine;
     string coreProp;
     float corePropValue;
-    int gunId;
 
 
     public string GunName { get => gunName; }
-    public string GunType { get => gunType; }
     public float BaseDMG { get => baseDMG; }
     public float FiringRate { get => firingRate; }
     public float CurrentFiringRatePerSecond { get => currentFiringRatePerSecond; }
     public int Magazine { get => magazine; }
     public string CoreProp { get => coreProp; }
     public float CorePropValue { get => corePropValue; }
-    public int GunId { get => gunId; }
     
 
     public void Init(GunPack gunPack){
         use = gunPack.Use;
-        gunId = gunPack.GunId;
-        baseUid = gunId;
+        itemId = gunPack.ItemId;
         block = gunPack.Block;
         gunName = gunPack.GunName;
-        gunType = gunPack.GunType;
+        itemType = gunPack.ItemType;
         baseDMG = gunPack.BaseDMG;
         firingRate = gunPack.FiringRate;
         currentFiringRatePerSecond = gunPack.CurrentFiringRatePerSecond;

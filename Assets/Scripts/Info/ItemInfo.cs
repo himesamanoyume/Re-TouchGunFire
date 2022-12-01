@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class ItemInfo
 {
-    protected int baseUid;
-    public int BaseUid { get => baseUid;}
+    protected int itemId;
+    public int ItemId { get => itemId;}
     protected long price;
     public long Price { get => price; }
     protected float diamondPrice;
@@ -30,5 +30,7 @@ public abstract class ItemInfo
     public float SubProp2Value { get => subProp2Value; }
     public string SubProp3 { get => subProp3; }
     public float SubProp3Value { get => subProp3Value; }
+    protected string itemType;
+    public string ItemType { get => itemType; }
 
 }

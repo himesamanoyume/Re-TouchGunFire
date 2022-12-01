@@ -68,12 +68,12 @@ namespace ReTouchGunFire.PanelInfo{
                         if (networkMediator.GetPlayerInfo.Coin < item.Price)
                         {
                             panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ item.DiamondPrice+"钻石购买该物品?",7f, ()=>{
-                                shoppingRequest.SendRequest(item.DiamondPrice, item.BaseUid, true);
+                                shoppingRequest.SendRequest(item.DiamondPrice, item.ItemId, true);
                             });
                         }else
                         {
                             panelMediator.ShowTwiceConfirmPanel("确认要花费"+ item.Price+"金币购买该物品吗?",7f, ()=>{
-                                shoppingRequest.SendRequest(item.Price, item.BaseUid);
+                                shoppingRequest.SendRequest(item.Price, item.ItemId);
                             });
                         }
                         
@@ -112,12 +112,12 @@ namespace ReTouchGunFire.PanelInfo{
                     if (networkMediator.GetPlayerInfo.Coin < itemInfo.Price)
                     {
                         panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ itemInfo.DiamondPrice+"钻石购买该物品?",7f, ()=>{
-                            shoppingRequest.SendRequest(itemInfo.DiamondPrice, itemInfo.BaseUid, true);
+                            shoppingRequest.SendRequest(itemInfo.DiamondPrice, itemInfo.ItemId, true);
                         });
                     }else
                     {
                         panelMediator.ShowTwiceConfirmPanel("确认要花费"+ itemInfo.Price+"金币购买该物品吗?",7f, ()=>{
-                            shoppingRequest.SendRequest(itemInfo.Price, itemInfo.BaseUid);
+                            shoppingRequest.SendRequest(itemInfo.Price, itemInfo.ItemId);
                         });
                     }
                     
@@ -135,7 +135,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         void ShowGunModeInfo(GunInfo gunInfo){
-            itemNameText.text = gunInfo.GunType;
+            itemNameText.text = gunInfo.ItemType;
             itemNameValueText.text = gunInfo.GunName;
             itemSuit.gameObject.SetActive(false);
             itemSuitEffect1.gameObject.SetActive(false);
@@ -168,7 +168,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         void ShowEquipmentModeInfo(EquipmentInfo equipmentInfo){
-            itemNameText.text = equipmentInfo.EquipmentType;
+            itemNameText.text = equipmentInfo.ItemType;
             itemNameValueText.text = equipmentInfo.EquipmentName;
             itemSuit.gameObject.SetActive(true);
             itemSuitValueText.text = equipmentInfo.EquipmentSuit;

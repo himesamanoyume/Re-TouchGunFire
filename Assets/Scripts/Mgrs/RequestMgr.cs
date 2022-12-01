@@ -43,6 +43,7 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<RegenerationRequest>();
             GameLoop.Instance.gameObject.AddComponent<ShoppingRequest>();
             GameLoop.Instance.gameObject.AddComponent<GetItemInfoRequest>();
+            GameLoop.Instance.gameObject.AddComponent<EquipItemRequest>();
             
         }
 

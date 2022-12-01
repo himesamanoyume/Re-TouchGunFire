@@ -27,10 +27,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.12.1 19:37`
-server: equipment and gun equip finish.
+> `22.12.2 1:36`
+server/client: rebuild ItemSystem. 
+add EquipItemRequest. 
 
 <details>
+
+> `22.12.1 19:37`
+server: equipment and gun equip finish.
 
 > `22.11.30 19:29`
 add ShoppingRequest, GetItemInfoRequest. 
