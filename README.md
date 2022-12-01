@@ -27,11 +27,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.12.1 19:37`
+server: equipment and gun equip finish.
+
+<details>
+
 > `22.11.30 19:29`
 add ShoppingRequest, GetItemInfoRequest. 
 ShopPanelInfo 85% -> 93%. 
-
-<details>
 
 > `22.11.29 20:26`
 protobuf buffer bug fixed. 
