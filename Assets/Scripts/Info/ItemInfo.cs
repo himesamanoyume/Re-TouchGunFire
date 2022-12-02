@@ -12,7 +12,7 @@ public abstract class ItemInfo
     public float DiamondPrice { get => diamondPrice; }
     protected bool use;
     protected bool block;
-    public bool Use { get => use; }
+    public bool Use { get => use;  set => use = value;}
     public bool Block { get => block; }
     protected float unlockAllSubPropPrice;
     public float UnlockAllSubPropPrice { get => unlockAllSubPropPrice; }

@@ -5,9 +5,14 @@ Rebuild project.
 ## TODO
 
 ShopPanel
-- 刷新词条、解锁词条、穿戴武器装备
+- **解锁词条**
+- 刷新词条
+
+server改成ctor构造ItemInfo
 
 ---
+
+武器类需要自带一些副词条有的属性
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 
@@ -27,11 +32,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.12.3 3:39`
+add UnlockItemSubPropRequestRequest, RefreshItemSubPropRequestRequest, RefreshGunCorePropRequestRequest. 
+
+<details>
+
 > `22.12.2 1:36`
 server/client: rebuild ItemSystem. 
 add EquipItemRequest. 
-
-<details>
 
 > `22.12.1 19:37`
 server: equipment and gun equip finish.

@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class EquipItemRequest : IRequest
+public sealed class UnlockItemSubPropRequestRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "EquipItemRequest";
+        Name = "UnlockItemSubPropRequestRequest";
         requestCode = RequestCode.User;
-        actionCode = ActionCode.EquipItem;
+        actionCode = ActionCode.UnlockItemSubProp;
         base.Awake();
     }
 
@@ -19,13 +19,13 @@ public sealed class EquipItemRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("穿戴装备成功");
-                    // panelMediator.ShowNotifyPanel("删除好友请求成功",3f);
+                    // Debug.Log("穿戴装备成功");
+                    panelMediator.ShowNotifyPanel("刷新装备副词条成功",1f);
                     
                 break;
                 case ReturnCode.Fail:
                     // Debug.Log("删除好友请求失败");
-                    panelMediator.ShowNotifyPanel("穿戴装备失败",3f);
+                    panelMediator.ShowNotifyPanel("刷新装备副词条失败",3f);
                 break;
                 case ReturnCode.NotFound:
                     // Debug.Log("未找到该好友请求");

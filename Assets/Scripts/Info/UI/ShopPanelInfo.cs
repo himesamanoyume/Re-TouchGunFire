@@ -10,6 +10,7 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class ShopPanelInfo : UIInfo
     {
         [SerializeField] ShoppingRequest shoppingRequest;
+        [SerializeField] EquipItemRequest equipItemRequest;
         [SerializeField] EItemList currentItemList;
         bool currentIsGun = true;
         private void Start() {
@@ -39,6 +40,7 @@ namespace ReTouchGunFire.PanelInfo{
             // }
             ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true, EItemList.ar);
             shoppingRequest = (ShoppingRequest)requestMediator.GetRequest(ActionCode.Shopping);
+            equipItemRequest = (EquipItemRequest)requestMediator.GetRequest(ActionCode.EquipItem);
             EventMgr.AddListener<UpdateItemInfoListNotify>(OnUpdateItemInfoList);
         }
 
@@ -79,9 +81,13 @@ namespace ReTouchGunFire.PanelInfo{
                         
                     });
                     equipButton.onClick.AddListener(()=>{
-                        
+                        if (item.Block == false && item.Use == false)
+                        {
+                            item.Use = true;
+                            equipItemRequest.SendRequest(item.ItemId);
+                        }
                     });
-                    refreshButton.onClick.AddListener(()=>{
+                    refreshSubPropButton.onClick.AddListener(()=>{
                         
                     });
                     unlockButton.onClick.AddListener(()=>{
@@ -123,13 +129,27 @@ namespace ReTouchGunFire.PanelInfo{
                     
                 });
                 equipButton.gameObject.SetActive(false);
-                refreshButton.gameObject.SetActive(false);
+                refreshCorePropButton.gameObject.SetActive(false);
+                refreshSubPropButton.gameObject.SetActive(false);
                 unlockButton.gameObject.SetActive(false);
             }else
             {
                 buyButton.gameObject.SetActive(false);
-                equipButton.gameObject.SetActive(true);
-                refreshButton.gameObject.SetActive(true);
+                if (!itemInfo.Use)
+                {
+                    equipButton.gameObject.SetActive(true);
+                }else
+                {
+                    equipButton.gameObject.SetActive(false);
+                }
+                if((itemInfo as GunInfo)?.CoreProp != "Null"){
+                    refreshCorePropButton.gameObject.SetActive(true);
+                }else
+                {
+                    refreshCorePropButton.gameObject.SetActive(false);
+                }
+
+                refreshSubPropButton.gameObject.SetActive(true);
                 unlockButton.gameObject.SetActive(true);
             }
         }
@@ -404,14 +424,16 @@ namespace ReTouchGunFire.PanelInfo{
 
         [SerializeField] Button buyButton;
         [SerializeField] Button equipButton;
-        [SerializeField] Button refreshButton;
+        [SerializeField] Button refreshCorePropButton;
+        [SerializeField] Button refreshSubPropButton;
         [SerializeField] Button unlockButton;
 
         void InitRightTop(){
             rightTop = transform.Find("Point/Right/Top");
             buyButton = rightTop.Find("BuyButton").GetComponent<Button>();
             equipButton = rightTop.Find("EquipButton").GetComponent<Button>();
-            refreshButton = rightTop.Find("RefreshButton").GetComponent<Button>();
+            refreshSubPropButton = rightTop.Find("RefreshSubPropButton").GetComponent<Button>();
+            refreshCorePropButton = rightTop.Find("RefreshCorePropButton").GetComponent<Button>();
             unlockButton = rightTop.Find("UnlockButton").GetComponent<Button>();
 
 
