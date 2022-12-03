@@ -6,8 +6,8 @@ public abstract class ItemInfo
 {
     protected int itemId;
     public int ItemId { get => itemId;}
-    protected long price;
-    public long Price { get => price; }
+    protected float price;
+    public float Price { get => price; }
     protected float diamondPrice;
     public float DiamondPrice { get => diamondPrice; }
     protected bool use;

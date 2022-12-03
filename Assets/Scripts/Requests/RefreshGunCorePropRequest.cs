@@ -4,11 +4,11 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class RefreshGunCorePropRequestRequest : IRequest
+public sealed class RefreshGunCorePropRequest : ShopPanelBaseRequest
 {
     public override void Awake()
     {
-        Name = "RefreshGunCorePropRequestRequest";
+        Name = "RefreshGunCorePropRequest";
         requestCode = RequestCode.User;
         actionCode = ActionCode.RefreshGunCoreProp;
         base.Awake();
@@ -37,14 +37,5 @@ public sealed class RefreshGunCorePropRequestRequest : IRequest
                 break;
             }
         });
-    }
-
-    public void SendRequest(int itemId){
-        MainPack mainPack = base.InitRequest();
-        EquipItemPack equipItemPack = new EquipItemPack();
-        equipItemPack.Uid = networkMediator.playerSelfUid;
-        equipItemPack.ItemId = itemId;
-        mainPack.EquipItemPack = equipItemPack;
-        base.TcpSendRequest(mainPack);
     }
 }

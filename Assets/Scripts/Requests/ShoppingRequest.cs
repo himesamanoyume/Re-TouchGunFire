@@ -5,7 +5,7 @@ using SocketProtocol;
 using ReTouchGunFire.Mediators;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class ShoppingRequest : IRequest
+public sealed class ShoppingRequest : ShopPanelBaseRequest
 {
     public override void Awake()
     {
@@ -35,23 +35,5 @@ public sealed class ShoppingRequest : IRequest
                 break;
             }
         });
-    }
-
-    public void SendRequest( float price, int itemId, bool isDiamond = false)
-    {
-        MainPack mainPack = base.InitRequest();
-        ShoppingPack shoppingPack = new ShoppingPack();
-        shoppingPack.Uid = networkMediator.playerSelfUid;
-        shoppingPack.IsDiamond = isDiamond;
-        if (isDiamond)
-        {
-            shoppingPack.DiamondPrice = price;
-        }else
-        {
-            shoppingPack.Price = (long)price;
-        }
-        shoppingPack.ItemId = itemId;
-        mainPack.ShoppingPack = shoppingPack;
-        base.TcpSendRequest(mainPack);
     }
 }

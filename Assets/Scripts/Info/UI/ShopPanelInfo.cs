@@ -11,6 +11,9 @@ namespace ReTouchGunFire.PanelInfo{
     {
         [SerializeField] ShoppingRequest shoppingRequest;
         [SerializeField] EquipItemRequest equipItemRequest;
+        [SerializeField] RefreshGunCorePropRequest refreshGunCorePropRequest;
+        [SerializeField] RefreshItemSubPropRequest refreshItemSubPropRequest;
+        [SerializeField] UnlockItemSubPropRequest unlockItemSubPropRequest;
         [SerializeField] EItemList currentItemList;
         bool currentIsGun = true;
         private void Start() {
@@ -41,6 +44,9 @@ namespace ReTouchGunFire.PanelInfo{
             ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true, EItemList.ar);
             shoppingRequest = (ShoppingRequest)requestMediator.GetRequest(ActionCode.Shopping);
             equipItemRequest = (EquipItemRequest)requestMediator.GetRequest(ActionCode.EquipItem);
+            refreshGunCorePropRequest = (RefreshGunCorePropRequest)requestMediator.GetRequest(ActionCode.RefreshGunCoreProp);
+            refreshItemSubPropRequest = (RefreshItemSubPropRequest)requestMediator.GetRequest(ActionCode.RefreshItemSubProp);
+            unlockItemSubPropRequest = (UnlockItemSubPropRequest)requestMediator.GetRequest(ActionCode.UnlockItemSubProp);
             EventMgr.AddListener<UpdateItemInfoListNotify>(OnUpdateItemInfoList);
         }
 
@@ -51,48 +57,21 @@ namespace ReTouchGunFire.PanelInfo{
             }
             this.currentItemList = currentItemList;
             currentIsGun = isGun;
-            foreach (ItemInfo item in list)
+            foreach (ItemInfo itemInfo in list)
             {
                 GameObject newItemBar = Instantiate(itemBarTemplate, rightItemScrollViewContent);
-                newItemBar.AddComponent<ItemBarInfo>().InitInfo(item, isGun);
+                newItemBar.AddComponent<ItemBarInfo>().InitInfo(itemInfo, isGun);
                 newItemBar.SetActive(true);
                 newItemBar.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(()=>{
                     //show detail info
                     if (isGun)
                     {
-                        ShowGunModeInfo((GunInfo)item);
+                        ShowGunModeInfo((GunInfo)itemInfo);
                     }else
                     {
-                        ShowEquipmentModeInfo((EquipmentInfo)item);
+                        ShowEquipmentModeInfo((EquipmentInfo)itemInfo);
                     }
-                    ShowButtonList(item);
-                    buyButton.onClick.AddListener(()=>{
-                        if (networkMediator.GetPlayerInfo.Coin < item.Price)
-                        {
-                            panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ item.DiamondPrice+"钻石购买该物品?",7f, ()=>{
-                                shoppingRequest.SendRequest(item.DiamondPrice, item.ItemId, true);
-                            });
-                        }else
-                        {
-                            panelMediator.ShowTwiceConfirmPanel("确认要花费"+ item.Price+"金币购买该物品吗?",7f, ()=>{
-                                shoppingRequest.SendRequest(item.Price, item.ItemId);
-                            });
-                        }
-                        
-                    });
-                    equipButton.onClick.AddListener(()=>{
-                        if (item.Block == false && item.Use == false)
-                        {
-                            item.Use = true;
-                            equipItemRequest.SendRequest(item.ItemId);
-                        }
-                    });
-                    refreshSubPropButton.onClick.AddListener(()=>{
-                        
-                    });
-                    unlockButton.onClick.AddListener(()=>{
-                        
-                    });
+                    ShowButtonList(itemInfo);
                 });
             }
             if (isGun)
@@ -105,6 +84,25 @@ namespace ReTouchGunFire.PanelInfo{
             ShowButtonList(list[0]);
         }
 
+        void ButtonListActionTemplate(string text, ItemInfo item, float per, ShopPanelBaseRequest request){
+            if (networkMediator.GetPlayerInfo.Coin < item.Price)
+            {
+                if(networkMediator.GetPlayerInfo.Diamond > item.DiamondPrice)
+                {
+                    panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ item.DiamondPrice * per +"钻石" + text,7f, ()=>{
+                    unlockItemSubPropRequest.SendRequest(item.DiamondPrice, item.ItemId, per, true);
+                    });
+                }else{
+                    panelMediator.ShowNotifyPanel("没有足够的资金购买",4f);
+                }
+            }else
+            {
+                panelMediator.ShowTwiceConfirmPanel("确认要花费"+ item.Price * per +"金币" + text,7f, ()=>{
+                    request.SendRequest(item.Price, item.ItemId);
+                });
+            }
+        }
+
         void OnUpdateItemInfoList(UpdateItemInfoListNotify evt) => UpdateItemInfoList();
 
         void UpdateItemInfoList(){
@@ -115,18 +113,7 @@ namespace ReTouchGunFire.PanelInfo{
             if(itemInfo.Block){
                 buyButton.gameObject.SetActive(true);
                 buyButton.onClick.AddListener(()=>{
-                    if (networkMediator.GetPlayerInfo.Coin < itemInfo.Price)
-                    {
-                        panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ itemInfo.DiamondPrice+"钻石购买该物品?",7f, ()=>{
-                            shoppingRequest.SendRequest(itemInfo.DiamondPrice, itemInfo.ItemId, true);
-                        });
-                    }else
-                    {
-                        panelMediator.ShowTwiceConfirmPanel("确认要花费"+ itemInfo.Price+"金币购买该物品吗?",7f, ()=>{
-                            shoppingRequest.SendRequest(itemInfo.Price, itemInfo.ItemId);
-                        });
-                    }
-                    
+                    ButtonListActionTemplate("购买该物品?", itemInfo, 1, shoppingRequest);
                 });
                 equipButton.gameObject.SetActive(false);
                 refreshCorePropButton.gameObject.SetActive(false);
@@ -138,19 +125,42 @@ namespace ReTouchGunFire.PanelInfo{
                 if (!itemInfo.Use)
                 {
                     equipButton.gameObject.SetActive(true);
+                    equipButton.onClick.AddListener(()=>{
+                    if (itemInfo.Block == false && itemInfo.Use == false)
+                    {
+                        itemInfo.Use = true;
+                        equipItemRequest.SendRequest(itemInfo.ItemId);
+                    }
+                    });
                 }else
                 {
                     equipButton.gameObject.SetActive(false);
                 }
                 if((itemInfo as GunInfo)?.CoreProp != "Null"){
                     refreshCorePropButton.gameObject.SetActive(true);
+                    refreshCorePropButton.onClick.AddListener(()=>{
+                        ButtonListActionTemplate("刷新该武器的主词条?", itemInfo, 0.2f, refreshGunCorePropRequest);
+                    });
                 }else
                 {
                     refreshCorePropButton.gameObject.SetActive(false);
                 }
 
-                refreshSubPropButton.gameObject.SetActive(true);
+                if (itemInfo.SubProp1.Equals("Null"))
+                {
+                    refreshSubPropButton.gameObject.SetActive(false);
+                }else
+                {
+                    refreshSubPropButton.gameObject.SetActive(true);
+                    refreshSubPropButton.onClick.AddListener(()=>{
+                        ButtonListActionTemplate("刷新该物品的副词条?", itemInfo, 0.2f, refreshItemSubPropRequest);
+                    });
+                }
+                
                 unlockButton.gameObject.SetActive(true);
+                unlockButton.onClick.AddListener(()=>{
+                    ButtonListActionTemplate("解锁一个该物品的副词条?", itemInfo, 0.4f,unlockItemSubPropRequest);
+                });
             }
         }
 
@@ -171,18 +181,22 @@ namespace ReTouchGunFire.PanelInfo{
             itemCorePropValueText.text = gunInfo.CoreProp;
             itemCorePropValueSlider.maxValue = 0.15f;
             itemCorePropValueSlider.value = gunInfo.CorePropValue;
+            itemCorePropValueSliderValueText.text = (gunInfo.CorePropValue*100).ToString()+"%";
             // itemSubProp1.gameObject.SetActive(true);
             itemSubProp1ValueText.text = gunInfo.SubProp1;
             itemSubProp1ValueSlider.maxValue = 0.1f;
             itemSubProp1ValueSlider.value = gunInfo.SubProp1Value;
+            itemSubProp1ValueSliderValueText.text = (gunInfo.SubProp1Value*100).ToString()+"%";
             // itemSubProp2.gameObject.SetActive(true);
             itemSubProp2ValueText.text = gunInfo.SubProp2;
             itemSubProp2ValueSlider.maxValue = 0.1f;
             itemSubProp2ValueSlider.value = gunInfo.SubProp2Value;
+            itemSubProp2ValueSliderValueText.text = (gunInfo.SubProp2Value*100).ToString()+"%";
             // itemSubProp3.gameObject.SetActive(true);
             itemSubProp3ValueText.text = gunInfo.SubProp3;
             itemSubProp3ValueSlider.maxValue = 0.1f;
             itemSubProp3ValueSlider.value = gunInfo.SubProp3Value;
+            itemSubProp3ValueSliderValueText.text = (gunInfo.SubProp3Value*100).ToString()+"%";
             itemTalent1.gameObject.SetActive(false);
             itemTalent2.gameObject.SetActive(false);
         }
@@ -203,14 +217,17 @@ namespace ReTouchGunFire.PanelInfo{
             itemSubProp1ValueText.text = equipmentInfo.SubProp1;
             itemSubProp1ValueSlider.maxValue = 0.1f;
             itemSubProp1ValueSlider.value = equipmentInfo.SubProp1Value;
+            itemSubProp1ValueSliderValueText.text = (equipmentInfo.SubProp1Value*100).ToString()+"%";
             // itemSubProp2.gameObject.SetActive(true);
             itemSubProp2ValueText.text = equipmentInfo.SubProp2;
             itemSubProp2ValueSlider.maxValue = 0.1f;
             itemSubProp2ValueSlider.value = equipmentInfo.SubProp2Value;
+            itemSubProp2ValueSliderValueText.text = (equipmentInfo.SubProp2Value*100).ToString()+"%";
             // itemSubProp3.gameObject.SetActive(true);
             itemSubProp3ValueText.text = equipmentInfo.SubProp3;
             itemSubProp3ValueSlider.maxValue = 0.1f;
             itemSubProp3ValueSlider.value = equipmentInfo.SubProp3Value;
+            itemSubProp3ValueSliderValueText.text = (equipmentInfo.SubProp3Value*100).ToString()+"%";
             itemTalent1.gameObject.SetActive(true);
             itemTalent1ValueText.text = equipmentInfo.Talent1.ToString();
             itemTalent2.gameObject.SetActive(true);
@@ -332,21 +349,25 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] Text itemCorePropText;
         [SerializeField] Text itemCorePropValueText;
         [SerializeField] Slider itemCorePropValueSlider;
+        [SerializeField] Text itemCorePropValueSliderValueText;
 
         [SerializeField] Transform itemSubProp1;
         [SerializeField] Text itemSubProp1Text;
         [SerializeField] Text itemSubProp1ValueText;
         [SerializeField] Slider itemSubProp1ValueSlider;
+        [SerializeField] Text itemSubProp1ValueSliderValueText;
 
         [SerializeField] Transform itemSubProp2;
         [SerializeField] Text itemSubProp2Text;
         [SerializeField] Text itemSubProp2ValueText;
         [SerializeField] Slider itemSubProp2ValueSlider;
+        [SerializeField] Text itemSubProp2ValueSliderValueText;
 
         [SerializeField] Transform itemSubProp3;
         [SerializeField] Text itemSubProp3Text;
         [SerializeField] Text itemSubProp3ValueText;
         [SerializeField] Slider itemSubProp3ValueSlider;
+        [SerializeField] Text itemSubProp3ValueSliderValueText;
 
         [SerializeField] Transform itemTalent1;
         [SerializeField] Text itemTalent1Text;
@@ -395,21 +416,25 @@ namespace ReTouchGunFire.PanelInfo{
             itemCorePropText = itemCoreProp.Find("Text").GetComponent<Text>();
             itemCorePropValueText = itemCoreProp.Find("Value").GetComponent<Text>();
             itemCorePropValueSlider = itemCoreProp.Find("ValueBar").GetComponent<Slider>();
+            itemCorePropValueSliderValueText = itemCoreProp.Find("ValueBar/ValueText").GetComponent<Text>();
 
             itemSubProp1 = rightItemInfoScrollViewContent.Find("ItemSubProp1");
             itemSubProp1Text = itemSubProp1.Find("Text").GetComponent<Text>();
             itemSubProp1ValueText = itemSubProp1.Find("Value").GetComponent<Text>();
             itemSubProp1ValueSlider = itemSubProp1.Find("ValueBar").GetComponent<Slider>();
+            itemSubProp1ValueSliderValueText = itemSubProp1.Find("ValueBar/ValueText").GetComponent<Text>();
 
             itemSubProp2 = rightItemInfoScrollViewContent.Find("ItemSubProp2");
             itemSubProp2Text = itemSubProp2.Find("Text").GetComponent<Text>();
             itemSubProp2ValueText = itemSubProp2.Find("Value").GetComponent<Text>();
             itemSubProp2ValueSlider = itemSubProp2.Find("ValueBar").GetComponent<Slider>();
+            itemSubProp2ValueSliderValueText = itemSubProp2.Find("ValueBar/ValueText").GetComponent<Text>();
 
             itemSubProp3 = rightItemInfoScrollViewContent.Find("ItemSubProp3");
             itemSubProp3Text = itemSubProp3.Find("Text").GetComponent<Text>();
             itemSubProp3ValueText = itemSubProp3.Find("Value").GetComponent<Text>();
             itemSubProp3ValueSlider = itemSubProp3.Find("ValueBar").GetComponent<Slider>();
+            itemSubProp3ValueSliderValueText = itemSubProp3.Find("ValueBar/ValueText").GetComponent<Text>();
 
             itemTalent1 = rightItemInfoScrollViewContent.Find("ItemTalent1");
             itemTalent1Text = itemTalent1.Find("Text").GetComponent<Text>();

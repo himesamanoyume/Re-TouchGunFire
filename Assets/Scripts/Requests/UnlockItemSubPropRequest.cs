@@ -4,11 +4,11 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class UnlockItemSubPropRequestRequest : IRequest
+public sealed class UnlockItemSubPropRequest : ShopPanelBaseRequest
 {
     public override void Awake()
     {
-        Name = "UnlockItemSubPropRequestRequest";
+        Name = "UnlockItemSubPropRequest";
         requestCode = RequestCode.User;
         actionCode = ActionCode.UnlockItemSubProp;
         base.Awake();
@@ -19,17 +19,21 @@ public sealed class UnlockItemSubPropRequestRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("穿戴装备成功");
-                    panelMediator.ShowNotifyPanel("刷新装备副词条成功",1f);
+                    Debug.Log("解锁装备副词条成功");
+                    // panelMediator.ShowNotifyPanel("解锁装备副词条成功",1f);
                     
                 break;
                 case ReturnCode.Fail:
                     // Debug.Log("删除好友请求失败");
-                    panelMediator.ShowNotifyPanel("刷新装备副词条失败",3f);
+                    panelMediator.ShowNotifyPanel("解锁装备副词条失败",3f);
                 break;
                 case ReturnCode.NotFound:
                     // Debug.Log("未找到该好友请求");
                     panelMediator.ShowNotifyPanel("未持有该装备",3f);
+                break;
+                case ReturnCode.RepeatedRequest:
+                    // Debug.Log("未找到该好友请求");
+                    panelMediator.ShowNotifyPanel("该装备副词条已全解锁",3f);
                 break;
                 default:
                     // Debug.LogError("不正常情况");
@@ -37,14 +41,5 @@ public sealed class UnlockItemSubPropRequestRequest : IRequest
                 break;
             }
         });
-    }
-
-    public void SendRequest(int itemId){
-        MainPack mainPack = base.InitRequest();
-        EquipItemPack equipItemPack = new EquipItemPack();
-        equipItemPack.Uid = networkMediator.playerSelfUid;
-        equipItemPack.ItemId = itemId;
-        mainPack.EquipItemPack = equipItemPack;
-        base.TcpSendRequest(mainPack);
     }
 }

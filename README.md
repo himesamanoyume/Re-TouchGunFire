@@ -5,10 +5,10 @@ Rebuild project.
 ## TODO
 
 ShopPanel
-- **解锁词条**
-- 刷新词条
+- **Debug**
+- 解锁词条，刷新主副词条(90%)
 
-server改成ctor构造ItemInfo
+server ItemInfo价格判断与client一致:1(/10000), 0.4, 0.2, 0.2
 
 ---
 
@@ -32,10 +32,14 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
-> `22.12.3 3:39`
-add UnlockItemSubPropRequestRequest, RefreshItemSubPropRequestRequest, RefreshGunCorePropRequestRequest. 
+> `22.12.4 2:04`
+add ShopPanelBaseRequest,
+ShopPanelInfo 93% -> 98% ?
 
 <details>
+
+> `22.12.3 3:39`
+add UnlockItemSubPropRequestRequest, RefreshItemSubPropRequestRequest, RefreshGunCorePropRequestRequest. 
 
 > `22.12.2 1:36`
 server/client: rebuild ItemSystem. 

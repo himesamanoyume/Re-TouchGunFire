@@ -122,8 +122,8 @@ public class PlayerInfo : EntityInfo
     {
         get { return diamond; }
     }
-    [SerializeField] long coin;
-    public long Coin
+    [SerializeField] float coin;
+    public float Coin
     {
         get { return coin; }
     }
