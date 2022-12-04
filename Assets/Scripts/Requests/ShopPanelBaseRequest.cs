@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
+using System;
 
 public abstract class ShopPanelBaseRequest : IRequest
 {
@@ -13,10 +14,10 @@ public abstract class ShopPanelBaseRequest : IRequest
         shoppingPack.IsDiamond = isDiamond;
         if (isDiamond)
         {
-            shoppingPack.DiamondPrice = price * per;
+            shoppingPack.DiamondPrice = (float)Math.Round((double)(price * per), 3);
         }else
         {
-            shoppingPack.Price = price * per;
+            shoppingPack.Price = (float)Math.Round((double)(price * per), 3);
         }
         shoppingPack.Percent = per;
         shoppingPack.ItemId = itemId;

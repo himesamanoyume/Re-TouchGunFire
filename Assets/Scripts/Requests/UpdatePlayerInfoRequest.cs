@@ -29,7 +29,7 @@ public sealed class UpdatePlayerInfoRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("Response");
+                    // Debug.Log("UpdatePlayerInfoCallback");
                     networkMediator.UpdatePlayerInfoCallback(mainPack);
                 break;
                 case ReturnCode.Fail:

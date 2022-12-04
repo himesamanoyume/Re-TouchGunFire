@@ -4,7 +4,7 @@ using UnityEngine;
 public enum ESubProp
 {
     Null,
-    [Tooltip("生命值")]
+    [Tooltip("生命值百分比加成")]
     health,
     [Tooltip("基础伤害加成")]
     baseDmgBonus,
@@ -20,7 +20,7 @@ public enum ESubProp
     abeBonus,
     [Tooltip("自动步枪伤害加成")]
     arDmgBonus,
-    [Tooltip("精确射手步枪上海加成")]
+    [Tooltip("精确射手步枪伤害加成")]
     dmrDmgBonus,
     [Tooltip("微型冲锋枪伤害加成")]
     smgDmgBonus,

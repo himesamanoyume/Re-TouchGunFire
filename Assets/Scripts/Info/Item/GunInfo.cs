@@ -39,7 +39,7 @@ public class GunInfo : ItemInfo
         subProp3Value = gunPack.SubProp3Value;
         price = gunPack.Price;
         diamondPrice = price/10000f;
-        unlockAllSubPropPrice = price/4f;
-        refreshAllPropPrice = price/10f;
+        unlockAllSubPropPrice = price * 0.4f;
+        refreshAllPropPrice = price * 0.2f;
     }
 }

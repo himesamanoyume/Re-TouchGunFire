@@ -90,7 +90,7 @@ namespace ReTouchGunFire.PanelInfo{
                 if(networkMediator.GetPlayerInfo.Diamond > item.DiamondPrice)
                 {
                     panelMediator.ShowTwiceConfirmPanel("金币不足,是否要花费"+ item.DiamondPrice * per +"钻石" + text,7f, ()=>{
-                    unlockItemSubPropRequest.SendRequest(item.DiamondPrice, item.ItemId, per, true);
+                    request.SendRequest(item.DiamondPrice, item.ItemId, per, true);
                     });
                 }else{
                     panelMediator.ShowNotifyPanel("没有足够的资金购买",4f);
@@ -98,7 +98,7 @@ namespace ReTouchGunFire.PanelInfo{
             }else
             {
                 panelMediator.ShowTwiceConfirmPanel("确认要花费"+ item.Price * per +"金币" + text,7f, ()=>{
-                    request.SendRequest(item.Price, item.ItemId);
+                    request.SendRequest(item.Price, item.ItemId, per);
                 });
             }
         }
@@ -181,22 +181,22 @@ namespace ReTouchGunFire.PanelInfo{
             itemCorePropValueText.text = gunInfo.CoreProp;
             itemCorePropValueSlider.maxValue = 0.15f;
             itemCorePropValueSlider.value = gunInfo.CorePropValue;
-            itemCorePropValueSliderValueText.text = (gunInfo.CorePropValue*100).ToString()+"%";
+            itemCorePropValueSliderValueText.text = (gunInfo.CorePropValue*100).ToString("f1")+"%";
             // itemSubProp1.gameObject.SetActive(true);
             itemSubProp1ValueText.text = gunInfo.SubProp1;
             itemSubProp1ValueSlider.maxValue = 0.1f;
             itemSubProp1ValueSlider.value = gunInfo.SubProp1Value;
-            itemSubProp1ValueSliderValueText.text = (gunInfo.SubProp1Value*100).ToString()+"%";
+            itemSubProp1ValueSliderValueText.text = (gunInfo.SubProp1Value*100).ToString("f1")+"%";
             // itemSubProp2.gameObject.SetActive(true);
             itemSubProp2ValueText.text = gunInfo.SubProp2;
             itemSubProp2ValueSlider.maxValue = 0.1f;
             itemSubProp2ValueSlider.value = gunInfo.SubProp2Value;
-            itemSubProp2ValueSliderValueText.text = (gunInfo.SubProp2Value*100).ToString()+"%";
+            itemSubProp2ValueSliderValueText.text = (gunInfo.SubProp2Value*100).ToString("f1")+"%";
             // itemSubProp3.gameObject.SetActive(true);
             itemSubProp3ValueText.text = gunInfo.SubProp3;
             itemSubProp3ValueSlider.maxValue = 0.1f;
             itemSubProp3ValueSlider.value = gunInfo.SubProp3Value;
-            itemSubProp3ValueSliderValueText.text = (gunInfo.SubProp3Value*100).ToString()+"%";
+            itemSubProp3ValueSliderValueText.text = (gunInfo.SubProp3Value*100).ToString("f1")+"%";
             itemTalent1.gameObject.SetActive(false);
             itemTalent2.gameObject.SetActive(false);
         }
@@ -217,17 +217,17 @@ namespace ReTouchGunFire.PanelInfo{
             itemSubProp1ValueText.text = equipmentInfo.SubProp1;
             itemSubProp1ValueSlider.maxValue = 0.1f;
             itemSubProp1ValueSlider.value = equipmentInfo.SubProp1Value;
-            itemSubProp1ValueSliderValueText.text = (equipmentInfo.SubProp1Value*100).ToString()+"%";
+            itemSubProp1ValueSliderValueText.text = (equipmentInfo.SubProp1Value*100).ToString("f1")+"%";
             // itemSubProp2.gameObject.SetActive(true);
             itemSubProp2ValueText.text = equipmentInfo.SubProp2;
             itemSubProp2ValueSlider.maxValue = 0.1f;
             itemSubProp2ValueSlider.value = equipmentInfo.SubProp2Value;
-            itemSubProp2ValueSliderValueText.text = (equipmentInfo.SubProp2Value*100).ToString()+"%";
+            itemSubProp2ValueSliderValueText.text = (equipmentInfo.SubProp2Value*100).ToString("f1")+"%";
             // itemSubProp3.gameObject.SetActive(true);
             itemSubProp3ValueText.text = equipmentInfo.SubProp3;
             itemSubProp3ValueSlider.maxValue = 0.1f;
             itemSubProp3ValueSlider.value = equipmentInfo.SubProp3Value;
-            itemSubProp3ValueSliderValueText.text = (equipmentInfo.SubProp3Value*100).ToString()+"%";
+            itemSubProp3ValueSliderValueText.text = (equipmentInfo.SubProp3Value*100).ToString("f1")+"%";
             itemTalent1.gameObject.SetActive(true);
             itemTalent1ValueText.text = equipmentInfo.Talent1.ToString();
             itemTalent2.gameObject.SetActive(true);

@@ -4,15 +4,13 @@ Rebuild project.
 
 ## TODO
 
-ShopPanel
-- **Debug**
-- 解锁词条，刷新主副词条(90%)
-
-server ItemInfo价格判断与client一致:1(/10000), 0.4, 0.2, 0.2
+server: 
+- ~~PlayerInfo内部值过于精确 保留3位小数~~
+- 穿戴/脱下装备时数值变动不正确(生命值加成)
 
 ---
 
-武器类需要自带一些副词条有的属性
+不同类型的武器需要自带一些副词条有的属性
 
 出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 
@@ -32,11 +30,15 @@ BackpackPanel的已装备信息简略信息显示，闲置装备Cube排列，装
 
 ## CHANGELOG
 
+> `22.12.5 1:03`
+ShopPanelInfo 98% -> 99%. 
+server: Debug work in progress.
+
+<details>
+
 > `22.12.4 2:04`
 add ShopPanelBaseRequest,
 ShopPanelInfo 93% -> 98% ?
-
-<details>
 
 > `22.12.3 3:39`
 add UnlockItemSubPropRequestRequest, RefreshItemSubPropRequestRequest, RefreshGunCorePropRequestRequest. 
