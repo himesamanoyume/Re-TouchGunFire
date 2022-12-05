@@ -215,15 +215,17 @@ public class PlayerInfo : EntityInfo
     //     return list;
     // }
 
+    public Dictionary<int, ItemInfo> allItemDict = new Dictionary<int, ItemInfo>();
+
     //用于BattleGunInfoPanel获取当前穿戴中的装备名字
-    public string mainGunNameText;
-    public string handGunNameText;
-    public string armorNameText;
-    public string headNameText;
-    public string handNameText;
-    public string legNameText;
-    public string kneeNameText;
-    public string bootsNameText;
+    public int mainGunId;
+    public int handGunId;
+    public int armorId;
+    public int headId;
+    public int handId;
+    public int legId;
+    public int kneeId;
+    public int bootsId;
 
 
     public List<ItemInfo> GetItemInfoList(EItemList eItemList){
@@ -274,13 +276,13 @@ public class PlayerInfo : EntityInfo
             {
                 if (item.Use)
                 {
-                    handGunNameText = item.GunName;
+                    handGunId = item.ItemId;
                 }
             }else
             {
                 if (item.Use)
                 {
-                    mainGunNameText = item.GunName;
+                    mainGunId = item.ItemId;
                 }
             }
             switch(item.ItemType){
@@ -308,6 +310,8 @@ public class PlayerInfo : EntityInfo
             }
         }
         EventMgr.Broadcast(GameEvents.UpdateItemInfoListNotify);
+        EventMgr.Broadcast(GameEvents.PlayerMainGunUpdateNotify);
+        EventMgr.Broadcast(GameEvents.PlayerHandGunUpdateNotify);
     }
 
     public void UpdatePlayerEquipmentInfoCallback(RepeatedField<EquipmentPack> equipmentPacks){
@@ -318,42 +322,42 @@ public class PlayerInfo : EntityInfo
                 case "Armor":
                     if (item.Use)
                     {
-                        armorNameText = item.EquipmentName;
+                        armorId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(armorDict, item);
                 break;
                 case "Head":
                     if (item.Use)
                     {
-                        headNameText = item.EquipmentName;
+                        headId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(headDict, item);
                 break;
                 case "Hand":
                     if (item.Use)
                     {
-                        handNameText = item.EquipmentName;
+                        handId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(handDict, item);
                 break;
                 case "Leg":
                     if (item.Use)
                     {
-                        legNameText = item.EquipmentName;
+                        legId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(legDict, item);
                 break;
                 case "Knee":
                     if (item.Use)
                     {
-                        kneeNameText = item.EquipmentName;
+                        kneeId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(kneeDict, item);
                 break;
                 case "Boots":
                     if (item.Use)
                     {
-                        bootsNameText = item.EquipmentName;
+                        bootsId = item.ItemId;
                     }
                     UpdatePlayerEquipmentInfoList(bootsDict, item);
                 break;
@@ -374,6 +378,7 @@ public class PlayerInfo : EntityInfo
             GunInfo newGunInfo = new GunInfo();
             newGunInfo.Init(gunPack, this);
             list.Add(gunPack.GunName, newGunInfo);
+            allItemDict.Add(gunPack.ItemId, newGunInfo);
         }
     }
 
@@ -386,6 +391,7 @@ public class PlayerInfo : EntityInfo
             EquipmentInfo newEquipmentInfo = new EquipmentInfo();
             newEquipmentInfo.Init(equipmentPack, this);
             list.Add(equipmentPack.EquipmentName, newEquipmentInfo);
+            allItemDict.Add(equipmentPack.ItemId, newEquipmentInfo);
         }
     }
 }

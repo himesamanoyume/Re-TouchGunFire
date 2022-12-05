@@ -6,8 +6,10 @@ public class GunInfo : ItemInfo
     float firingRate;
     float currentFiringRatePerSecond;
     int magazine;
+    int maxMagazine;
     string coreProp;
     float corePropValue;
+    float reloadingTime;
 
 
     public string GunName { get => gunName; }
@@ -15,8 +17,10 @@ public class GunInfo : ItemInfo
     public float FiringRate { get => firingRate; }
     public float CurrentFiringRatePerSecond { get => currentFiringRatePerSecond; }
     public int Magazine { get => magazine; }
+    public int MaxMagazine { get=> maxMagazine; }
     public string CoreProp { get => coreProp; }
     public float CorePropValue { get => corePropValue; }
+    public float ReloadingTime { get => reloadingTime; }
     
 
     public void Init(GunPack gunPack, PlayerInfo playerInfo){
@@ -30,6 +34,8 @@ public class GunInfo : ItemInfo
         firingRate = gunPack.FiringRate;
         currentFiringRatePerSecond = gunPack.CurrentFiringRatePerSecond;
         magazine = gunPack.Magazine;
+        maxMagazine = gunPack.Magazine * 15;
+        reloadingTime = gunPack.ReloadingTime;
         coreProp = gunPack.CoreProp;
         corePropValue = gunPack.CorePropValue;
         subProp1 = gunPack.SubProp1;

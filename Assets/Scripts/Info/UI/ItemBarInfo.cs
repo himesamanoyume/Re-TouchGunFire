@@ -17,16 +17,20 @@ namespace ReTouchGunFire.PanelInfo{
             Init();
         }
 
+        [SerializeField] Image contentImage;
         [SerializeField] Text titleNameText;
         [SerializeField] Text coinPriceText;
         [SerializeField] Text diamondPriceText;
         [SerializeField] float coinPrice;
         [SerializeField] float diamondPrice;
 
+        Color greyBlackColor = new Color(0.15f,0.15f,0.15f);
+        Color useOrangeColor = new Color(0.4f,0.2f,0.05f);
 
         protected sealed override void Init()
         {
             base.Init();
+            contentImage = transform.Find("Content").GetComponent<Image>();
             titleNameText = transform.Find("Content/Text").GetComponent<Text>();
             coinPriceText = transform.Find("Content/CoinText").GetComponent<Text>();
             diamondPriceText = transform.Find("Content/DiamondText").GetComponent<Text>();
@@ -55,6 +59,13 @@ namespace ReTouchGunFire.PanelInfo{
             coinPriceText.text = coinPrice.ToString();
             diamondPriceText.text = diamondPrice.ToString("f2");
             use = itemInfo.Use;
+            if (use)
+            {
+                contentImage.color = useOrangeColor;
+            }else
+            {
+                contentImage.color = greyBlackColor;
+            }
             if (!itemInfo.Block)
             {
                 coinPriceText.text = "已解锁";

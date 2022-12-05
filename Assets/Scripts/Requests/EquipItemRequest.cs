@@ -20,6 +20,8 @@ public sealed class EquipItemRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     Debug.Log("穿戴装备成功");
+                    EventMgr.Broadcast(GameEvents.PlayerMainGunUpdateNotify);
+                    EventMgr.Broadcast(GameEvents.PlayerHandGunUpdateNotify);
                     // panelMediator.ShowNotifyPanel("删除好友请求成功",3f);
                     
                 break;

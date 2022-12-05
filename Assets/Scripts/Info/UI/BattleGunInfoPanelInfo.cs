@@ -39,11 +39,15 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] Text handGunNameText;
         [SerializeField] Text mainGunAmmoText;
         [SerializeField] Text handGunAmmoText;
-        [SerializeField] Image mainGunQuality;
-        [SerializeField] Image handGunQuality;
+        // [SerializeField] Image mainGunQuality;
+        // [SerializeField] Image handGunQuality;
 
         [SerializeField] GunInfo mainGunInfo;
+        [SerializeField] int currentMainGunAmmo;
+        [SerializeField] int currentMainGunAllAmmo;
         [SerializeField] GunInfo handGunInfo;
+        [SerializeField] int currentHandGunAmmo;
+        [SerializeField] int currentHandGunAllAmmo;
 
         private Color uncheckedColor = new Color(0,0,0,0.4f);
         private Color checkedColor = new Color(0.7f,0.7f,0.7f,0.4f);
@@ -61,14 +65,14 @@ namespace ReTouchGunFire.PanelInfo{
             mainGunReloadingBar = mainGun.Find("ReloadingBar").GetComponent<Slider>();
             mainGunBG = mainGun.GetComponent<Image>();
             mainGunNameText = mainGun.Find("GunName/GunNameText").GetComponent<Text>();
-            mainGunQuality = mainGun.Find("GunName/GunQuality").GetComponent<Image>();
+            // mainGunQuality = mainGun.Find("GunName/GunQuality").GetComponent<Image>();
             mainGunAmmoText = mainGun.Find("AmmoText").GetComponent<Text>();
             
 
             handGunReloadingBar = handGun.Find("ReloadingBar").GetComponent<Slider>();
             handGunBG = handGun.GetComponent<Image>();
             handGunNameText = handGun.Find("GunName/GunNameText").GetComponent<Text>();
-            handGunQuality = handGun.Find("GunName/GunQuality").GetComponent<Image>();
+            // handGunQuality = handGun.Find("GunName/GunQuality").GetComponent<Image>();
             handGunAmmoText = handGun.Find("AmmoText").GetComponent<Text>();
 
             mainGunBG.color = checkedColor;
@@ -105,7 +109,12 @@ namespace ReTouchGunFire.PanelInfo{
                     //应为1/(FiringRate/60)
                 }
             }
-                
+
+            if (mainGun!=null && handGun!=null)
+            {
+                mainGunAmmoText.text = currentMainGunAmmo+"/"+currentMainGunAllAmmo;
+                handGunAmmoText.text = currentHandGunAmmo+"/" + currentHandGunAllAmmo;
+            }
         }
 
         void SetGunShootingColdDownReady(){
@@ -114,12 +123,32 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnPlayerMainGunUpdate(PlayerMainGunUpdateNotify evt) => PlayerMainGunUpdate();
         void PlayerMainGunUpdate(){
-            // playerInfo.Get
+            if (playerInfo.allItemDict.TryGetValue(playerInfo.mainGunId, out ItemInfo itemInfo))
+            {
+                mainGunInfo = itemInfo as GunInfo;
+                mainGunNameText.text = mainGunInfo.GunName;
+                currentMainGunAmmo = mainGunInfo.Magazine;
+                currentMainGunAllAmmo = mainGunInfo.MaxMagazine;
+                mainGunAmmoText.text = currentMainGunAmmo+"/"+currentMainGunAllAmmo;
+                mainGunReloadingBar.maxValue = mainGunInfo.ReloadingTime;
+                mainGunReloadingBar.value = mainGunReloadingBar.maxValue;
+
+            }
         }
 
         void OnPlayerHandGunUpdate(PlayerHandGunUpdateNotify evt) => PlayerHandGunUpdate();
         void PlayerHandGunUpdate(){
-            
+            if (playerInfo.allItemDict.TryGetValue(playerInfo.handGunId, out ItemInfo itemInfo))
+            {
+                handGunInfo = itemInfo as GunInfo;
+                handGunNameText.text = handGunInfo.GunName;
+                currentHandGunAmmo = handGunInfo.Magazine;
+                currentHandGunAllAmmo = handGunInfo.MaxMagazine;
+                handGunAmmoText.text = currentHandGunAmmo+"/" + currentHandGunAllAmmo;
+                handGunReloadingBar.maxValue = handGunInfo.ReloadingTime;
+                handGunReloadingBar.value = mainGunReloadingBar.maxValue;
+
+            }
         }
     }
 }
