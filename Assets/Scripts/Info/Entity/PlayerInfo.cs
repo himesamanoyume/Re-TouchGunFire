@@ -215,6 +215,17 @@ public class PlayerInfo : EntityInfo
     //     return list;
     // }
 
+    //用于BattleGunInfoPanel获取当前穿戴中的装备名字
+    public string mainGunNameText;
+    public string handGunNameText;
+    public string armorNameText;
+    public string headNameText;
+    public string handNameText;
+    public string legNameText;
+    public string kneeNameText;
+    public string bootsNameText;
+
+
     public List<ItemInfo> GetItemInfoList(EItemList eItemList){
         switch (eItemList)
         {
@@ -259,6 +270,19 @@ public class PlayerInfo : EntityInfo
         foreach (GunPack item in gunPacks)
         {
             // Debug.Log(item);
+            if (item.ItemType == "HG")
+            {
+                if (item.Use)
+                {
+                    handGunNameText = item.GunName;
+                }
+            }else
+            {
+                if (item.Use)
+                {
+                    mainGunNameText = item.GunName;
+                }
+            }
             switch(item.ItemType){
                 case "AR":
                     UpdatePlayerGunInfoList(arDict, item);
@@ -292,22 +316,46 @@ public class PlayerInfo : EntityInfo
             // Debug.Log(item);
             switch(item.ItemType){
                 case "Armor":
-                    UpdateEquipmentInfoList(armorDict, item);
+                    if (item.Use)
+                    {
+                        armorNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(armorDict, item);
                 break;
                 case "Head":
-                    UpdateEquipmentInfoList(headDict, item);
+                    if (item.Use)
+                    {
+                        headNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(headDict, item);
                 break;
                 case "Hand":
-                    UpdateEquipmentInfoList(handDict, item);
+                    if (item.Use)
+                    {
+                        handNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(handDict, item);
                 break;
                 case "Leg":
-                    UpdateEquipmentInfoList(legDict, item);
+                    if (item.Use)
+                    {
+                        legNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(legDict, item);
                 break;
                 case "Knee":
-                    UpdateEquipmentInfoList(kneeDict, item);
+                    if (item.Use)
+                    {
+                        kneeNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(kneeDict, item);
                 break;
                 case "Boots":
-                    UpdateEquipmentInfoList(bootsDict, item);
+                    if (item.Use)
+                    {
+                        bootsNameText = item.EquipmentName;
+                    }
+                    UpdatePlayerEquipmentInfoList(bootsDict, item);
                 break;
                 default:
                     Debug.LogWarning("不正常情况");
@@ -320,23 +368,23 @@ public class PlayerInfo : EntityInfo
     void UpdatePlayerGunInfoList(Dictionary<string,ItemInfo> list, GunPack gunPack){
         if (list.TryGetValue(gunPack.GunName, out ItemInfo gunInfo))
         {
-            ((GunInfo)gunInfo).Init(gunPack);
+            ((GunInfo)gunInfo).Init(gunPack, this);
         }else
         {
             GunInfo newGunInfo = new GunInfo();
-            newGunInfo.Init(gunPack);
+            newGunInfo.Init(gunPack, this);
             list.Add(gunPack.GunName, newGunInfo);
         }
     }
 
-    void UpdateEquipmentInfoList(Dictionary<string,ItemInfo> list, EquipmentPack equipmentPack){
+    void UpdatePlayerEquipmentInfoList(Dictionary<string,ItemInfo> list, EquipmentPack equipmentPack){
         if (list.TryGetValue(equipmentPack.EquipmentName, out ItemInfo equipmentInfo))
         {
-            ((EquipmentInfo)equipmentInfo).Init(equipmentPack);
+            ((EquipmentInfo)equipmentInfo).Init(equipmentPack, this);
         }else
         {
             EquipmentInfo newEquipmentInfo = new EquipmentInfo();
-            newEquipmentInfo.Init(equipmentPack);
+            newEquipmentInfo.Init(equipmentPack, this);
             list.Add(equipmentPack.EquipmentName, newEquipmentInfo);
         }
     }

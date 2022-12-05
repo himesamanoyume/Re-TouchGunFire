@@ -1,11 +1,11 @@
 
 using UnityEngine;
 
-public enum ESubProp
+enum ESubProp
 {
     Null,
     [Tooltip("生命值百分比加成")]
-    health,
+    healthBonus,
     [Tooltip("基础伤害加成")]
     baseDmgBonus,
     [Tooltip("暴击率加成")]
@@ -32,6 +32,8 @@ public enum ESubProp
     mgDmgBonus,
     [Tooltip("手枪伤害加成")]
     hgDmgBonus,
+    [Tooltip("护甲值百分比加成")]
+    armorBonus,
 
 }
 

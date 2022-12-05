@@ -40,6 +40,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         [SerializeField] ItemInfo itemInfo;
         [SerializeField] bool isGun;
+        [SerializeField] bool use;
 
         void SetInfo(){
             if (isGun)
@@ -53,6 +54,7 @@ namespace ReTouchGunFire.PanelInfo{
             diamondPrice = itemInfo.DiamondPrice;
             coinPriceText.text = coinPrice.ToString();
             diamondPriceText.text = diamondPrice.ToString("f2");
+            use = itemInfo.Use;
             if (!itemInfo.Block)
             {
                 coinPriceText.text = "已解锁";

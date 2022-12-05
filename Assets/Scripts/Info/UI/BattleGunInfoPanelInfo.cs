@@ -26,7 +26,7 @@ namespace ReTouchGunFire.PanelInfo{
             Name = "BattleGunInfoPanelInfo";
             Init();
         }
-
+        PlayerInfo playerInfo;
         [SerializeField] Transform mainGun;
         [SerializeField] Transform handGun;
         [SerializeField] Button mainGunCube;
@@ -51,6 +51,7 @@ namespace ReTouchGunFire.PanelInfo{
         protected sealed override void Init()
         {
             base.Init();
+            playerInfo = networkMediator.GetPlayerInfo;
     
             mainGun = transform.Find("Point/BottomMiddleCenter/Container/MainGunCube");
             handGun = transform.Find("Point/BottomMiddleCenter/Container/HandGunCube");
@@ -113,7 +114,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnPlayerMainGunUpdate(PlayerMainGunUpdateNotify evt) => PlayerMainGunUpdate();
         void PlayerMainGunUpdate(){
-            
+            // playerInfo.Get
         }
 
         void OnPlayerHandGunUpdate(PlayerHandGunUpdateNotify evt) => PlayerHandGunUpdate();

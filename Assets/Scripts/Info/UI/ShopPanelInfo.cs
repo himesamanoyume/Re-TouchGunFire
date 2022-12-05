@@ -71,7 +71,7 @@ namespace ReTouchGunFire.PanelInfo{
                     {
                         ShowEquipmentModeInfo((EquipmentInfo)itemInfo);
                     }
-                    ShowButtonList(itemInfo);
+                    ShowButtonList(itemInfo, isGun);
                 });
             }
             if (isGun)
@@ -81,7 +81,7 @@ namespace ReTouchGunFire.PanelInfo{
             {
                 ShowEquipmentModeInfo((EquipmentInfo)list[0]);
             }
-            ShowButtonList(list[0]);
+            ShowButtonList(list[0], isGun);
         }
 
         void ButtonListActionTemplate(string text, ItemInfo item, float per, ShopPanelBaseRequest request){
@@ -109,9 +109,10 @@ namespace ReTouchGunFire.PanelInfo{
             ShowItemList(networkMediator.GetItemInfoList(currentItemList), currentIsGun, currentItemList);
         }
 
-        void ShowButtonList(ItemInfo itemInfo){
+        void ShowButtonList(ItemInfo itemInfo, bool isGun){
             if(itemInfo.Block){
                 buyButton.gameObject.SetActive(true);
+                buyButton.onClick.RemoveAllListeners();
                 buyButton.onClick.AddListener(()=>{
                     ButtonListActionTemplate("购买该物品?", itemInfo, 1, shoppingRequest);
                 });
@@ -125,10 +126,11 @@ namespace ReTouchGunFire.PanelInfo{
                 if (!itemInfo.Use)
                 {
                     equipButton.gameObject.SetActive(true);
+                    equipButton.onClick.RemoveAllListeners();
                     equipButton.onClick.AddListener(()=>{
                     if (itemInfo.Block == false && itemInfo.Use == false)
                     {
-                        itemInfo.Use = true;
+                        // itemInfo.Use = true;
                         equipItemRequest.SendRequest(itemInfo.ItemId);
                     }
                     });
@@ -136,8 +138,9 @@ namespace ReTouchGunFire.PanelInfo{
                 {
                     equipButton.gameObject.SetActive(false);
                 }
-                if((itemInfo as GunInfo)?.CoreProp != "Null"){
+                if(isGun){
                     refreshCorePropButton.gameObject.SetActive(true);
+                    refreshCorePropButton.onClick.RemoveAllListeners();
                     refreshCorePropButton.onClick.AddListener(()=>{
                         ButtonListActionTemplate("刷新该武器的主词条?", itemInfo, 0.2f, refreshGunCorePropRequest);
                     });
@@ -152,15 +155,24 @@ namespace ReTouchGunFire.PanelInfo{
                 }else
                 {
                     refreshSubPropButton.gameObject.SetActive(true);
+                    refreshSubPropButton.onClick.RemoveAllListeners();
                     refreshSubPropButton.onClick.AddListener(()=>{
                         ButtonListActionTemplate("刷新该物品的副词条?", itemInfo, 0.2f, refreshItemSubPropRequest);
                     });
                 }
                 
-                unlockButton.gameObject.SetActive(true);
-                unlockButton.onClick.AddListener(()=>{
-                    ButtonListActionTemplate("解锁一个该物品的副词条?", itemInfo, 0.4f,unlockItemSubPropRequest);
-                });
+                if (itemInfo.SubProp3 != "Null")
+                {
+                    unlockButton.gameObject.SetActive(false);
+                }else
+                {
+                    unlockButton.gameObject.SetActive(true);
+                    unlockButton.onClick.RemoveAllListeners();
+                    unlockButton.onClick.AddListener(()=>{
+                        ButtonListActionTemplate("解锁一个该物品的副词条?", itemInfo, 0.4f,unlockItemSubPropRequest);
+                    });
+                }
+                
             }
         }
 
@@ -172,7 +184,7 @@ namespace ReTouchGunFire.PanelInfo{
             itemSuitEffect2.gameObject.SetActive(false);
             itemSuitEffect3.gameObject.SetActive(false);
             itemBaseDMG.gameObject.SetActive(true);
-            itemBaseDMGValueText.text = gunInfo.BaseDMG.ToString("f1");
+            itemBaseDMGValueText.text = gunInfo.BaseDmg.ToString("f1");
             itemFiringRate.gameObject.SetActive(true);
             itemFiringRateValueText.text = gunInfo.FiringRate.ToString();
             itemMagazine.gameObject.SetActive(true);
@@ -265,39 +277,51 @@ namespace ReTouchGunFire.PanelInfo{
             bootsButton = leftScrollViewContent.Find("Boots_Button").GetComponent<Button>();
 
             //
+            arButton.onClick.RemoveAllListeners();
             arButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.ar), true, EItemList.ar);
             });
+            dmrButton.onClick.RemoveAllListeners();
             dmrButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.dmr), true, EItemList.dmr);
             });
+            smgButton.onClick.RemoveAllListeners();
             smgButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.smg), true, EItemList.smg);
             });
+            sgButton.onClick.RemoveAllListeners();
             sgButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.sg), true, EItemList.sg);
             });
+            mgButton.onClick.RemoveAllListeners();
             mgButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.mg), true, EItemList.mg);
             });
+            hgButton.onClick.RemoveAllListeners();
             hgButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.hg), true, EItemList.hg);
             });
+            armorButton.onClick.RemoveAllListeners();
             armorButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.armor), false, EItemList.armor);
             });
+            headButton.onClick.RemoveAllListeners();
             headButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.head), false, EItemList.head);
             });
+            handButton.onClick.RemoveAllListeners();
             handButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.hand), false, EItemList.hand);
             });
+            legButton.onClick.RemoveAllListeners();
             legButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.leg), false, EItemList.leg);
             });
+            kneeButton.onClick.RemoveAllListeners();
             kneeButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.knee), false, EItemList.knee);
             });
+            bootsButton.onClick.RemoveAllListeners();
             bootsButton.onClick.AddListener(()=>{
                 ShowItemList(networkMediator.GetItemInfoList(EItemList.boots), false, EItemList.boots);
             });

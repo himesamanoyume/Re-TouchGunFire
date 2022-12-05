@@ -18,7 +18,8 @@ public class EquipmentInfo : ItemInfo
    public int EquipmentId { get => equipmentId; }
    
 
-    public void Init(EquipmentPack equipmentPack){
+    public void Init(EquipmentPack equipmentPack, PlayerInfo playerInfo){
+        this.playerInfo = playerInfo;
         use = equipmentPack.Use;
         itemId = equipmentPack.ItemId;
         itemType = equipmentPack.ItemType;
@@ -27,15 +28,26 @@ public class EquipmentInfo : ItemInfo
         equipmentName = equipmentPack.EquipmentName;
         subProp1 = equipmentPack.SubProp1;
         subProp1Value = equipmentPack.SubProp1Value;
+        subProp1MaxValue = equipmentPack.SubProp1MaxValue;
         subProp2 = equipmentPack.SubProp2;
         subProp2Value = equipmentPack.SubProp2Value;
+        subProp2MaxValue = equipmentPack.SubProp2MaxValue;
         subProp3 = equipmentPack.SubProp3;
         subProp3Value = equipmentPack.SubProp3Value;
+        subProp3MaxValue = equipmentPack.SubProp3MaxValue;
         talent1 = (EEquipmentTalent)equipmentPack.Talent1;
         talent2 = (EEquipmentTalent)equipmentPack.Talent2;
         price = equipmentPack.Price;
         diamondPrice = price/10000f;
         unlockAllSubPropPrice = price/4f;
         refreshAllPropPrice = price/10f;
+        healthBonus = equipmentPack.HealthBonus;
+        baseDmgBonus = equipmentPack.BaseDmgBonus;
+        critDmgRateBonus = equipmentPack.CritDmgRateBonus;
+        critDmgBonus = equipmentPack.CritDmgBonus;
+        headshotDmgBonus = equipmentPack.HeadshotDmgBonus;
+        pRateBonus = equipmentPack.PRateBonus;
+        abeBonus = equipmentPack.AbeBonus;
+        armorBonus = equipmentPack.ArmorBonus;
     }
 }
