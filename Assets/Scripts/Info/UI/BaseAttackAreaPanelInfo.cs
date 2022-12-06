@@ -16,7 +16,7 @@ namespace ReTouchGunFire.PanelInfo{
             floor2 = enemyPart.Find("Floor2");
             floor3 = enemyPart.Find("Floor3");
 
-            EventMgr.AddListener<PlayerShootingNotify>(OnPlayerShooting);
+            EventMgr.AddListener<PlayerShootingRayNotify>(OnPlayerShootingRay);
         }
 
         Vector3 currentRot;
@@ -29,10 +29,6 @@ namespace ReTouchGunFire.PanelInfo{
                 currentRot.x = 360;
             }
             enemyPart.localRotation = Quaternion.Euler(currentRot);
-        }
-
-        private void FixedUpdate() {
-            // ShotRay();
         }
 
         float rotSpeed = 80;
@@ -49,7 +45,7 @@ namespace ReTouchGunFire.PanelInfo{
             }
         }
 
-        void OnPlayerShooting(PlayerShootingNotify evt) => ShotRay();
+        void OnPlayerShootingRay(PlayerShootingRayNotify evt) => ShotRay();
         void ShotRay(){
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -58,7 +54,8 @@ namespace ReTouchGunFire.PanelInfo{
             for (int i = 0; i < hit.Length; i++)
             {
                 Debug.DrawLine(ray.origin, hit[i].point, Color.green);
-                Debug.Log(hit[i].collider.name);
+                EventMgr.Broadcast(GameEvents.PlayerRayHitEnemy);
+                // Debug.Log(hit[i].collider.name);
             }
         }
     }

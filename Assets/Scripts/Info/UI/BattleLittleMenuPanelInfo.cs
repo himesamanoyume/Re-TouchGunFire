@@ -12,10 +12,7 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] Transform point;
         [SerializeField] Button showAllMenuCube;
         [SerializeField] Button leaveBattleCube;
-        [SerializeField] Button showPlayerPropsCube;
         [SerializeField] Text showAllMenuCubeText;
-        [SerializeField] Text showPlayerPropsCubeText;
-        [SerializeField]
         void Start()
         {
             Name = "BattleLittleMenuPanelInfo";
@@ -37,9 +34,7 @@ namespace ReTouchGunFire.PanelInfo{
 
             showAllMenuCube = container.Find("ShowAllMenuCube").GetComponent<Button>();
             leaveBattleCube = container.Find("LeaveBattleCube").GetComponent<Button>();
-            showPlayerPropsCube = container.Find("ShowPlayerPropsCube").GetComponent<Button>();
             showAllMenuCubeText = container.Find("ShowAllMenuCube/Text").GetComponent<Text>();
-            showPlayerPropsCubeText = container.Find("ShowPlayerPropsCube/Text").GetComponent<Text>();
 
             showAllMenuCube.onClick.AddListener(()=>{
                 if(!isShowAllMenu){
@@ -52,18 +47,6 @@ namespace ReTouchGunFire.PanelInfo{
                 }
                 isShowAllMenu = !isShowAllMenu;
 
-            });
-
-            showPlayerPropsCube.onClick.AddListener(()=>{
-
-                if(!isShowPlayerProps){
-                    panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level5);
-                    showPlayerPropsCubeText.text = "隐藏属性";
-                }else{
-                    panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel, EUILevel.Level1);
-                    showPlayerPropsCubeText.text = "显示属性";
-                }
-                isShowPlayerProps = !isShowPlayerProps;
             });
 
             leaveBattleCube.onClick.AddListener(()=>{

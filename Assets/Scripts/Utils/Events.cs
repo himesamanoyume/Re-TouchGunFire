@@ -36,6 +36,9 @@ public static class GameEvents{
 
     public static MainSceneBeginNotify MainSceneBeginNotify = new MainSceneBeginNotify();
     public static UpdateItemInfoListNotify UpdateItemInfoListNotify = new UpdateItemInfoListNotify();
+
+    public static PlayerShootingRayNotify PlayerShootingRayNotify = new PlayerShootingRayNotify();
+    public static PlayerRayHitEnemy PlayerRayHitEnemy = new PlayerRayHitEnemy();
 }
 
 public class CheckHotUpdateEndNotify : GameEvent{}
@@ -57,3 +60,5 @@ public class BackpackPanelOpenNotify : GameEvent{}
 public class BackpackPanelCloseNotify : GameEvent{}
 public class MainSceneBeginNotify : GameEvent{}
 public class UpdateItemInfoListNotify : GameEvent{}
+public class PlayerShootingRayNotify : GameEvent{}
+public class PlayerRayHitEnemy : GameEvent{}
