@@ -5,8 +5,7 @@ Rebuild project.
 ## TODO
 
 战斗部分
-- Client:怪物有头部,身体碰撞体,等级也写在怪物身上
-- Server:伤害计算公式
+- Server:怪物信息与EnemyInfo在服务器与客户端之间同步
 - Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 - Client:点击中敌人时发送请求
 - Client:请求返回弹出击中伤害数字
@@ -15,6 +14,7 @@ Rebuild project.
 - Client:在小对内且正在战斗中时,离开小队或独自离开将会直接退出战斗
 - Client:当有人加入小队且小队正在战斗中时,该加入的队友提示是否立即加入战斗
 - Client:根据Server保存的EnemyInfo中的位置等信息在Client处对应位置生成Enemy
+- Client/Server:怪物被击杀获取经验值,随机获取一定量弹药
 
 ---
 
@@ -35,13 +35,17 @@ server:
 
 ## CHANGELOG
 
+> `22.12.9 5:00`
+add FloorTemplateInfo, EFloor, EFloorPos. 
+~~Client/UI:怪物信息与EnemyInfo~~
+
+<details>
+
 > `22.12.7 3:45`
 ~~Client:不要让点击鼠标时就射击~~
 ~~Client:删除隐藏属性按钮~~
 ~~Client:武器装弹按钮~~
 ~~Client/Bug:射线hit两个敌人时会多次消耗子弹~~
-
-<details>
 
 > `22.12.6 4:17`
 ~~Client:商店栏为正常穿戴的装备显示高亮~~

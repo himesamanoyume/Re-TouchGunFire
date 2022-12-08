@@ -136,6 +136,10 @@ namespace ReTouchGunFire.Mediators{
         public void ShowNotifyPanel(string text, float countdown){
             canvasMediator.GetCanvasLevel(EUILevel.Level6).GetChild(0).GetComponent<NotifyPanelInfo>().ShowNotifyPanel(text,countdown);
         }
+
+        public void FloorInitCallback(EUIPanelType uIPanelType, EFloor floor, EFloorPos[] eFloorPos){
+            GetPanel(uIPanelType).GetComponent<BaseAttackAreaPanelInfo>().FloorSpawnEnemyCallback(floor, eFloorPos);
+        }
     }
 }
 

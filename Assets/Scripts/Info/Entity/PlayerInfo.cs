@@ -5,7 +5,7 @@ using SocketProtocol;
 using Google.Protobuf.Collections;
 using ReTouchGunFire.Mediators;
 
-public class PlayerInfo : EntityInfo
+public sealed class PlayerInfo : EntityInfo
 {
     #region info
     [SerializeField] int uid;

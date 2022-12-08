@@ -9,12 +9,30 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] Transform floor1;
         [SerializeField] Transform floor2;
         [SerializeField] Transform floor3;
+
+        [SerializeField] protected FloorTemplateInfo floor1Info;
+        [SerializeField] protected FloorTemplateInfo floor2Info;
+        [SerializeField] protected FloorTemplateInfo floor3Info;
+
+        [SerializeField] GameObject enemyTemplate;
+
         protected override void Init(){
             base.Init();
             enemyPart = transform.Find("Point/MiddleCenter/BattlePart/EnemyPart");
             floor1 = enemyPart.Find("Floor1");
             floor2 = enemyPart.Find("Floor2");
             floor3 = enemyPart.Find("Floor3");
+
+            enemyTemplate = enemyPart.Find("Enemy").gameObject;
+
+            floor1Info = floor1.GetChild(0).gameObject.AddComponent<FloorTemplateInfo>();
+            floor1Info.enemyTemplate = enemyTemplate;
+            floor2Info = floor2.GetChild(0).gameObject.AddComponent<FloorTemplateInfo>();
+            floor2Info.enemyTemplate = enemyTemplate;
+            floor3Info = floor3.GetChild(0).gameObject.AddComponent<FloorTemplateInfo>();
+            floor3Info.enemyTemplate = enemyTemplate;
+
+            
 
             EventMgr.AddListener<PlayerShootingRayNotify>(OnPlayerShootingRay);
         }
@@ -58,6 +76,22 @@ namespace ReTouchGunFire.PanelInfo{
                 // Debug.Log(hit[i].collider.name);
             }
         }
+
+        public void FloorSpawnEnemyCallback(EFloor eFloor, EFloorPos[] eFloorPos){
+            switch(eFloor){
+                case EFloor.Floor1:
+                    floor1Info.SpawnEnemy(eFloorPos);
+                break;
+                case EFloor.Floor2:
+                    floor2Info.SpawnEnemy(eFloorPos);
+                break;
+                case EFloor.Floor3:
+                    floor3Info.SpawnEnemy(eFloorPos);
+                break;
+            }
+        }
+
+        
     }
 }
 
