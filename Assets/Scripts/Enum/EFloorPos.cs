@@ -1,6 +1,7 @@
 
 using UnityEngine;
 public enum EFloorPos{
+    Null,
     Pos1_1,
     Pos1_2,
     Pos1_3,
@@ -15,7 +16,5 @@ public enum EFloorPos{
     Pos3_2,
     Pos3_3,
     Pos3_4,
-    Pos3_5,
-    Null
-
+    Pos3_5
 }

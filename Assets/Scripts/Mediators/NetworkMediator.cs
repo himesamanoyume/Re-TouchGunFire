@@ -94,28 +94,26 @@ namespace ReTouchGunFire.Mediators{
 
         public void UpdatePlayerInfoCallback(MainPack mainPack){
             UpdatePlayerInfoPack _updatePlayerInfoPack = new UpdatePlayerInfoPack();
-                    foreach (UpdatePlayerInfoPack u in mainPack.UpdatePlayerInfoPack)
-                    {
-                        if (u.Uid == playerSelfUid)
-                        {
-                            _updatePlayerInfoPack = u;
-                        }
-                    }
+            foreach (UpdatePlayerInfoPack u in mainPack.UpdatePlayerInfoPack)
+            {
+                if (u.Uid == playerSelfUid)
+                {
+                    _updatePlayerInfoPack = u;
+                }
+            }
 
-                    //old自身的信息改为同步到PlayerInfo 再由PlayerInfo同步到UI
-                    // mainInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
-                    // playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
-                    //end
-                    //new
-                    playerInfo.UpdatePlayerInfo(_updatePlayerInfoPack);
-                    //end
+            //old自身的信息改为同步到PlayerInfo 再由PlayerInfo同步到UI
+            // mainInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+            // playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
+            //end
+            //new
+            playerInfo.UpdatePlayerInfo(_updatePlayerInfoPack);
+            //end
 
 
-                    partyCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
+            partyCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
 
-                    // playerCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
-
-                    
+            // playerCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
         }
 
         public void PlayerJoinTeamCallback(int targetPlayerUid, string targetPlayerName){
@@ -153,6 +151,10 @@ namespace ReTouchGunFire.Mediators{
         // public void RefuseJoinTeamCallback(int targetPlayerUid){
         //     panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().RefuseJoinTeamCallback(targetPlayerUid);
         // }
+
+        public void StartAttackCallback(int areaNumber){
+            panelMediator.GetPanel(EUIPanelType.MainMenuPanel).GetComponent<MainMenuPanelInfo>().StartAttackCallback(areaNumber);
+        }
 
     }
 }

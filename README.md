@@ -5,6 +5,9 @@ Rebuild project.
 ## TODO
 
 战斗部分
+
+- Client/Server:玩家离开战斗请求
+- Server/Client:玩家单人发起出击请求,服务器返回成功并生成怪物信息
 - Server:怪物信息与EnemyInfo在服务器与客户端之间同步
 - Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 - Client:点击中敌人时发送请求
@@ -35,32 +38,36 @@ server:
 
 ## CHANGELOG
 
-> `22.12.9 5:00`
-add FloorTemplateInfo, EFloor, EFloorPos. 
-~~Client/UI:怪物信息与EnemyInfo~~
+> `22.12.10 11:48`
+Server:EnemiesManager 50%. a lot of Function. 
+add StartAttackRequest, AttackInviteRequest. 
 
 <details>
 
+> `22.12.9 5:00`
+add FloorTemplateInfo, EFloor, EFloorPos. 
+Client/UI:怪物信息与EnemyInfo
+
 > `22.12.7 3:45`
-~~Client:不要让点击鼠标时就射击~~
-~~Client:删除隐藏属性按钮~~
-~~Client:武器装弹按钮~~
-~~Client/Bug:射线hit两个敌人时会多次消耗子弹~~
+~~Client(Bug):不要让点击鼠标时就射击~~
+Client:删除隐藏属性按钮
+Client:武器装弹按钮
+~~Client(Bug):射线hit两个敌人时会多次消耗子弹~~
 
 > `22.12.6 4:17`
-~~Client:商店栏为正常穿戴的装备显示高亮~~
-~~Client/Server:武器类需要ReloadingTime~~
-~~穿戴的装备同步信息到武器栏和属性栏的武器部分~~
+~~Client(Bug):商店栏为正常穿戴的装备显示高亮~~
+Client/Server:武器类需要ReloadingTime
+穿戴的装备同步信息到武器栏和属性栏的武器部分
 
 > `22.12.6 0:03`
-~~Client:穿戴装备时会导致同时Use为false.~~
-~~Server:装备刷新副词条失败.~~
-~~Client:装备ButtonList不应有刷新主词条.~~
-~~Client:全部解锁副词条的装备不再显示解锁新词条.~~
-~~Server:SubProp123Type未同步到Pack.~~
-~~Server:下线时server的ItemInfo 的Use未同步至数据库.~~
-~~Server:玩家上线时根据装备Use首次进行一次穿戴.~~
-~~Server:从数据库获取主副词条时没有给ItemInfo赋值.~~
+~~Client(Bug):穿戴装备时会导致同时Use为false.~~
+~~Server(Bug):装备刷新副词条失败.~~
+~~Client(Bug):装备ButtonList不应有刷新主词条.~~
+~~Client(Bug):全部解锁副词条的装备不再显示解锁新词条.~~
+~~Server(Bug):SubProp123Type未同步到Pack.~~
+~~Server(Bug):下线时server的ItemInfo 的Use未同步至数据库.~~
+~~Server(Bug):玩家上线时根据装备Use首次进行一次穿戴.~~
+~~Server(Bug):从数据库获取主副词条时没有给ItemInfo赋值.~~
 
 > `22.12.5 1:03`
 ShopPanelInfo 98% -> 99%. 

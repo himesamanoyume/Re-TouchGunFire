@@ -8,6 +8,7 @@ using SocketProtocol;
 namespace ReTouchGunFire.PanelInfo{
     public sealed class MainMenuPanelInfo : UIInfo
     {
+        [SerializeField] AttackInviteRequest attackInviteRequest;
 
         [SerializeField] Button attackCube;
         [SerializeField] Button backpackCube;
@@ -35,6 +36,8 @@ namespace ReTouchGunFire.PanelInfo{
             attackTemplate = transform.Find("Point/RightBottom/Container/SelectMenuContent/AttackTemplate");
             InitMainTemplate();
             InitAttackTemplate();
+
+            attackInviteRequest = (AttackInviteRequest)requestMediator.GetRequest(ActionCode.AttackInvite);
         }
 
         void InitMainTemplate(){
@@ -111,13 +114,24 @@ namespace ReTouchGunFire.PanelInfo{
 
             area1Cube.onClick.AddListener(()=>{
                 panelMediator.ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
-                    SetDefaultMainMenuPos();
-                    EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
-                    sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
+                    attackInviteRequest.SendRequest(1);
+                    // SetDefaultMainMenuPos();
+                    // EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+                    // sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
                 });
-                
-
             });
+        }
+
+        public void StartAttackCallback(int areaNumber){
+            SetDefaultMainMenuPos();
+            EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
+            switch (areaNumber)
+            {
+                case 1:
+                    sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
+                break;
+            }
+            
         }
     }
 }
