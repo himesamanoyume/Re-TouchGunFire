@@ -6,8 +6,7 @@ Rebuild project.
 
 战斗部分
 
-- Client/Server:玩家离开战斗请求
-- Server/Client:玩家单人发起出击请求,服务器返回成功并生成怪物信息
+
 - Server:怪物信息与EnemyInfo在服务器与客户端之间同步
 - Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 - Client:点击中敌人时发送请求
@@ -38,11 +37,17 @@ server:
 
 ## CHANGELOG
 
+> `22.12.11 1:00`
+add AttackLeaveRequest, UpdateAttackingInfoRequest. 
+Server/Client:玩家离开战斗请求. 
+Server/Client:玩家单人发起出击请求,服务器返回成功并生成怪物信息. 
+Server:EnemiesManager 70%. 
+
+<details>
+
 > `22.12.10 11:48`
 Server:EnemiesManager 50%. a lot of Function. 
 add StartAttackRequest, AttackInviteRequest. 
-
-<details>
 
 > `22.12.9 5:00`
 add FloorTemplateInfo, EFloor, EFloorPos. 

@@ -47,7 +47,6 @@ public sealed class UpdatePlayerInfoRequest : IRequest
 
     public void SendRequest(){
         MainPack mainPack = base.InitRequest();
-        // Debug.Log("Send");
         base.UdpSendRequest(mainPack);
     }
 

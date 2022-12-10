@@ -99,6 +99,7 @@ namespace ReTouchGunFire.Mediators{
                 if (u.Uid == playerSelfUid)
                 {
                     _updatePlayerInfoPack = u;
+                    teamMasterPlayerUid = _updatePlayerInfoPack.TeamMasterUid;
                 }
             }
 
@@ -154,6 +155,10 @@ namespace ReTouchGunFire.Mediators{
 
         public void StartAttackCallback(int areaNumber){
             panelMediator.GetPanel(EUIPanelType.MainMenuPanel).GetComponent<MainMenuPanelInfo>().StartAttackCallback(areaNumber);
+        }
+
+        public void AttackLeaveCallback(){
+            panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
         }
 
     }

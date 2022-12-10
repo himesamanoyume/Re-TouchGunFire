@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ReTouchGunFire.Mediators;
+using SocketProtocol;
 
 namespace ReTouchGunFire.PanelInfo{
 
@@ -21,6 +22,7 @@ namespace ReTouchGunFire.PanelInfo{
 
         bool isShowAllMenu = false;
         bool isShowPlayerProps = false;
+        [SerializeField] AttackLeaveRequest attackLeaveRequest;
 
         protected sealed override void Init()
         {
@@ -31,6 +33,8 @@ namespace ReTouchGunFire.PanelInfo{
             EventMgr.AddListener<RestorePanelNotify>(OnRestorePanel);
             EventMgr.AddListener<ShowBattleLittleMenuPanelNotify>(OnShowThisPanel);
             EventMgr.AddListener<HideBattleLittleMenuPanelNotify>(OnHideThisPanel);
+
+            attackLeaveRequest = (AttackLeaveRequest)requestMediator.GetRequest(ActionCode.AttackLeave);
 
             showAllMenuCube = container.Find("ShowAllMenuCube").GetComponent<Button>();
             leaveBattleCube = container.Find("LeaveBattleCube").GetComponent<Button>();
@@ -51,12 +55,16 @@ namespace ReTouchGunFire.PanelInfo{
 
             leaveBattleCube.onClick.AddListener(()=>{
                 panelMediator.ShowTwiceConfirmPanel("确定要撤退吗?", 10, ()=>{
-                    EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
-                    sceneMediator.SetScene(new MainScene(sceneMediator));
+                    attackLeaveRequest.SendRequest();
                 });
             });
 
             point.gameObject.SetActive(false);
+        }
+
+        public void AttackLeaveCallback(){
+            EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
+            sceneMediator.SetScene(new MainScene(sceneMediator));
         }
 
         void OnRestorePanel(RestorePanelNotify evt) => RestorePanel();

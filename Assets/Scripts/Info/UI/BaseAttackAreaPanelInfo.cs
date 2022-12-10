@@ -16,6 +16,8 @@ namespace ReTouchGunFire.PanelInfo{
 
         [SerializeField] GameObject enemyTemplate;
 
+        [SerializeField] UpdateAttackingInfoRequest updateAttackingInfoRequest;
+
         protected override void Init(){
             base.Init();
             enemyPart = transform.Find("Point/MiddleCenter/BattlePart/EnemyPart");
@@ -32,9 +34,23 @@ namespace ReTouchGunFire.PanelInfo{
             floor3Info = floor3.GetChild(0).gameObject.AddComponent<FloorTemplateInfo>();
             floor3Info.enemyTemplate = enemyTemplate;
 
-            
+            updateAttackingInfoRequest = (UpdateAttackingInfoRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.UpdateAttackingInfo);
 
             EventMgr.AddListener<PlayerShootingRayNotify>(OnPlayerShootingRay);
+            // EventMgr.AddListener<StartAttackNotify>(OnStartAttack);
+            if (networkMediator.teamMasterPlayerUid == networkMediator.GetPlayerInfo.Uid || networkMediator.teamMasterPlayerUid == 0)
+            {
+                InvokeRepeating("OnStartAttack", 0, 1f/10f);
+            }
+        }
+
+        // void OnStartAttack(StartAttackNotify evt) => StartAttack();
+        // void StartAttack(){
+            
+        // }
+
+        void OnStartAttack(){
+            updateAttackingInfoRequest.SendRequest();
         }
 
         Vector3 currentRot;
