@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SocketProtocol;
 
 namespace ReTouchGunFire.PanelInfo{
     public sealed class FloorTemplateInfo : UIInfo
@@ -25,6 +26,7 @@ namespace ReTouchGunFire.PanelInfo{
         public GameObject enemyTemplate;
 
         public Dictionary<EFloorPos, Transform> PosDict = new Dictionary<EFloorPos, Transform>();
+        public Dictionary<EFloorPos, EnemyInfo> EnemyDict = new Dictionary<EFloorPos, EnemyInfo>();
 
         private void Start() {
             Name = "FloorTemplateInfo";
@@ -34,7 +36,7 @@ namespace ReTouchGunFire.PanelInfo{
             base.Init();
             for (int i = 0; i < transform.childCount; i++)
             {
-                PosDict.Add((EFloorPos)i, transform.GetChild(i));
+                PosDict.Add((EFloorPos)i+1, transform.GetChild(i));
             }
             // panelMediator.FloorInitCallback(EUIPanelType.AttackArea1Panel);
             // Pos1_1 = transform.Find("1_1");
@@ -69,16 +71,18 @@ namespace ReTouchGunFire.PanelInfo{
             // PosDict.Add(EFloorPos.Pos3_5, Pos3_5);
         }
 
-        public void SpawnEnemy(EFloorPos[] args){
-            if (args.Length <= 0)
+        public void UpdateAttackingInfo(EnemyPack enemyPack){
+            // Debug.Log("UpdateAttackingInfo2");
+            if (EnemyDict.TryGetValue((EFloorPos)enemyPack.Pos, out EnemyInfo enemyInfo))
             {
-                return;
-            }
-            foreach (EFloorPos item in args)
+                enemyInfo.UpdateAttackingInfo(enemyPack);
+            }else
             {
-                GameObject enemy = Instantiate(enemyTemplate, PosDict[item]);
-                enemy.AddComponent<EnemyInfo>();
+                GameObject enemy = Instantiate(enemyTemplate, PosDict[(EFloorPos)enemyPack.Pos]);
+                EnemyInfo enemyInfo1 = enemy.AddComponent<EnemyInfo>();
                 enemy.gameObject.SetActive(true);
+                EnemyDict.Add((EFloorPos)enemyPack.Pos, enemyInfo1);
+                enemyInfo1.UpdateAttackingInfo(enemyPack);
             }
         }
     }

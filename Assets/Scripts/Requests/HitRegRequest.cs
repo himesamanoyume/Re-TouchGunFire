@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class UpdateAttackingInfoRequest : IRequest
+public sealed class HitRegRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "UpdateAttackingInfoRequest";
+        Name = "HitRegRequest";
         requestCode = RequestCode.Gaming;
-        actionCode = ActionCode.UpdateAttackingInfo;
+        actionCode = ActionCode.HitReg;
         base.Awake();
     }
 
@@ -19,11 +19,10 @@ public sealed class UpdateAttackingInfoRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("更新战斗");
-                    networkMediator.UpdateAttackingInfoCallback(mainPack.AttackAreaPack.EnemyPack);
+                    
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("离开战斗请求失败",3f);
+                    // panelMediator.ShowNotifyPanel("获取队伍信息失败",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
@@ -37,4 +36,5 @@ public sealed class UpdateAttackingInfoRequest : IRequest
         MainPack mainPack = base.InitRequest();
         base.UdpSendRequest(mainPack);
     }
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ReTouchGunFire.PanelInfo{
-    public sealed class AttackArea1PanelInfo : BaseAttackAreaPanelInfo
+    public sealed class AttackAreaPanelInfo : BaseAttackAreaPanelInfo
     {
         
         private void Start() {

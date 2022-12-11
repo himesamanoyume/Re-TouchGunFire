@@ -93,11 +93,6 @@ MonoBehaviour:
         assetPath: Assets/AssetBundleLocal/prefabs/LoadingPanel/LoadingPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
-    - Key: Assets/AssetBundleLocal/prefabs/AttackArea1Panel/AttackArea1Panel.prefab
-      Value:
-        assetPath: Assets/AssetBundleLocal/prefabs/AttackArea1Panel/AttackArea1Panel.prefab
-        assetBundleName: prefabs
-        assetBundleVariant: 
     - Key: Assets/AssetBundleLocal/prefabs/BattleGunInfoPanel/BattleGunInfoPanel.prefab
       Value:
         assetPath: Assets/AssetBundleLocal/prefabs/BattleGunInfoPanel/BattleGunInfoPanel.prefab
@@ -151,6 +146,11 @@ MonoBehaviour:
     - Key: Assets/AssetBundleLocal/prefabs/ShopPanel/ShopPanel.prefab
       Value:
         assetPath: Assets/AssetBundleLocal/prefabs/ShopPanel/ShopPanel.prefab
+        assetBundleName: prefabs
+        assetBundleVariant: 
+    - Key: Assets/AssetBundleLocal/prefabs/AttackAreaPanel/AttackAreaPanel.prefab
+      Value:
+        assetPath: Assets/AssetBundleLocal/prefabs/AttackAreaPanel/AttackAreaPanel.prefab
         assetBundleName: prefabs
         assetBundleVariant: 
     keyCollision: 0

@@ -161,6 +161,10 @@ namespace ReTouchGunFire.Mediators{
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
         }
 
+        public void UpdateAttackingInfoCallback(RepeatedField<EnemyPack> enemyPacks){
+            panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>().UpdateAttackingInfoCallback(enemyPacks);
+        }
+
     }
 }
 

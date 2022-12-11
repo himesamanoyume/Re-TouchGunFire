@@ -19,8 +19,8 @@ public sealed class AttackArea1Scene : SceneInfo
         EventMgr.Broadcast(GameEvents.RestorePanelNotify);
         // EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
 
-        panelMediator.PushPanel(EUIPanelType.AttackArea1Panel, EUILevel.Level2, false, (GameObject obj)=>{
-            obj.AddComponent<AttackArea1PanelInfo>().currentLevel = EUILevel.Level2;
+        panelMediator.PushPanel(EUIPanelType.AttackAreaPanel, EUILevel.Level2, false, (GameObject obj)=>{
+            obj.AddComponent<AttackAreaPanelInfo>().currentLevel = EUILevel.Level2;
         });
         
         EventMgr.Broadcast(GameEvents.ShowBattleLittleMenuPanelNotify);
@@ -39,6 +39,6 @@ public sealed class AttackArea1Scene : SceneInfo
 
     public override void OnEnd()
     {
-        panelMediator.DestroyPanel(EUIPanelType.AttackArea1Panel);
+        panelMediator.DestroyPanel(EUIPanelType.AttackAreaPanel);
     }
 }

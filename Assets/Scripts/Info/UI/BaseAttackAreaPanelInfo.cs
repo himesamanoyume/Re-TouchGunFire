@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Google.Protobuf.Collections;
+using SocketProtocol;
 
 namespace ReTouchGunFire.PanelInfo{
     public abstract class BaseAttackAreaPanelInfo : UIInfo
@@ -93,18 +95,23 @@ namespace ReTouchGunFire.PanelInfo{
             }
         }
 
-        public void FloorSpawnEnemyCallback(EFloor eFloor, EFloorPos[] eFloorPos){
-            switch(eFloor){
+        public void UpdateAttackingInfoCallback(RepeatedField<EnemyPack> enemyPacks){
+            // Debug.Log("UpdateAttackingInfo1");
+            foreach (EnemyPack item in enemyPacks)
+            {
+                switch((EFloor)item.Floor){
                 case EFloor.Floor1:
-                    floor1Info.SpawnEnemy(eFloorPos);
+                    floor1Info.UpdateAttackingInfo(item);
                 break;
                 case EFloor.Floor2:
-                    floor2Info.SpawnEnemy(eFloorPos);
+                    floor2Info.UpdateAttackingInfo(item);
                 break;
                 case EFloor.Floor3:
-                    floor3Info.SpawnEnemy(eFloorPos);
+                    floor3Info.UpdateAttackingInfo(item);
                 break;
+                }
             }
+            
         }
 
         
