@@ -19,21 +19,28 @@ public sealed class HitRegRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    
+                    Debug.Log(mainPack.HitRegPack.Damage);
                 break;
                 case ReturnCode.Fail:
+                    Debug.Log("伤害丢失");
                     // panelMediator.ShowNotifyPanel("获取队伍信息失败",3f);
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);
                 break;
-            
             }
         });
     }
 
-    public void SendRequest(){
+    public void SendRequest(int floor, int floorPos, bool isMainGun, bool isStrike = false){
         MainPack mainPack = base.InitRequest();
+        HitRegPack hitRegPack = new HitRegPack();
+        hitRegPack.HitSenderUid = networkMediator.playerSelfUid;
+        hitRegPack.Floor = floor;
+        hitRegPack.Pos = floorPos;
+        hitRegPack.IsMainGun = isMainGun;
+        hitRegPack.IsStrike = isStrike;
+        mainPack.HitRegPack = hitRegPack;
         base.UdpSendRequest(mainPack);
     }
 

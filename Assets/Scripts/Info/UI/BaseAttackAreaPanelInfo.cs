@@ -19,6 +19,8 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] GameObject enemyTemplate;
 
         [SerializeField] UpdateAttackingInfoRequest updateAttackingInfoRequest;
+        [SerializeField] HitRegRequest hitRegRequest;
+        [SerializeField] BattleGunInfoPanelInfo battleGunInfoPanelInfo;
 
         protected override void Init(){
             base.Init();
@@ -37,6 +39,8 @@ namespace ReTouchGunFire.PanelInfo{
             floor3Info.enemyTemplate = enemyTemplate;
 
             updateAttackingInfoRequest = (UpdateAttackingInfoRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.UpdateAttackingInfo);
+            hitRegRequest = (HitRegRequest)requestMediator.GetRequest(SocketProtocol.ActionCode.HitReg);
+            battleGunInfoPanelInfo = panelMediator.GetPanel(EUIPanelType.BattleGunInfoPanel).GetComponent<BattleGunInfoPanelInfo>();
 
             EventMgr.AddListener<PlayerShootingRayNotify>(OnPlayerShootingRay);
             // EventMgr.AddListener<StartAttackNotify>(OnStartAttack);
@@ -90,6 +94,14 @@ namespace ReTouchGunFire.PanelInfo{
             for (int i = 0; i < hit.Length; i++)
             {
                 Debug.DrawLine(ray.origin, hit[i].point, Color.green);
+                EnemyInfo enemyInfo = hit[i].collider.GetComponent<EnemyInfo>();
+                if (i==0)
+                {
+                    hitRegRequest.SendRequest((int)enemyInfo.floor, (int)enemyInfo.floorPos, battleGunInfoPanelInfo.isMainGun);
+                }else
+                {
+                    hitRegRequest.SendRequest((int)enemyInfo.floor, (int)enemyInfo.floorPos, battleGunInfoPanelInfo.isMainGun, true);
+                }
                 EventMgr.Broadcast(GameEvents.PlayerRayHitEnemy);
                 // Debug.Log(hit[i].collider.name);
             }

@@ -36,12 +36,12 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] int standardMainGunAmmo;
         [SerializeField] int currentMainGunAmmo;
         [SerializeField] int currentMainGunAllAmmo;
-        [SerializeField] bool isMainGun = true;
+        public bool isMainGun = true;
         [SerializeField] GunInfo handGunInfo;
         [SerializeField] int standardHandGunAmmo;
         [SerializeField] int currentHandGunAmmo;
         [SerializeField] int currentHandGunAllAmmo;
-        [SerializeField] bool isHandGun = false;
+        public bool isHandGun = false;
 
         [SerializeField] bool isReloading;
 
@@ -73,6 +73,8 @@ namespace ReTouchGunFire.PanelInfo{
             handGunReloadButton = handGun.Find("ReloadingCube").GetComponent<Button>();
 
             mainGunBG.color = checkedColor;
+
+            
 
             mainGunCube.onClick.AddListener(()=>{
                 if (!isReloading)
@@ -167,7 +169,7 @@ namespace ReTouchGunFire.PanelInfo{
         void Update(){
             if(gunFiringColdDown){
                 
-                if(Input.GetMouseButton(0)){
+                if(Input.GetMouseButton(0) && currentHandGunAmmo > 0 && isHandGun || Input.GetMouseButton(0) && currentMainGunAmmo > 0 && isMainGun){
                     EventMgr.Broadcast(GameEvents.PlayerShootingRayNotify);
                 }
             }

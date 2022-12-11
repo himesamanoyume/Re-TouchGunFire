@@ -6,7 +6,6 @@ Rebuild project.
 
 战斗部分
 
-- Client:点击中敌人时发送请求
 - Client:请求返回弹出击中伤害数字
 - Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 - Server:在小队内时,队友造成的伤害数字或许可以尝试广播
@@ -35,11 +34,14 @@ server:
 
 ## CHANGELOG
 
+> `22.12.12 6:03`
+Server/Client:点击中敌人时发送请求
+
+<details>
+
 > `22.12.11 8:48`
 Server/Client:怪物信息与EnemyInfo在服务器与客户端之间同步
 add HitRegRequest 30%. 
-
-<details>
 
 > `22.12.11 1:00`
 add AttackLeaveRequest, UpdateAttackingInfoRequest. 

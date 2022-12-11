@@ -6,6 +6,7 @@ using SocketProtocol;
 
 public sealed class EnemyInfo : EntityInfo
 {
+    public EFloor floor = EFloor.Null;
     public EFloorPos floorPos = EFloorPos.Null;
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider armorSlider;
@@ -29,6 +30,7 @@ public sealed class EnemyInfo : EntityInfo
     }
 
     public void UpdateAttackingInfo(EnemyPack enemyPack){
+        floor = (EFloor)enemyPack.Floor;
         floorPos = (EFloorPos)enemyPack.Pos;
         try
         {
