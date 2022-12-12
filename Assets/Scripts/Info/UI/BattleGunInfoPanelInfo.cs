@@ -143,7 +143,10 @@ namespace ReTouchGunFire.PanelInfo{
                     // EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
                     if (currentMainGunAmmo < standardMainGunAmmo)
                     {
-                        mainGunReloadButton.gameObject.SetActive(true);
+                        if (currentMainGunAllAmmo > 0)
+                        {
+                            mainGunReloadButton.gameObject.SetActive(true);
+                        }
                     }
                     Invoke("SetGunShootingColdDownReady", mainGunInfo.CurrentFiringRatePerSecond);
                 }
@@ -159,7 +162,10 @@ namespace ReTouchGunFire.PanelInfo{
                     // EventMgr.Broadcast(GameEvents.PlayerShootingNotify);
                     if (currentHandGunAmmo < standardHandGunAmmo)
                     {
-                        handGunReloadButton.gameObject.SetActive(true);
+                        if (currentHandGunAllAmmo > 0)
+                        {
+                            handGunReloadButton.gameObject.SetActive(true);
+                        }
                     }
                     Invoke("SetGunShootingColdDownReady", handGunInfo.CurrentFiringRatePerSecond);
                 }
@@ -197,8 +203,28 @@ namespace ReTouchGunFire.PanelInfo{
                 if (mainGunReloadingBar.value<=0)
                 {
                     isReloading = false;
-                    currentMainGunAllAmmo -= standardMainGunAmmo - currentMainGunAmmo;
-                    currentMainGunAmmo = standardMainGunAmmo;
+
+                    //计算装填弹药至标准数量需要多少子弹
+                    int changeCount = standardMainGunAmmo - currentMainGunAmmo;
+
+                    //当备弹需求大于真实总备弹数时
+                    if (changeCount > currentMainGunAllAmmo)
+                    {
+                        currentMainGunAmmo += currentMainGunAllAmmo;
+                        currentMainGunAllAmmo = 0;
+                    }else
+                    {
+                        currentMainGunAmmo = standardMainGunAmmo;
+                        currentMainGunAllAmmo -= changeCount;
+                    }
+
+                    if (currentMainGunAllAmmo<=0)
+                    {
+                        currentMainGunAllAmmo = 0;
+                    }
+
+                    
+                    
                     mainGunReloadingBar.value = mainGunReloadingBar.maxValue;
                     mainGunReloadButton.gameObject.SetActive(false);
                     gunFiringColdDown = true;
@@ -213,8 +239,26 @@ namespace ReTouchGunFire.PanelInfo{
                 if (handGunReloadingBar.value<=0)
                 {
                     isReloading = false;
-                    currentHandGunAllAmmo -= standardHandGunAmmo - currentHandGunAmmo;
-                    currentHandGunAmmo = standardHandGunAmmo;
+
+                    //计算装填弹药至标准数量需要多少子弹
+                    int changeCount = standardHandGunAmmo - currentHandGunAmmo;
+
+                    //当备弹需求大于真实总备弹数时
+                    if (changeCount > currentHandGunAllAmmo)
+                    {
+                        currentHandGunAmmo += currentHandGunAllAmmo;
+                        currentHandGunAllAmmo = 0;
+                    }else
+                    {
+                        currentHandGunAmmo = standardHandGunAmmo;
+                        currentHandGunAllAmmo -= changeCount;
+                    }
+
+                    if (currentHandGunAllAmmo<=0)
+                    {
+                        currentHandGunAllAmmo = 0;
+                    }
+
                     handGunReloadingBar.value = handGunReloadingBar.maxValue;
                     handGunReloadButton.gameObject.SetActive(false);
                     gunFiringColdDown = true;

@@ -34,7 +34,7 @@ namespace ReTouchGunFire.PanelInfo{
             point.onClick.AddListener(()=>{
                 panelMediator.PopPanel(false);
                 EventMgr.Broadcast(GameEvents.BackpackPanelCloseNotify);
-                isEquippedPartShowed = false;
+                // isEquippedPartShowed = false;
                 // ShowIdlePart();
                 if(panelMediator.CheckPanelList())
                     EventMgr.Broadcast(GameEvents.CloseBackButtonPanelNotify);
@@ -48,7 +48,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         UnityAction ua;
-        bool isEquippedPartShowed = true;
+        // bool isEquippedPartShowed = true;
 
         /// <summary>
         /// 显示背包列表
@@ -64,8 +64,8 @@ namespace ReTouchGunFire.PanelInfo{
             // isEquippedPartShowed = !isEquippedPartShowed;
 
             panelMediator.PushPanel(EUIPanelType.ShopPanel, panelMediator.GetPanelLevelUp(currentLevel), true, (GameObject obj)=>{
-                    obj.AddComponent<ShopPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
-                });
+                obj.AddComponent<ShopPanelInfo>().currentLevel = panelMediator.GetPanelLevelUp(currentLevel);
+            });
         }
 
         void InitEquippedPart(){

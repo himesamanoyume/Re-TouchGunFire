@@ -178,6 +178,14 @@ namespace ReTouchGunFire.Mediators{
             attackAreaPanelInfo.HitRegCallback(dmg, floor, pos);
         }
 
+        public void BeatEnemyCallback(EFloor floor, EFloorPos pos){
+            // if (attackAreaPanelInfo == null)
+            // {
+            //     attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+            // }
+            panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<BaseAttackAreaPanelInfo>().BeatEnemyCallback(floor, pos);
+        }
+
     }
 }
 

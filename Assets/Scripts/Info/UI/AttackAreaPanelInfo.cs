@@ -52,6 +52,8 @@ namespace ReTouchGunFire.PanelInfo{
             
         }
 
+        
+
         Transform GetEnemyPos(EFloor floor, EFloorPos pos){
             switch(floor){
                 case EFloor.Floor1:

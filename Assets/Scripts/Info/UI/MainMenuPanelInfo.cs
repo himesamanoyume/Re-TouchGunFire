@@ -115,9 +115,6 @@ namespace ReTouchGunFire.PanelInfo{
             area1Cube.onClick.AddListener(()=>{
                 panelMediator.ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
                     attackInviteRequest.SendRequest(1);
-                    // SetDefaultMainMenuPos();
-                    // EventMgr.Broadcast(GameEvents.ShowLoadingPanelNotify);
-                    // sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
                 });
             });
         }

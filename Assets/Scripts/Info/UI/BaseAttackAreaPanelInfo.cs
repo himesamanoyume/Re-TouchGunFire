@@ -55,6 +55,10 @@ namespace ReTouchGunFire.PanelInfo{
             
         // }
 
+        private void OnDestroy() {
+            EventMgr.RemoveListener<PlayerShootingRayNotify>(OnPlayerShootingRay);
+        }
+
         void OnStartAttack(){
             updateAttackingInfoRequest.SendRequest();
         }
@@ -87,7 +91,6 @@ namespace ReTouchGunFire.PanelInfo{
 
         void OnPlayerShootingRay(PlayerShootingRayNotify evt) => ShotRay();
         void ShotRay(){
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hit = Physics.RaycastAll(ray.origin, ray.direction);
                 
@@ -126,7 +129,19 @@ namespace ReTouchGunFire.PanelInfo{
             
         }
 
-        
+        public void BeatEnemyCallback(EFloor floor, EFloorPos pos){
+            switch(floor){
+                case EFloor.Floor1:
+                    floor1Info.BeatEnemy(pos);
+                break;
+                case EFloor.Floor2:
+                    floor2Info.BeatEnemy(pos);
+                break;
+                case EFloor.Floor3:
+                    floor3Info.BeatEnemy(pos);
+                break;
+            }
+        }
     }
 }
 

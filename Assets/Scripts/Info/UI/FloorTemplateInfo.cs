@@ -85,6 +85,14 @@ namespace ReTouchGunFire.PanelInfo{
                 enemyInfo1.UpdateAttackingInfo(enemyPack);
             }
         }
+
+        public void BeatEnemy(EFloorPos floorPos){
+            if (EnemyDict.TryGetValue(floorPos, out EnemyInfo enemyInfo))
+            {
+                EnemyDict.Remove(floorPos);
+                Destroy(enemyInfo.gameObject);
+            }
+        }
     }
 }
 

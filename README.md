@@ -6,7 +6,7 @@ Rebuild project.
 
 战斗部分
 
-- Client/Server:击杀敌人时清理实例(BeatEnemyRequest, HitRegPack)
+- Server:优化计算伤害函数
 - Server:击杀怪物玩家获得经验和金币
 - Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
 - Server:在小队内时,队友造成的伤害数字或许可以尝试广播
@@ -35,11 +35,19 @@ server:
 
 ## CHANGELOG
 
+> `22.12.13 4:39`
+Client/Server:击杀敌人时清理实例
+add BeatEnemyRequest. 
+~~Server(Bug):穿透伤害未正确计算~~
+~~Client(Bug):每次出击时,都会让伤害判定错误地增加1次~~
+~~Client(Bug):备弹数会错误地低于0~~
+~~Server(Bug):玩家脱离战斗时重置EnemiesManager(需要用函数重新实例化新的Enemy)~~
+
+<details>
+
 > `22.12.12 22:58`
 Client:请求返回弹出击中伤害数字
 add DamageTextInfo. 
-
-<details>
 
 > `22.12.12 6:03`
 Server/Client:点击中敌人时发送请求

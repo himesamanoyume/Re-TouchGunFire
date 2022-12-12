@@ -34,6 +34,7 @@ public class GunInfo : ItemInfo
         firingRate = gunPack.FiringRate;
         currentFiringRatePerSecond = gunPack.CurrentFiringRatePerSecond;
         magazine = gunPack.Magazine;
+        //temp
         maxMagazine = gunPack.Magazine * 15;
         reloadingTime = gunPack.ReloadingTime;
         coreProp = gunPack.CoreProp;

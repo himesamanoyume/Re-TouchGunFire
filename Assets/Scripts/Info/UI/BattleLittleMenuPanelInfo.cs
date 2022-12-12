@@ -21,7 +21,6 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         bool isShowAllMenu = false;
-        bool isShowPlayerProps = false;
         [SerializeField] AttackLeaveRequest attackLeaveRequest;
 
         protected sealed override void Init()
@@ -71,7 +70,6 @@ namespace ReTouchGunFire.PanelInfo{
         void RestorePanel(){
             showAllMenuCubeText.text = "完整菜单";
             isShowAllMenu = false;
-            isShowPlayerProps = false;
         }
 
         void OnShowThisPanel(ShowBattleLittleMenuPanelNotify evt) => ShowThisPanel();
