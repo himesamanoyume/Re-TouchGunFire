@@ -161,8 +161,21 @@ namespace ReTouchGunFire.Mediators{
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
         }
 
+        [SerializeField] AttackAreaPanelInfo attackAreaPanelInfo = null;
         public void UpdateAttackingInfoCallback(RepeatedField<EnemyPack> enemyPacks){
-            panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>().UpdateAttackingInfoCallback(enemyPacks);
+            if (attackAreaPanelInfo == null)
+            {
+                attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+            }
+            attackAreaPanelInfo.UpdateAttackingInfoCallback(enemyPacks);
+        }
+
+        public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos){
+            if (attackAreaPanelInfo == null)
+            {
+                attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+            }
+            attackAreaPanelInfo.HitRegCallback(dmg, floor, pos);
         }
 
     }

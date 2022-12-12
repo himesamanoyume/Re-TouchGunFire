@@ -19,7 +19,8 @@ public sealed class HitRegRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log(mainPack.HitRegPack.Damage);
+                    // Debug.Log(mainPack.HitRegPack.Damage);
+                    networkMediator.HitRegCallback(mainPack.HitRegPack.Damage, (EFloor)mainPack.HitRegPack.Floor, (EFloorPos)mainPack.HitRegPack.Pos);
                 break;
                 case ReturnCode.Fail:
                     Debug.Log("伤害丢失");
