@@ -39,14 +39,14 @@ namespace ReTouchGunFire.PanelInfo{
             
         }
 
-        public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos){
+        public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos, bool isHeadshot, bool isCrit){
             if (index == damageTextList.Count - 1)
             {
-                damageTextList[index].InitInfo(dmg, templatePos, GetEnemyPos(floor, pos));
+                damageTextList[index].InitInfo(dmg, templatePos, GetEnemyPos(floor, pos), isHeadshot, isCrit);
                 index = 0;
             }else
             {
-                damageTextList[index].InitInfo(dmg, templatePos, GetEnemyPos(floor, pos));
+                damageTextList[index].InitInfo(dmg, templatePos, GetEnemyPos(floor, pos), isHeadshot, isCrit);
                 index++;
             }
             

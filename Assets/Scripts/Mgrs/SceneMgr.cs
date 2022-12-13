@@ -60,8 +60,8 @@ namespace ReTouchGunFire.Mgrs{
             // AssetBundle.UnloadAllAssetBundles(false);
         }
 
-        public void SceneLog(){
-            Debug.Log("SceneLog");
+        public string SceneLog(){
+            return sceneInfo.Name;
         }
     }
 }

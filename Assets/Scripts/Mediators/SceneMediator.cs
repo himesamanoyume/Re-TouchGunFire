@@ -42,8 +42,8 @@ namespace ReTouchGunFire.Mediators{
             StartCoroutine(abMediator.AsyncLoadAbScene("scenes",sceneName));
         }
 
-        public void SceneLog(){
-            sceneMgr.SceneLog();
+        public string SceneLog(){
+            return sceneMgr.SceneLog();
         }
 
 

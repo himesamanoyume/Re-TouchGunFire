@@ -20,7 +20,7 @@ public sealed class HitRegRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     // Debug.Log(mainPack.HitRegPack.Damage);
-                    networkMediator.HitRegCallback(mainPack.HitRegPack.Damage, (EFloor)mainPack.HitRegPack.Floor, (EFloorPos)mainPack.HitRegPack.Pos);
+                    networkMediator.HitRegCallback(mainPack.HitRegPack.Damage, (EFloor)mainPack.HitRegPack.Floor, (EFloorPos)mainPack.HitRegPack.Pos, mainPack.HitRegPack.IsHeadshot, mainPack.HitRegPack.IsCrit);
                 break;
                 case ReturnCode.Fail:
                     Debug.Log("伤害丢失");

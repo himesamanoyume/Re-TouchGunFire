@@ -12,6 +12,7 @@ namespace ReTouchGunFire.Mediators{
         public ClientMgr clientMgr;
         public RequestMgr requestMgr;
         public PanelMediator panelMediator;
+        SceneMediator sceneMediator;
         [SerializeField] PlayerInfo playerInfo;
 
         public int playerSelfUid = 0;
@@ -34,6 +35,7 @@ namespace ReTouchGunFire.Mediators{
             clientMgr = GameLoop.Instance.gameManager.ClientMgr;
             requestMgr = GameLoop.Instance.gameManager.RequestMgr;
             panelMediator = GameLoop.Instance.GetMediator<PanelMediator>();
+            sceneMediator = GameLoop.Instance.GetMediator<SceneMediator>();
             playerInfo = GameLoop.Instance.GetComponent<PlayerInfo>();
             EventMgr.AddListener<MainSceneBeginNotify>(OnMainSceneBegin);
         }
@@ -170,12 +172,17 @@ namespace ReTouchGunFire.Mediators{
             attackAreaPanelInfo.UpdateAttackingInfoCallback(enemyPacks);
         }
 
-        public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos){
+        public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos, bool isHeadshot, bool isCrit){
             if (attackAreaPanelInfo == null)
             {
-                attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+                if (sceneMediator.SceneLog() != "MainScene")
+                {
+                    attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+                    attackAreaPanelInfo.HitRegCallback(dmg, floor, pos, isHeadshot, isCrit);
+                } 
+            }else{
+                attackAreaPanelInfo.HitRegCallback(dmg, floor, pos, isHeadshot, isCrit);
             }
-            attackAreaPanelInfo.HitRegCallback(dmg, floor, pos);
         }
 
         public void BeatEnemyCallback(EFloor floor, EFloorPos pos){
@@ -184,6 +191,10 @@ namespace ReTouchGunFire.Mediators{
             //     attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
             // }
             panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<BaseAttackAreaPanelInfo>().BeatEnemyCallback(floor, pos);
+        }
+
+        public void AttackEndCallback(){
+            panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
         }
 
     }

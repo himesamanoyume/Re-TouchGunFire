@@ -6,15 +6,11 @@ Rebuild project.
 
 战斗部分
 
-- Server:优化计算伤害函数
-- Server:击杀怪物玩家获得经验和金币
-- Client:出击面板单独分离出生成怪物模块脚本 和原来的控制脚本
-- Server:在小队内时,队友造成的伤害数字或许可以尝试广播
-- Client:在小对内时,只有小队长才能出击
+- Client/Server:在小对内时,只有小队长才能发起出击邀请,小队长出击时将检查其他小队成员的准备状态,全部为准备就绪状态时,小队长才可以出击,若小队长想要出击时其他队友未能准备就绪,则可以发送提示告知其他未准备的小队成员
+- Client:在玩家自身为小队成员而非队长时,主界面的出击按钮替换为准备按钮
 - Client:在小对内且正在战斗中时,离开小队或独自离开将会直接退出战斗
 - Client:当有人加入小队且小队正在战斗中时,该加入的队友提示是否立即加入战斗
-- Client:根据Server保存的EnemyInfo中的位置等信息在Client处对应位置生成Enemy
-- Client/Server:怪物被击杀获取经验值,随机获取一定量弹药
+- Client/Server:怪物被击杀获取经验值和金币,随机获取一定量弹药
 
 ---
 
@@ -35,6 +31,14 @@ server:
 
 ## CHANGELOG
 
+> `22.12.13 23:16`
+Client:伤害跳字颜色区分
+Server:优化计算伤害函数
+Server:战斗结束
+add AttackEndRequest. 
+
+<details>
+
 > `22.12.13 4:39`
 Client/Server:击杀敌人时清理实例
 add BeatEnemyRequest. 
@@ -42,8 +46,6 @@ add BeatEnemyRequest.
 ~~Client(Bug):每次出击时,都会让伤害判定错误地增加1次~~
 ~~Client(Bug):备弹数会错误地低于0~~
 ~~Server(Bug):玩家脱离战斗时重置EnemiesManager(需要用函数重新实例化新的Enemy)~~
-
-<details>
 
 > `22.12.12 22:58`
 Client:请求返回弹出击中伤害数字
@@ -54,6 +56,7 @@ Server/Client:点击中敌人时发送请求
 
 > `22.12.11 8:48`
 Server/Client:怪物信息与EnemyInfo在服务器与客户端之间同步
+Client:根据Server保存的EnemyInfo中的位置等信息在Client处对应位置生成Enemy
 add HitRegRequest 30%. 
 
 > `22.12.11 1:00`

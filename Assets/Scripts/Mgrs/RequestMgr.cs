@@ -53,6 +53,7 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<UpdateAttackingInfoRequest>();
             GameLoop.Instance.gameObject.AddComponent<HitRegRequest>();
             GameLoop.Instance.gameObject.AddComponent<BeatEnemyRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AttackEndRequest>();
             
         }
 
