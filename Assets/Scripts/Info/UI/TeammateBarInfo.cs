@@ -25,6 +25,8 @@ namespace ReTouchGunFire.PanelInfo{
         public Slider armor;
         public Text playerNameText;
 
+        public bool isReady;
+
 
         [SerializeField] Transform inviteContent;
         [SerializeField] Text inviteText;
@@ -37,6 +39,8 @@ namespace ReTouchGunFire.PanelInfo{
         [SerializeField] Button refuseJoinButton;
         [SerializeField] Button acceptJoinButton;
         [SerializeField] Slider joinCountdown;
+
+        [SerializeField] Transform readyContent;
 
         [SerializeField] AcceptInviteTeamRequest acceptInviteTeamRequest;
         [SerializeField] RefuseInviteTeamRequest refuseInviteTeamRequest;
@@ -78,6 +82,8 @@ namespace ReTouchGunFire.PanelInfo{
             joinCountdown.maxValue = 10;
             joinCountdown.value = 10;
 
+            readyContent = transform.Find("ReadyContent");
+            BeReady(false);
 
             refuseButton.onClick.AddListener(()=>{
                 refuseInviteTeamRequest.SendRequest(teammateUid);
@@ -138,6 +144,11 @@ namespace ReTouchGunFire.PanelInfo{
 
         public void JoinRequest(){
             isInvite = false;
+        }
+
+        public void BeReady(bool isReady){
+            this.isReady = isReady;
+            readyContent.gameObject.SetActive(isReady);
         }
 
         protected override void CountDownRunning()

@@ -161,6 +161,22 @@ namespace ReTouchGunFire.PanelInfo{
             }
         }
 
+        public bool ReadyAndCancelReadyAttackCallback(bool isReady, int teammateUid){
+            if (teammateBarInfoDict.TryGetValue(teammateUid, out TeammateBarInfo teammateBarInfo))
+            {
+                teammateBarInfo.BeReady(isReady);
+            }
+
+            foreach (TeammateBarInfo item in teammateBarInfoDict.Values)
+            {
+                if (!item.isReady)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }
 

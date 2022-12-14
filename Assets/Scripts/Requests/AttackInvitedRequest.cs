@@ -4,13 +4,13 @@ using UnityEngine;
 using SocketProtocol;
 using ReTouchGunFire.PanelInfo;
 
-public sealed class StartAttackRequest : IRequest
+public sealed class AttackInvitedRequest : IRequest
 {
     public override void Awake()
     {
-        Name = "StartAttackRequest";
+        Name = "AttackInvitedRequest";
         requestCode = RequestCode.Gaming;
-        actionCode = ActionCode.StartAttack;
+        actionCode = ActionCode.AttackInvited;
         base.Awake();
     }
 
@@ -19,12 +19,12 @@ public sealed class StartAttackRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    // Debug.Log("发起出击请求成功");
-                    panelMediator.ShowNotifyPanel("正在前往地区"+mainPack.AttackAreaPack.AreaNumber, 3f);
-                    networkMediator.StartAttackCallback(mainPack.AttackAreaPack.AreaNumber);
+                    // Debug.Log("离开战斗请求成功");
+                    // networkMediator.AttackLeaveCallback();
+                    
                 break;
                 case ReturnCode.Fail:
-                    panelMediator.ShowNotifyPanel("开始出击失败",3f);
+                    
                 break;
                 default:
                     panelMediator.ShowNotifyPanel("不正常情况",3f);

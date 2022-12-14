@@ -17,6 +17,7 @@ namespace ReTouchGunFire.Mediators{
 
         public int playerSelfUid = 0;
         public int teamMasterPlayerUid = 0;
+        public bool teammateAllReady = false;
 
         public NetworkMediator(){
             Name = "NetworkMediator";
@@ -49,12 +50,15 @@ namespace ReTouchGunFire.Mediators{
             playerCurrentStatePanelInfo = panelMediator.GetPanel(EUIPanelType.PlayerCurrentStatePanel).GetComponent<PlayerCurrentStatePanelInfo>();
 
             playerInfoPanelInfo = panelMediator.GetPanel(EUIPanelType.PlayerInfoPanel).GetComponent<PlayerInfoPanelInfo>();
+
+            mainMenuPanelInfo = panelMediator.GetPanel(EUIPanelType.MainMenuPanel).GetComponent<MainMenuPanelInfo>();
         }
 
-        public MainInfoPanelInfo mainInfoPanelInfo;
-        public PartyCurrentStatePanelInfo partyCurrentStatePanelInfo;
-        public PlayerCurrentStatePanelInfo playerCurrentStatePanelInfo;
-        public PlayerInfoPanelInfo playerInfoPanelInfo;
+        [SerializeField] MainInfoPanelInfo mainInfoPanelInfo;
+        [SerializeField] PartyCurrentStatePanelInfo partyCurrentStatePanelInfo;
+        [SerializeField] PlayerCurrentStatePanelInfo playerCurrentStatePanelInfo;
+        [SerializeField] PlayerInfoPanelInfo playerInfoPanelInfo;
+        [SerializeField] MainMenuPanelInfo mainMenuPanelInfo;
 
         public void TcpSend(MainPack mainPack){
             clientMgr.TcpSend(mainPack);
@@ -88,6 +92,8 @@ namespace ReTouchGunFire.Mediators{
 
         public void LeaveTeamCallback(){
             panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().LeaveTeamCallback();
+
+            mainMenuPanelInfo.LeaveTeamCallback();
         }
 
         public void SearchFriendCallback(MainPack mainPack){
@@ -105,14 +111,18 @@ namespace ReTouchGunFire.Mediators{
                 }
             }
 
-            //old自身的信息改为同步到PlayerInfo 再由PlayerInfo同步到UI
-            // mainInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
-            // playerInfoPanelInfo.UpdatePlayerInfoCallback(_updatePlayerInfoPack);
-            //end
-            //new
             playerInfo.UpdatePlayerInfo(_updatePlayerInfoPack);
-            //end
 
+            if (teamMasterPlayerUid != 0)
+            {
+                if (teamMasterPlayerUid != playerSelfUid)
+                {
+                    mainMenuPanelInfo.IsInTheTeam(true);
+                }else
+                {
+                    mainMenuPanelInfo.IsInTheTeam(false);
+                }
+            }
 
             partyCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
 
@@ -121,6 +131,8 @@ namespace ReTouchGunFire.Mediators{
 
         public void PlayerJoinTeamCallback(int targetPlayerUid, string targetPlayerName){
             panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().PlayerJoinTeamCallback(targetPlayerUid, targetPlayerName);
+
+            mainMenuPanelInfo.PlayerJoinTeamCallback();
         }
 
         public void GetFriendsCallback(RepeatedField<FriendsPack> friendsPacks){
@@ -156,7 +168,7 @@ namespace ReTouchGunFire.Mediators{
         // }
 
         public void StartAttackCallback(int areaNumber){
-            panelMediator.GetPanel(EUIPanelType.MainMenuPanel).GetComponent<MainMenuPanelInfo>().StartAttackCallback(areaNumber);
+            mainMenuPanelInfo.StartAttackCallback(areaNumber);
         }
 
         public void AttackLeaveCallback(){
@@ -195,6 +207,10 @@ namespace ReTouchGunFire.Mediators{
 
         public void AttackEndCallback(){
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
+        }
+
+        public void ReadyAndCancelReadyAttackCallback(bool isReady, int teammateUid){
+            teammateAllReady = panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().ReadyAndCancelReadyAttackCallback(isReady, teammateUid);
         }
 
     }

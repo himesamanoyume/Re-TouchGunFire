@@ -51,7 +51,7 @@ public sealed class DamageTextInfo : UIInfo{
             Invoke("ResetPos", 2.1f);
         }
 
-        private void Update() {
+        private void FixedUpdate() {
             if (isUpping)
             {
                 timer += Time.deltaTime;

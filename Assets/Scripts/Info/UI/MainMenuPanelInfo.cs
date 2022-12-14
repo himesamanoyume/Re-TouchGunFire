@@ -9,6 +9,9 @@ namespace ReTouchGunFire.PanelInfo{
     public sealed class MainMenuPanelInfo : UIInfo
     {
         [SerializeField] AttackInviteRequest attackInviteRequest;
+        [SerializeField] ReadyAttackRequest readyAttackRequest;
+        [SerializeField] CancelReadyAttackRequest cancelReadyAttackRequest;
+        [SerializeField] TeamMasterAttackNotifyRequest teamMasterAttackNotifyRequest;
 
         [SerializeField] Button attackCube;
         [SerializeField] Button backpackCube;
@@ -38,6 +41,9 @@ namespace ReTouchGunFire.PanelInfo{
             InitAttackTemplate();
 
             attackInviteRequest = (AttackInviteRequest)requestMediator.GetRequest(ActionCode.AttackInvite);
+            readyAttackRequest = (ReadyAttackRequest)requestMediator.GetRequest(ActionCode.ReadyAttack);
+            cancelReadyAttackRequest = (CancelReadyAttackRequest)requestMediator.GetRequest(ActionCode.CancelReadyAttack);
+            teamMasterAttackNotifyRequest = (TeamMasterAttackNotifyRequest)requestMediator.GetRequest(ActionCode.TeamMasterAttackNotify);
         }
 
         void InitMainTemplate(){
@@ -128,7 +134,67 @@ namespace ReTouchGunFire.PanelInfo{
                     sceneMediator.SetScene(new AttackArea1Scene(sceneMediator));
                 break;
             }
-            
+        }
+
+        public bool _isInTheTeam = false;
+        public void IsInTheTeam(bool isInTheTeam){
+            if (isInTheTeam && !_isInTheTeam)
+            {
+                _isInTheTeam = isInTheTeam;
+                attackCube.onClick.RemoveAllListeners();
+                attackCube.transform.Find("Text").GetComponent<Text>().text = "准备就绪";
+                attackCube.onClick.AddListener(()=>{
+                    readyAttackRequest.SendRequest();
+                });
+            }else
+            {
+                if (!_isInTheTeam && !isInTheTeam)
+                {
+                    return;
+                }
+                _isInTheTeam = isInTheTeam;
+                attackCube.onClick.RemoveAllListeners();
+                attackCube.transform.Find("Text").GetComponent<Text>().text = "取消准备";
+                attackCube.onClick.AddListener(()=>{
+                    cancelReadyAttackRequest.SendRequest();
+                });
+                PlayerJoinTeamCallback();
+            }
+        }
+
+        public void LeaveTeamCallback(){
+            attackCube.transform.Find("Text").GetComponent<Text>().text = "出击";
+            attackCube.onClick.RemoveAllListeners();
+            attackCube.onClick.AddListener(()=>{
+                mainTemplate.localScale = Vector3.zero;
+                attackTemplate.localScale = Vector3.one;
+            });
+
+            PlayerJoinTeamCallback();
+        }
+
+        public void PlayerJoinTeamCallback(){
+            if (networkMediator.teamMasterPlayerUid == networkMediator.playerSelfUid)
+            {
+                if (networkMediator.teammateAllReady)
+                {
+                    area1Cube.onClick.RemoveAllListeners();
+                    area1Cube.onClick.AddListener(()=>{
+                        panelMediator.ShowTwiceConfirmPanel("有队员未准备好,是否发送提醒队员准备就绪的通知?", 10, ()=>{
+                            teamMasterAttackNotifyRequest.SendRequest();
+                        });
+                    });
+                }else
+                {
+                    area1Cube.onClick.RemoveAllListeners();
+                    area1Cube.onClick.AddListener(()=>{
+                        panelMediator.ShowTwiceConfirmPanel("确定要出击地区1吗?", 10, ()=>{
+                            attackInviteRequest.SendRequest(1);
+                        });
+                    });
+                }
+                
+            }
         }
     }
 }

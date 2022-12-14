@@ -54,6 +54,10 @@ namespace ReTouchGunFire.Mgrs{
             GameLoop.Instance.gameObject.AddComponent<HitRegRequest>();
             GameLoop.Instance.gameObject.AddComponent<BeatEnemyRequest>();
             GameLoop.Instance.gameObject.AddComponent<AttackEndRequest>();
+            GameLoop.Instance.gameObject.AddComponent<TeamMasterAttackNotifyRequest>();
+            GameLoop.Instance.gameObject.AddComponent<ReadyAttackRequest>();
+            GameLoop.Instance.gameObject.AddComponent<CancelReadyAttackRequest>();
+            GameLoop.Instance.gameObject.AddComponent<AttackInvitedRequest>();
             
         }
 
