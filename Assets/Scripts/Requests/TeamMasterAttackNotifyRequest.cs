@@ -9,7 +9,7 @@ public sealed class TeamMasterAttackNotifyRequest : IRequest
     public override void Awake()
     {
         Name = "TeamMasterAttackNotifyRequest";
-        requestCode = RequestCode.Gaming;
+        requestCode = RequestCode.Team;
         actionCode = ActionCode.TeamMasterAttackNotify;
         base.Awake();
     }
@@ -21,13 +21,13 @@ public sealed class TeamMasterAttackNotifyRequest : IRequest
                 case ReturnCode.Success:
                     // Debug.Log("离开战斗请求成功");
                     // networkMediator.AttackLeaveCallback();
-                    if (networkMediator.teamMasterPlayerUid != mainPack.TeammatePack.TeamMasterUid)
+                    if (networkMediator.teamMasterPlayerUid == mainPack.TeammatePack.TeamMasterUid && networkMediator.playerSelfUid != mainPack.TeammatePack.TeamMasterUid)
                     {
                         panelMediator.ShowNotifyPanel("小队长通知队员尽快准备",5f);
                     }
                 break;
                 case ReturnCode.Fail:
-                    if (networkMediator.teamMasterPlayerUid == mainPack.TeammatePack.TeamMasterUid)
+                    if (networkMediator.teamMasterPlayerUid == mainPack.TeammatePack.TeamMasterUid  && networkMediator.playerSelfUid != mainPack.TeammatePack.TeamMasterUid)
                     {
                         panelMediator.ShowNotifyPanel("提醒队员通知失败",3f);
                     } 

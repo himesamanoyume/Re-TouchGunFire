@@ -28,6 +28,7 @@ public sealed class AttackArea1Scene : SceneInfo
         panelMediator.MovePanelLevel(EUIPanelType.MainInfoPanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.PlayerCurrentStatePanel,EUILevel.Level3);
         panelMediator.MovePanelLevel(EUIPanelType.BattleGunInfoPanel,EUILevel.Level3);
+        panelMediator.MovePanelLevel(EUIPanelType.PartyCurrentStatePanel, EUILevel.Level3);
         // panelMediator.MovePanelLevel(EUIPanelType.PlayerPropsPanel,EUILevel.Level1);
         EventMgr.Broadcast(GameEvents.CloseLoadingPanelNotify);
     }

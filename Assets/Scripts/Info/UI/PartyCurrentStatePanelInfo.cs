@@ -177,6 +177,13 @@ namespace ReTouchGunFire.PanelInfo{
             return true;
         }
 
+        public void StartAttackCallback(){
+            foreach (TeammateBarInfo item in teammateBarInfoDict.Values)
+            {
+                item.BeReady(false);
+            }
+        }
+
     }
 }
 

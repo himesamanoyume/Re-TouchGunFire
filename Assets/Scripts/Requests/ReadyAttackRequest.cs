@@ -27,6 +27,7 @@ public sealed class ReadyAttackRequest : IRequest
                     }else
                     {
                         panelMediator.ShowNotifyPanel("已准备",1f);
+                        networkMediator.ReadyAttackCallback();
                     }
                 break;
                 case ReturnCode.Fail:

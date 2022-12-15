@@ -27,6 +27,7 @@ public sealed class CancelReadyAttackRequest : IRequest
                     }else
                     {
                         panelMediator.ShowNotifyPanel("已取消准备",1f);
+                        networkMediator.CancelReadyAttackCallback();
                     }
                 break;
                 case ReturnCode.Fail:

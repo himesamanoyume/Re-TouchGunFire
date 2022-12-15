@@ -8,9 +8,8 @@ Rebuild project.
 
 战斗部分
 
-- Client(Bug):准备就绪按钮的变化还不正确
-- Client/Server:在小队内时,只有小队长才能发起出击邀请,小队长出击时将检查其他小队成员的准备状态,全部为准备就绪状态时,小队长才可以出击,若小队长想要出击时其他队友未能准备就绪,则可以发送提示告知其他未准备的小队成员(70%)
-- Client:在小对内且正在战斗中时,离开小队或独自离开将会直接退出战斗
+- Client/Server:在小队内且正在战斗时,队长选择离开战斗会使全队一起离开战斗
+- Client/Server:在小队内且正在战斗时,队员离开小队或独自离开将会直接独自离开战斗
 - Client:当有人加入小队且小队正在战斗中时,该加入的队友提示是否立即加入战斗
 - Client/Server:怪物被击杀获取经验值和金币,随机获取一定量弹药
 
@@ -30,29 +29,39 @@ Rebuild project.
 
 ## CHANGELOG
 
-> `22.12.15 3:58`
-Client:在玩家自身为小队成员而非队长时,主界面的出击按钮替换为准备按钮
-~~Client(Bug):创建小队时连队长都会显示准备就绪~~
-Client:Add AttackInvitedRequest(实行队长发起出击后同步进入战斗场景的作用)
+> `22.12.15 22:30`
+Client/Server:在小队内时,只有小队长才能发起出击邀请,小队长出击时将检查其他小队成员的准备状态,全部为准备就绪状态时,小队长才可以出击,若小队长想要出击时其他队友未能准备就绪,则可以发送提示告知其他未准备的小队成员. 
+~~Client(Bug):准备就绪按钮的变化还不正确~~ 
+~~Client(Bug):队员全都准备时出击按钮功能没有从提醒队友变成出击请求~~ 
+Client:出击和大厅场景切换时队友状态栏的Level变化. 
+Client:出击后隐藏主菜单的出击按钮. 
+~~Client(Bug):出击后队友列表还在显示已准备~~ 
+~~Client(Bug):队长出击后出击按钮会变成准备按钮~~ 
 
 <details>
 
+> `22.12.15 3:58`
+Client:在玩家自身为小队成员而非队长时,主界面的出击按钮替换为准备按钮 
+~~Client(Bug):创建小队时连队长都会显示准备就绪~~ 
+Client:Add AttackInvitedRequest(实行队长发起出击后同步进入战斗场景的作用). 
+Client:add ReadyAttackRequest, CancelReadyAttackRequest, TeamMasterAttackNotifyRequest. 
+
 > `22.12.13 23:16`
-Client:伤害跳字颜色区分
-Server:优化计算伤害函数
-Server:战斗结束
+Client:伤害跳字颜色区分. 
+Server:优化计算伤害函数. 
+Server:战斗结束. 
 add AttackEndRequest. 
 
 > `22.12.13 4:39`
-Client/Server:击杀敌人时清理实例
+Client/Server:击杀敌人时清理实例. 
 add BeatEnemyRequest. 
-~~Server(Bug):穿透伤害未正确计算~~
-~~Client(Bug):每次出击时,都会让伤害判定错误地增加1次~~
-~~Client(Bug):备弹数会错误地低于0~~
-~~Server(Bug):玩家脱离战斗时重置EnemiesManager(需要用函数重新实例化新的Enemy)~~
+~~Server(Bug):穿透伤害未正确计算~~ 
+~~Client(Bug):每次出击时,都会让伤害判定错误地增加1次~~ 
+~~Client(Bug):备弹数会错误地低于0~~ 
+~~Server(Bug):玩家脱离战斗时重置EnemiesManager(需要用函数重新实例化新的Enemy)~~ 
 
 > `22.12.12 22:58`
-Client:请求返回弹出击中伤害数字
+Client:请求返回弹出击中伤害数字. 
 add DamageTextInfo. 
 
 > `22.12.12 6:03`

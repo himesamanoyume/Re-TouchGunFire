@@ -120,8 +120,11 @@ namespace ReTouchGunFire.Mediators{
                     mainMenuPanelInfo.IsInTheTeam(true);
                 }else
                 {
-                    mainMenuPanelInfo.IsInTheTeam(false);
+                    mainMenuPanelInfo.PlayerJoinTeamCallback();
                 }
+            }else
+            {
+                mainMenuPanelInfo.IsInTheTeam(false);
             }
 
             partyCurrentStatePanelInfo.UpdatePlayerInfoCallback(mainPack.UpdatePlayerInfoPack);
@@ -169,19 +172,35 @@ namespace ReTouchGunFire.Mediators{
 
         public void StartAttackCallback(int areaNumber){
             mainMenuPanelInfo.StartAttackCallback(areaNumber);
+
+            panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().StartAttackCallback();
+
+            if (teamMasterPlayerUid != playerSelfUid)
+            {
+                mainMenuPanelInfo.CancelReadyAttackCallback();
+            }
         }
 
         public void AttackLeaveCallback(){
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
+            mainMenuPanelInfo.AttackEndCallback();
         }
 
         [SerializeField] AttackAreaPanelInfo attackAreaPanelInfo = null;
         public void UpdateAttackingInfoCallback(RepeatedField<EnemyPack> enemyPacks){
-            if (attackAreaPanelInfo == null)
+            try
             {
-                attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+                if (attackAreaPanelInfo == null)
+                {
+                    attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
+                }
+                attackAreaPanelInfo.UpdateAttackingInfoCallback(enemyPacks);
             }
-            attackAreaPanelInfo.UpdateAttackingInfoCallback(enemyPacks);
+            catch
+            {
+               
+            }
+            
         }
 
         public void HitRegCallback(float dmg, EFloor floor, EFloorPos pos, bool isHeadshot, bool isCrit){
@@ -198,19 +217,26 @@ namespace ReTouchGunFire.Mediators{
         }
 
         public void BeatEnemyCallback(EFloor floor, EFloorPos pos){
-            // if (attackAreaPanelInfo == null)
-            // {
-            //     attackAreaPanelInfo = panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<AttackAreaPanelInfo>();
-            // }
             panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<BaseAttackAreaPanelInfo>().BeatEnemyCallback(floor, pos);
         }
 
         public void AttackEndCallback(){
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
+
+            mainMenuPanelInfo.AttackEndCallback();
         }
 
         public void ReadyAndCancelReadyAttackCallback(bool isReady, int teammateUid){
             teammateAllReady = panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().ReadyAndCancelReadyAttackCallback(isReady, teammateUid);
+            mainMenuPanelInfo.ReadyAndCancelReadyAttackCallback();
+        }
+
+        public void ReadyAttackCallback(){
+            mainMenuPanelInfo.ReadyAttackCallback();
+        }
+
+        public void CancelReadyAttackCallback(){
+            mainMenuPanelInfo.CancelReadyAttackCallback();
         }
 
     }
