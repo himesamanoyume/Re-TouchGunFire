@@ -180,6 +180,8 @@ namespace ReTouchGunFire.Mediators{
         public void AttackLeaveCallback(){
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
             mainMenuPanelInfo.AttackEndCallback();
+
+            panelMediator.GetPanel(EUIPanelType.BattleGunInfoPanel).GetComponent<BattleGunInfoPanelInfo>().AttackEndAndLeaveCallback();
         }
 
         [SerializeField] AttackAreaPanelInfo attackAreaPanelInfo = null;
@@ -214,12 +216,14 @@ namespace ReTouchGunFire.Mediators{
 
         public void BeatEnemyCallback(EFloor floor, EFloorPos pos){
             panelMediator.GetPanel(EUIPanelType.AttackAreaPanel).GetComponent<BaseAttackAreaPanelInfo>().BeatEnemyCallback(floor, pos);
+            panelMediator.GetPanel(EUIPanelType.BattleGunInfoPanel).GetComponent<BattleGunInfoPanelInfo>().BeatEnemyCallback();
         }
 
         public void AttackEndCallback(){
             panelMediator.GetPanel(EUIPanelType.BattleLittleMenuPanel).GetComponent<BattleLittleMenuPanelInfo>().AttackLeaveCallback();
 
             mainMenuPanelInfo.AttackEndCallback();
+            panelMediator.GetPanel(EUIPanelType.BattleGunInfoPanel).GetComponent<BattleGunInfoPanelInfo>().AttackEndAndLeaveCallback();
         }
 
         public void ReadyAndCancelReadyAttackCallback(bool isReady, int teammateUid){

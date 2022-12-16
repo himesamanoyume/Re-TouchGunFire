@@ -297,6 +297,33 @@ namespace ReTouchGunFire.PanelInfo{
 
             }
         }
+
+        public void BeatEnemyCallback(){
+            
+            float per = Random.Range(0f, 1f);
+            if (per>= 0.65f)
+            {
+                currentHandGunAllAmmo += standardHandGunAmmo * 2;
+                currentMainGunAllAmmo += standardMainGunAmmo * 2;
+            }else if(currentMainGunAllAmmo <= standardMainGunAmmo)
+            {
+                if (per>= 0.3f)
+                {
+                    currentMainGunAllAmmo += standardMainGunAmmo * 3;
+                }
+            }else if(currentHandGunAllAmmo <= standardHandGunAmmo)
+            {
+                if (per>= 0.3f)
+                {
+                    currentHandGunAllAmmo += standardHandGunAmmo * 3;
+                }
+            }
+        }
+
+        public void AttackEndAndLeaveCallback(){
+            currentHandGunAllAmmo = standardHandGunAmmo * 15;
+            currentMainGunAllAmmo = standardMainGunAmmo * 15;
+        }
     }
 }
 

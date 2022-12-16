@@ -47,8 +47,8 @@ namespace ReTouchGunFire.PanelInfo{
         public void UpdatePlayerInfoCallback(UpdatePlayerInfoPack updatePlayerInfoPack){
             if (updatePlayerInfoPack.Uid == networkMediator.playerSelfUid)
             {
-                diamondText.text = updatePlayerInfoPack.Diamond.ToString();
-                coinText.text = updatePlayerInfoPack.Coin.ToString();
+                diamondText.text = updatePlayerInfoPack.Diamond.ToString("f0");
+                coinText.text = updatePlayerInfoPack.Coin.ToString("f0");
             }
             
         }
