@@ -166,10 +166,6 @@ namespace ReTouchGunFire.Mediators{
             return playerInfo.GetItemInfoList(eItemList);
         }
 
-        // public void RefuseJoinTeamCallback(int targetPlayerUid){
-        //     panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().RefuseJoinTeamCallback(targetPlayerUid);
-        // }
-
         public void StartAttackCallback(int areaNumber){
             mainMenuPanelInfo.StartAttackCallback(areaNumber);
 

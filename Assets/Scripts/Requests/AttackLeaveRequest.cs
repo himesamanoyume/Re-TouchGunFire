@@ -21,7 +21,7 @@ public sealed class AttackLeaveRequest : IRequest
                 case ReturnCode.Success:
                     Debug.Log("离开战斗请求成功");
                     networkMediator.AttackLeaveCallback();
-                    // panelMediator.ShowNotifyPanel("邀请好友入队成功",3f);
+                    panelMediator.ShowNotifyPanel("已离开战斗",3f);
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("离开战斗请求失败",3f);

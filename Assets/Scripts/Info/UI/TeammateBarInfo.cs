@@ -18,6 +18,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public int teammateUid;
+
         public string teammateName;
 
         public Transform infoContent;
@@ -132,10 +133,27 @@ namespace ReTouchGunFire.PanelInfo{
                 joinTeamContent.gameObject.SetActive(false);
                 infoContent.gameObject.SetActive(true);
             }
+            
         }
 
         private void Update() {
             CountDownRunning();
+            if (!isCountdown)
+            {
+                try
+                {
+                    if (teammateName.Equals(""))
+                    {
+                        Debug.Log("自动销毁");
+                        Destroy(gameObject);
+                    }
+                }
+                catch
+                {
+                    
+                }
+                
+            }
         }
 
         public void Accepted(){
