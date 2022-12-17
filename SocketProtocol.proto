@@ -1,0 +1,368 @@
+syntax = "proto3";
+package SocketProtocol;
+
+enum RequestCode{
+    RequestNone = 0;
+    User = 1;
+    Gaming = 2;
+    Team = 3;
+    Friend = 4;
+}
+
+enum ActionCode{
+    ActionNone = 0;
+    Register = 1;//注册
+    Login = 2;//登陆
+    InitPlayerInfo = 3;//初始化玩家信息
+    AcceptJoinTeam = 4;//加入小队
+    UpdateTeam = 5;//更新小队内信息
+    LeaveTeam = 6;//离开小队
+    UpdatePlayerInfo = 7;//更新玩家装备武器信息
+    ReadyAttack = 8;//出击准备就绪
+    StartAttack = 9;//开始出击
+    NextEnemy = 10;//下一波敌人刷出
+    EndAttack = 11;//出击结束
+    ExitGame = 12;//退出游戏
+    BreakTeam = 13;//解散小队
+    GetFriends = 14;//获取好友列表
+    GetFriendRequest = 15;//获取申请好友请求列表
+    SearchFriend = 16;//搜索玩家
+    SendRequestFriend = 17;//发送申请好友请求
+    GetPlayerBaseInfo = 18;//获取玩家基本信息
+    DeleteFriend = 19;//删除好友
+    AcceptFriendRequest = 20;//接受好友申请请求
+    RefuseFriendRequest = 21;//拒绝好友申请请求
+    InviteTeam = 22;//邀请其他玩家加入小队
+    InvitedTeam = 23;//被其他玩家邀请加入小队
+    JoinTeamRequest = 24; //请求加入小队
+    AcceptInviteTeam = 25;//接受入队邀请
+    AcceptedInviteTeam = 26;//目标玩家接受入队邀请
+    RefuseInviteTeam = 27;//拒绝入队邀请
+    RefusedInviteTeam = 28;//目标玩家拒绝入队邀请
+    KickPlayer = 29;//作为队长时 将玩家踢出小队
+    GetTeammates = 30;//在小队中时获取小队成员
+    TeammateLeaveTeam = 31;//小队其他成员离开小队
+    PlayerJoinTeam = 32;//通知给队长有人想入队
+    AcceptedJoinTeam = 33;//目标玩家被同意入队
+    RefuseJoinTeam = 34;//拒绝其他玩家的请求加入小队
+    RefusedJoinTeam = 35;//被队长拒绝加入小队
+    BeKickedOutTeam = 36;//被踢出小队
+    Regeneration = 37;//生命恢复
+    Shopping = 38;//购买物品
+    GetItemInfo = 39;//单独获取物品信息
+    RefreshItemSubProp = 40;//刷新物品副词条
+    EquipItem = 41;//穿戴装备
+    RefreshGunCoreProp = 42;//刷新武器主词条
+    UnlockItemSubProp = 43;//解锁物品副词条
+    HitReg = 44;//命中注册
+    AttackInvite = 45;//队长发起出击请求
+    CancelReadyAttack = 46;//取消准备就绪
+    AttackArea = 47;//战斗区域
+    AttackInvited = 48;//收到队长发起出击请求
+    AttackLeave = 49;//玩家自己退出战斗
+    UpdateAttackingInfo = 50;//更新战斗中怪物信息
+    BeatEnemy = 51;//击杀怪物
+    AttackEnd = 52;//战斗正常结算
+    TeamMasterAttackNotify = 53;//小队长出击提醒玩家未准备
+}
+
+enum ReturnCode{
+    ReturnNone = 0;
+    Success = 1;
+    Fail = 2;
+    RepeatedRequest = 3;
+    NotFound = 4;
+    Incorrect = 5;
+}
+
+message MainPack {
+    RequestCode RequestCode = 1;
+    ActionCode ActionCode = 2;
+    ReturnCode ReturnCode = 3;
+    RegisterPack RegisterPack = 4;
+    LoginPack LoginPack = 5;
+    int32 Uid = 6;
+    PlayerInfoPack PlayerInfoPack = 7;
+    repeated FriendsPack FriendsPack = 8;
+    SendRequestFriendPack SendRequestFriendPack = 9;
+    repeated UpdatePlayerInfoPack UpdatePlayerInfoPack  = 10;
+    TeammatePack TeammatePack = 11;
+    ShoppingPack ShoppingPack = 12;
+    EquipItemPack EquipItemPack = 13;
+    AttackAreaPack AttackAreaPack = 14;
+    HitRegPack HitRegPack = 15;
+}
+
+message EnemyPack{
+    int32 Floor = 1;
+    int32 Pos = 2;
+    float CurrentArmor = 3;
+    float MaxArmor = 4;
+    float CurrentHealth = 5;
+    float MaxHealth = 6;
+    string EnemyName = 7;
+}
+
+message HitRegPack{
+    int32 HitSenderUid = 1;
+    int32 Floor = 2;
+    int32 Pos = 3;
+    float Damage = 4;
+    bool IsMainGun = 5;
+    bool IsStrike = 6;
+    bool IsDead = 7;
+    bool IsCrit = 8;
+    bool IsHeadshot = 9;
+}
+
+message AttackAreaPack{
+    int32 AreaNumber = 1;
+    int32 Wave = 2;
+    repeated EnemyPack EnemyPack = 3;
+    int32 TeamMasterUid = 4;
+    bool IsEnd = 5;
+}
+
+message RegisterPack {
+    string Account = 1;
+    string Password = 2;
+    string PlayerName = 3;
+}
+
+message LoginPack {
+    int32 Uid = 1;
+    string Account = 2;
+    string Password = 3;
+}
+
+message PlayerInfoPack{
+    int32 Uid = 1;
+    string PlayerName = 2;
+    int32 Level = 3;
+    float CurrentExp = 4;
+    repeated EquipmentPack EquipmentPacks = 5;
+    repeated GunPack GunPacks = 6;
+    bool IsOnline = 7;
+    bool IsTeam = 8;
+    bool IsTeamMaster = 9;
+    bool IsSameTeam = 10;
+    float Diamond = 11;
+    int64 Coin = 12;
+}
+
+message TeammatePack{
+    int32 SenderUid = 1;
+    int32 TargetUid = 2;
+    int32 State = 3;//0等待中 1成功 2被拒绝 3失败
+    int32 TeamMasterUid = 4;
+    int32 LeaveTeamPlayerUid = 5;
+    int32 JoinTeamPlayerUid = 6;
+    int32 TeammateCount = 7;
+    string SenderName = 8;
+    string TargetName = 9;
+    int32 TeamMemberUid = 10;
+}
+
+message ShoppingPack{
+    int32 Uid = 1;
+    bool IsDiamond = 2;
+    float Price = 3;
+    int32 ItemId = 4;
+    float DiamondPrice = 5;
+    float Percent = 6;
+}
+
+message EquipItemPack{
+    int32 Uid = 1;
+    int32 ItemId = 2;
+}
+
+message UpdatePlayerInfoPack{
+    int32 Uid = 1;
+    string PlayerName = 2;
+    int32 Level = 3;
+    float MaxHealth = 4;
+    float MaxArmor = 5;
+    float CurrentHealth = 6;
+    float CurrentArmor = 7;
+    float MaxExp = 8;
+    float CurrentExp = 9;
+    float BaseDmgRateBonus = 10;
+    float CritDmgRateBonus = 11;
+    float HeadshotDmgBonus = 12;
+    float PRateBonus = 13;//穿透率加成
+    float AbeBonus = 14;//破甲效率加成
+    float ArDmgBonus = 15;
+    float DmrDmgBonus = 16;
+    float SmgDmgBonus = 17;
+    float SgDmgBonus = 18;
+    float MgDmgBonus = 19;
+    float SrDmgBonus = 20;
+    float HgDmgBonus = 21;
+    float Diamond = 22;
+    float Coin = 23;
+    float CritDmgBonus = 24;
+    int32 TeamMasterUid = 25;
+}
+
+message EquipmentPack{
+    int32 ItemId = 1;
+    string EquipmentName = 2;
+    string EquipmentSuit = 3;
+    string SubProp1 = 4;
+    float SubProp1Value = 5;
+    string SubProp2 = 6;
+    float SubProp2Value = 7;
+    string SubProp3 = 8;
+    float SubProp3Value = 9;
+    EEquipmentTalent Talent1 = 10;
+    EEquipmentTalent Talent2 = 11;
+    bool Use = 12;
+    bool Block = 13;
+    float Price = 14;
+    string ItemType = 15;
+    int32 SubProp1Type = 16;
+    int32 SubProp2Type = 17;
+    int32 SubProp3Type = 18;
+    float HealthBonus = 19;
+    float BaseDmgBonus = 20;
+    float CritDmgRateBonus = 21;
+    float CritDmgBonus = 22;
+    float HeadshotDmgBonus = 23;
+    float PRateBonus = 24;
+    float AbeBonus = 25;
+    float ArmorBonus = 26;
+    float SubProp1MaxValue = 27;
+    float SubProp2MaxValue = 28;
+    float SubProp3MaxValue = 29;
+}
+
+message GunPack{
+    int32 ItemId = 1;
+    string GunName = 2;
+    string ItemType = 3;
+    float BaseDmg = 4;
+    float FiringRate = 5;
+    float CurrentFiringRatePerSecond = 6;
+    int32 Magazine = 7;
+    string CoreProp = 8;
+    float CorePropValue = 9;
+    string SubProp1 = 10;
+    float SubProp1Value = 11;
+    string SubProp2 = 12;
+    float SubProp2Value = 13;
+    string SubProp3 = 14;
+    float SubProp3Value = 15;
+    bool Use = 16; 
+    bool Block = 17;
+    float Price = 18;
+    int32 SubProp1Type = 19;
+    int32 SubProp2Type = 20;
+    int32 SubProp3Type = 21;
+    int32 CorePropType = 22;
+    float HealthBonus = 23;
+    float BaseDmgBonus = 24;
+    float CritDmgRateBonus = 25;
+    float CritDmgBonus = 26;
+    float HeadshotDmgBonus = 27;
+    float PRateBonus = 28;
+    float AbeBonus = 29;
+    float ArmorBonus = 30;
+    float SubProp1MaxValue = 31;
+    float SubProp2MaxValue = 32;
+    float SubProp3MaxValue = 33;
+    float ReloadingTime = 34;
+}
+
+message FriendsPack{
+    int32 Player1Uid = 1;
+    int32 Player2Uid = 2;
+    int32 IsFriend = 3;
+}
+
+message SendRequestFriendPack{
+    int32 TargetPlayerUid = 1;
+}
+
+enum EGunName{
+    AK47 = 0;
+    SL7 = 1;
+    MP5 = 2;
+    M700 = 3;
+    M60 = 4;
+    SPAS12 = 5;
+    M1911 = 6;
+}
+
+enum EGunType{
+    AR = 0;
+    DMR = 1;
+    SMG = 2;
+    SG = 3;
+    SR = 4;
+    MG = 5;
+    HG = 6;
+}
+
+enum EGunCoreProp{
+    allDmgBonusCoreProp = 0;
+    arDmgBonusCoreProp = 1;
+    dmrDmgBonusCoreProp = 2;
+    smgDmgBonusCoreProp = 3;
+    sgDmgBonusCoreProp = 4;
+    srDmgBonusCoreProp = 5;
+    mgDmgBonusCoreProp = 6;
+    hgDmgBonusCoreProp = 7;
+    EGunCorePropNull = 8;
+}
+
+enum EEquipmentSuit{
+    Test1Suit = 0;
+    Test2Suit = 1;
+    Test3Suit = 2;
+    NullSuit = 3;
+}
+
+enum EEquipmentName{
+    DefaultArmor = 0;
+    DefaultHead = 1;
+    DefaultHand = 2;
+    DefaultKnee = 3;
+    DefaultLeg = 4;
+    DefaultBoots = 5;
+    Test1Armor = 6;
+    Test1Head = 7;
+    Test1Hand = 8;
+    Test1Knee = 9;
+    Test1Leg = 10;
+    Test1Boots = 11;
+    Test2Armor = 12;
+    Test2Head = 13;
+    Test2Hand = 14;
+    Test2Knee = 15;
+    Test2Leg = 16;
+    Test2Boots = 17;
+}
+
+enum ESubProp{
+    healthSubProp = 0;
+    baseDmgBonusSubProp = 1;
+    cDmgRateBonusSubProp = 2;
+    cDmgBonusSubProp = 3;
+    headshotDmgBonusSubProp = 4;
+    pRateBonusSubProp = 5;
+    abeBonusSubProp = 6;
+    arDmgBonusSubProp = 7;
+    dmrDmgBonusSubProp = 8;
+    smgDmgBonusSubProp = 9;
+    sgDmgBonusSubProp = 10;
+    srDmgBonusSubProp = 11;
+    mgDmgBonusSubProp = 12;
+    hgDmgBonusSubProp = 13;
+    ESubPropNull = 14;
+}
+
+enum EEquipmentTalent{
+    Test1EquipmentTalent1 = 0;
+    Test1EquipmentTalent2 = 1;
+}

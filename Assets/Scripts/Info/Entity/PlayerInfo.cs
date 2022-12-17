@@ -197,24 +197,6 @@ public sealed class PlayerInfo : EntityInfo
     Dictionary<string,ItemInfo> kneeDict = new Dictionary<string, ItemInfo>();
     Dictionary<string,ItemInfo> bootsDict = new Dictionary<string, ItemInfo>();
 
-    // public List<GunInfo> GetGunInfoList(Dictionary<string, GunInfo> gunDict){
-    //     List<GunInfo> list = new List<GunInfo>();
-    //     foreach (var item in gunDict)
-    //     {
-    //         list.Add(item.Value);
-    //     }
-    //     return list;
-    // }
-
-    // public List<EquipmentInfo> GetEquipmentInfoList(Dictionary<string, EquipmentInfo> equipmentDict){
-    //     List<EquipmentInfo> list = new List<EquipmentInfo>();
-    //     foreach (var item in equipmentDict)
-    //     {
-    //         list.Add(item.Value);
-    //     }
-    //     return list;
-    // }
-
     public Dictionary<int, ItemInfo> allItemDict = new Dictionary<int, ItemInfo>();
 
     //用于BattleGunInfoPanel获取当前穿戴中的装备名字

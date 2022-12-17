@@ -33,15 +33,4 @@ public sealed class RefusedJoinTeamRequest : IRequest
         });
     }
 
-    // public void SendRequest(int targetPlayerUid){
-    //     MainPack mainPack = base.InitRequest();
-    //     TeammatePack teammatePack = new TeammatePack();
-    //     teammatePack.JoinTeamPlayerUid = networkMediator.playerSelfUid;
-    //     teammatePack.TeamMemberUid = targetPlayerUid;
-    //     teammatePack.State = 2;
-    //     mainPack.TeammatePack = teammatePack;
-
-    //     base.TcpSendRequest(mainPack);
-    // }
-
 }

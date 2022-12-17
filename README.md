@@ -4,13 +4,100 @@ Rebuild project.
 
 **2022.12.17项目基本结束开发**
 
-## TODO
+### TODO
 
-null
+`null`
 
-## OPTIONAL TODO
+### OPTIONAL TODO
 
 新增武器/装备的自带一些副词条中存在的属性(成员变量已添加,但未赋值). 
+
+
+---
+## Client项目结构
+
+```mermaid
+graph TB
+
+GameLoop-->GameManager
+GameManager-->MediatorMgr
+GameManager-->EventMgr
+GameManager-->InfoMgr
+GameManager-->RequestMgr
+GameManager-->UIMgr
+GameManager-->ClientMgr
+```
+
+```mermaid
+graph TB
+
+MediatorMgr-->AbMediator
+MediatorMgr-->CanvasMediator
+MediatorMgr-->HotUpdateMediator
+MediatorMgr-->NetworkMediator
+MediatorMgr-->PanelMediator
+MediatorMgr-->RequestMediator
+MediatorMgr-->SceneMediator
+```
+```mermaid
+graph TB
+
+SceneMediator-->SceneMgr-->SceneInfos
+PanelMediator-->UIMgr-->UIInfos
+RequestMediator-->RequestMgr-->GameLoop-->Requests
+NetworkMediator-->ClientMgr-->RequestMgr
+CanvasMediator-->CanvasInfo
+```
+```mermaid
+graph TB
+
+IBase-->IInfo
+IBase-->IManager
+IManager-->Managers
+IBase-->IMediator
+IMediator-->Mediators
+IBase-->IRequest
+IRequest-->Requests
+IInfo-->SceneInfo-->SceneInfos
+```
+```mermaid
+graph TB
+
+EntityInfo-->EnemyInfo
+EntityInfo-->PlayerInfo
+ItemInfo-->EquipmentInfo
+ItemInfo-->GunInfo
+UIInfo-->UIInfos
+```
+---
+## Server项目结构
+
+```mermaid
+graph TB
+
+Program-->Server-->Client
+Program-->UdpServer-->Client
+Server/UdpServer-->ControllerManager
+ControllerManager-->FriendController
+ControllerManager-->GameController
+ControllerManager-->TeamController
+ControllerManager-->UserController
+FriendController-->BaseController
+GameController-->BaseController
+TeamController-->BaseController
+UserController-->BaseController
+```
+```mermaid
+graph TB
+
+Client-->FriendFunction-->FriendController
+Client-->GameFunction-->GameController
+Client-->ItemController-->ItemInfos
+Client-->TeamFunction-->TeamController
+Client-->UserFunction-->UserController
+Client-->EnemiesManager-->EnemyInfo
+Client-->PlayerInfo
+```
 
 ## CHANGELOG
 
@@ -363,61 +450,3 @@ null
 
 </details>
 
-## 项目结构
-
-> 为早期结构 现已不适用
-
-```mermaid
-graph TB
-gl(GameLoop)
-gm(GameManager)
-upm(UpdateManager:IManager)
-sm(SceneManager:IManager)
-im(InfoManager:IManager)
-um(UIManager:IManager)
-om(ObjectManager:IManager)
-ii:ii(ItemInfo:IInfo)
-oi:ii(ObjectInfo:IInfo)
-si:ii(StateInfo:IInfo)
-wi:ii(WeaponInfo)
-pi:oi(PlayerInfo:ObjectInfo)
-ei:oi(EnemyInfo:ObjectInfo)
-p:io(Player:IObject)
-e:io(Enemy:IObject)
-si:ii(SceneInfo:IInfo)
-psi:si(PlayerStateInfo)
-esi:si(EnemyStateInfo)
-ai:ii(ArmorInfo)
-ui:ii(UIInfo:IInfo)
-xLua
-Network
-gl-->gm
-gm-->upm
-gm-->sm
-gm-->im
-gm-->um
-gm-->om
-im-->ii:ii
-im-->si:ii
-im-->oi:ii
-im-->ui:ii
-oi:ii-->pi:oi
-ii:ii-->wi:ii
-oi:ii-->ei:oi
-ii:ii-->ai:ii
-om-->p:io
-om-->e:io
-si:ii-->psi:si
-si:ii-->esi:si
-```
-## 临时流程指导笔记
-
-不要一个装备一个类
-
-装备没有品质差别 有套装效果 但不能一开始就获取 需要等级条件达成后用金币购买进行解锁
-
-词条默认全开 但词条属性和数值完全随机 需要花费金币刷新
-
-装备天赋固定
-
-装备有一个管理器 控制穿戴、脱下时添加和删除的委托 类似于状态机

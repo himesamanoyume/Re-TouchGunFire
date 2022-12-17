@@ -41,45 +41,7 @@ public class GameLoop : UnitySingleton<GameLoop>
         gameObject.AddComponent<PlayerInfo>();
         
         // sceneMediator.SetScene(new InitScene(this.sceneMediator), "");
-
-        //temp
-            // Tester tester = new Tester();
-            // addCoin += GunBuff1;
-            // addCoin?.Invoke(tester);
-            // realTester = tester;
-            // Debug.LogError("tester coin:"+realTester.coin);
-            // Tester tester1 = new Tester();
-            // addCoin += GunBuff2;
-            // addCoin?.Invoke(tester1);
-            // realTester = tester1;
-            // Debug.LogError("tester coin:"+realTester.coin);
-            // Tester tester2 = new Tester();
-            // addCoin -= GunBuff2;
-            // addCoin?.Invoke(tester2);
-            // realTester = tester2;
-            // Debug.LogError("tester coin:"+realTester.coin);
-        //end
     }
-    //temp
-        // Tester realTester = new Tester();
-        // public void GunBuff1(Tester tester){
-        //     tester.coin += 5;
-        // }
-
-        // public void GunBuff2(Tester tester){
-        //     tester.coin += 10;
-        // }
-
-        // public delegate void AddCoin(Tester tester);
-        // public AddCoin addCoin;
-
-        // public class Tester{
-        //     public int coin = 0;
-            
-        // }
-    //end
-
-    
 
     void Update()
     {
