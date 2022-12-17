@@ -144,7 +144,7 @@ namespace ReTouchGunFire.PanelInfo{
                 {
                     if (teammateName.Equals(""))
                     {
-                        Debug.Log("自动销毁");
+                        // Debug.Log("自动销毁");
                         Destroy(gameObject);
                     }
                 }

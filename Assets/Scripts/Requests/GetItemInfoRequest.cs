@@ -21,7 +21,7 @@ public sealed class GetItemInfoRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("物品信息获取成功");
+                    // Debug.Log("物品信息获取成功");
                     networkMediator.UpdatePlayerGunInfoCallback(mainPack.PlayerInfoPack.GunPacks);
                     networkMediator.UpdatePlayerEquipmentInfoCallback(mainPack.PlayerInfoPack.EquipmentPacks);
                 break;

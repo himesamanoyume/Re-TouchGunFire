@@ -23,7 +23,7 @@ public sealed class HitRegRequest : IRequest
                     networkMediator.HitRegCallback(mainPack.HitRegPack.Damage, (EFloor)mainPack.HitRegPack.Floor, (EFloorPos)mainPack.HitRegPack.Pos, mainPack.HitRegPack.IsHeadshot, mainPack.HitRegPack.IsCrit);
                 break;
                 case ReturnCode.Fail:
-                    Debug.Log("伤害丢失");
+                    // Debug.Log("伤害丢失");
                     // panelMediator.ShowNotifyPanel("获取队伍信息失败",3f);
                 break;
                 default:

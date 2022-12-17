@@ -19,7 +19,7 @@ public sealed class AttackInviteRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("发起出击请求成功");
+                    // Debug.Log("发起出击请求成功");
                     // panelMediator.ShowNotifyPanel("邀请好友入队成功",3f);
                 break;
                 case ReturnCode.Fail:

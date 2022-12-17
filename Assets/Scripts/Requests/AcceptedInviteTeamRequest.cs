@@ -21,7 +21,7 @@ public sealed class AcceptedInviteTeamRequest : IRequest
                 case ReturnCode.Success:
                     // panelMediator.GetPanel(EUIPanelType.PartyCurrentStatePanel).GetComponent<PartyCurrentStatePanelInfo>().AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid);
                     networkMediator.AcceptedInviteTeamCallback(mainPack.TeammatePack.TargetUid, mainPack.TeammatePack.TargetName);
-                    Debug.Log("发送给好友的入队邀请已被接受");
+                    // Debug.Log("发送给好友的入队邀请已被接受");
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("发送给好友的入队邀请发生错误",3f);

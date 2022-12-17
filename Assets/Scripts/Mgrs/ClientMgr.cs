@@ -30,12 +30,12 @@ namespace ReTouchGunFire.Mgrs{
             try{
                 tcpSocket.Connect("127.0.0.1", 4567);
                 if(tcpSocket.Connected) {
-                    Debug.Log("Master Server Connected.");
+                    // Debug.Log("Master Server Connected.");
                     isConnected = true;
                 }
                 StartReceive();
             }catch(Exception e){
-                Debug.LogWarning(e);
+                // Debug.LogWarning(e);
                 
             }
 
@@ -53,7 +53,7 @@ namespace ReTouchGunFire.Mgrs{
 
         private void CloseSocket(){
             if(tcpSocket.Connected && tcpSocket != null){
-                Debug.Log("关闭Socket");
+                // Debug.Log("关闭Socket");
                 tcpSocket.Close();
             }
         }
@@ -82,7 +82,7 @@ namespace ReTouchGunFire.Mgrs{
                 if (message.TotalDataSize <= 1020)
                 {
                     if(bufferSize == 0){
-                        Debug.Log("length为0");
+                        // Debug.Log("length为0");
                         CloseSocket();
                         return;
                     }
@@ -114,7 +114,7 @@ namespace ReTouchGunFire.Mgrs{
                 }
                 StartReceive();
             }catch(Exception e){
-                Debug.LogError(e.Message);
+                // Debug.LogError(e.Message);
             }
         }
 
@@ -142,7 +142,7 @@ namespace ReTouchGunFire.Mgrs{
             try{
                 udpSocket.Connect(endPoint);
             }catch(Exception e){
-                Debug.Log(e.Message);
+                // Debug.Log(e.Message);
                 return;
             }
 

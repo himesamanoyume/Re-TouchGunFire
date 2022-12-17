@@ -49,7 +49,7 @@ namespace ReTouchGunFire.Mgrs{
                 panel.GetComponent<UIInfo>().currentLevel = uILevel;
                 panel.transform.SetParent(canvasMediator.GetCanvasLevel(uILevel));
             }else{
-                Debug.LogError(uIPanelType+" Panel spawned not yet.");
+                // Debug.LogError(uIPanelType+" Panel spawned not yet.");
             }
         }
     }

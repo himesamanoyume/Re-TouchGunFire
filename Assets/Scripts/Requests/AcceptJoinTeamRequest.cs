@@ -20,7 +20,7 @@ public sealed class AcceptJoinTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("AcceptJoinTeamRequest Success");
+                    // Debug.Log("AcceptJoinTeamRequest Success");
                 break;
                 case ReturnCode.Fail:
                     panelMediator.ShowNotifyPanel("失败",3f);

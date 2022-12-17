@@ -19,7 +19,7 @@ public sealed class UnlockItemSubPropRequest : ShopPanelBaseRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("解锁装备副词条成功");
+                    // Debug.Log("解锁装备副词条成功");
                     // panelMediator.ShowNotifyPanel("解锁装备副词条成功",1f);
                     
                 break;

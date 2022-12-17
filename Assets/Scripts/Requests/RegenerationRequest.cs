@@ -24,11 +24,11 @@ public sealed class RegenerationRequest : IRequest
                     
                 break;
                 case ReturnCode.Fail:
-                    Debug.Log("RegenerationRequest "+mainPack.ReturnCode);
+                    // Debug.Log("RegenerationRequest "+mainPack.ReturnCode);
                 break;
                 default:
                     // Debug.Log(mainPack.ReturnCode);
-                    Debug.Log("RegenerationRequest "+mainPack.ReturnCode);
+                    // Debug.Log("RegenerationRequest "+mainPack.ReturnCode);
                 break;
             }
         });

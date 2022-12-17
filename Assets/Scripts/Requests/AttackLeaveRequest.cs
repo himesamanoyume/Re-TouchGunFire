@@ -19,7 +19,7 @@ public sealed class AttackLeaveRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("离开战斗请求成功");
+                    // Debug.Log("离开战斗请求成功");
                     networkMediator.AttackLeaveCallback();
                     panelMediator.ShowNotifyPanel("已离开战斗",3f);
                 break;

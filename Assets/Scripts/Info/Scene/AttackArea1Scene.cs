@@ -40,7 +40,6 @@ public sealed class AttackArea1Scene : SceneInfo
 
     public override void OnEnd()
     {
-        Debug.Log("End");
         panelMediator.DestroyPanel(EUIPanelType.AttackAreaPanel);
     }
 }

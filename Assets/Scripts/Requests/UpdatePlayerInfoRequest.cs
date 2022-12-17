@@ -34,10 +34,10 @@ public sealed class UpdatePlayerInfoRequest : IRequest
                 break;
                 case ReturnCode.Fail:
                     // panelMediator.ShowNotifyPanel("",3f);
-                    Debug.Log("UpdatePlayerInfoRequest "+mainPack.ReturnCode);
+                    // Debug.Log("UpdatePlayerInfoRequest "+mainPack.ReturnCode);
                 break;
                 default:
-                    Debug.Log("UpdatePlayerInfoRequest "+mainPack.ReturnCode);
+                    // Debug.Log("UpdatePlayerInfoRequest "+mainPack.ReturnCode);
                     // panelMediator.ShowNotifyPanel("",3f);
                 break;
             

@@ -305,7 +305,7 @@ public sealed class PlayerInfo : EntityInfo
                     UpdatePlayerGunInfoList(hgDict, item);
                 break;
                 default:
-                    Debug.LogWarning("不正常情况");
+                    // Debug.LogWarning("不正常情况");
                 break;
             }
         }
@@ -362,7 +362,7 @@ public sealed class PlayerInfo : EntityInfo
                     UpdatePlayerEquipmentInfoList(bootsDict, item);
                 break;
                 default:
-                    Debug.LogWarning("不正常情况");
+                    // Debug.LogWarning("不正常情况");
                 break;
             }
         }

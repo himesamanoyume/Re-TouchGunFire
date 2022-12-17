@@ -20,7 +20,7 @@ public sealed class RefuseInviteTeamRequest : IRequest
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
                     //右下角显示有人拉我
-                    Debug.Log("已拒绝好友的邀请入队请求");
+                    // Debug.Log("已拒绝好友的邀请入队请求");
                     
                 break;
                 case ReturnCode.Fail:

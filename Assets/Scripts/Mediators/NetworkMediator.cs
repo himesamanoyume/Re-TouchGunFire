@@ -182,6 +182,8 @@ namespace ReTouchGunFire.Mediators{
             mainMenuPanelInfo.AttackEndCallback();
 
             panelMediator.GetPanel(EUIPanelType.BattleGunInfoPanel).GetComponent<BattleGunInfoPanelInfo>().AttackEndAndLeaveCallback();
+
+            mainMenuPanelInfo.AttackLeaveCallback();
         }
 
         [SerializeField] AttackAreaPanelInfo attackAreaPanelInfo = null;

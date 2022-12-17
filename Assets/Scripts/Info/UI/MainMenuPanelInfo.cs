@@ -147,6 +147,7 @@ namespace ReTouchGunFire.PanelInfo{
                 LeaveTeamCallback();
             }else if (isInTheTeam && !_isInTheTeam)//现在在队伍中而之前不在
             {
+                // Debug.Log("1");
                 _isInTheTeam = isInTheTeam;
                 attackCube.onClick.RemoveAllListeners();
                 attackCube.transform.Find("Text").GetComponent<Text>().text = "准备就绪";
@@ -161,7 +162,7 @@ namespace ReTouchGunFire.PanelInfo{
         }
 
         public void CancelReadyAttackCallback(){
-            Debug.Log("2");
+            // Debug.Log("2");
             if (networkMediator.teamMasterPlayerUid != networkMediator.playerSelfUid)
             {
                 attackCube.onClick.RemoveAllListeners();
@@ -243,6 +244,18 @@ namespace ReTouchGunFire.PanelInfo{
 
         public void AttackEndCallback(){
             attackCube.transform.localScale = Vector3.one;
+        }
+
+        public void AttackLeaveCallback(){
+            if (!_isInTheTeam)
+            {
+                attackCube.transform.Find("Text").GetComponent<Text>().text = "出击";
+                attackCube.onClick.RemoveAllListeners();
+                attackCube.onClick.AddListener(()=>{
+                    mainTemplate.localScale = Vector3.zero;
+                    attackTemplate.localScale = Vector3.one;
+                });
+            }
         }
     }
 }

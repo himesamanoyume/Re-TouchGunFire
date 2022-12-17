@@ -19,7 +19,7 @@ public sealed class BreakTeamRequest : IRequest
         Loom.QueueOnMainThread(()=>{
             switch(mainPack.ReturnCode){
                 case ReturnCode.Success:
-                    Debug.Log("已自动解散离队");
+                    // Debug.Log("已自动解散离队");
                     panelMediator.ShowNotifyPanel("已自动解散离队",1f);
                 break;
                 case ReturnCode.Fail:
@@ -36,7 +36,7 @@ public sealed class BreakTeamRequest : IRequest
 
     public void SendRequest(){
         MainPack mainPack = base.InitRequest();
-        Debug.Log("发送解散队伍请求");
+        // Debug.Log("发送解散队伍请求");
         base.TcpSendRequest(mainPack);
     }
 
