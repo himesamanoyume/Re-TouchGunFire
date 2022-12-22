@@ -1,6 +1,8 @@
 
 using UnityEngine;
+using XLua;
 
+[LuaCallCSharp]
 public enum EUIPanelType
 {
     Null,

@@ -1,4 +1,6 @@
+using XLua;
 
+[LuaCallCSharp]
 public enum EEquipmentSuit
 {
    Null,

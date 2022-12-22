@@ -6,12 +6,11 @@ Rebuild project.
 
 ### TODO
 
-`null`
+## CSharp向Lua脚本改造
 
 ### OPTIONAL TODO
 
 新增武器/装备的自带一些副词条中存在的属性(成员变量已添加,但未赋值). 
-
 
 ---
 ## Client项目结构
