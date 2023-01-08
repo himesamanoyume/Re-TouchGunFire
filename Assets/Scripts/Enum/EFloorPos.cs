@@ -1,7 +1,5 @@
 
-using XLua;
-
-[LuaCallCSharp]
+using UnityEngine;
 public enum EFloorPos{
     Null,
     Pos1_1,

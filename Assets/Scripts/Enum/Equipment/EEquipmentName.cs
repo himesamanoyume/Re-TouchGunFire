@@ -1,6 +1,6 @@
-using XLua;
 
-[LuaCallCSharp]
+using UnityEngine;
+
 public enum EEquipmentName
 {
     Null,

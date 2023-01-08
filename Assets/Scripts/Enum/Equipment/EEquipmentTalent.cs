@@ -1,7 +1,6 @@
 
-using XLua;
+using UnityEngine;
 
-[LuaCallCSharp]
 public enum EEquipmentTalent
 {
     Null,

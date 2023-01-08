@@ -1,7 +1,5 @@
 
-using XLua;
-
-[LuaCallCSharp]
+using UnityEngine;
 public enum EFloor{
     Null,
     Floor1,

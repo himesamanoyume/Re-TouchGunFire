@@ -21,20 +21,6 @@ namespace ReTouchGunFire.Mediators{
             luaMgr = GameLoop.Instance.gameManager.LuaMgr;
         }
 
-
-        public void Update(){
-            if (luaMgr.isGameStarted)
-            {
-                luaMgr.env.DoString("GameLoopLua.Update()");
-            }
-        }
-
-        public void FixedUpdate() {
-            if (luaMgr.isGameStarted)
-            {
-                luaMgr.env.DoString("GameLoopLua.FixedUpdate()");
-            }
-        }
     }
 }
 

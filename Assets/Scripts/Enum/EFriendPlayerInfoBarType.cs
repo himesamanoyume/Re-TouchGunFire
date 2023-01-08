@@ -1,6 +1,7 @@
-using XLua;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-[LuaCallCSharp]
 public enum EFriendPlayerInfoBarType{
     FriendType,
     RequestType,

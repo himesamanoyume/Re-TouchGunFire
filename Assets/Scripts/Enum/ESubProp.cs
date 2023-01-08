@@ -1,8 +1,6 @@
 
 using UnityEngine;
-using XLua;
 
-[LuaCallCSharp]
 enum ESubProp
 {
     Null,

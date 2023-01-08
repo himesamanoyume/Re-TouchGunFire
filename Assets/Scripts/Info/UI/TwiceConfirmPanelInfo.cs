@@ -1,90 +1,90 @@
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine.Events;
-// using UnityEngine;
-// using UnityEngine.UI;
-// using ReTouchGunFire.Mediators;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Events;
+using UnityEngine;
+using UnityEngine.UI;
+using ReTouchGunFire.Mediators;
 
-// namespace ReTouchGunFire.PanelInfo{
-//     public class TwiceConfirmPanelInfo : UIInfo
-//     {
-//         // public PanelMediator panelMediator;
-//         void Start()
-//         {
-//             Name = "TwiceConfirmPanelInfo";
-//             Init();
-//         }
+namespace ReTouchGunFire.PanelInfo{
+    public class TwiceConfirmPanelInfo : UIInfo
+    {
+        // public PanelMediator panelMediator;
+        void Start()
+        {
+            Name = "TwiceConfirmPanelInfo";
+            Init();
+        }
 
-//         [SerializeField] Transform content;
-//         [SerializeField] Transform point;
-//         [SerializeField] Button confirmButton;
-//         [SerializeField] Button cancelButton;
-//         [SerializeField] Slider countdownLeft;
-//         [SerializeField] Slider countdownRight;
-//         [SerializeField] Text infoText;
+        [SerializeField] Transform content;
+        [SerializeField] Transform point;
+        [SerializeField] Button confirmButton;
+        [SerializeField] Button cancelButton;
+        [SerializeField] Slider countdownLeft;
+        [SerializeField] Slider countdownRight;
+        [SerializeField] Text infoText;
 
-//         bool isCountdown;
-//         Action confirmDel;
+        bool isCountdown;
+        Action confirmDel;
 
-//         protected override void Init()
-//         {
-//             base.Init();
-//             point = transform.GetChild(0);
-//             content = transform.Find("Point/Center/Container/Content");
-//             confirmButton = content.Find("ConfirmButton").GetComponent<Button>();
-//             cancelButton = content.Find("CancelButton").GetComponent<Button>();
-//             countdownLeft = content.Find("CountdownBarLeft").GetComponent<Slider>();
-//             countdownRight = content.Find("CountdownBarRight").GetComponent<Slider>();
-//             infoText =  content.Find("InfoText").GetComponent<Text>();
+        protected override void Init()
+        {
+            base.Init();
+            point = transform.GetChild(0);
+            content = transform.Find("Point/Center/Container/Content");
+            confirmButton = content.Find("ConfirmButton").GetComponent<Button>();
+            cancelButton = content.Find("CancelButton").GetComponent<Button>();
+            countdownLeft = content.Find("CountdownBarLeft").GetComponent<Slider>();
+            countdownRight = content.Find("CountdownBarRight").GetComponent<Slider>();
+            infoText =  content.Find("InfoText").GetComponent<Text>();
 
-//             confirmButton.onClick.AddListener(()=>{
-//                 confirmDel?.Invoke();
-//                 confirmDel = null;
-//                 isCountdown = false;
-//                 point.gameObject.SetActive(false);
-//             });
+            confirmButton.onClick.AddListener(()=>{
+                confirmDel?.Invoke();
+                confirmDel = null;
+                isCountdown = false;
+                point.gameObject.SetActive(false);
+            });
 
-//             cancelButton.onClick.AddListener(()=>{
-//                 confirmDel = null;
-//                 isCountdown = false;
-//                 point.gameObject.SetActive(false);
-//             });
+            cancelButton.onClick.AddListener(()=>{
+                confirmDel = null;
+                isCountdown = false;
+                point.gameObject.SetActive(false);
+            });
 
-//             point.gameObject.SetActive(false);
-//         }
+            point.gameObject.SetActive(false);
+        }
 
-//         private void Update() {
-//             CountDownRunning();
-//         }
+        private void Update() {
+            CountDownRunning();
+        }
 
-//         protected override void CountDownRunning(){
-//             if(!isCountdown) return;
-//             countdownLeft.value -= Time.deltaTime;
-//             countdownRight.value -= Time.deltaTime;
-//             if(countdownLeft.value <= 0 && countdownRight.value <= 0){
-//                 isCountdown = false;
-//                 confirmDel = null;
-//                 point.gameObject.SetActive(false);
-//             }
-//         }
+        protected override void CountDownRunning(){
+            if(!isCountdown) return;
+            countdownLeft.value -= Time.deltaTime;
+            countdownRight.value -= Time.deltaTime;
+            if(countdownLeft.value <= 0 && countdownRight.value <= 0){
+                isCountdown = false;
+                confirmDel = null;
+                point.gameObject.SetActive(false);
+            }
+        }
 
-//         // void OnShowTwiceConfirmPanel(ShowTwiceConfirmPanelNotify evt) => ShowTwiceConfirmPanel();
-//         // void ShowTwiceConfirmPanel(){
-//         //     isCountdown = true;
-//         // }
+        // void OnShowTwiceConfirmPanel(ShowTwiceConfirmPanelNotify evt) => ShowTwiceConfirmPanel();
+        // void ShowTwiceConfirmPanel(){
+        //     isCountdown = true;
+        // }
 
-//         public void ShowTwiceConfirmPanel(string infoText, float countdown, Action confirmFunction){
-//             point.gameObject.SetActive(true);
-//             this.infoText.text = infoText;
-//             countdownLeft.maxValue = countdown;
-//             countdownLeft.value = countdown;
-//             countdownRight.maxValue = countdown;
-//             countdownRight.value = countdown;
-//             confirmDel = confirmFunction;
+        public void ShowTwiceConfirmPanel(string infoText, float countdown, Action confirmFunction){
+            point.gameObject.SetActive(true);
+            this.infoText.text = infoText;
+            countdownLeft.maxValue = countdown;
+            countdownLeft.value = countdown;
+            countdownRight.maxValue = countdown;
+            countdownRight.value = countdown;
+            confirmDel = confirmFunction;
 
-//             isCountdown = true;
-//         }
-//     }
-// }
+            isCountdown = true;
+        }
+    }
+}
 

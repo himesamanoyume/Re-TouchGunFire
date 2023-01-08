@@ -1,7 +1,5 @@
 using UnityEngine;
-using XLua;
 
-[LuaCallCSharp]
 public enum EGunType
 {
     [Tooltip("自动步枪")]

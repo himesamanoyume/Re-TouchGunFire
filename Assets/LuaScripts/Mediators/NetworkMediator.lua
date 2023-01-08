@@ -6,7 +6,7 @@ local playerSelfUid = 0
 local teamMasterPlayerUid = 0
 local teammateAllReady = false
 
-local Init = function ()
+function NetworkMediator:Init ()
 
     
 
@@ -17,7 +17,3 @@ local Init = function ()
     -- local playerInfo = CS.UnityEngine.PlayerInfo
 
 end
-
-
-
-NetworkMediator.Init = Init

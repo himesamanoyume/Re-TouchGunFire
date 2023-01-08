@@ -1,5 +1,7 @@
 AbMediator = {}
 
+setmetatable(AbMediator, IMediator)
+
 local util = require 'xlua.util'
 local panelMediator
 local prefabsAb
