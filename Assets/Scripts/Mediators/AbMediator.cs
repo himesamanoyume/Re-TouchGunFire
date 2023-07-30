@@ -44,7 +44,7 @@ namespace ReTouchGunFire.Mediators{
         /// <param name="resName"></param>
         /// <param name="transform"></param>
         /// <returns></returns>
-        public GameObject FristTimeSyncLoadABRes(string abName, string resName, Transform transform){
+        public GameObject FirstTimeSyncLoadABRes(string abName, string resName, Transform transform){
 
             //StreamingAssets/AbMap/AssetBundle/abName
             AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + abMapPathStr + abName);

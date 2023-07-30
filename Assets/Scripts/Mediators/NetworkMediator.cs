@@ -241,6 +241,11 @@ namespace ReTouchGunFire.Mediators{
             mainMenuPanelInfo.CancelReadyAttackCallback();
         }
 
+        public void PlayerDeadCallback()
+        {
+            
+        }
+
     }
 }
 

@@ -7,7 +7,7 @@
         {
             "name": "Unity Editor",
             "type": "unity",
-            "path": "/D:/Source/Re-TouchGunFire/Library/EditorInstance.json",
+            "path": "/E:/Source/Re-TouchGunFire/Library/EditorInstance.json",
             "request": "launch"
         },
         {

@@ -47,7 +47,7 @@ public sealed class EnemyInfo : EntityInfo
         }
         catch
         {
-          
+            
         }
         
     }
