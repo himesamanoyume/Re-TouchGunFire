@@ -4,6 +4,8 @@ Rebuild project.
 
 **2022.12.17项目基本结束开发**
 
+<iframe id="spkj" src="https://www.acfun.cn/player/ac40190066" width="100%" frameborder="no" scrolling="no" allowfullscreen="allowfullscreen"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span> <span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span> </iframe> <script type="text/javascript"> document.getElementById("spkj").style.height=document.getElementById("spkj").scrollWidth*0.76+"px"; </script>
+
 ### TODO
 
 玩家生命值为0时死亡,如果处在联机状态下则需要通过其他队员对死亡队员信息长按10秒进行救援,单人情况下死亡直接关卡失败,返回主界面,生命值护甲值直接全满
