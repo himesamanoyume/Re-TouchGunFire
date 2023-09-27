@@ -4,7 +4,7 @@ Rebuild project.
 
 **2022.12.17项目基本结束开发**
 
-<iframe id="spkj" src="https://www.acfun.cn/player/ac40190066" width="100%" frameborder="no" scrolling="no" allowfullscreen="allowfullscreen"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span> <span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span> </iframe> <script type="text/javascript"> document.getElementById("spkj").style.height=document.getElementById("spkj").scrollWidth*0.76+"px"; </script>
+[视频](https://www.acfun.cn/player/ac40190066)
 
 ### TODO
 
